@@ -27,10 +27,28 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return {
     title: cat.seoTitle,
     description: cat.seoDesc,
+    alternates: {
+      canonical: `/category/${slug}`,
+    },
     openGraph: {
       title: cat.seoTitle,
       description: cat.seoDesc,
-    }
+      type: "website",
+      images: [
+        {
+          url: "/og-image.png",
+          width: 1200,
+          height: 630,
+          alt: `${cat.name} - CreatorUtils`,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: cat.seoTitle,
+      description: cat.seoDesc,
+      images: ["/og-image.png"],
+    },
   };
 }
 
@@ -43,16 +61,44 @@ export default async function CategoryPage({ params }: PageProps) {
 
   const catTools = getToolsByCategory(slug);
 
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://creatorutils.com/",
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": cat.name,
+        "item": `https://creatorutils.com/category/${slug}`,
+      },
+    ],
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+
       <Header />
-      <main className="main-content section">
+      <main className="main-content section" id="main-content">
         <div className="container">
           {/* Breadcrumbs */}
           <nav aria-label="Breadcrumb" style={{ marginBottom: "1rem", fontSize: "0.85rem" }}>
-            <Link href="/" style={{ color: "var(--text-muted)", textDecoration: "none" }}>Home</Link>
-            <span style={{ margin: "0 0.5rem", color: "var(--text-muted)" }}>/</span>
-            <span style={{ color: "var(--text-primary)", fontWeight: "600" }}>{cat.name}</span>
+            <ol style={{ display: "flex", flexWrap: "wrap", listStyle: "none", padding: 0, margin: 0, alignItems: "center" }}>
+              <li>
+                <Link href="/" style={{ color: "var(--text-muted)", textDecoration: "none" }}>Home</Link>
+              </li>
+              <li aria-hidden="true" style={{ margin: "0 0.5rem", color: "var(--text-muted)" }}>/</li>
+              <li aria-current="page" style={{ color: "var(--text-primary)", fontWeight: "600" }}>{cat.name}</li>
+            </ol>
           </nav>
 
           {/* Title block */}
@@ -71,8 +117,9 @@ export default async function CategoryPage({ params }: PageProps) {
                 href={`/tools/${tool.category}/${tool.slug}`}
                 className="card card-hover flex flex-col gap-3"
                 style={{ textDecoration: "none", color: "inherit", borderStyle: "solid" }}
+                aria-label={`Open ${tool.title} - ${tool.shortDesc}`}
               >
-                <h3 style={{ fontSize: "1.15rem", margin: 0 }}>{tool.title}</h3>
+                <h2 style={{ fontSize: "1.15rem", margin: 0 }}>{tool.title}</h2>
                 <p className="text-muted" style={{ fontSize: "0.85rem", margin: 0, flexGrow: 1, lineHeight: "1.4" }}>
                   {tool.shortDesc}
                 </p>

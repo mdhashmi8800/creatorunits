@@ -277,7 +277,7 @@ export const imageTools: ToolItem[] = [
       },
       {
         question: "Which devices support JPG images?",
-        answer: "JPG is the most universally compatible image standard in existence. Virtually every operating system, including Windows, macOS, iOS, Android, and Linux, has native support for JPG files. Additionally, all social media platforms, smart TVs, email clients, and digital photo frames can display JPGs without requiring any special software. Saving files as JPEG makes it easy to open them in any older image editing application or operating system."
+        answer: "JPG is the most universally compatible image standard in existence. Virtually every operating system, including Windows, macOS, iOS, Android, and Linux, has native support for JPG files. Additionally, all social media platforms, smart TVs, email clients, and digital photo frames can display JPGs without requiring any special software. No matter what device or platform you use, JPG files will open instantly."
       },
       {
         question: "Will quality change after conversion?",
@@ -289,11 +289,11 @@ export const imageTools: ToolItem[] = [
       },
       {
         question: "Can I use converted JPG images on social media?",
-        answer: "Yes! Every major social media platform, including Facebook, Instagram, LinkedIn, Pinterest, and Twitter, accepts JPG uploads. In fact, JPG is the preferred format for standard photos on these networks due to its balance of good quality and manageable file size, ensuring fast upload times and broad compatibility. Saving files as JPEG makes it easy to open them in any older image editing application or operating system."
+        answer: "Yes! Every major social media platform, including Facebook, Instagram, LinkedIn, Pinterest, and Twitter, accepts JPG uploads. In fact, JPG is the preferred format for standard photos on these networks due to its balance of good quality and manageable file size, ensuring fast upload times and broad compatibility. Your converted images will upload seamlessly to any platform."
       },
       {
         question: "Is the process free?",
-        answer: "Yes, our WebP to JPG converter is 100% free to use. There are no registration forms, hidden fees, monthly caps, or watermarks. The conversion runs locally on your machine, so you can convert as many WebP images to JPG format as you need without any restrictions. Saving files as JPEG makes it easy to open them in any older image editing application or operating system."
+        answer: "Yes, our WebP to JPG converter is 100% free to use. There are no registration forms, hidden fees, monthly caps, or watermarks. The conversion runs locally on your machine, so you can convert as many WebP images to JPG format as you need without any restrictions. You can use it as often as you like, completely free of charge."
       }
     ],
     seoTitle: "WebP to JPG Converter - Convert Next-Gen Images Offline",
@@ -327,27 +327,27 @@ export const imageTools: ToolItem[] = [
     faqs: [
       {
         question: "What is image cropping?",
-        answer: "Image cropping is the process of removing unwanted outer areas from a photo or graphic. It allows you to change the aspect ratio, focus on a specific subject, eliminate distracting background elements, or fit the image into a designated space without stretching or distorting the remaining visual details. Cropping is an essential step to improve visual focus and fit your images into standard social grids."
+        answer: "Image cropping is the process of removing unwanted outer areas from a photo or graphic. It allows you to change the aspect ratio, focus on a specific subject, eliminate distracting background elements, or fit the image into a designated space without stretching or distorting the remaining visual details. It is one of the quickest ways to improve any photograph."
       },
       {
         question: "Can cropping improve image composition?",
-        answer: "Yes, cropping is a powerful tool for improving composition. By removing busy background elements, you can guide the viewer's eye to the main subject. You can apply composition rules, like the rule of thirds, by placing key elements along the gridlines, making your photographs look more professional and engaging. Cropping is an essential step to improve visual focus and fit your images into standard social grids."
+        answer: "Yes, cropping is a powerful tool for improving composition. By removing busy background elements, you can guide the viewer's eye to the main subject. You can apply composition rules, like the rule of thirds, by placing key elements along the gridlines, making your photographs look more professional and engaging. A well-cropped photo instantly draws attention to what matters most."
       },
       {
         question: "How do I crop images for Instagram?",
-        answer: "Instagram supports three main aspect ratios: 1:1 for classic square posts, 4:5 for portrait feeds, and 16:9 for landscape photos. Our image cropper provides simple ratio presets. Select the preset you need, drag the cropping box over your image to frame it, and download the perfectly sized graphic. Cropping is an essential step to improve visual focus and fit your images into standard social grids."
+        answer: "Instagram supports three main aspect ratios: 1:1 for classic square posts, 4:5 for portrait feeds, and 16:9 for landscape photos. Our image cropper provides simple ratio presets. Select the preset you need, drag the cropping box over your image to frame it, and download the perfectly sized graphic. Your posts will display cleanly without unwanted borders or awkward cropping."
       },
       {
         question: "Does cropping reduce file size?",
-        answer: "Yes, cropping reduces the overall file size of an image. Because you are physically discarding pixels from the edges of the image, the total amount of pixel data decreases. When the crop is exported, the resulting file will contain fewer bytes, making it load faster on websites. Cropping is an essential step to improve visual focus and fit your images into standard social grids."
+        answer: "Yes, cropping reduces the overall file size of an image. Because you are physically discarding pixels from the edges of the image, the total amount of pixel data decreases. When the crop is exported, the resulting file will contain fewer bytes, making it load faster on websites. This also means less bandwidth usage for your visitors."
       },
       {
         question: "Can I crop images on mobile devices?",
-        answer: "Yes, our image cropper is fully mobile-friendly. You can upload an image from your smartphone or tablet, adjust the crop box using touch controls, zoom in or out, select standard aspect ratios, and download the cropped file directly to your device's photo library using your mobile browser. Cropping is an essential step to improve visual focus and fit your images into standard social grids."
+        answer: "Yes, our image cropper is fully mobile-friendly. You can upload an image from your smartphone or tablet, adjust the crop box using touch controls, zoom in or out, select standard aspect ratios, and download the cropped file directly to your device's photo library using your mobile browser. No app installation is required."
       },
       {
         question: "Is image cropping permanent?",
-        answer: "Cropping with our browser-based tool generates a new, cropped copy of your image for you to download. Your original source file remains untouched on your computer or phone. Once you close the browser tab, the cropped state is cleared from memory, so make sure to download your edits. Cropping is an essential step to improve visual focus and fit your images into standard social grids."
+        answer: "Cropping with our browser-based tool generates a new, cropped copy of your image for you to download. Your original source file remains untouched on your computer or phone. Once you close the browser tab, the cropped state is cleared from memory, so make sure to download your edits. Your original file stays exactly as it was."
       }
     ],
     seoTitle: "Free Image Cropper Online - Aspect Ratio Cropping Tool",
@@ -380,23 +380,23 @@ export const imageTools: ToolItem[] = [
     faqs: [
       {
         question: "Why would I rotate an image?",
-        answer: "You may need to rotate an image if it was captured sideways or upside down due to camera sensor positioning. Rotating is also useful for creative composition, adjusting photo orientations from portrait to landscape, or correcting scan angles to make text and graphics easier for audiences to read. Aligning your photo correctly ensures that your text and graphics display upright and are easy for readers to scan."
+        answer: "You may need to rotate an image if it was captured sideways or upside down due to camera sensor positioning. Rotating is also useful for creative composition, adjusting photo orientations from portrait to landscape, or correcting scan angles to make text and graphics easier for audiences to read. It is a simple fix that makes a big difference in how your content is perceived."
       },
       {
         question: "Can I rotate images without losing quality?",
-        answer: "Yes, rotating images with our tool is a completely lossless process. Since the rotation is calculated using HTML5 Canvas transforms on your local device, the pixels are simply reoriented without applying lossy compression. Your image preserves its original clarity, resolution, and sharpness throughout the entire rotation process. Aligning your photo correctly ensures that your text and graphics display upright and are easy for readers to scan."
+        answer: "Yes, rotating images with our tool is a completely lossless process. Since the rotation is calculated using HTML5 Canvas transforms on your local device, the pixels are simply reoriented without applying lossy compression. Your image preserves its original clarity, resolution, and sharpness throughout the entire rotation process. The output will look identical to the original, just correctly oriented."
       },
       {
         question: "How many rotation options are available?",
-        answer: "Our tool allows you to rotate images in clean, standard 90-degree steps: 90 degrees clockwise, 180 degrees (which flips the image upside down), and 270 degrees clockwise (90 degrees counter-clockwise). This ensures you can easily align any crooked or misoriented photograph to the correct upright position. Aligning your photo correctly ensures that your text and graphics display upright and are easy for readers to scan."
+        answer: "Our tool allows you to rotate images in clean, standard 90-degree steps: 90 degrees clockwise, 180 degrees (which flips the image upside down), and 270 degrees clockwise (90 degrees counter-clockwise). This ensures you can easily align any crooked or misoriented photograph to the correct upright position. These four orientations cover every possible alignment scenario."
       },
       {
         question: "Is rotating an image reversible?",
-        answer: "Yes, rotating is reversible. If you rotate an image and do not like the new alignment, you can click the rotation buttons again to cycle back to the original orientation. Because it runs locally in your browser, you can adjust the angle as many times as needed before saving. Aligning your photo correctly ensures that your text and graphics display upright and are easy for readers to scan."
+        answer: "Yes, rotating is reversible. If you rotate an image and do not like the new alignment, you can click the rotation buttons again to cycle back to the original orientation. Because it runs locally in your browser, you can adjust the angle as many times as needed before saving. Feel free to experiment until the orientation looks right."
       },
       {
         question: "Can I rotate images for social media posts?",
-        answer: "Absolutely! Many photos captured on smartphones display sideways when uploaded to platforms like Facebook, Twitter, or LinkedIn due to ignored metadata tags. By physically rotating the pixel grid using our tool before uploading, you ensure your posts will display upright and look professional on all feeds. Aligning your photo correctly ensures that your text and graphics display upright and are easy for readers to scan."
+        answer: "Absolutely! Many photos captured on smartphones display sideways when uploaded to platforms like Facebook, Twitter, or LinkedIn due to ignored metadata tags. By physically rotating the pixel grid using our tool before uploading, you ensure your posts will display upright and look professional on all feeds. Your audience will see the image exactly as you intended."
       }
     ],
     seoTitle: "Rotate Image Online - Fix Photo Orientation Instantly",
@@ -430,23 +430,23 @@ export const imageTools: ToolItem[] = [
     faqs: [
       {
         question: "What does image flipping do?",
-        answer: "Image flipping mirrors the pixel layout of an image across a central axis. Unlike rotation, which turns the image around a center point, flipping reverses the content. This is useful for mirroring selfies, creating symmetric design layouts, correcting text direction, or adjusting the visual flow of a composition. Mirroring pixels is a great way to correct lens orientation errors or create balanced visual symmetry in layouts."
+        answer: "Image flipping mirrors the pixel layout of an image across a central axis. Unlike rotation, which turns the image around a center point, flipping reverses the content. This is useful for mirroring selfies, creating symmetric design layouts, correcting text direction, or adjusting the visual flow of a composition. It opens up creative possibilities that rotation alone cannot achieve."
       },
       {
         question: "What is the difference between horizontal and vertical flip?",
-        answer: "A horizontal flip mirrors the image from left to right, reversing the horizontal axis. This is perfect for correcting front-facing camera selfies. A vertical flip mirrors the image from top to bottom, making the content appear upside down. It is often used for creative reflections or water effect graphics. Mirroring pixels is a great way to correct lens orientation errors or create balanced visual symmetry in layouts."
+        answer: "A horizontal flip mirrors the image from left to right, reversing the horizontal axis. This is perfect for correcting front-facing camera selfies. A vertical flip mirrors the image from top to bottom, making the content appear upside down. It is often used for creative reflections or water effect graphics. Understanding the difference helps you choose the right flip for your needs."
       },
       {
         question: "Can I undo a flip?",
-        answer: "Yes, undoing a flip is simple. If you apply a horizontal or vertical flip and want to revert, just click the corresponding flip button a second time. This restores the pixel coordinates to their original layout, allowing you to preview different configurations without any risk. Mirroring pixels is a great way to correct lens orientation errors or create balanced visual symmetry in layouts."
+        answer: "Yes, undoing a flip is simple. If you apply a horizontal or vertical flip and want to revert, just click the corresponding flip button a second time. This restores the pixel coordinates to their original layout, allowing you to preview different configurations without any risk. You can experiment freely since nothing is permanent until you download."
       },
       {
         question: "Does flipping affect image quality?",
-        answer: "No, flipping your images does not reduce quality. The mirroring calculations are processed losslessly using the HTML5 Canvas API in your browser. The pixels are flipped mathematically across the axis, preserving the original resolution, file format parameters, and compression quality settings of your source file. Mirroring pixels is a great way to correct lens orientation errors or create balanced visual symmetry in layouts."
+        answer: "No, flipping your images does not reduce quality. The mirroring calculations are processed losslessly using the HTML5 Canvas API in your browser. The pixels are flipped mathematically across the axis, preserving the original resolution, file format parameters, and compression quality settings of your source file. The flipped output will be pixel-perfect."
       },
       {
         question: "When is image flipping useful?",
-        answer: "Flipping is useful for correcting mirrored text in selfies, creating artistic symmetry, and adjusting character gaze in web design. For example, if a person in a photo is looking away from your call-to-action text, flipping them horizontally can direct their gaze toward the message. Mirroring pixels is a great way to correct lens orientation errors or create balanced visual symmetry in layouts."
+        answer: "Flipping is useful for correcting mirrored text in selfies, creating artistic symmetry, and adjusting character gaze in web design. For example, if a person in a photo is looking away from your call-to-action text, flipping them horizontally can direct their gaze toward the message. It is a subtle technique that can significantly improve how viewers engage with your content."
       }
     ],
     seoTitle: "Flip Image Online - Mirror Photos Horizontally & Vertically",
@@ -480,23 +480,23 @@ export const imageTools: ToolItem[] = [
     faqs: [
       {
         question: "What is a color picker tool?",
-        answer: "A color picker tool is a utility that allows designers and developers to identify and copy exact color codes from an image or visual canvas. By uploading a screenshot or graphic, users can hover over any pixel to extract its color values, simplifying branding workflows and web design coding. Extracting color codes directly from screenshots saves valuable time during logo design and theme styling tasks."
+        answer: "A color picker tool is a utility that allows designers and developers to identify and copy exact color codes from an image or visual canvas. By uploading a screenshot or graphic, users can hover over any pixel to extract its color values, simplifying branding workflows and web design coding. It eliminates the guesswork of matching colors by eye."
       },
       {
         question: "How do I find a HEX color code?",
-        answer: "To find a HEX color code, upload your image to our color picker, move the magnifying lens over your target color, and click. The tool immediately extracts the six-character hexadecimal code (e.g., #FF5733) and displays it on your screen with a quick copy button for clipboard saving. Extracting color codes directly from screenshots saves valuable time during logo design and theme styling tasks."
+        answer: "To find a HEX color code, upload your image to our color picker, move the magnifying lens over your target color, and click. The tool immediately extracts the six-character hexadecimal code (e.g., #FF5733) and displays it on your screen with a quick copy button for clipboard saving. You can then paste it directly into your CSS or design tool."
       },
       {
         question: "Can I use the selected colors in web design?",
-        answer: "Yes, all extracted color codes are fully compatible with web design standards. You can copy HEX, RGB, or HSL values and paste them directly into CSS, HTML styling, graphic design editors like Figma or Photoshop, or branding kits to maintain complete color accuracy across platforms. Extracting color codes directly from screenshots saves valuable time during logo design and theme styling tasks."
+        answer: "Yes, all extracted color codes are fully compatible with web design standards. You can copy HEX, RGB, or HSL values and paste them directly into CSS, HTML styling, graphic design editors like Figma or Photoshop, or branding kits to maintain complete color accuracy across platforms. Every format works seamlessly in professional workflows."
       },
       {
         question: "What color formats are supported?",
-        answer: "Our color picker tool supports the three most common digital color formats: HEX (hexadecimal codes for web design), RGB (Red, Green, Blue intensity values), and HSL (Hue, Saturation, Lightness coordinates). This allows you to copy whichever format matches your design project or coding environment. Extracting color codes directly from screenshots saves valuable time during logo design and theme styling tasks."
+        answer: "Our color picker tool supports the three most common digital color formats: HEX (hexadecimal codes for web design), RGB (Red, Green, Blue intensity values), and HSL (Hue, Saturation, Lightness coordinates). This allows you to copy whichever format matches your design project or coding environment. Switching between formats is instant with a single click."
       },
       {
         question: "Why is color consistency important?",
-        answer: "Color consistency is critical for brand recognition and user experience. Using the exact same shades across your logo, website headers, call-to-action buttons, and social media templates establishes trust. A color picker helps you maintain this consistency by matching color values across all media formats. Extracting color codes directly from screenshots saves valuable time during logo design and theme styling tasks."
+        answer: "Color consistency is critical for brand recognition and user experience. Using the exact same shades across your logo, website headers, call-to-action buttons, and social media templates establishes trust. A color picker helps you maintain this consistency by matching color values across all media formats. Consistent colors make your brand instantly recognizable to your audience."
       }
     ],
     seoTitle: "Image Color Picker - Extract HEX, RGB, HSL from Photos",
@@ -531,23 +531,23 @@ export const imageTools: ToolItem[] = [
     faqs: [
       {
         question: "What is a screenshot beautifier?",
-        answer: "A screenshot beautifier is a creative tool that transforms plain, raw screenshots into professional marketing graphics. By placing your screenshot inside a clean container, adding custom padding, wrapping it in colorful gradient backgrounds, and applying drop shadows, it creates high-quality visuals for social media or app stores. Wrapping your raw screenshots in clean cards with soft gradients elevates your branding and presentation designs."
+        answer: "A screenshot beautifier is a creative tool that transforms plain, raw screenshots into professional marketing graphics. By placing your screenshot inside a clean container, adding custom padding, wrapping it in colorful gradient backgrounds, and applying drop shadows, it creates high-quality visuals for social media or app stores. It turns ordinary captures into eye-catching assets."
       },
       {
         question: "Why should I improve screenshots before sharing?",
-        answer: "Raw screenshots can look boring, flat, and hard to distinguish from background text in articles. Improving them with gradients and shadows adds professional polish, increases visual engagement, makes UI elements pop, and elevates your overall content branding across social feeds, blogs, and marketing decks. Wrapping your raw screenshots in clean cards with soft gradients elevates your branding and presentation designs."
+        answer: "Raw screenshots can look boring, flat, and hard to distinguish from background text in articles. Improving them with gradients and shadows adds professional polish, increases visual engagement, makes UI elements pop, and elevates your overall content branding across social feeds, blogs, and marketing decks. Polished screenshots are far more likely to grab attention and get shared."
       },
       {
         question: "Can I add spacing and shadows?",
-        answer: "Yes! Our beautifier allows you to adjust the spacing (padding) surrounding your screenshot and customize the depth of the drop shadow. You can choose from soft, realistic shadows to heavy, retro designs, creating depth that separates your UI mockups from the background canvas. Wrapping your raw screenshots in clean cards with soft gradients elevates your branding and presentation designs."
+        answer: "Yes! Our beautifier allows you to adjust the spacing (padding) surrounding your screenshot and customize the depth of the drop shadow. You can choose from soft, realistic shadows to heavy, retro designs, creating depth that separates your UI mockups from the background canvas. These small details make your screenshots look polished and professional."
       },
       {
         question: "Is it useful for tutorials and blogs?",
-        answer: "Absolutely. Bloggers, technical writers, and tutorial creators use this tool to highlight code snippets, dashboard screens, or mobile app features. Wrapping screenshots in a consistent style makes tutorial pages look clean, cohesive, and significantly more professional for readers. Wrapping your raw screenshots in clean cards with soft gradients elevates your branding and presentation designs."
+        answer: "Absolutely. Bloggers, technical writers, and tutorial creators use this tool to highlight code snippets, dashboard screens, or mobile app features. Wrapping screenshots in a consistent style makes tutorial pages look clean, cohesive, and significantly more professional for readers. It helps your instructional content stand out from competing articles."
       },
       {
         question: "Can screenshots be optimized for social media?",
-        answer: "Yes, our tool includes standard aspect ratio options like 1:1 square for Instagram or 16:9 widescreen for X (formerly Twitter) and LinkedIn. This allows you to fit screenshots to platform templates, ensuring your visual marketing assets display perfectly in user feeds. Wrapping your raw screenshots in clean cards with soft gradients elevates your branding and presentation designs."
+        answer: "Yes, our tool includes standard aspect ratio options like 1:1 square for Instagram or 16:9 widescreen for X (formerly Twitter) and LinkedIn. This allows you to fit screenshots to platform templates, ensuring your visual marketing assets display perfectly in user feeds. No more guessing dimensions or dealing with cropped-off content."
       }
     ],
     seoTitle: "Screenshot Beautifier - Wrap Screenshots in Beautiful Gradients",

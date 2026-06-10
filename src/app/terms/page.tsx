@@ -1,17 +1,26 @@
 import React from "react";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import { Metadata } from "next";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Terms of Service - CreatorUtils",
   description: "Read our Terms of Service. Simple, straightforward rules for using our free creator utilities.",
+  alternates: {
+    canonical: "/terms",
+  },
+  openGraph: {
+    title: "Terms of Service - CreatorUtils",
+    description: "Read our Terms of Service. Simple, straightforward rules for using our free creator utilities.",
+    images: ["/og-image.png"],
+  },
 };
 
 export default function TermsPage() {
   return (
     <>
       <Header />
-      <main className="main-content section">
+      <main className="main-content section" id="main-content">
         <div className="container" style={{ maxWidth: "800px" }}>
           <h1 className="mb-6">Terms of Service</h1>
 
@@ -35,7 +44,7 @@ export default function TermsPage() {
               <li>Use the tools for any illegal purpose or to transmit malicious scripts or viruses.</li>
             </ul>
 
-            <h2 style={{ fontSize: "1.35rem", color: "var(--text-primary)", marginTop: "1rem", margin: "0" }}>3. Disclaimer & Warranty</h2>
+            <h2 style={{ fontSize: "1.35rem", color: "var(--text-primary)", marginTop: "1rem", margin: "0" }}>3. Disclaimer &amp; Warranty</h2>
             <p>
               The materials and tools on CreatorUtils are provided &quot;as is&quot;. CreatorUtils makes no warranties, expressed or implied, and hereby disclaims and negates all other warranties, including without limitation, implied warranties of merchantability, fitness for a particular purpose, or non-infringement of intellectual property or other violation of rights.
             </p>
