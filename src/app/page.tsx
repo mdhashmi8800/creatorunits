@@ -25,8 +25,8 @@ export default function Home() {
 
   const faqs = [
     {
-      q: "Are the tools on CreatorUtils really free?",
-      a: "Yes, every tool on CreatorUtils is completely free with no hidden costs. You get unlimited access to all 30+ tools including image compression, QR code generation, thumbnail previews, and text formatting — no account creation, no trial periods, and no premium tiers required."
+      q: "Are the tools on Creators Units really free?",
+      a: "Yes, every tool on Creators Units is completely free with no hidden costs. You get unlimited access to all 30+ tools including image compression, QR code generation, thumbnail previews, and text formatting — no account creation, no trial periods, and no premium tiers required."
     },
     {
       q: "Do my files get uploaded to your servers?",
@@ -34,7 +34,7 @@ export default function Home() {
     },
     {
       q: "What browsers and devices are supported?",
-      a: "CreatorUtils works on all modern browsers including Chrome, Firefox, Safari, and Edge on desktop, tablet, and mobile. The tools use standard web APIs that have been supported since 2018, so even slightly older devices will run most tools without issues."
+      a: "Creators Units works on all modern browsers including Chrome, Firefox, Safari, and Edge on desktop, tablet, and mobile. The tools use standard web APIs that have been supported since 2018, so even slightly older devices will run most tools without issues."
     },
     {
       q: "How do I report a bug or request a new tool?",
@@ -51,10 +51,10 @@ export default function Home() {
           <div className="container text-center">
             <span className="badge badge-accent mb-4" aria-hidden="true">All-in-one Toolkit</span>
             <h1 className={styles.title}>
-              Free creator tools that help you <span className="text-primary-color">design, optimize, and grow</span> faster.
+              Free Web Tools to <span className="text-primary-color">Optimize Images, Preview Videos & Grow Socials</span>
             </h1>
             <p className={styles.subtitle}>
-              Attract traffic, boost CTR, generate resources, and format metadata with 30+ lightning-fast browser tools. 100% private.
+              Fast, private browser tools to compress JPG/PNG/WebP, extract YouTube tags, generate QR codes, build Link-in-Bio pages, and format text.
             </p>
 
             {/* Live Search Bar */}
@@ -200,10 +200,10 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Why CreatorUtils Section */}
+        {/* Why Creators Units Section */}
         <section className="section" style={{ backgroundColor: "var(--bg-primary)" }}>
           <div className="container">
-            <h2 className="text-center mb-2">Why Use CreatorUtils?</h2>
+            <h2 className="text-center mb-2">Why Use Creators Units?</h2>
             <p className="text-center text-muted mb-8">
               A premium, lightweight, privacy-focused experience built for the modern web.
             </p>

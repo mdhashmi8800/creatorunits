@@ -1,19 +1,19 @@
 import type { Metadata } from "next";
-import { Inter, Outfit } from "next/font/google";
+import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/context/ThemeContext";
 import { ToastProvider } from "@/context/ToastContext";
 
-const inter = Inter({
+const geistSans = Geist({
   subsets: ["latin"],
-  variable: "--font-inter",
+  variable: "--font-geist-sans",
   display: "swap",
   preload: true,
 });
 
-const outfit = Outfit({
+const geistMono = Geist_Mono({
   subsets: ["latin"],
-  variable: "--font-outfit",
+  variable: "--font-geist-mono",
   display: "swap",
   preload: true,
 });
@@ -21,33 +21,37 @@ const outfit = Outfit({
 const baseUrl = "https://creatorutils.com";
 
 export const metadata: Metadata = {
-  title: "CreatorUtils - Free Online Tools for Creators & Social Media",
+  title: "Creators Units - Free Online Tools for Creators & Social Media",
   description: "Free, fast, and SEO-friendly tools for YouTubers, Instagram creators, WhatsApp users, freelancers, and small businesses. Compress images, download thumbnails, generate QR codes, and more.",
   keywords: "creator tools, image compressor, qr generator, youtube tag extractor, text case converter, fancy text generator, link in bio",
-  authors: [{ name: "CreatorUtils" }],
+  authors: [{ name: "Creators Units" }],
   metadataBase: new URL(baseUrl),
   alternates: {
     canonical: "/",
+  },
+  icons: {
+    icon: "/icon.svg",
+    apple: "/icon.svg",
   },
   openGraph: {
     type: "website",
     locale: "en_US",
     url: baseUrl,
-    siteName: "CreatorUtils",
-    title: "CreatorUtils - Free Online Tools for Creators & Social Media",
+    siteName: "Creators Units",
+    title: "Creators Units - Free Online Tools for Creators & Social Media",
     description: "Free, fast, and SEO-friendly tools for YouTubers, Instagram creators, WhatsApp users, freelancers, and small businesses.",
     images: [
       {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "CreatorUtils - Free Online Tools for Creators",
+        alt: "Creators Units - Free Online Tools for Creators",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "CreatorUtils - Free Online Tools for Creators & Social Media",
+    title: "Creators Units - Free Online Tools for Creators & Social Media",
     description: "Free, fast, and SEO-friendly tools for YouTubers, Instagram creators, WhatsApp users, freelancers, and small businesses.",
     images: ["/og-image.png"],
   },
@@ -60,7 +64,7 @@ export const metadata: Metadata = {
 const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  name: "CreatorUtils",
+  name: "Creators Units",
   url: baseUrl,
   logo: `${baseUrl}/logo.png`,
   description: "Free, fast, and privacy-focused online tools for creators, freelancers, and small businesses.",
@@ -76,7 +80,7 @@ const organizationSchema = {
 const websiteSchema = {
   "@context": "https://schema.org",
   "@type": "WebSite",
-  name: "CreatorUtils",
+  name: "Creators Units",
   url: baseUrl,
   description: "Free online tools for creators, freelancers, and small businesses.",
   potentialAction: {
@@ -95,7 +99,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${outfit.variable}`} suppressHydrationWarning>
+    <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`} suppressHydrationWarning>
       <head>
         <script
           type="application/ld+json"

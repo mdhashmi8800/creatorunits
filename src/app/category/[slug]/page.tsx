@@ -102,7 +102,7 @@ export default async function CategoryPage({ params }: PageProps) {
           </nav>
 
           {/* Title block */}
-          <div className="card" style={{ borderStyle: "solid", marginBottom: "2.5rem", padding: "2rem" }}>
+          <div className="card" style={{ marginBottom: "2.5rem", padding: "2rem" }}>
             <h1 style={{ fontSize: "2.25rem", marginBottom: "0.75rem" }}>{cat.name}</h1>
             <p className="text-muted" style={{ fontSize: "1.05rem", margin: 0, lineHeight: "1.5" }}>
               {cat.desc}
@@ -116,7 +116,7 @@ export default async function CategoryPage({ params }: PageProps) {
                 key={tool.id}
                 href={`/tools/${tool.category}/${tool.slug}`}
                 className="card card-hover flex flex-col gap-3"
-                style={{ textDecoration: "none", color: "inherit", borderStyle: "solid" }}
+                style={{ textDecoration: "none", color: "inherit" }}
                 aria-label={`Open ${tool.title} - ${tool.shortDesc}`}
               >
                 <h2 style={{ fontSize: "1.15rem", margin: 0 }}>{tool.title}</h2>
@@ -131,7 +131,7 @@ export default async function CategoryPage({ params }: PageProps) {
           </div>
 
           {/* Category-level SEO Description copy */}
-          <section className="card" style={{ borderStyle: "solid", backgroundColor: "var(--bg-primary)", padding: "2rem" }}>
+          <section className="card" style={{ backgroundColor: "var(--bg-primary)", padding: "2rem" }}>
             <h2 style={{ fontSize: "1.5rem", marginBottom: "1rem" }}>About Our {cat.name} Suite</h2>
             <div
               style={{

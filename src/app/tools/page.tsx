@@ -31,7 +31,7 @@ export default function ToolsDirectory() {
           </div>
 
           {/* Filtering controls bar */}
-          <div className="card flex flex-col gap-4" style={{ borderStyle: "solid", marginBottom: "2.5rem", padding: "1.5rem" }}>
+          <div className="card flex flex-col gap-4" style={{ marginBottom: "2.5rem", padding: "1.5rem" }}>
             <div
               style={{
                 display: "flex",
@@ -104,7 +104,7 @@ export default function ToolsDirectory() {
                     key={tool.id}
                     href={`/tools/${tool.category}/${tool.slug}`}
                     className="card card-hover flex flex-col gap-3"
-                    style={{ textDecoration: "none", color: "inherit", borderStyle: "solid" }}
+                    style={{ textDecoration: "none", color: "inherit" }}
                     aria-label={`Open ${tool.title} - ${tool.shortDesc}`}
                   >
                     <div className="flex justify-between items-start">
@@ -125,7 +125,7 @@ export default function ToolsDirectory() {
                 ))}
               </div>
             ) : (
-              <div className="card text-center" style={{ padding: "4rem 0", borderStyle: "solid" }} role="status">
+              <div className="card text-center" style={{ padding: "4rem 0" }} role="status">
                 <p className="text-muted" style={{ margin: 0 }}>
                   No tools found matching your search term. Try another query or clear the filter.
                 </p>

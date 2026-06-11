@@ -171,7 +171,7 @@ export default async function ToolDetailPage({ params }: PageProps) {
 
           {/* Step-by-Step Instructions & Features */}
           <div className="grid-cols-2" style={{ gap: "2rem", marginBottom: "3rem" }}>
-            <div className="card" style={{ borderStyle: "solid" }}>
+            <div className="card">
               <h2 style={{ fontSize: "1.25rem", marginBottom: "1rem" }}>📋 How to Use</h2>
               <ol style={{ paddingLeft: "1.25rem", display: "flex", flexDirection: "column", gap: "0.5rem", fontSize: "0.9rem" }}>
                 {tool.instructions.map((inst, idx) => (
@@ -180,7 +180,7 @@ export default async function ToolDetailPage({ params }: PageProps) {
               </ol>
             </div>
 
-            <div className="card" style={{ borderStyle: "solid" }}>
+            <div className="card">
               <h2 style={{ fontSize: "1.25rem", marginBottom: "1rem" }}>⚡ Key Features</h2>
               <ul style={{ paddingLeft: "1.25rem", display: "flex", flexDirection: "column", gap: "0.5rem", fontSize: "0.9rem", listStyleType: "square" }}>
                 {tool.features.map((feat, idx) => (
@@ -191,7 +191,7 @@ export default async function ToolDetailPage({ params }: PageProps) {
           </div>
 
           {/* Rich SEO Content */}
-          <section className="card" style={{ borderStyle: "solid", backgroundColor: "var(--bg-primary)", padding: "2.5rem", marginBottom: "3.5rem" }}>
+          <section className="card" style={{ backgroundColor: "var(--bg-primary)", padding: "2.5rem", marginBottom: "3.5rem" }}>
             <h2 style={{ fontSize: "1.75rem", marginBottom: "1rem" }}>{tool.seoHeading}</h2>
             <p className="text-muted" style={{ fontSize: "1.05rem", marginBottom: "1.5rem" }}>
               {tool.seoIntro}
@@ -215,7 +215,7 @@ export default async function ToolDetailPage({ params }: PageProps) {
               <h2 id="tool-faq-heading" className="text-center mb-6">Frequently Asked Questions</h2>
               <div className="flex flex-col gap-4" style={{ maxWidth: "800px", margin: "0 auto" }}>
                 {tool.faqs.map((faq, idx) => (
-                  <details key={idx} className="card" style={{ borderStyle: "solid" }}>
+                  <details key={idx} className="card">
                     <summary style={{ 
                       fontSize: "1.05rem", 
                       fontWeight: "600", 
@@ -227,7 +227,7 @@ export default async function ToolDetailPage({ params }: PageProps) {
                       alignItems: "center"
                     }}>
                       {faq.question}
-                      <span aria-hidden="true" style={{ fontSize: "1.25rem", color: "var(--accent)" }}>+</span>
+                      <span aria-hidden="true" style={{ fontSize: "1.25rem", color: "var(--success)" }}>+</span>
                     </summary>
                     <p className="text-muted" style={{ fontSize: "0.9rem", margin: "0.5rem 0 0 0", paddingTop: "0.5rem", borderTop: "1px solid var(--border-color)" }}>
                       {faq.answer}
@@ -248,7 +248,7 @@ export default async function ToolDetailPage({ params }: PageProps) {
                     key={rel.id}
                     href={`/tools/${rel.category}/${rel.slug}`}
                     className="card card-hover flex flex-col gap-2"
-                    style={{ textDecoration: "none", color: "inherit", borderStyle: "solid", padding: "1.25rem" }}
+                    style={{ textDecoration: "none", color: "inherit", padding: "1.25rem" }}
                     aria-label={`Open ${rel.title} - ${rel.shortDesc}`}
                   >
                     <h3 style={{ fontSize: "1rem", margin: 0 }}>{rel.title}</h3>

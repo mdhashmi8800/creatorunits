@@ -4,8 +4,8 @@
   align-items: center;
   justify-content: center;
   padding: 3rem 2rem;
-  border: 2px dashed var(--border-color);
-  border-radius: var(--border-radius-lg);
+  border: 1px dashed var(--border-color);
+  border-radius: var(--border-radius-md);
   background-color: var(--bg-primary);
   cursor: pointer;
   transition: all var(--transition-normal);
@@ -13,44 +13,45 @@
 }
 
 .dropzone:hover {
-  border-color: var(--accent);
+  border-color: var(--border-hover);
   background-color: var(--bg-secondary);
 }
 
 .dragActive {
-  border-color: var(--accent);
-  background-color: var(--accent-light);
-  transform: scale(0.99);
+  border-color: var(--success);
+  background-color: var(--success-light);
 }
 
 .iconWrapper {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 3.5rem;
-  height: 3.5rem;
-  border-radius: 50%;
+  width: 3rem;
+  height: 3rem;
+  border-radius: var(--border-radius-pill);
   background-color: var(--bg-secondary);
-  color: var(--accent);
-  margin-bottom: 1.25rem;
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
   transition: all var(--transition-fast);
+  border: 1px solid var(--border-color);
 }
 
 .dropzone:hover .iconWrapper {
-  background-color: var(--accent-light);
-  transform: translateY(-2px);
+  background-color: var(--bg-tertiary);
+  color: var(--text-primary);
+  transform: translateY(-1px);
 }
 
 .title {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 1.1rem;
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 1rem;
   color: var(--text-primary);
   margin-bottom: 0.25rem;
 }
 
 .desc {
-  font-size: 0.85rem;
+  font-size: 0.8125rem;
   color: var(--text-muted);
 }
 
