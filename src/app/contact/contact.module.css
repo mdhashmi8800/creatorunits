@@ -1,0 +1,362 @@
+/* Contact page styles matching the design system and BMW-M accents */
+
+.contactContainer {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 5rem 1.5rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+  align-items: start;
+}
+
+@media (min-width: 992px) {
+  .grid {
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 4rem;
+  }
+}
+
+/* Hero Section */
+.hero {
+  margin-bottom: 2.5rem;
+}
+
+.heroTitle {
+  font-size: 3rem;
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -2px;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+  font-family: var(--font-sans);
+}
+
+.heroDesc {
+  font-size: 1.125rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  max-width: 580px;
+}
+
+/* Contact Cards list */
+.cardsList {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+/* Contact Card Base styling */
+.card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-lg);
+  padding: 1.5rem;
+  box-shadow: var(--card-shadow);
+  text-decoration: none !important;
+  color: inherit;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.25s ease,
+              box-shadow 0.25s ease;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.card:focus-visible {
+  outline: 2px solid var(--success);
+  outline-offset: 4px;
+}
+
+.cardLeft {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+/* Icon Container */
+.iconContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.25rem;
+  height: 3.25rem;
+  border-radius: var(--border-radius-md);
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+.icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  stroke-width: 1.75;
+}
+
+/* Card Content details */
+.cardDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.cardLabel {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+}
+
+.cardValue {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: -0.3px;
+}
+
+.cardSub {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+/* Arrow indicator icon */
+.arrow {
+  color: var(--text-muted);
+  font-size: 1.25rem;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              color 0.25s ease;
+}
+
+/* BMW M Tri-color Stripe on Top (Accent detail) */
+.mStripe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  display: flex;
+  opacity: 0.45;
+  transition: opacity 0.25s ease;
+}
+
+.mStripeLightBlue {
+  flex: 1;
+  background-color: #008ad8; /* Light Blue */
+}
+
+.mStripeDarkBlue {
+  flex: 1;
+  background-color: #002c5f; /* Navy */
+}
+
+.mStripeRed {
+  flex: 1;
+  background-color: #e3000f; /* Red */
+}
+
+/* Hover/Active states */
+.card:hover {
+  transform: translateY(-4px);
+  border-color: var(--border-hover);
+  box-shadow: var(--card-shadow-hover);
+}
+
+.card:hover .mStripe {
+  opacity: 1;
+}
+
+.card:hover .arrow {
+  transform: translateX(4px);
+  color: var(--text-primary);
+}
+
+/* Custom background/glow details for each contact card */
+.emailCard:hover .iconContainer {
+  background-color: rgba(0, 138, 216, 0.1);
+  color: #008ad8;
+}
+
+.instagramCard:hover .iconContainer {
+  background-color: rgba(121, 40, 202, 0.1);
+  color: #7928ca;
+}
+
+.twitterCard:hover .iconContainer {
+  background-color: rgba(227, 0, 15, 0.1);
+  color: #e3000f;
+}
+
+/* Left side highlight on hover (subtle background glow) */
+.card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 10% 20%, transparent 80%, rgba(255, 255, 255, 0.03) 100%);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.card:hover::before {
+  opacity: 1;
+}
+
+/* Contact Form container styling */
+.formCard {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-lg);
+  padding: 2rem;
+  box-shadow: var(--card-shadow);
+  transition: all var(--transition-normal);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle gradient top border for the form card (using Vercel gradient or BMW-M tri-color) */
+.formCardHeaderStripe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, #008ad8 0%, #002c5f 50%, #e3000f 100%);
+  opacity: 0.8;
+}
+
+.formTitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: -0.6px;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.formDesc {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  margin-bottom: 1.75rem;
+}
+
+.formGroup {
+  margin-bottom: 1.25rem;
+}
+
+.formLabel {
+  display: block;
+  font-weight: 500;
+  font-size: 0.85rem;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.formControl {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  color: var(--text-primary);
+  background-color: var(--input-bg);
+  border: 1px solid var(--input-border);
+  border-radius: var(--border-radius-sm);
+  transition: all var(--transition-fast);
+}
+
+.formControl:focus {
+  outline: none;
+  border-color: var(--border-hover);
+  box-shadow: 0 0 0 3px rgba(0, 112, 243, 0.12);
+}
+
+.submitBtn {
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 0.9rem;
+  padding: 0.8rem 1.5rem;
+  border-radius: var(--border-radius-pill);
+  border: 1px solid transparent;
+  cursor: pointer;
+  background-color: var(--accent);
+  color: var(--bg-primary);
+  transition: all var(--transition-fast);
+  margin-top: 0.75rem;
+}
+
+.submitBtn:hover {
+  background-color: var(--accent-hover);
+  opacity: 0.95;
+}
+
+.submitBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Success Card */
+.successCard {
+  text-align: center;
+  padding: 3rem 2rem;
+}
+
+.successIcon {
+  font-size: 3rem;
+  display: inline-block;
+  margin-bottom: 1rem;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+.successTitle {
+  color: var(--success);
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.successText {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  margin-bottom: 1.5rem;
+}
+
+.resetBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 0.875rem;
+  padding: 0.5rem 1.25rem;
+  border-radius: var(--border-radius-pill);
+  border: 1px solid var(--border-color);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.resetBtn:hover {
+  background-color: var(--bg-secondary);
+  border-color: var(--border-hover);
+}

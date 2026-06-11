@@ -1,171 +1,166 @@
-"use client";
-
-import React, { useState } from "react";
+import React from "react";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
-import { useToast } from "@/context/ToastContext";
+import ContactForm from "./ContactForm";
+import styles from "./contact.module.css";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Contact Us - Creators Units",
+  description: "Have a question, suggestion, partnership opportunity, or found an issue? Feel free to reach out to Creators Units via email, Instagram, or Twitter/X.",
+  alternates: {
+    canonical: "/contact",
+  },
+  openGraph: {
+    title: "Contact Us - Creators Units",
+    description: "Have a question, suggestion, partnership opportunity, or found an issue? Feel free to reach out to Creators Units via email, Instagram, or Twitter/X.",
+    images: ["/og-image.png"],
+  },
+};
 
 export default function ContactPage() {
-  const { showToast } = useToast();
-  
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [subject, setSubject] = useState("");
-  const [message, setMessage] = useState("");
-  const [submitted, setSubmitted] = useState(false);
-  const [loading, setLoading] = useState(false);
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    if (!name || !email || !message) {
-      showToast("Please fill in all required fields.", "warning");
-      return;
-    }
-
-    if (message.length < 10) {
-      showToast("Message must be at least 10 characters.", "warning");
-      return;
-    }
-
-    setLoading(true);
-
-    try {
-      const response = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, subject, message }),
-      });
-
-      const data = await response.json();
-
-      if (response.ok) {
-        setSubmitted(true);
-        showToast(data.message || "Message sent successfully!", "success");
-      } else {
-        showToast(data.error || "Something went wrong. Please try again.", "error");
-      }
-    } catch {
-      showToast("Network error. Please check your connection and try again.", "error");
-    } finally {
-      setLoading(false);
-    }
-  };
-
   return (
     <>
       <Header />
-      <main className="main-content section" id="main-content">
-        <div className="container" style={{ maxWidth: "600px" }}>
-          <h1 className="mb-2 text-center">Contact Us</h1>
-          <p className="text-center text-muted mb-6">
-            Have questions, feedback, or tool ideas? Drop us a line below.
-          </p>
+      <main className="main-content" id="main-content">
+        <div className={styles.contactContainer}>
+          <div className={styles.grid}>
+            
+            {/* Left Column: Hero & Cards */}
+            <div>
+              <section className={styles.hero}>
+                <h1 className={styles.heroTitle}>Get In Touch.</h1>
+                <p className={styles.heroDesc}>
+                  Have a question, suggestion, partnership opportunity, or found an issue? Feel free to reach out. We usually respond as soon as possible.
+                </p>
+              </section>
 
-          {submitted ? (
-            <div
-              className="card text-center"
-              style={{
-                backgroundColor: "var(--success-light)",
-                borderColor: "var(--success)",
-                borderStyle: "solid",
-                padding: "2.5rem 1.5rem"
-              }}
-              role="status"
-            >
-              <span style={{ fontSize: "2.5rem", display: "block", marginBottom: "0.5rem" }} aria-hidden="true">✉️</span>
-              <h3 style={{ color: "var(--success)", marginBottom: "0.5rem" }}>Thank You!</h3>
-              <p style={{ margin: 0, fontSize: "0.95rem" }}>
-                We have received your message. We will respond to your query within 24 hours.
-              </p>
-              <button
-                className="btn btn-secondary btn-sm"
-                style={{ marginTop: "1.5rem" }}
-                onClick={() => {
-                  setName("");
-                  setEmail("");
-                  setSubject("");
-                  setMessage("");
-                  setSubmitted(false);
-                }}
-                aria-label="Send another message"
-              >
-                Send Another Message
-              </button>
+              <div className={styles.cardsList}>
+                {/* Email Card */}
+                <a 
+                  href="mailto:mdhashmi8800@gmail.com" 
+                  className={`${styles.card} ${styles.emailCard}`}
+                  aria-label="Email mdhashmi8800@gmail.com (opens mail application)"
+                >
+                  <div className={styles.mStripe}>
+                    <div className={styles.mStripeLightBlue}></div>
+                    <div className={styles.mStripeDarkBlue}></div>
+                    <div className={styles.mStripeRed}></div>
+                  </div>
+                  
+                  <div className={styles.cardLeft}>
+                    <div className={styles.iconContainer}>
+                      <svg 
+                        className={styles.icon} 
+                        viewBox="0 0 24 24" 
+                        fill="none" 
+                        stroke="currentColor" 
+                        strokeWidth="2" 
+                        strokeLinecap="round" 
+                        strokeLinejoin="round"
+                        aria-hidden="true"
+                      >
+                        <rect x="2" y="4" width="20" height="16" rx="2" />
+                        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+                      </svg>
+                    </div>
+                    <div className={styles.cardDetails}>
+                      <span className={styles.cardLabel}>Email</span>
+                      <strong className={styles.cardValue}>mdhashmi8800@gmail.com</strong>
+                      <span className={styles.cardSub}>Send us a direct message</span>
+                    </div>
+                  </div>
+
+                  <span className={styles.arrow} aria-hidden="true">&rarr;</span>
+                </a>
+
+                {/* Instagram Card */}
+                <a 
+                  href="https://instagram.com/oye_hasmi" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className={`${styles.card} ${styles.instagramCard}`}
+                  aria-label="Visit @oye_hasmi on Instagram (opens in a new tab)"
+                >
+                  <div className={styles.mStripe}>
+                    <div className={styles.mStripeLightBlue}></div>
+                    <div className={styles.mStripeDarkBlue}></div>
+                    <div className={styles.mStripeRed}></div>
+                  </div>
+
+                  <div className={styles.cardLeft}>
+                    <div className={styles.iconContainer}>
+                      <svg 
+                        className={styles.icon} 
+                        viewBox="0 0 24 24" 
+                        fill="none" 
+                        stroke="currentColor" 
+                        strokeWidth="2" 
+                        strokeLinecap="round" 
+                        strokeLinejoin="round"
+                        aria-hidden="true"
+                      >
+                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+                      </svg>
+                    </div>
+                    <div className={styles.cardDetails}>
+                      <span className={styles.cardLabel}>Instagram</span>
+                      <strong className={styles.cardValue}>@oye_hasmi</strong>
+                      <span className={styles.cardSub}>Follow or direct message</span>
+                    </div>
+                  </div>
+
+                  <span className={styles.arrow} aria-hidden="true">&rarr;</span>
+                </a>
+
+                {/* Twitter / X Card */}
+                <a 
+                  href="https://twitter.com/Oye_hasmi" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className={`${styles.card} ${styles.twitterCard}`}
+                  aria-label="Visit @Oye_hasmi on Twitter/X (opens in a new tab)"
+                >
+                  <div className={styles.mStripe}>
+                    <div className={styles.mStripeLightBlue}></div>
+                    <div className={styles.mStripeDarkBlue}></div>
+                    <div className={styles.mStripeRed}></div>
+                  </div>
+
+                  <div className={styles.cardLeft}>
+                    <div className={styles.iconContainer}>
+                      <svg 
+                        className={styles.icon} 
+                        viewBox="0 0 24 24" 
+                        fill="none" 
+                        stroke="currentColor" 
+                        strokeWidth="2" 
+                        strokeLinecap="round" 
+                        strokeLinejoin="round"
+                        aria-hidden="true"
+                      >
+                        <path d="M4 4l11.733 16h4.267l-11.733 -16z" />
+                        <path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772" />
+                      </svg>
+                    </div>
+                    <div className={styles.cardDetails}>
+                      <span className={styles.cardLabel}>Twitter / X</span>
+                      <strong className={styles.cardValue}>@Oye_hasmi</strong>
+                      <span className={styles.cardSub}>Tweet or message us</span>
+                    </div>
+                  </div>
+
+                  <span className={styles.arrow} aria-hidden="true">&rarr;</span>
+                </a>
+              </div>
             </div>
-          ) : (
-            <form onSubmit={handleSubmit} className="card flex flex-col gap-4" style={{ borderStyle: "solid" }} noValidate>
-              <div className="form-group" style={{ marginBottom: 0 }}>
-                <label className="form-label" htmlFor="contact-name">Your Name (Required)</label>
-                <input
-                  id="contact-name"
-                  type="text"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  className="form-control"
-                  placeholder="Jane Smith"
-                  required
-                  minLength={2}
-                  maxLength={100}
-                  autoComplete="name"
-                  aria-required="true"
-                />
-              </div>
 
-              <div className="form-group" style={{ marginBottom: 0 }}>
-                <label className="form-label" htmlFor="contact-email">Email Address (Required)</label>
-                <input
-                  id="contact-email"
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="form-control"
-                  placeholder="jane@example.com"
-                  required
-                  autoComplete="email"
-                  aria-required="true"
-                />
-              </div>
+            {/* Right Column: Contact Form */}
+            <ContactForm />
 
-              <div className="form-group" style={{ marginBottom: 0 }}>
-                <label className="form-label" htmlFor="contact-subject">Subject</label>
-                <input
-                  id="contact-subject"
-                  type="text"
-                  value={subject}
-                  onChange={(e) => setSubject(e.target.value)}
-                  className="form-control"
-                  placeholder="Tool Suggestion, Partnership, Bug Report"
-                />
-              </div>
-
-              <div className="form-group" style={{ marginBottom: 0 }}>
-                <label className="form-label" htmlFor="contact-message">Message (Required)</label>
-                <textarea
-                  id="contact-message"
-                  value={message}
-                  onChange={(e) => setMessage(e.target.value)}
-                  className="form-control"
-                  placeholder="Write your message details..."
-                  style={{ height: "140px" }}
-                  required
-                  minLength={10}
-                  maxLength={5000}
-                  aria-required="true"
-                />
-              </div>
-
-              <button 
-                type="submit" 
-                className="btn btn-primary" 
-                style={{ marginTop: "0.5rem" }}
-                disabled={loading}
-                aria-label={loading ? "Sending message..." : "Send message"}
-              >
-                {loading ? "Sending..." : "✉️ Send Message"}
-              </button>
-            </form>
-          )}
+          </div>
         </div>
       </main>
       <Footer />
