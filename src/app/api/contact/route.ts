@@ -51,27 +51,61 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // In production, integrate with email service (SendGrid, Resend, etc.)
-    // For now, log the contact submission
-    console.log("Contact Form Submission:", {
-      name: sanitizedName,
-      email: sanitizedEmail,
-      subject: sanitizedSubject,
-      message: sanitizedMessage,
-      timestamp: new Date().toISOString(),
+    const formId = process.env.FORMSPREE_FORM_ID;
+    if (!formId) {
+      console.error("FORMSPREE_FORM_ID is not configured in environment variables.");
+      return NextResponse.json(
+        { error: "Contact form configuration is incomplete. Please define FORMSPREE_FORM_ID in environment variables." },
+        { status: 500 }
+      );
+    }
+
+    // Forward to Formspree
+    const formspreeResponse = await fetch(`https://formspree.io/f/${formId}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+      },
+      body: JSON.stringify({
+        name: sanitizedName,
+        email: sanitizedEmail,
+        subject: sanitizedSubject,
+        message: sanitizedMessage,
+      }),
     });
+
+    if (!formspreeResponse.ok) {
+      const errorData = await formspreeResponse.json().catch(() => ({}));
+      console.error("Formspree error response:", errorData);
+      
+      // Handle array of errors that Formspree can return
+      let errorMessage = "Failed to send message via Formspree.";
+      if (errorData.errors && Array.isArray(errorData.errors) && errorData.errors.length > 0) {
+        errorMessage = errorData.errors.map((err: any) => err.message).join(", ");
+      } else if (errorData.error) {
+        errorMessage = errorData.error;
+      }
+      
+      return NextResponse.json(
+        { error: errorMessage },
+        { status: formspreeResponse.status }
+      );
+    }
 
     return NextResponse.json(
       {
         success: true,
-        message: "Thank you for your message. We will respond within 24 hours.",
+        message: "Thank you for your message! It has been submitted successfully.",
       },
       { status: 200 }
     );
-  } catch {
+  } catch (err: any) {
+    console.error("Contact form error:", err);
     return NextResponse.json(
-      { error: "Invalid request body." },
-      { status: 400 }
+      { error: "Internal server error. Please try again later." },
+      { status: 500 }
     );
   }
 }
+

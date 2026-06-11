@@ -360,3 +360,15 @@
   background-color: var(--bg-secondary);
   border-color: var(--border-hover);
 }
+
+.errorAlert {
+  background-color: rgba(227, 0, 15, 0.1);
+  border: 1px solid #e3000f; /* Use BMW-M red or var(--error) */
+  color: #e3000f;
+  padding: 0.75rem 1rem;
+  border-radius: var(--border-radius-sm);
+  font-size: 0.85rem;
+  margin-bottom: 1.25rem;
+  line-height: 1.4;
+}
+

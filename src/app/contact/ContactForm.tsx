@@ -13,17 +13,21 @@ export default function ContactForm() {
   const [message, setMessage] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setError(null);
     
     if (!name || !email || !message) {
       showToast("Please fill in all required fields.", "warning");
+      setError("Please fill in all required fields.");
       return;
     }
 
     if (message.length < 10) {
       showToast("Message must be at least 10 characters.", "warning");
+      setError("Message must be at least 10 characters.");
       return;
     }
 
@@ -42,10 +46,13 @@ export default function ContactForm() {
         setSubmitted(true);
         showToast(data.message || "Message sent successfully!", "success");
       } else {
+        setError(data.error || "Something went wrong. Please try again.");
         showToast(data.error || "Something went wrong. Please try again.", "error");
       }
     } catch {
-      showToast("Network error. Please check your connection and try again.", "error");
+      const errorMsg = "Network error. Please check your connection and try again.";
+      setError(errorMsg);
+      showToast(errorMsg, "error");
     } finally {
       setLoading(false);
     }
@@ -67,6 +74,7 @@ export default function ContactForm() {
             setEmail("");
             setSubject("");
             setMessage("");
+            setError(null);
             setSubmitted(false);
           }}
           aria-label="Send another message"
@@ -153,6 +161,12 @@ export default function ContactForm() {
             aria-required="true"
           />
         </div>
+
+        {error && (
+          <div className={styles.errorAlert} role="alert">
+            {error}
+          </div>
+        )}
 
         <button 
           type="submit" 
