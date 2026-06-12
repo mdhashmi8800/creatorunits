@@ -23,13 +23,10 @@ const baseUrl = "https://creatorunits.com";
 
 export const metadata: Metadata = {
   title: "Creators Units - Free Online Tools for Creators & Social Media",
-  description: "Free, fast, and SEO-friendly tools for YouTubers, Instagram creators, WhatsApp users, freelancers, and small businesses. Compress images, download thumbnails, generate QR codes, and more.",
+  description: "Free, private web tools for creators and social media. Compress images, preview YouTube thumbnails, generate QR codes, and format text offline and instantly.",
   keywords: "creator tools, image compressor, qr generator, youtube tag extractor, text case converter, fancy text generator, link in bio",
   authors: [{ name: "Creators Units" }],
   metadataBase: new URL(baseUrl),
-  alternates: {
-    canonical: "/",
-  },
   icons: {
     icon: "/icon.svg",
     apple: "/icon.svg",
@@ -40,7 +37,7 @@ export const metadata: Metadata = {
     url: baseUrl,
     siteName: "Creators Units",
     title: "Creators Units - Free Online Tools for Creators & Social Media",
-    description: "Free, fast, and SEO-friendly tools for YouTubers, Instagram creators, WhatsApp users, freelancers, and small businesses.",
+    description: "Free, private web tools for creators and social media. Compress images, preview YouTube thumbnails, generate QR codes, and format text offline and instantly.",
     images: [
       {
         url: "/og-image.png",
@@ -53,7 +50,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Creators Units - Free Online Tools for Creators & Social Media",
-    description: "Free, fast, and SEO-friendly tools for YouTubers, Instagram creators, WhatsApp users, freelancers, and small businesses.",
+    description: "Free, private web tools for creators and social media. Compress images, preview YouTube thumbnails, generate QR codes, and format text offline and instantly.",
     images: ["/og-image.png"],
   },
   robots: {
@@ -67,9 +64,12 @@ const organizationSchema = {
   "@type": "Organization",
   name: "Creators Units",
   url: baseUrl,
-  logo: `${baseUrl}/logo.png`,
+  logo: `${baseUrl}/icon.svg`,
   description: "Free, fast, and privacy-focused online tools for creators, freelancers, and small businesses.",
-  sameAs: [],
+  sameAs: [
+    "https://instagram.com/oye_hasmi",
+    "https://twitter.com/Oye_hasmi"
+  ],
   contactPoint: {
     "@type": "ContactPoint",
     contactType: "customer service",
