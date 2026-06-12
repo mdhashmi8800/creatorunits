@@ -427,6 +427,41 @@ code {
 .gap-2 { gap: 0.5rem; }
 .gap-4 { gap: 1rem; }
 .gap-6 { gap: 1.5rem; }
+.flex-wrap { flex-wrap: wrap; }
+.justify-end { justify-content: flex-end; }
+.justify-center { justify-content: center; }
+
+/* Responsive button & controls actions wrapper */
+.flex-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+}
+
+.flex-controls {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 480px) {
+  .flex-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+  .flex-actions .btn {
+    width: 100%;
+  }
+  .flex-controls {
+    flex-direction: column;
+    width: 100%;
+  }
+  .flex-controls .btn {
+    width: 100%;
+  }
+}
 
 /* Sticky footer wrapper */
 .page-wrapper {

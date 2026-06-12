@@ -260,7 +260,7 @@ export default function ImageCompressor() {
           </div>
 
           {/* Action Buttons */}
-          <div className="flex" style={{ gap: "1rem", justifyContent: "flex-end" }}>
+          <div className="flex-actions">
             <button className="btn btn-secondary" onClick={() => setFile(null)}>
               Reset & Upload New
             </button>

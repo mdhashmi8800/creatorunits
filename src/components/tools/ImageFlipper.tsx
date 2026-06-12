@@ -113,7 +113,7 @@ export default function ImageFlipper() {
           {/* Configuration panel */}
           <div className="card text-center" style={{ backgroundColor: "var(--bg-secondary)", borderStyle: "solid", padding: "1.25rem" }}>
             <span className="form-label" style={{ marginBottom: "0.75rem" }}>Mirror Controls</span>
-            <div className="flex" style={{ gap: "1rem", justifyContent: "center" }}>
+            <div className="flex-controls">
               <button
                 className={`btn ${flipH ? "btn-primary" : "btn-secondary"}`}
                 onClick={() => setFlipH(!flipH)}
@@ -161,7 +161,7 @@ export default function ImageFlipper() {
           </div>
 
           {/* Action buttons */}
-          <div className="flex" style={{ gap: "1rem", justifyContent: "flex-end" }}>
+          <div className="flex-actions">
             <button className="btn btn-secondary" onClick={() => setFile(null)}>
               Upload New
             </button>

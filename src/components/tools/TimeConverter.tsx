@@ -106,7 +106,7 @@ export default function TimeConverter() {
       <div className="flex flex-col gap-6">
         
         {/* Toggle Mode */}
-        <div className="flex" style={{ gap: "0.5rem" }}>
+        <div className="flex flex-wrap" style={{ gap: "0.5rem" }}>
           <button
             className={`btn ${converterMode === "epoch" ? "btn-primary" : "btn-secondary"} btn-sm`}
             onClick={() => setConverterMode("epoch")}

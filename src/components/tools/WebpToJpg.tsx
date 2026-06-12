@@ -140,7 +140,7 @@ export default function WebpToJpg() {
             )}
           </div>
 
-          <div className="flex" style={{ gap: "1rem", justifyContent: "flex-end" }}>
+          <div className="flex-actions">
             <button className="btn btn-secondary" onClick={() => setFile(null)}>
               Convert Another
             </button>

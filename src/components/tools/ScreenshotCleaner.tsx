@@ -219,7 +219,7 @@ export default function ScreenshotCleaner() {
               <div className="flex flex-col gap-4">
                 <div className="form-group" style={{ marginBottom: 0 }}>
                   <span className="form-label">Background Fill Type</span>
-                  <div className="flex" style={{ gap: "0.5rem" }}>
+                  <div className="flex-controls">
                     <button
                       className={`btn ${bgType === "gradient" ? "btn-primary" : "btn-secondary"} btn-sm`}
                       onClick={() => setBgType("gradient")}
@@ -308,7 +308,7 @@ export default function ScreenshotCleaner() {
           </div>
 
           {/* Action buttons */}
-          <div className="flex" style={{ gap: "1rem", justifyContent: "flex-end" }}>
+          <div className="flex-actions">
             <button className="btn btn-secondary" onClick={() => setFile(null)}>
               Upload Another
             </button>
