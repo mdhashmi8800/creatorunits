@@ -2,7 +2,7 @@ import { MetadataRoute } from "next";
 import { tools, categories } from "@/data/tools";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://creatorutils.com";
+  const baseUrl = "https://creatorunits.com";
   const now = new Date();
 
   // Core pages

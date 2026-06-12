@@ -7,7 +7,7 @@ export default function QrCodeGenerator() {
   const { showToast } = useToast();
   
   const [qrType, setQrType] = useState<string>("url");
-  const [url, setUrl] = useState<string>("https://creatorutils.com");
+  const [url, setUrl] = useState<string>("https://creatorunits.com");
   const [text, setText] = useState<string>("");
   
   // Wi-Fi states

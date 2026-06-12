@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/context/ThemeContext";
 import { ToastProvider } from "@/context/ToastContext";
+import Script from "next/script";
 
 const geistSans = Geist({
   subsets: ["latin"],
@@ -18,7 +19,7 @@ const geistMono = Geist_Mono({
   preload: true,
 });
 
-const baseUrl = "https://creatorutils.com";
+const baseUrl = "https://creatorunits.com";
 
 export const metadata: Metadata = {
   title: "Creators Units - Free Online Tools for Creators & Social Media",
@@ -72,7 +73,7 @@ const organizationSchema = {
   contactPoint: {
     "@type": "ContactPoint",
     contactType: "customer service",
-    email: "support@creatorutils.com",
+    email: "support@creatorunits.com",
     availableLanguage: "English",
   },
 };
@@ -125,6 +126,19 @@ export default function RootLayout({
         />
       </head>
       <body>
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-DBZT1K0P01"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-DBZT1K0P01');
+          `}
+        </Script>
         <ThemeProvider>
           <ToastProvider>
             <a href="#main-content" className="skip-to-content">

@@ -246,7 +246,7 @@ export default function LinkInBioHelper() {
     </div>
 
     <div class="footer">
-      Powered by <a href="https://creatorutils.com" target="_blank">CreatorUtils</a>
+      Powered by <a href="https://creatorunits.com" target="_blank">Creators Units</a>
     </div>
   </div>
 </body>
@@ -507,7 +507,7 @@ export default function LinkInBioHelper() {
             </div>
 
             <div style={{ marginTop: "auto", fontSize: "0.6rem", opacity: 0.5 }}>
-              Powered by CreatorUtils
+              Powered by Creators Units
             </div>
 
           </div>

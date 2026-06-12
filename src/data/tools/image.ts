@@ -65,7 +65,7 @@ export const imageTools: ToolItem[] = [
 </ul>
 
 <h3>How Browser-Based Compression Enhances Privacy</h3>
-<p>Unlike other generic online image compressors, CreatorUtils does not upload your files to external servers. All operations happen in-browser using JavaScript. Your sensitive business documents, personal photos, and graphics remain completely secure on your own machine. We never see, log, or store your assets.</p>
+<p>Unlike other generic online image compressors, Creators Units does not upload your files to external servers. All operations happen in-browser using JavaScript. Your sensitive business documents, personal photos, and graphics remain completely secure on your own machine. We never see, log, or store your assets.</p>
 
 <h3>Best Practices for Image Optimization</h3>
 <p>To get the best out of your assets, follow these simple guidelines:</p>
@@ -504,7 +504,7 @@ export const imageTools: ToolItem[] = [
     seoIntro: "Found a color you love in a screenshot or photo? Upload it to our Image Color Picker to get the exact HEX, RGB, and HSL values instantly.",
     seoBody: `
 <h3>Speed Up Design Workflows</h3>
-<p>Instead of opening heavy desktop editor apps just to pick a color, CreatorUtils allows designers, developers, and creators to drag screenshots right into the browser and capture hex codes in seconds. Build design palettes that ensure perfect brand consistency.</p>
+<p>Instead of opening heavy desktop editor apps just to pick a color, Creators Units allows designers, developers, and creators to drag screenshots right into the browser and capture hex codes in seconds. Build design palettes that ensure perfect brand consistency.</p>
     `
   },
   {

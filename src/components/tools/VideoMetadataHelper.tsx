@@ -18,7 +18,7 @@ export default function VideoMetadataHelper() {
   const templates = {
     tutorial: `📝 RESOURCES & LINKS:\n- Tool link: https://example.com\n- Join our community: https://example.com\n\n📌 TIMESTAMPS:\n0:00 - Introduction\n1:15 - Step 1: Getting Started\n4:30 - Step 2: Advanced configurations\n8:45 - Troubleshooting tips\n12:00 - Summary and Outro\n\n👋 CONNECT WITH US:\n- Twitter: @creator\n- Instagram: @creator\n\n#tutorial #youtube #howto`,
     review: `🔥 GET THE PRODUCTS:\n- Product A (Affiliate link): https://example.com\n- Product B (Affiliate link): https://example.com\n\n📊 VIDEO COMPARISON CHART:\n0:00 - Intro & Unboxing\n2:00 - Design and Build Quality\n5:15 - Key Features Breakdown\n9:30 - Pros vs Cons\n12:45 - Final Recommendation\n\n⚙️ MY CAMERA GEAR:\n- Main Camera: https://example.com\n- Mic setup: https://example.com\n\n#review #unboxing #tech`,
-    general: `Enjoyed this video? Support us by subscribing! 🔔\n\n🔗 STAY CONNECTED:\n- Visit our blog: https://example.com\n- Sign up to newsletter: https://example.com\n\n💬 WHAT TO WATCH NEXT:\n- Related video 1: https://youtu.be/...\n- Related video 2: https://youtu.be/...\n\n#vlog #contentcreator #creatorutils`
+    general: `Enjoyed this video? Support us by subscribing! 🔔\n\n🔗 STAY CONNECTED:\n- Visit our blog: https://example.com\n- Sign up to newsletter: https://example.com\n\n💬 WHAT TO WATCH NEXT:\n- Related video 1: https://youtu.be/...\n- Related video 2: https://youtu.be/...\n\n#vlog #contentcreator #creatorunits`
   };
 
   const getChecklist = (): ChecklistItem[] => {

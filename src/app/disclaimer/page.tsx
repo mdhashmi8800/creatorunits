@@ -4,14 +4,14 @@ import Footer from "@/components/layout/Footer";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Disclaimer - CreatorUtils",
-  description: "Read our Disclaimer. CreatorUtils is not affiliated with YouTube, Instagram, WhatsApp, or Facebook.",
+  title: "Disclaimer - Creators Units",
+  description: "Read our Disclaimer. Creators Units is not affiliated with YouTube, Instagram, WhatsApp, or Facebook.",
   alternates: {
     canonical: "/disclaimer",
   },
   openGraph: {
-    title: "Disclaimer - CreatorUtils",
-    description: "Read our Disclaimer. CreatorUtils is not affiliated with YouTube, Instagram, WhatsApp, or Facebook.",
+    title: "Disclaimer - Creators Units",
+    description: "Read our Disclaimer. Creators Units is not affiliated with YouTube, Instagram, WhatsApp, or Facebook.",
     images: ["/og-image.png"],
   },
 };
@@ -26,12 +26,12 @@ export default function DisclaimerPage() {
 
           <div className="flex flex-col gap-5" style={{ fontSize: "0.95rem", color: "var(--text-secondary)", lineHeight: "1.75" }}>
             <p>
-              Please read this disclaimer carefully before using CreatorUtils (creatorutils.com).
+              Please read this disclaimer carefully before using Creators Units (creatorunits.com).
             </p>
 
             <h2 style={{ fontSize: "1.35rem", color: "var(--text-primary)", marginTop: "1rem", margin: "0" }}>1. Third-Party Brand Affiliation</h2>
             <p>
-              CreatorUtils is an independent development entity. We are not affiliated, associated, authorized, endorsed by, or in any way officially connected with any of the following platforms or corporations, or any of their subsidiaries or affiliates:
+              Creators Units is an independent development entity. We are not affiliated, associated, authorized, endorsed by, or in any way officially connected with any of the following platforms or corporations, or any of their subsidiaries or affiliates:
             </p>
             <ul style={{ paddingLeft: "1.5rem", display: "flex", flexDirection: "column", gap: "0.25rem" }}>
               <li><strong>YouTube:</strong> Owned by Google LLC / Alphabet Inc.</li>
@@ -46,7 +46,7 @@ export default function DisclaimerPage() {
 
             <h2 style={{ fontSize: "1.35rem", color: "var(--text-primary)", marginTop: "1rem", margin: "0" }}>2. Content &amp; Output Limitations</h2>
             <p>
-              The text formats, usernames, bio templates, and keyword tags generated on CreatorUtils are intended for creative brainstorming and layout optimization. We do not guarantee search volume rankings, discoverability boosts, account approvals, or trademark availability for names generated using our utilities. Users are solely responsible for verifying the legal availability of any handle or logo cover.
+              The text formats, usernames, bio templates, and keyword tags generated on Creators Units are intended for creative brainstorming and layout optimization. We do not guarantee search volume rankings, discoverability boosts, account approvals, or trademark availability for names generated using our utilities. Users are solely responsible for verifying the legal availability of any handle or logo cover.
             </p>
 
             <h2 style={{ fontSize: "1.35rem", color: "var(--text-primary)", marginTop: "1rem", margin: "0" }}>3. Security &amp; Utility Limitations</h2>

@@ -27,13 +27,13 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   if (!tool) return {};
 
   return {
-    title: `${tool.seoTitle} | CreatorUtils`,
+    title: `${tool.seoTitle} | Creators Units`,
     description: tool.metaDesc,
     alternates: {
       canonical: `/tools/${tool.category}/${tool.slug}`,
     },
     openGraph: {
-      title: `${tool.seoTitle} | CreatorUtils`,
+      title: `${tool.seoTitle} | Creators Units`,
       description: tool.metaDesc,
       type: "website",
       images: [
@@ -41,13 +41,13 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
           url: "/og-image.png",
           width: 1200,
           height: 630,
-          alt: `${tool.title} - CreatorUtils`,
+          alt: `${tool.title} - Creators Units`,
         },
       ],
     },
     twitter: {
       card: "summary_large_image",
-      title: `${tool.seoTitle} | CreatorUtils`,
+      title: `${tool.seoTitle} | Creators Units`,
       description: tool.metaDesc,
       images: ["/og-image.png"],
     },
@@ -72,7 +72,7 @@ export default async function ToolDetailPage({ params }: PageProps) {
     "@context": "https://schema.org",
     "@type": "WebApplication",
     "name": tool.title,
-    "url": `https://creatorutils.com/tools/${tool.category}/${tool.slug}`,
+    "url": `https://creatorunits.com/tools/${tool.category}/${tool.slug}`,
     "applicationCategory": "UtilityApplication",
     "operatingSystem": "All",
     "browserRequirements": "Requires HTML5, Javascript, Canvas",
@@ -100,19 +100,19 @@ export default async function ToolDetailPage({ params }: PageProps) {
         "@type": "ListItem",
         "position": 1,
         "name": "Home",
-        "item": "https://creatorutils.com/",
+        "item": "https://creatorunits.com/",
       },
       {
         "@type": "ListItem",
         "position": 2,
         "name": tool.categoryName,
-        "item": `https://creatorutils.com/category/${tool.category}`,
+        "item": `https://creatorunits.com/category/${tool.category}`,
       },
       {
         "@type": "ListItem",
         "position": 3,
         "name": tool.title,
-        "item": `https://creatorutils.com/tools/${tool.category}/${tool.slug}`,
+        "item": `https://creatorunits.com/tools/${tool.category}/${tool.slug}`,
       },
     ],
   };
