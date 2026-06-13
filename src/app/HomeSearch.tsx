@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { tools } from "@/data/tools";
+import { toolsIndex as tools } from "@/data/tools";
 import styles from "./page.module.css";
 
 /**

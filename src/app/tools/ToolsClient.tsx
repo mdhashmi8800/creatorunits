@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
-import { tools, categories } from "@/data/tools";
+import { toolsIndex as tools, categories } from "@/data/tools";
 
 export default function ToolsClient() {
   const ITEMS_PER_PAGE = 12;

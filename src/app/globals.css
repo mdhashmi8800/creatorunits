@@ -6,9 +6,9 @@
 }
 
 :root {
-  /* Fonts */
-  --font-sans: var(--font-geist-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, monospace;
+  /* Fonts — system font stack (no Google Fonts network dependency on Worker) */
+  --font-sans: "Geist", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, "Courier New", monospace;
 
   /* Vercel Light Theme (Default) */
   --bg-primary: #ffffff;       /* Canvas */

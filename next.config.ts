@@ -62,31 +62,32 @@ const nextConfig: NextConfig = {
       ],
     },
 
-    // ── HTML pages: short browser cache + Cloudflare stale-while-revalidate ──
-    // Pages are pre-rendered static HTML at build time, so we allow Cloudflare
-    // to cache them for 60s and serve stale for up to 7 days while revalidating.
-    // This means near-100% cache hit rate at the edge with always-fresh content.
+    // ── HTML pages: edge cache + browser cache ────────────────────────────────
+    // s-maxage tells Cloudflare edge to cache for 1 hour.
+    // stale-while-revalidate lets edge serve stale for 7 days while refreshing.
+    // max-age tells the browser to revalidate after 60s.
+    // This eliminates Worker invocations for ~99% of page requests.
     {
       source: "/((?!_next|api|sitemap.xml|robots.txt).*)",
       headers: [
         {
           key: "Cache-Control",
-          value: "public, max-age=60, stale-while-revalidate=604800",
+          value: "public, max-age=60, s-maxage=3600, stale-while-revalidate=604800",
         },
       ],
     },
 
-    // ── Sitemap & robots.txt: cache at edge for 24h ───────────────────────────
+    // ── Sitemap & robots.txt: edge cache for 24h ──────────────────────────────
     {
       source: "/sitemap.xml",
       headers: [
-        { key: "Cache-Control", value: "public, max-age=86400, stale-while-revalidate=86400" },
+        { key: "Cache-Control", value: "public, max-age=86400, s-maxage=86400, stale-while-revalidate=86400" },
       ],
     },
     {
       source: "/robots.txt",
       headers: [
-        { key: "Cache-Control", value: "public, max-age=86400, immutable" },
+        { key: "Cache-Control", value: "public, max-age=86400, s-maxage=86400, immutable" },
       ],
     },
   ],

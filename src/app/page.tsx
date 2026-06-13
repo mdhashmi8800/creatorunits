@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
-import { tools, categories } from "@/data/tools";
+import { toolsIndex as tools, categories } from "@/data/tools";
 import HomeSearch from "./HomeSearch";
 import styles from "./page.module.css";
 

@@ -1,4 +1,4 @@
-import { ToolItem } from "./types";
+import { ToolItem, ToolItemLite } from "./types";
 import { imageTools } from "./tools/image";
 import { creatorTools } from "./tools/creator";
 import { socialTools } from "./tools/social";
@@ -10,6 +10,21 @@ export const tools: ToolItem[] = [
   ...socialTools,
   ...utilityTools
 ];
+
+/** Lightweight index of tools — omits heavy SEO/FAQ data for listing pages. */
+export const toolsIndex: ToolItemLite[] = tools.map((t) => ({
+  id: t.id,
+  slug: t.slug,
+  category: t.category,
+  categoryName: t.categoryName,
+  title: t.title,
+  shortDesc: t.shortDesc,
+  metaDesc: t.metaDesc,
+  instructions: t.instructions,
+  features: t.features,
+  componentName: t.componentName,
+  seoTitle: t.seoTitle,
+}));
 
 export interface CategoryInfo {
   slug: string;

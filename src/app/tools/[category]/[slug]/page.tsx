@@ -1,11 +1,13 @@
 import React from "react";
 import Link from "next/link";
+import dynamic from "next/dynamic";
 import { notFound } from "next/navigation";
-import ToolRenderer from "@/components/tools/ToolRenderer";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { tools, getToolBySlug } from "@/data/tools";
 import { Metadata } from "next";
+
+const ToolWidget = dynamic(() => import("@/components/ToolWidget"), { ssr: false });
 
 interface PageProps {
   params: Promise<{
@@ -64,12 +66,10 @@ export default async function ToolDetailPage({ params }: PageProps) {
     notFound();
   }
 
-  // Get related tools (same category, excluding current)
   const relatedTools = tools
     .filter((t) => t.category === tool.category && t.id !== tool.id)
     .slice(0, 4);
 
-  // JSON-LD structured schemas
   const webAppSchema = {
     "@context": "https://schema.org",
     "@type": "WebApplication",
@@ -121,7 +121,6 @@ export default async function ToolDetailPage({ params }: PageProps) {
 
   return (
     <>
-      {/* Dynamic Schema tags in head */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(webAppSchema) }}
@@ -140,8 +139,6 @@ export default async function ToolDetailPage({ params }: PageProps) {
       <Header />
       <main className="main-content section" id="main-content">
         <div className="container">
-          
-          {/* Breadcrumbs */}
           <nav aria-label="Breadcrumb" style={{ marginBottom: "1rem", fontSize: "0.85rem" }}>
             <ol style={{ display: "flex", flexWrap: "wrap", listStyle: "none", padding: 0, margin: 0, alignItems: "center" }}>
               <li>
@@ -158,7 +155,6 @@ export default async function ToolDetailPage({ params }: PageProps) {
             </ol>
           </nav>
 
-          {/* Heading */}
           <div style={{ marginBottom: "2rem" }}>
             <h1 style={{ fontSize: "2.25rem", marginBottom: "0.5rem" }}>{tool.title}</h1>
             <p className="text-muted" style={{ fontSize: "1.05rem", margin: 0 }}>
@@ -166,15 +162,13 @@ export default async function ToolDetailPage({ params }: PageProps) {
             </p>
           </div>
 
-          {/* Tool Widget Interface Area */}
           <section style={{ marginBottom: "3rem" }} aria-label={`${tool.title} tool interface`}>
-            <ToolRenderer componentName={tool.componentName} />
+            <ToolWidget componentName={tool.componentName} />
           </section>
 
-          {/* Step-by-Step Instructions & Features */}
           <div className="grid-cols-2" style={{ gap: "2rem", marginBottom: "3rem" }}>
             <div className="card">
-              <h2 style={{ fontSize: "1.25rem", marginBottom: "1rem" }}>📋 How to Use</h2>
+              <h2 style={{ fontSize: "1.25rem", marginBottom: "1rem" }}>How to Use</h2>
               <ol style={{ paddingLeft: "1.25rem", display: "flex", flexDirection: "column", gap: "0.5rem", fontSize: "0.9rem" }}>
                 {tool.instructions.map((inst, idx) => (
                   <li key={idx} style={{ color: "var(--text-secondary)" }}>{inst}</li>
@@ -183,7 +177,7 @@ export default async function ToolDetailPage({ params }: PageProps) {
             </div>
 
             <div className="card">
-              <h2 style={{ fontSize: "1.25rem", marginBottom: "1rem" }}>⚡ Key Features</h2>
+              <h2 style={{ fontSize: "1.25rem", marginBottom: "1rem" }}>Key Features</h2>
               <ul style={{ paddingLeft: "1.25rem", display: "flex", flexDirection: "column", gap: "0.5rem", fontSize: "0.9rem", listStyleType: "square" }}>
                 {tool.features.map((feat, idx) => (
                   <li key={idx} style={{ color: "var(--text-secondary)" }}>{feat}</li>
@@ -192,7 +186,6 @@ export default async function ToolDetailPage({ params }: PageProps) {
             </div>
           </div>
 
-          {/* Rich SEO Content */}
           <section className="card" style={{ backgroundColor: "var(--bg-primary)", padding: "2.5rem", marginBottom: "3.5rem" }}>
             <h2 style={{ fontSize: "1.75rem", marginBottom: "1rem" }}>{tool.seoHeading}</h2>
             <p className="text-muted" style={{ fontSize: "1.05rem", marginBottom: "1.5rem" }}>
@@ -211,7 +204,6 @@ export default async function ToolDetailPage({ params }: PageProps) {
             />
           </section>
 
-          {/* FAQs section */}
           {tool.faqs.length > 0 && (
             <section style={{ marginBottom: "3.5rem" }} aria-labelledby="tool-faq-heading">
               <h2 id="tool-faq-heading" className="text-center mb-6">Frequently Asked Questions</h2>
@@ -240,7 +232,6 @@ export default async function ToolDetailPage({ params }: PageProps) {
             </section>
           )}
 
-          {/* Related Tools section */}
           {relatedTools.length > 0 && (
             <section style={{ borderTop: "1px solid var(--border-color)", paddingTop: "3rem" }} aria-labelledby="related-heading">
               <h2 id="related-heading" className="mb-6">Related {tool.categoryName}</h2>

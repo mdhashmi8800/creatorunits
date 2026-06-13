@@ -20,3 +20,6 @@ export interface ToolItem {
   seoIntro: string;
   seoBody: string;
 }
+
+/** Lightweight version of ToolItem for listing pages — omits heavy SEO/FAQ data. */
+export type ToolItemLite = Omit<ToolItem, "faqs" | "seoHeading" | "seoIntro" | "seoBody">;
