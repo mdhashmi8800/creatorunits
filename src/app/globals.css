@@ -99,7 +99,7 @@
 /* Base Elements */
 html {
   font-size: 16px;
-  scroll-behavior: smooth;
+  /* scroll-behavior: smooth is in the prefers-reduced-motion block below */
   height: 100%;
 }
 
@@ -115,7 +115,15 @@ body {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  transition: background-color var(--transition-normal), color var(--transition-normal);
+  /* No transition here: the transition fires on [data-theme] change only.
+     Applying it to body causes a flash on every navigation/paint. */
+}
+
+/* Only apply smooth scrolling when the user has NOT requested reduced motion */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
 }
 
 /* Typography */
@@ -583,9 +591,11 @@ nav a:focus-visible {
   }
 }
 
-/* Reduced motion preference */
+/* Reduced motion preference — disable all animations & transitions */
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
+  *,
+  *::before,
+  *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;

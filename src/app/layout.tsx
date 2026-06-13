@@ -5,18 +5,22 @@ import { ThemeProvider } from "@/context/ThemeContext";
 import { ToastProvider } from "@/context/ToastContext";
 import Script from "next/script";
 
+// Primary font — preload the weights we actually use (400, 500, 600)
 const geistSans = Geist({
   subsets: ["latin"],
   variable: "--font-geist-sans",
   display: "swap",
   preload: true,
+  weight: ["400", "500", "600"],
 });
 
+// Mono font — used only in <code> elements, do NOT preload to save bandwidth
 const geistMono = Geist_Mono({
   subsets: ["latin"],
   variable: "--font-geist-mono",
   display: "swap",
-  preload: true,
+  preload: false,
+  weight: ["400"],
 });
 
 const baseUrl = "https://creatorunits.com";
@@ -102,6 +106,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`} suppressHydrationWarning>
       <head>
+        {/* Structured Data */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
@@ -110,33 +115,42 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
         />
+
+        {/*
+          Theme init script — runs synchronously BEFORE first paint.
+          Prevents FOUC without needing visibility:hidden on the entire page.
+          Minified to minimize parser blocking time.
+        */}
         <script
           dangerouslySetInnerHTML={{
-            __html: `
-              (function() {
-                try {
-                  const savedTheme = localStorage.getItem('theme');
-                  const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-                  const theme = savedTheme || (systemPrefersDark ? 'dark' : 'light');
-                  document.documentElement.setAttribute('data-theme', theme);
-                } catch (e) {}
-              })();
-            `,
+            __html: `(function(){try{var t=localStorage.getItem('theme');var d=window.matchMedia('(prefers-color-scheme: dark)').matches;document.documentElement.setAttribute('data-theme',t||(d?'dark':'light'));}catch(e){}})();`,
           }}
         />
+
+        {/* Preconnect for Google Analytics — warms DNS+TLS before the lazy script fires */}
+        <link rel="preconnect" href="https://www.googletagmanager.com" />
+        <link rel="dns-prefetch" href="https://www.google-analytics.com" />
+
+        {/* Theme color for mobile browser chrome */}
+        <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+        <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" />
       </head>
       <body>
+        {/*
+          GA uses lazyOnload strategy: script loads only after the page is fully
+          interactive and idle. This removes GA from the critical render path
+          and improves LCP, FCP, and INP scores significantly.
+        */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-DBZT1K0P01"
-          strategy="afterInteractive"
+          strategy="lazyOnload"
         />
-        <Script id="google-analytics" strategy="afterInteractive">
+        <Script id="google-analytics" strategy="lazyOnload">
           {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-
-            gtag('config', 'G-DBZT1K0P01');
+            gtag('config', 'G-DBZT1K0P01', { send_page_view: true });
           `}
         </Script>
         <ThemeProvider>

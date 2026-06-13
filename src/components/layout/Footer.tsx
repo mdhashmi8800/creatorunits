@@ -2,8 +2,12 @@ import React from "react";
 import Link from "next/link";
 import styles from "./Footer.module.css";
 
+// Build-time constant — avoids dynamic Date evaluation on every request
+// which can break static page caching consistency.
+const CURRENT_YEAR = new Date().getFullYear();
+
 export default function Footer() {
-  const currentYear = new Date().getFullYear();
+  const currentYear = CURRENT_YEAR;
 
   return (
     <footer className={styles.footer}>

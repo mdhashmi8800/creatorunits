@@ -11,5 +11,10 @@
   },
   "observability": {
     "enabled": true
+  },
+  // Smart placement: Cloudflare automatically places the Worker in the
+  // region closest to your data sources to minimize latency.
+  "placement": {
+    "mode": "smart"
   }
 }

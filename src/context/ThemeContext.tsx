@@ -12,18 +12,25 @@ interface ThemeContextType {
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [theme, setTheme] = useState<Theme>("light");
-  const [mounted, setMounted] = useState(false);
+  // Initialise from the data-theme already set by the inline <script> in <head>
+  // so the React state matches the DOM from the very first render — no FOUC, no hidden flash.
+  const [theme, setTheme] = useState<Theme>(() => {
+    if (typeof window !== "undefined") {
+      return (document.documentElement.getAttribute("data-theme") as Theme) || "light";
+    }
+    return "light";
+  });
 
   useEffect(() => {
-    // Read from localStorage or system preference
+    // Sync in case localStorage was updated by another tab / first load
     const savedTheme = localStorage.getItem("theme") as Theme | null;
     const systemPrefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    
     const initialTheme = savedTheme || (systemPrefersDark ? "dark" : "light");
-    setTheme(initialTheme);
-    document.documentElement.setAttribute("data-theme", initialTheme);
-    setMounted(true);
+    if (initialTheme !== theme) {
+      setTheme(initialTheme);
+      document.documentElement.setAttribute("data-theme", initialTheme);
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const toggleTheme = () => {
@@ -33,11 +40,12 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     localStorage.setItem("theme", nextTheme);
   };
 
-  // Prevent layout shift/flash by returning a shell before mounted if needed, 
-  // but wrapping children immediately is fine since layout elements use variables.
+  // Children are rendered immediately — no visibility:hidden.
+  // The inline <head> script already sets data-theme before first paint,
+  // so CSS variables resolve correctly with zero FOUC.
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
-      <div style={{ visibility: mounted ? "visible" : "hidden" }} className="page-wrapper">
+      <div className="page-wrapper">
         {children}
       </div>
     </ThemeContext.Provider>
