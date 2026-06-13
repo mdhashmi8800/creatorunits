@@ -7,8 +7,20 @@ import Footer from "@/components/layout/Footer";
 import { tools, categories } from "@/data/tools";
 
 export default function ToolsClient() {
+  const ITEMS_PER_PAGE = 12;
   const [activeTab, setActiveTab] = useState<string>("all");
   const [searchQuery, setSearchQuery] = useState<string>("");
+  const [visibleCount, setVisibleCount] = useState<number>(ITEMS_PER_PAGE);
+
+  const handleTabChange = (tab: string) => {
+    setActiveTab(tab);
+    setVisibleCount(ITEMS_PER_PAGE);
+  };
+
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchQuery(e.target.value);
+    setVisibleCount(ITEMS_PER_PAGE);
+  };
 
   const filteredTools = tools.filter((tool) => {
     const matchesTab = activeTab === "all" || tool.category === activeTab;
@@ -17,6 +29,9 @@ export default function ToolsClient() {
       tool.shortDesc.toLowerCase().includes(searchQuery.toLowerCase());
     return matchesTab && matchesSearch;
   });
+
+  const paginatedTools = filteredTools.slice(0, visibleCount);
+  const hasMore = filteredTools.length > visibleCount;
 
   return (
     <>
@@ -46,7 +61,7 @@ export default function ToolsClient() {
                   id="tools-search"
                   type="text"
                   value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
+                  onChange={handleSearchChange}
                   placeholder="Search tools by name or description..."
                   className="form-control"
                   aria-label="Search tools by name or description"
@@ -71,7 +86,7 @@ export default function ToolsClient() {
                   aria-controls="tools-panel"
                   id="tab-all"
                   className={`btn ${activeTab === "all" ? "btn-primary" : "btn-secondary"} btn-sm`}
-                  onClick={() => setActiveTab("all")}
+                  onClick={() => handleTabChange("all")}
                 >
                   All Tools ({tools.length})
                 </button>
@@ -85,7 +100,7 @@ export default function ToolsClient() {
                       aria-controls="tools-panel"
                       id={`tab-${cat.slug}`}
                       className={`btn ${activeTab === cat.slug ? "btn-primary" : "btn-secondary"} btn-sm`}
-                      onClick={() => setActiveTab(cat.slug)}
+                      onClick={() => handleTabChange(cat.slug)}
                     >
                       {cat.name} ({count})
                     </button>
@@ -97,33 +112,46 @@ export default function ToolsClient() {
 
           {/* Tools Grid */}
           <div id="tools-panel" role="tabpanel" aria-labelledby={`tab-${activeTab}`}>
-            {filteredTools.length > 0 ? (
-              <div className="grid-cols-3">
-                {filteredTools.map((tool) => (
-                  <Link
-                    key={tool.id}
-                    href={`/tools/${tool.category}/${tool.slug}`}
-                    className="card card-hover flex flex-col gap-3"
-                    style={{ textDecoration: "none", color: "inherit" }}
-                    aria-label={`Open ${tool.title} - ${tool.shortDesc}`}
-                  >
-                    <div className="flex justify-between items-start">
-                      <span className="badge badge-accent" style={{ fontSize: "0.65rem" }}>
-                        {tool.categoryName}
-                      </span>
-                    </div>
-                    
-                    <h3 style={{ fontSize: "1.2rem", margin: 0 }}>{tool.title}</h3>
-                    <p className="text-muted" style={{ fontSize: "0.875rem", margin: 0, flexGrow: 1, lineHeight: "1.4" }}>
-                      {tool.shortDesc}
-                    </p>
+            {paginatedTools.length > 0 ? (
+              <>
+                <div className="grid-cols-3">
+                  {paginatedTools.map((tool) => (
+                    <Link
+                      key={tool.id}
+                      href={`/tools/${tool.category}/${tool.slug}`}
+                      className="card card-hover flex flex-col gap-3"
+                      style={{ textDecoration: "none", color: "inherit" }}
+                      aria-label={`Open ${tool.title} - ${tool.shortDesc}`}
+                    >
+                      <div className="flex justify-between items-start">
+                        <span className="badge badge-accent" style={{ fontSize: "0.65rem" }}>
+                          {tool.categoryName}
+                        </span>
+                      </div>
+                      
+                      <h3 style={{ fontSize: "1.2rem", margin: 0 }}>{tool.title}</h3>
+                      <p className="text-muted" style={{ fontSize: "0.875rem", margin: 0, flexGrow: 1, lineHeight: "1.4" }}>
+                        {tool.shortDesc}
+                      </p>
 
-                    <span className="text-primary-color" style={{ fontSize: "0.85rem", fontWeight: "600", marginTop: "0.5rem" }}>
-                      Open Tool &rarr;
-                    </span>
-                  </Link>
-                ))}
-              </div>
+                      <span className="text-primary-color" style={{ fontSize: "0.85rem", fontWeight: "600", marginTop: "0.5rem" }}>
+                        Open Tool &rarr;
+                      </span>
+                    </Link>
+                  ))}
+                </div>
+
+                {hasMore && (
+                  <div style={{ display: "flex", justifyContent: "center", marginTop: "2.5rem" }}>
+                    <button
+                      className="btn btn-primary"
+                      onClick={() => setVisibleCount((prev) => prev + ITEMS_PER_PAGE)}
+                    >
+                      Load More Tools
+                    </button>
+                  </div>
+                )}
+              </>
             ) : (
               <div className="card text-center" style={{ padding: "4rem 0" }} role="status">
                 <p className="text-muted" style={{ margin: 0 }}>

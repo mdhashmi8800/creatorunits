@@ -1,6 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 
-function sanitizeInput(input: string): string {
+function sanitizeInput(input: any): string {
+  if (typeof input !== "string") {
+    return "";
+  }
   return input
     .replace(/[<>]/g, "")
     .replace(/javascript:/gi, "")
@@ -15,7 +18,15 @@ function isValidEmail(email: string): boolean {
 
 export async function POST(request: NextRequest) {
   try {
-    const body = await request.json();
+    let body;
+    try {
+      body = await request.json();
+    } catch (e) {
+      return NextResponse.json(
+        { error: "Invalid JSON body" },
+        { status: 400 }
+      );
+    }
     const { name, email, subject, message } = body;
 
     if (!name || !email || !message) {
@@ -60,37 +71,85 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Forward to Formspree
-    const formspreeResponse = await fetch(`https://formspree.io/f/${formId}`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Accept": "application/json",
-      },
-      body: JSON.stringify({
-        name: sanitizedName,
-        email: sanitizedEmail,
-        subject: sanitizedSubject,
-        message: sanitizedMessage,
-      }),
-    });
+    // Forward to Formspree with timeout and size limits
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 5000); // 5-second timeout
 
-    if (!formspreeResponse.ok) {
-      const errorData = await formspreeResponse.json().catch(() => ({}));
-      console.error("Formspree error response:", errorData);
-      
-      // Handle array of errors that Formspree can return
-      let errorMessage = "Failed to send message via Formspree.";
-      if (errorData.errors && Array.isArray(errorData.errors) && errorData.errors.length > 0) {
-        errorMessage = errorData.errors.map((err: any) => err.message).join(", ");
-      } else if (errorData.error) {
-        errorMessage = errorData.error;
+    try {
+      const formspreeResponse = await fetch(`https://formspree.io/f/${formId}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json",
+        },
+        body: JSON.stringify({
+          name: sanitizedName,
+          email: sanitizedEmail,
+          subject: sanitizedSubject,
+          message: sanitizedMessage,
+        }),
+        signal: controller.signal,
+      });
+
+      // Read response stream chunk-by-chunk up to 50KB to prevent memory issues
+      let responseText = "";
+      if (formspreeResponse.body) {
+        const reader = formspreeResponse.body.getReader();
+        const decoder = new TextDecoder();
+        let totalBytes = 0;
+        const MAX_BYTES = 50 * 1024; // 50KB limit
+
+        while (totalBytes < MAX_BYTES) {
+          const { done, value } = await reader.read();
+          if (done) {
+            break;
+          }
+          if (value) {
+            totalBytes += value.byteLength;
+            responseText += decoder.decode(value, { stream: true });
+          }
+        }
+        if (totalBytes >= MAX_BYTES) {
+          console.warn("Formspree response payload exceeded 50KB limit. Aborted further stream reading.");
+          await reader.cancel();
+        }
+      } else {
+        responseText = await formspreeResponse.text();
       }
-      
-      return NextResponse.json(
-        { error: errorMessage },
-        { status: formspreeResponse.status }
-      );
+
+      if (!formspreeResponse.ok) {
+        let errorData: any = {};
+        try {
+          errorData = JSON.parse(responseText);
+        } catch (e) {
+          // Ignored
+        }
+        console.error("Formspree error response:", errorData);
+        
+        // Handle array of errors that Formspree can return
+        let errorMessage = "Failed to send message via Formspree.";
+        if (errorData.errors && Array.isArray(errorData.errors) && errorData.errors.length > 0) {
+          errorMessage = errorData.errors.map((err: any) => err.message).join(", ");
+        } else if (errorData.error) {
+          errorMessage = errorData.error;
+        }
+        
+        return NextResponse.json(
+          { error: errorMessage },
+          { status: formspreeResponse.status }
+        );
+      }
+    } catch (fetchError: any) {
+      if (fetchError.name === "AbortError") {
+        console.error("Fetch request to Formspree timed out after 5 seconds");
+        return NextResponse.json(
+          { error: "Request to submit contact form timed out. Please try again." },
+          { status: 504 }
+        );
+      }
+      throw fetchError;
+    } finally {
+      clearTimeout(timeoutId);
     }
 
     return NextResponse.json(
