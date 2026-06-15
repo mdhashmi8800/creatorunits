@@ -103,14 +103,15 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="https://www.google-analytics.com" />
         <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
         <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" />
-      </head>
-      <body>
-        <Script
+        {/* Google AdSense - must be in <head> for SSR verification */}
+        <script
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8763819545697765"
           crossOrigin="anonymous"
-          strategy="afterInteractive"
         />
+      </head>
+      <body>
+
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-DBZT1K0P01"
           strategy="lazyOnload"

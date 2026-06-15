@@ -1,13 +1,11 @@
 import React from "react";
 import Link from "next/link";
-import dynamic from "next/dynamic";
 import { notFound } from "next/navigation";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { tools, getToolBySlug } from "@/data/tools";
 import { Metadata } from "next";
-
-const ToolWidget = dynamic(() => import("@/components/ToolWidget"), { ssr: false });
+import ToolWidgetClient from "./ToolWidgetClient";
 
 interface PageProps {
   params: Promise<{
@@ -163,7 +161,7 @@ export default async function ToolDetailPage({ params }: PageProps) {
           </div>
 
           <section style={{ marginBottom: "3rem" }} aria-label={`${tool.title} tool interface`}>
-            <ToolWidget componentName={tool.componentName} />
+            <ToolWidgetClient componentName={tool.componentName} />
           </section>
 
           <div className="grid-cols-2" style={{ gap: "2rem", marginBottom: "3rem" }}>
