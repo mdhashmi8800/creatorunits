@@ -6,13 +6,13 @@
   "/icon.svg/route": "/icon.svg",
   "/robots.txt/route": "/robots.txt",
   "/sitemap.xml/route": "/sitemap.xml",
-  "/disclaimer/page": "/disclaimer",
-  "/contact/page": "/contact",
   "/about/page": "/about",
   "/category/[slug]/page": "/category/[slug]",
-  "/terms/page": "/terms",
-  "/privacy/page": "/privacy",
-  "/tools/page": "/tools",
+  "/disclaimer/page": "/disclaimer",
+  "/contact/page": "/contact",
   "/page": "/",
+  "/privacy/page": "/privacy",
+  "/terms/page": "/terms",
+  "/tools/page": "/tools",
   "/tools/[category]/[slug]/page": "/tools/[category]/[slug]"
 }
