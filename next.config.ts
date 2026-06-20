@@ -4,6 +4,31 @@ const nextConfig: NextConfig = {
   // Required by OpenNext — it reads .next/standalone/.next/BUILD_ID during bundling
   output: "standalone",
 
+  // ── Performance ────────────────────────────────────────────────────────────
+  compress: true,
+
+  // Remove X-Powered-By header (security + marginally smaller response)
+  poweredByHeader: false,
+
+  // No source maps in production browser bundle (security + smaller payload)
+  productionBrowserSourceMaps: false,
+
+  // ── Partial Prerendering (Cache Components) ─────────────────────────────
+  // Moved from experimental in Next.js 16 — must be top-level.
+  // Generates a static prerendered HTML shell for all pages that use only
+  // deterministic/cached data. For this site (all pages are fully static),
+  // this means the Cloudflare Worker serves prebuilt HTML with near-zero CPU
+  // on cache hits, dramatically reducing Worker load and improving TTFB.
+  cacheComponents: true,
+
+  // ── Experimental ───────────────────────────────────────────────────────────
+  experimental: {
+    // Optimize CSS output: minifies and deduplicates CSS at build time.
+    // Works with Tailwind v4 via PostCSS.
+    optimizeCss: true,
+  },
+
+  // ── Images ─────────────────────────────────────────────────────────────────
   images: {
     formats: ["image/avif", "image/webp"],
     minimumCacheTTL: 60 * 60 * 24 * 30, // 30 days
@@ -11,9 +36,7 @@ const nextConfig: NextConfig = {
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
   },
 
-  // Enable gzip/brotli compression
-  compress: true,
-
+  // ── HTTP Headers ───────────────────────────────────────────────────────────
   headers: async () => [
     // ── Security headers on all routes ────────────────────────────────────────
     {

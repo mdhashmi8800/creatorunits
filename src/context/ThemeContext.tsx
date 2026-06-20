@@ -43,11 +43,11 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   // Children are rendered immediately — no visibility:hidden.
   // The inline <head> script already sets data-theme before first paint,
   // so CSS variables resolve correctly with zero FOUC.
+  // NOTE: The <div className="page-wrapper"> wrapper has been removed.
+  // The sticky-footer flex layout is now applied directly on <body> via globals.css.
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
-      <div className="page-wrapper">
-        {children}
-      </div>
+      {children}
     </ThemeContext.Provider>
   );
 }

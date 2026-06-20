@@ -16,5 +16,14 @@
   // region closest to your data sources to minimize latency.
   "placement": {
     "mode": "smart"
+  },
+  // limits.cpu_ms: Set an explicit CPU time budget per request.
+  // Cloudflare Workers default is 10ms on free / higher on paid plans.
+  // With cacheComponents (PPR) enabled in Next.js, most requests are served
+  // from the prerendered static shell and use <1ms CPU. Dynamic requests
+  // (cold Worker start + SSR) are bounded here to prevent runaway execution.
+  // 50ms provides comfortable headroom for SSR without risking limit errors.
+  "limits": {
+    "cpu_ms": 50
   }
 }

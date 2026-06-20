@@ -1,9 +1,30 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
+import { Inter } from "next/font/google";
 import "./globals.css";
 import ClientProviders from "@/components/ClientProviders";
 import Script from "next/script";
 
+// ── Font — self-hosted via next/font, zero external network request on load ──
+// Inter is loaded and inlined as CSS @font-face; no render-blocking request.
+const inter = Inter({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-inter",
+  preload: true,
+});
+
 const baseUrl = "https://creatorunits.com";
+
+// ── Viewport — exported separately (Next.js 16 best practice) ───────────────
+// Separating viewport from metadata prevents redundant metadata system work.
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
+    { media: "(prefers-color-scheme: dark)", color: "#000000" },
+  ],
+};
 
 export const metadata: Metadata = {
   title: "Creators Units - Free Online Tools for Creators & Social Media",
@@ -84,7 +105,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" className={inter.variable} suppressHydrationWarning>
       <head>
         <script
           type="application/ld+json"
@@ -94,24 +115,31 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
         />
+        {/* Inline script: set data-theme before first paint to prevent FOUC */}
         <script
           dangerouslySetInnerHTML={{
             __html: `(function(){try{var t=localStorage.getItem('theme');var d=window.matchMedia('(prefers-color-scheme: dark)').matches;document.documentElement.setAttribute('data-theme',t||(d?'dark':'light'));}catch(e){}})();`,
           }}
         />
-        <link rel="preconnect" href="https://www.googletagmanager.com" />
-        <link rel="dns-prefetch" href="https://www.google-analytics.com" />
-        <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
-        <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" />
-        {/* Google AdSense - must be in <head> for SSR verification */}
+        {/*
+          AdSense verification: Google requires the adsbygoogle.js script to be
+          present in <head> for publisher ID verification. The `async` boolean
+          attribute ensures it is non-blocking — the browser downloads it in
+          parallel without pausing HTML parsing or delaying FCP/LCP.
+        */}
         <script
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8763819545697765"
           crossOrigin="anonymous"
         />
+        {/* Preconnect to AdSense CDN so the async script download starts early */}
+        <link rel="preconnect" href="https://pagead2.googlesyndication.com" />
+        <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com" />
+        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+        <link rel="dns-prefetch" href="https://www.google-analytics.com" />
       </head>
       <body>
-
+        {/* GA4 — lazyOnload defers until after page is fully interactive */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-DBZT1K0P01"
           strategy="lazyOnload"

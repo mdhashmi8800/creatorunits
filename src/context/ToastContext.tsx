@@ -30,9 +30,10 @@ export function ToastProvider({ children }: { children: React.ReactNode }) {
     }, 3000);
   }, []);
 
-  const removeToast = (id: string) => {
+  // Memoized to prevent unnecessary re-renders in consumers
+  const removeToast = useCallback((id: string) => {
     setToasts((prev) => prev.filter((toast) => toast.id !== id));
-  };
+  }, []);
 
   return (
     <ToastContext.Provider value={{ showToast }}>

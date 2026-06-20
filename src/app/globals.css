@@ -6,9 +6,11 @@
 }
 
 :root {
-  /* Fonts — system font stack (no Google Fonts network dependency on Worker) */
-  --font-sans: "Geist", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  --font-mono: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, "Courier New", monospace;
+  /* Fonts — Inter loaded via next/font (self-hosted, no external request).
+     --font-inter is injected as a CSS variable by next/font on the <html> element.
+     The system stack is the fallback while the font loads. */
+  --font-sans: var(--font-inter), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, "Courier New", monospace;
 
   /* Vercel Light Theme (Default) */
   --bg-primary: #ffffff;       /* Canvas */
@@ -109,9 +111,12 @@ body {
   font-family: var(--font-sans);
   font-size: 1rem;
   line-height: 1.6;
-  min-height: 100%;
+  /* Sticky footer: body acts as the flex column container.
+     Previously handled by ThemeProvider's <div className="page-wrapper"> —
+     that wrapper is removed; the layout responsibility moves here. */
   display: flex;
   flex-direction: column;
+  min-height: 100vh;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -471,13 +476,7 @@ code {
   }
 }
 
-/* Sticky footer wrapper */
-.page-wrapper {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
-
+/* main-content grows to push footer to bottom of the flex-column body */
 main.main-content {
   flex: 1 0 auto;
 }
