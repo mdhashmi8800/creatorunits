@@ -1,1 +1,0 @@
-globalThis.__RSC_MANIFEST=(globalThis.__RSC_MANIFEST||{});globalThis.__RSC_MANIFEST["/api/youtube/tags/route"]={"moduleLoading":{"prefix":"/_next/"},"ssrModuleMapping":{},"edgeSSRModuleMapping":{},"clientModules":{},"entryCSSFiles":{"D:\\creatorunits.com\\src\\app\\api\\youtube\\tags\\route":[]},"rscModuleMapping":{},"edgeRscModuleMapping":{}};
