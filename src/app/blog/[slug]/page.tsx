@@ -15,6 +15,9 @@ export async function generateStaticParams() {
   return articles.map((a) => ({ slug: a.slug }));
 }
 
+// Reverted dynamicParams to fix 404
+// export const dynamicParams = false;
+
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
   const article = articles.find((a) => a.slug === slug);

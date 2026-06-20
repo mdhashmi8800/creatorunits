@@ -27,9 +27,9 @@ export function generateStaticParams() {
   ];
 }
 
-// dynamicParams intentionally not set to false — Cloudflare Workers (OpenNext)
-// throw NoFallbackError for paths outside generateStaticParams when this is false.
-// The notFound() call inside the page handles unknown slugs gracefully instead.
+// Reverted dynamicParams to fix 404
+// export const dynamicParams = false;
+
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;

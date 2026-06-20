@@ -19,7 +19,7 @@ const nextConfig: NextConfig = {
   // deterministic/cached data. For this site (all pages are fully static),
   // this means the Cloudflare Worker serves prebuilt HTML with near-zero CPU
   // on cache hits, dramatically reducing Worker load and improving TTFB.
-  cacheComponents: true,
+  // cacheComponents: true, // Removed due to Cloudflare Workers compatibility issues and conflict with dynamicParams = false
 
   // ── Experimental ───────────────────────────────────────────────────────────
   experimental: {

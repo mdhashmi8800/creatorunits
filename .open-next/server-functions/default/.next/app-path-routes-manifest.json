@@ -1,0 +1,20 @@
+{
+  "/_not-found/page": "/_not-found",
+  "/_global-error/page": "/_global-error",
+  "/api/contact/route": "/api/contact",
+  "/api/youtube/tags/route": "/api/youtube/tags",
+  "/icon.svg/route": "/icon.svg",
+  "/robots.txt/route": "/robots.txt",
+  "/sitemap.xml/route": "/sitemap.xml",
+  "/about/page": "/about",
+  "/contact/page": "/contact",
+  "/blog/page": "/blog",
+  "/disclaimer/page": "/disclaimer",
+  "/category/[slug]/page": "/category/[slug]",
+  "/privacy/page": "/privacy",
+  "/terms/page": "/terms",
+  "/tools/page": "/tools",
+  "/blog/[slug]/page": "/blog/[slug]",
+  "/tools/[category]/[slug]/page": "/tools/[category]/[slug]",
+  "/page": "/"
+}
