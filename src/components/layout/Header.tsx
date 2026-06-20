@@ -24,6 +24,7 @@ export default function Header() {
     { name: "Creator Tools", path: "/category/creator" },
     { name: "Social Tools", path: "/category/social" },
     { name: "Utility Tools", path: "/category/utility" },
+    { name: "Blog", path: "/blog" },
     { name: "About", path: "/about" },
     { name: "Contact", path: "/contact" },
   ];

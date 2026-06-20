@@ -1,40 +1,57 @@
 import { MetadataRoute } from "next";
 import { tools, categories } from "@/data/tools";
 
-// Use a stable build date rather than new Date() which changes every request.
-// This prevents Googlebot from seeing every URL as "changed" on every crawl,
-// which wastes crawl budget and dilutes change signals.
-// Update this date when you make meaningful content changes.
-const SITE_LAST_MODIFIED = new Date("2025-06-01T00:00:00.000Z");
-const TOOLS_LAST_MODIFIED = new Date("2025-06-01T00:00:00.000Z");
+// Stable build-time date so Googlebot sees a fresh lastModified on every
+// deployment without seeing every URL as "changed" on every *request*.
+// This is evaluated once at build time (static export / SSG).
+const BUILD_DATE = new Date();
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://creatorunits.com";
 
-  // Core pages — higher priority, updated more frequently
-  const corePages = ["", "/tools", "/about", "/contact", "/privacy", "/terms", "/disclaimer"];
+  // ── Core pages ─────────────────────────────────────────────────────────────
+  const corePages = ["", "/tools", "/about", "/contact", "/privacy", "/terms", "/disclaimer", "/blog"];
   const coreEntries = corePages.map((route) => ({
     url: `${baseUrl}${route}`,
-    lastModified: SITE_LAST_MODIFIED,
+    lastModified: BUILD_DATE,
     changeFrequency: "weekly" as const,
-    priority: route === "" ? 1.0 : 0.8,
+    priority: route === "" ? 1.0 : route === "/tools" || route === "/blog" ? 0.9 : 0.8,
   }));
 
-  // Category pages
+  // ── Category pages ─────────────────────────────────────────────────────────
   const categoryEntries = Object.keys(categories).map((slug) => ({
     url: `${baseUrl}/category/${slug}`,
-    lastModified: SITE_LAST_MODIFIED,
+    lastModified: BUILD_DATE,
     changeFrequency: "weekly" as const,
     priority: 0.8,
   }));
 
-  // Individual tool pages — stable, change infrequently
+  // ── Individual tool pages ──────────────────────────────────────────────────
   const toolEntries = tools.map((tool) => ({
     url: `${baseUrl}/tools/${tool.category}/${tool.slug}`,
-    lastModified: TOOLS_LAST_MODIFIED,
+    lastModified: BUILD_DATE,
     changeFrequency: "monthly" as const,
     priority: 0.7,
   }));
 
-  return [...coreEntries, ...categoryEntries, ...toolEntries];
+  // ── Blog article pages — imported lazily to avoid circular deps ────────────
+  // Articles are loaded here via a dynamic require so sitemap.ts stays
+  // decoupled from the articles data during initial scaffolding.
+  let articleEntries: MetadataRoute.Sitemap = [];
+  try {
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    const { articles } = require("@/data/articles") as {
+      articles: Array<{ slug: string; publishDate: string }>;
+    };
+    articleEntries = articles.map((a) => ({
+      url: `${baseUrl}/blog/${a.slug}`,
+      lastModified: new Date(a.publishDate),
+      changeFrequency: "monthly" as const,
+      priority: 0.6,
+    }));
+  } catch {
+    // articles.ts not yet present during initial build — safe to skip
+  }
+
+  return [...coreEntries, ...categoryEntries, ...toolEntries, ...articleEntries];
 }

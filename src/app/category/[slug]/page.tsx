@@ -3,8 +3,16 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
-import { getToolsByCategory, categories } from "@/data/tools";
+import { getToolsByCategory, categories, toolsIndex } from "@/data/tools";
 import { Metadata } from "next";
+
+// Map each category to 2-3 spotlight slugs from OTHER categories for internal linking
+const crossCategoryMap: Record<string, string[]> = {
+  image: ["qr-code-generator", "password-generator", "youtube-thumbnail-preview", "fancy-text-generator"],
+  creator: ["image-compressor", "image-resizer", "utm-builder", "social-media-link-in-bio-helper"],
+  social: ["image-compressor", "screenshot-cleaner", "qr-code-generator", "youtube-thumbnail-preview"],
+  utility: ["image-compressor", "fancy-text-generator", "youtube-thumbnail-preview", "bio-template-generator"],
+};
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -65,6 +73,29 @@ export default async function CategoryPage({ params }: PageProps) {
 
   const catTools = getToolsByCategory(slug);
 
+  // Cross-category tools for internal linking
+  const crossCatSlugs = crossCategoryMap[slug] ?? [];
+  const crossCatTools = crossCatSlugs
+    .map((s) => toolsIndex.find((t) => t.slug === s))
+    .filter(Boolean);
+
+  const collectionPageSchema = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: cat.name,
+    description: cat.seoDesc,
+    url: `https://creatorunits.com/category/${slug}`,
+    mainEntity: {
+      "@type": "ItemList",
+      itemListElement: catTools.map((tool, idx) => ({
+        "@type": "ListItem",
+        position: idx + 1,
+        name: tool.title,
+        url: `https://creatorunits.com/tools/${tool.category}/${tool.slug}`,
+      })),
+    },
+  };
+
   const breadcrumbSchema = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -86,6 +117,10 @@ export default async function CategoryPage({ params }: PageProps) {
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionPageSchema) }}
+      />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
@@ -135,7 +170,7 @@ export default async function CategoryPage({ params }: PageProps) {
           </div>
 
           {/* Category-level SEO Description copy */}
-          <section className="card" style={{ backgroundColor: "var(--bg-primary)", padding: "2rem" }}>
+          <section className="card" style={{ backgroundColor: "var(--bg-primary)", padding: "2rem", marginBottom: "2rem" }}>
             <h2 style={{ fontSize: "1.5rem", marginBottom: "1rem" }}>About Our {cat.name} Suite</h2>
             <div
               style={{
@@ -153,6 +188,47 @@ export default async function CategoryPage({ params }: PageProps) {
               </p>
             </div>
           </section>
+
+          {/* Cross-category internal linking */}
+          {crossCatTools.length > 0 && (
+            <section aria-labelledby="related-cats-heading" style={{ marginBottom: "2rem" }}>
+              <h2 id="related-cats-heading" style={{ fontSize: "1.35rem", marginBottom: "1rem" }}>You May Also Like</h2>
+              <div className="grid-cols-4">
+                {crossCatTools.map((tool) => tool && (
+                  <Link
+                    key={tool.id}
+                    href={`/tools/${tool.category}/${tool.slug}`}
+                    className="card card-hover flex flex-col gap-2"
+                    style={{ textDecoration: "none", color: "inherit", padding: "1.25rem" }}
+                    aria-label={`${tool.title} — ${tool.shortDesc}`}
+                  >
+                    <span className="badge badge-accent" style={{ fontSize: "0.6rem", alignSelf: "flex-start" }}>{tool.categoryName}</span>
+                    <h3 style={{ fontSize: "1rem", margin: 0 }}>{tool.title}</h3>
+                    <p className="text-muted" style={{ fontSize: "0.8rem", margin: 0, flexGrow: 1, lineHeight: "1.4" }}>{tool.shortDesc}</p>
+                    <span className="text-primary-color" style={{ fontSize: "0.8rem", fontWeight: "600", marginTop: "0.25rem" }}>Open &rarr;</span>
+                  </Link>
+                ))}
+              </div>
+            </section>
+          )}
+
+          {/* All categories nav */}
+          <nav aria-label="Browse other categories" style={{ marginBottom: "1rem" }}>
+            <p style={{ fontSize: "0.9rem", color: "var(--text-muted)", marginBottom: "0.75rem" }}>Browse other categories:</p>
+            <div style={{ display: "flex", gap: "0.75rem", flexWrap: "wrap" }}>
+              {Object.values(categories)
+                .filter((c) => c.slug !== slug)
+                .map((c) => (
+                  <Link
+                    key={c.slug}
+                    href={`/category/${c.slug}`}
+                    className="btn btn-secondary btn-sm"
+                  >
+                    {c.name}
+                  </Link>
+                ))}
+            </div>
+          </nav>
 
         </div>
       </main>

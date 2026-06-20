@@ -6,6 +6,14 @@ import { toolsIndex as tools, categories } from "@/data/tools";
 import HomeSearch from "./HomeSearch";
 import styles from "./page.module.css";
 
+// Lazy-load articles for blog teaser — gracefully skips if not yet present
+let latestArticles: Array<{ slug: string; title: string; metaDesc: string; category: string }> = [];
+try {
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  const { articles } = require("@/data/articles");
+  latestArticles = articles.slice(0, 3);
+} catch { /* articles not yet generated */ }
+
 export const metadata: Metadata = {
   title: "Free Web Tools for Creators & Social Media | Creator Units",
   description: "Free, private web tools for creators and social media. Compress images, preview YouTube thumbnails, generate QR codes, and format text offline and instantly.",
@@ -274,6 +282,65 @@ export default function Home() {
             </div>
           </div>
         </section>
+
+        {/* All Tools Directory — SSR links so Googlebot indexes every tool */}
+        <section className="section" style={{ backgroundColor: "var(--bg-primary)" }} aria-labelledby="all-tools-heading">
+          <div className="container">
+            <h2 id="all-tools-heading" className="text-center mb-2">All {tools.length} Free Tools</h2>
+            <p className="text-center text-muted mb-8">
+              Every tool is free, runs in your browser, and requires no sign-up.
+            </p>
+            <div className="grid-cols-3" style={{ marginBottom: "2rem" }}>
+              {tools.map((tool) => (
+                <Link
+                  key={tool.id}
+                  href={`/tools/${tool.category}/${tool.slug}`}
+                  className="card card-hover flex flex-col gap-2"
+                  style={{ textDecoration: "none", color: "inherit", padding: "1.25rem" }}
+                  aria-label={`${tool.title} — ${tool.shortDesc}`}
+                >
+                  <span className="badge badge-accent" style={{ fontSize: "0.6rem", alignSelf: "flex-start" }}>{tool.categoryName}</span>
+                  <h3 style={{ fontSize: "1rem", margin: 0 }}>{tool.title}</h3>
+                  <p className="text-muted" style={{ fontSize: "0.8rem", margin: 0, lineHeight: "1.4", flexGrow: 1 }}>{tool.shortDesc}</p>
+                  <span className="text-primary-color" style={{ fontSize: "0.8rem", fontWeight: "600", marginTop: "0.25rem" }}>Open &rarr;</span>
+                </Link>
+              ))}
+            </div>
+            <div className="text-center">
+              <Link href="/tools" className="btn btn-primary">Browse All Tools &rarr;</Link>
+            </div>
+          </div>
+        </section>
+
+        {/* Blog Teaser — shown only when articles data exists */}
+        {latestArticles.length > 0 && (
+          <section className="section" aria-labelledby="blog-teaser-heading">
+            <div className="container">
+              <h2 id="blog-teaser-heading" className="text-center mb-2">Latest from the Blog</h2>
+              <p className="text-center text-muted mb-8">
+                In-depth guides on image optimization, YouTube SEO, and creator workflows.
+              </p>
+              <div className="grid-cols-3" style={{ marginBottom: "2rem" }}>
+                {latestArticles.map((article) => (
+                  <Link
+                    key={article.slug}
+                    href={`/blog/${article.slug}`}
+                    className="card card-hover flex flex-col gap-2"
+                    style={{ textDecoration: "none", color: "inherit", padding: "1.5rem" }}
+                  >
+                    <span className="badge badge-accent" style={{ fontSize: "0.6rem", alignSelf: "flex-start", textTransform: "capitalize" }}>{article.category}</span>
+                    <h3 style={{ fontSize: "1.05rem", margin: 0, lineHeight: "1.4" }}>{article.title}</h3>
+                    <p className="text-muted" style={{ fontSize: "0.8rem", margin: 0, flexGrow: 1, lineHeight: "1.5" }}>{article.metaDesc}</p>
+                    <span className="text-primary-color" style={{ fontSize: "0.8rem", fontWeight: "600", marginTop: "0.5rem" }}>Read Guide &rarr;</span>
+                  </Link>
+                ))}
+              </div>
+              <div className="text-center">
+                <Link href="/blog" className="btn btn-secondary">View All Articles &rarr;</Link>
+              </div>
+            </div>
+          </section>
+        )}
       </main>
       <Footer />
     </>
