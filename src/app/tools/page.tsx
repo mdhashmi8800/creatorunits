@@ -1,3 +1,5 @@
+export const dynamic = "force-static";
+
 import type { Metadata } from "next";
 import Link from "next/link";
 import Header from "@/components/layout/Header";
@@ -53,28 +55,28 @@ const categoryCounts = Object.fromEntries(
  * component. It controls visibility of the SSR cards via CSS data attributes
  * without requiring a React re-render of the grid.
  */
-export default function ToolsDirectoryPage() {
-  const itemListSchema = {
-    "@context": "https://schema.org",
-    "@type": "ItemList",
-    name: "All Free Creator & Utility Tools",
-    description:
-      "A complete directory of 33+ free browser-based tools for content creators.",
-    url: "https://creatorunits.com/tools",
-    numberOfItems: tools.length,
-    itemListElement: tools.map((tool, idx) => ({
-      "@type": "ListItem",
-      position: idx + 1,
-      name: tool.title,
-      url: `https://creatorunits.com/tools/${tool.category}/${tool.slug}`,
-    })),
-  };
+const ITEM_LIST_SCHEMA_JSON = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: "All Free Creator & Utility Tools",
+  description:
+    "A complete directory of 33+ free browser-based tools for content creators.",
+  url: "https://creatorunits.com/tools",
+  numberOfItems: tools.length,
+  itemListElement: tools.map((tool, idx) => ({
+    "@type": "ListItem",
+    position: idx + 1,
+    name: tool.title,
+    url: `https://creatorunits.com/tools/${tool.category}/${tool.slug}`,
+  })),
+});
 
+export default function ToolsDirectoryPage() {
   return (
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListSchema) }}
+        dangerouslySetInnerHTML={{ __html: ITEM_LIST_SCHEMA_JSON }}
       />
 
       <Header />

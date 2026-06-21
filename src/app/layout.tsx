@@ -64,7 +64,7 @@ export const metadata: Metadata = {
   },
 };
 
-const organizationSchema = {
+const ORGANIZATION_SCHEMA_JSON = JSON.stringify({
   "@context": "https://schema.org",
   "@type": "Organization",
   name: "Creators Units",
@@ -81,9 +81,9 @@ const organizationSchema = {
     email: "support@creatorunits.com",
     availableLanguage: "English",
   },
-};
+});
 
-const websiteSchema = {
+const WEBSITE_SCHEMA_JSON = JSON.stringify({
   "@context": "https://schema.org",
   "@type": "WebSite",
   name: "Creators Units",
@@ -97,7 +97,7 @@ const websiteSchema = {
     },
     "query-input": "required name=search_term_string",
   },
-};
+});
 
 export default function RootLayout({
   children,
@@ -109,11 +109,11 @@ export default function RootLayout({
       <head>
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+          dangerouslySetInnerHTML={{ __html: ORGANIZATION_SCHEMA_JSON }}
         />
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
+          dangerouslySetInnerHTML={{ __html: WEBSITE_SCHEMA_JSON }}
         />
         {/* Inline script: set data-theme before first paint to prevent FOUC */}
         <script
