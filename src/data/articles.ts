@@ -2364,3 +2364,13 @@ Line 5: Call to action + link</p>
     `,
   },
 ];
+
+export async function getArticleBySlug(slug: string): Promise<Article | undefined> {
+  try {
+    const module = await import(`./articles/details/${slug}`);
+    return module.articleDetails;
+  } catch (error) {
+    console.error(`Error loading article details for ${slug}:`, error);
+    return undefined;
+  }
+}

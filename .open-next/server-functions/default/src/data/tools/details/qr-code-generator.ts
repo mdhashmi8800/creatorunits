@@ -1,0 +1,49 @@
+import { ToolItem } from "../../types";
+
+export const toolDetails: ToolItem = {
+  "id": "util-qr-gen",
+  "slug": "qr-code-generator",
+  "category": "utility",
+  "categoryName": "Utility Tools",
+  "title": "QR Code Generator",
+  "shortDesc": "Generate standard QR codes for URLs, text, or Wi-Fi configurations.",
+  "metaDesc": "Create free custom QR codes online. Generate codes for links, text, emails, and Wi-Fi networks. Download as high-res images instantly.",
+  "instructions": [
+    "Choose the data type (URL, plain text, Wi-Fi config).",
+    "Enter the content or login details.",
+    "The QR code renders instantly.",
+    "Click 'Download QR Code' to save it as a high-quality PNG."
+  ],
+  "features": [
+    "Multi-type support: Links, text, WiFi logins.",
+    "Real-time render updates.",
+    "Offline browser generation."
+  ],
+  "componentName": "QrCodeGenerator",
+  "faqs": [
+    {
+      "question": "What is a QR code?",
+      "answer": "A QR code, or Quick Response code, is a two-dimensional barcode that stores data in a black-and-white grid. When scanned by a smartphone camera or QR reader, it instantly translates the pattern into actionable information, such as a website link, plain text, email address, contact information, or Wi-Fi network credentials."
+    },
+    {
+      "question": "How do QR codes work?",
+      "answer": "QR codes work by encoding alphanumeric characters into a grid of squares called modules. The scanning software analyzes the positioning markings at the corners of the code to align the image, reads the black-and-white pixel data, and decodes it back into text or links, executing the action on your smartphone in milliseconds."
+    },
+    {
+      "question": "What can I convert into a QR code?",
+      "answer": "You can convert various types of information into a QR code, including website URLs, plain text messages, email draft templates, contact files (vCards), SMS prompts, and Wi-Fi login credentials. This makes QR codes highly versatile for marketing campaigns, print media, shop signs, and business cards."
+    },
+    {
+      "question": "Can QR codes be printed?",
+      "answer": "Yes, QR codes are ideal for print media. You can download your generated QR code as a high-resolution PNG file and add it to flyers, posters, business cards, product packaging, menus, or banners. Make sure there is high contrast between the code and the background so cameras can scan it easily."
+    },
+    {
+      "question": "Are QR codes free to use?",
+      "answer": "Yes, generating QR codes with our tool is completely free. We do not charge subscription fees, apply scan count limits, or redirect your links through third-party ad networks. Once generated, your QR code remains active indefinitely, and you can print or display it digitally without restrictions."
+    }
+  ],
+  "seoTitle": "Free QR Code Generator - Create Custom QR Codes",
+  "seoHeading": "Generate Free QR Codes for Links, Wi-Fi & Texts",
+  "seoIntro": "Connect physical readers to your websites. Generate high-resolution, secure QR codes instantly inside your browser.",
+  "seoBody": "\n<h3>Utilizing QR Codes in Marketing</h3>\n<p>QR codes are highly effective on flyers, store displays, product tags, and presentation decks. Scanning links directly connects physical prospects to online portfolios, discount links, and menus.</p>\n    "
+};

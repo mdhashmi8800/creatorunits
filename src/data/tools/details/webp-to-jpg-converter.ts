@@ -1,0 +1,52 @@
+import { ToolItem } from "../../types";
+
+export const toolDetails: ToolItem = {
+  "id": "img-webp-to-jpg",
+  "slug": "webp-to-jpg-converter",
+  "category": "image",
+  "categoryName": "Image Tools",
+  "title": "WebP to JPG Converter",
+  "shortDesc": "Convert next-gen WebP images back into widely compatible JPG files.",
+  "metaDesc": "Convert WebP to JPG online. Quick, offline-first processing to ensure compatibility with older photo viewers and websites.",
+  "instructions": [
+    "Select the WebP image you need to convert.",
+    "Adjust quality setting if desired.",
+    "Export and download as JPG."
+  ],
+  "features": [
+    "High-speed browser conversion.",
+    "Configurable export compression quality.",
+    "Universal file format compatibility output."
+  ],
+  "componentName": "WebpToJpg",
+  "faqs": [
+    {
+      "question": "Why convert WebP to JPG?",
+      "answer": "While WebP is excellent for web performance, some older photo editors, desktop publishing software, legacy content management systems, and local image viewers do not support it. Converting WebP back to JPG ensures that your images are universally compatible, allowing you to view, edit, or upload them anywhere without compatibility issues."
+    },
+    {
+      "question": "Which devices support JPG images?",
+      "answer": "JPG is the most universally compatible image standard in existence. Virtually every operating system, including Windows, macOS, iOS, Android, and Linux, has native support for JPG files. Additionally, all social media platforms, smart TVs, email clients, and digital photo frames can display JPGs without requiring any special software. No matter what device or platform you use, JPG files will open instantly."
+    },
+    {
+      "question": "Will quality change after conversion?",
+      "answer": "Since JPG is a lossy format, converting WebP to JPG involves re-compressing the image data. This can lead to a slight reduction in visual detail, particularly around sharp lines or high-contrast borders. However, by setting the quality slider to a high level, the visual difference will remain minimal to the human eye."
+    },
+    {
+      "question": "Is JPG suitable for printing?",
+      "answer": "Yes, JPG is widely used and accepted for printing digital photographs. Most print shops and home printers handle JPG files seamlessly. For high-quality print results, we recommend converting your WebP image at the highest quality setting possible to prevent compression artifacts and preserve details like color depth and image resolution."
+    },
+    {
+      "question": "Can I use converted JPG images on social media?",
+      "answer": "Yes! Every major social media platform, including Facebook, Instagram, LinkedIn, Pinterest, and Twitter, accepts JPG uploads. In fact, JPG is the preferred format for standard photos on these networks due to its balance of good quality and manageable file size, ensuring fast upload times and broad compatibility. Your converted images will upload seamlessly to any platform."
+    },
+    {
+      "question": "Is the process free?",
+      "answer": "Yes, our WebP to JPG converter is 100% free to use. There are no registration forms, hidden fees, monthly caps, or watermarks. The conversion runs locally on your machine, so you can convert as many WebP images to JPG format as you need without any restrictions. You can use it as often as you like, completely free of charge."
+    }
+  ],
+  "seoTitle": "WebP to JPG Converter - Convert Next-Gen Images Offline",
+  "seoHeading": "Change WebP Images to Standard JPG Formats",
+  "seoIntro": "Need to open a WebP file in an editor that doesn't support it? Convert WebP to JPG instantly with our browser tool.",
+  "seoBody": "\n<h3>Ensuring Legacy Compatibility</h3>\n<p>Although WebP is widely used online, JPG remains the most universally compatible image standard. Converting WebP back to JPG ensures that your graphics will display correctly inside older productivity suites, local photo frames, and desktop editors.</p>\n    "
+};

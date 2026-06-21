@@ -1,0 +1,48 @@
+import { ToolItem } from "../../types";
+
+export const toolDetails: ToolItem = {
+  "id": "util-case-conv",
+  "slug": "text-case-converter",
+  "category": "utility",
+  "categoryName": "Utility Tools",
+  "title": "Text Case Converter",
+  "shortDesc": "Convert text formats: UPPERCASE, lowercase, Title Case, Sentence Case, or slugify.",
+  "metaDesc": "Convert text between UPPERCASE, lowercase, Title Case, Sentence Case, camelCase, PascalCase, and url-friendly slugs instantly.",
+  "instructions": [
+    "Paste or type your text.",
+    "Select a case format button.",
+    "Review the converted text and click copy."
+  ],
+  "features": [
+    "Supports 7 distinct case formats.",
+    "URL Slug generator converter.",
+    "Clears input in one click."
+  ],
+  "componentName": "TextCaseConverter",
+  "faqs": [
+    {
+      "question": "What is a text case converter?",
+      "answer": "A text case converter is a text utility that automatically changes the casing formats of your words. It allows you to transform paragraphs of text into UPPERCASE, lowercase, Sentence case, Title Case, camelCase, or URL slugs in a single click, saving you from retyping text manually."
+    },
+    {
+      "question": "Which text case formats are supported?",
+      "answer": "Our text converter supports seven common case formats: UPPERCASE (ALL CAPITAL LETTERS), lowercase (all small letters), Sentence case (capitalizing the first letter of each sentence), Title Case (capitalizing major words), camelCase (used in programming), PascalCase, and URL-friendly slug format (separating words with hyphens)."
+    },
+    {
+      "question": "Can I convert large amounts of text?",
+      "answer": "Yes, you can convert large blocks of text instantly. Since all processing runs locally in your web browser using lightweight JavaScript, the tool processes articles, essay drafts, or code logs in milliseconds without lag, ensuring a fast experience without transferring data to external servers."
+    },
+    {
+      "question": "Why is text formatting important?",
+      "answer": "Text formatting is important because it improves readability, structures content, and ensures consistency across documents and code bases. Proper capitalization makes headlines look professional, slug formats ensure links are readable by search engine spiders, and camelCase keeps programming code clean and readable for developers."
+    },
+    {
+      "question": "Is text case conversion instant?",
+      "answer": "Yes, the conversion is completely instant. As soon as you paste your text and click one of the format buttons, the tool updates the content area immediately. You can copy the newly formatted text to your clipboard with one click, streamlining your editing workflow."
+    }
+  ],
+  "seoTitle": "Text Case Converter - UPPERCASE, lowercase, Title Case",
+  "seoHeading": "Transform Text Format Styles Online Free",
+  "seoIntro": "Did you accidentally type a paragraph with caps-lock on? Convert text formatting instantly without retyping.",
+  "seoBody": "\n<h3>Use Cases for Format Converters</h3>\n<p>Bloggers can capitalize titles to standard APA guidelines, programmers can slugify raw titles to clean URLs, and editors can restore broken layouts without manual typing work.</p>\n    "
+};

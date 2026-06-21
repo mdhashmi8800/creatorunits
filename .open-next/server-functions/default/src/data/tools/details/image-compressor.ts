@@ -1,0 +1,58 @@
+import { ToolItem } from "../../types";
+
+export const toolDetails: ToolItem = {
+  "id": "img-compressor",
+  "slug": "image-compressor",
+  "category": "image",
+  "categoryName": "Image Tools",
+  "title": "Image Compressor",
+  "shortDesc": "Compress PNG, JPG, and WebP images directly in your browser without losing quality.",
+  "metaDesc": "Reduce image file size with our free online image compressor. Supports PNG, JPG, WebP. 100% private and runs fully in your browser.",
+  "instructions": [
+    "Upload or drag & drop an image (PNG, JPG, or WebP) into the dropzone.",
+    "Adjust the compression quality slider to balance between size and visual quality.",
+    "See the live estimated file size reduction in real time.",
+    "Click 'Download Compressed Image' to save the optimized file instantly."
+  ],
+  "features": [
+    "100% Client-Side: Your images never leave your computer, ensuring absolute privacy.",
+    "Live File Size Preview: Know exactly how small your file will be before downloading.",
+    "High Compatibility: Works with JPG, PNG, and WebP formats.",
+    "Fast Canvas Processing: High performance compression runs in milliseconds."
+  ],
+  "componentName": "ImageCompressor",
+  "faqs": [
+    {
+      "question": "What does an image compressor do?",
+      "answer": "An image compressor reduces the file size of your images by stripping unnecessary metadata, optimizing color profiles, and applying compression algorithms. It allows you to shrink photos and graphics without losing noticeable visual quality. By reducing the overall file size, you can make your website load significantly faster, improve search engine optimization, and save storage space."
+    },
+    {
+      "question": "Will image compression reduce image quality?",
+      "answer": "Yes, image compression can reduce quality if you choose high compression levels, but with our tool, the visual impact is virtually invisible. By drawing your image onto a canvas and optimizing the export settings, our compressor maintains a fine balance. Setting the compression slider between 70% and 85% yields massive file size savings of up to 80% while preserving sharpness."
+    },
+    {
+      "question": "Which image formats are supported?",
+      "answer": "Our browser-based image compressor supports the three most popular web image formats: JPEG, PNG, and WebP. You can upload any of these file types, adjust the compression quality slider, and save the optimized image. The compressor handles each format's distinct traits, like transparency for PNG and WebP, or high-density colors for JPEG files."
+    },
+    {
+      "question": "Can I compress images on my phone?",
+      "answer": "Absolutely! Since our tool is built using standard responsive web technologies, you can compress images directly on your mobile device. Just open the tool in your mobile browser, select an image from your photo library or take a new one, adjust the quality, and download the compressed file. It requires no application downloads."
+    },
+    {
+      "question": "Why should I compress images before uploading them online?",
+      "answer": "Uploading large, uncompressed images online slows down web page load speeds, which frustrates visitors and increases bounce rates. Search engines like Google also penalize slow websites. Compressing your images beforehand optimizes page loading times, saves cellular bandwidth for mobile visitors, and ensures a seamless experience across devices while keeping your web pages fast."
+    },
+    {
+      "question": "Is there a file size limit?",
+      "answer": "Our compressor supports images up to 20 megabytes in size. Because all compression processing occurs directly within your local web browser using JavaScript and HTML5 Canvas, the memory capacity of your device is the only real constraint. We do not place artificial file limits or charge fees for processing larger graphics files."
+    },
+    {
+      "question": "Are my uploaded images stored permanently?",
+      "answer": "No, your images are never stored because they are never uploaded to any remote server. The entire compression process runs client-side inside your own web browser. Your private photos, screenshot attachments, and design assets never leave your device, ensuring maximum confidentiality and security for all personal or sensitive commercial business graphics."
+    }
+  ],
+  "seoTitle": "Free Image Compressor - Compress PNG, JPG, WebP Online",
+  "seoHeading": "Optimize and Compress Your Images Instantly",
+  "seoIntro": "In today's fast-paced digital world, page speed and visual appeal are equally crucial. Large image files are the primary cause of slow website loading times, which harms both search engine rankings (SEO) and user experience. Our Free Online Image Compressor solves this problem by enabling you to reduce image file size dramatically without compromising on quality.",
+  "seoBody": "\n<h3>Why You Should Compress Your Images</h3>\n<p>Every time a visitor lands on your blog, e-commerce store, or social media page, their browser has to download all the assets, including images. Large images cause delays, which increases bounce rates. By optimizing your images, you achieve:</p>\n<ul>\n  <li><strong>Faster Loading Times:</strong> Accelerated page rendering keeps users engaged and lowers bounce rates.</li>\n  <li><strong>Better SEO Rankings:</strong> Google utilizes page speed as a primary ranking signal in its search algorithm. Optimized images rank better.</li>\n  <li><strong>Bandwidth Savings:</strong> Reduced file sizes consume less cellular data for your mobile visitors and cut hosting bandwidth.</li>\n</ul>\n\n<h3>How Browser-Based Compression Enhances Privacy</h3>\n<p>Unlike other generic online image compressors, Creators Units does not upload your files to external servers. All operations happen in-browser using JavaScript. Your sensitive business documents, personal photos, and graphics remain completely secure on your own machine. We never see, log, or store your assets.</p>\n\n<h3>Best Practices for Image Optimization</h3>\n<p>To get the best out of your assets, follow these simple guidelines:</p>\n<ol>\n  <li><strong>Choose the Right Format:</strong> Use WebP for modern web support, JPG for colorful photographs, and PNG only when you need transparency.</li>\n  <li><strong>Scale Before Compressing:</strong> Do not upload a 4000px wide image if it will only display at 400px. Resize it first, then compress.</li>\n  <li><strong>Quality Slider Sweet Spot:</strong> For web graphics, a quality score of 75-80% is the optimal balance between visual clarity and file size reduction.</li>\n</ol>\n    "
+};

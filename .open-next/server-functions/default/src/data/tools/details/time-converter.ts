@@ -1,0 +1,48 @@
+import { ToolItem } from "../../types";
+
+export const toolDetails: ToolItem = {
+  "id": "util-time",
+  "slug": "time-converter",
+  "category": "utility",
+  "categoryName": "Utility Tools",
+  "title": "Time & Timezone Converter",
+  "shortDesc": "Convert UTC to local time, convert timestamps, and translate world timezones.",
+  "metaDesc": "Convert timezone differences online. Translate Epoch Unix timestamps, calculate duration, and check UTC conversions.",
+  "instructions": [
+    "Select a time utility tool: Unix Timestamp converter or Timezone calculator.",
+    "Input value or select timezone offset.",
+    "Read equivalent translations in local and UTC formats."
+  ],
+  "features": [
+    "Converts Unix timestamps to human readable datetimes.",
+    "Calculates hours between times.",
+    "Dynamic system timezone extractor."
+  ],
+  "componentName": "TimeConverter",
+  "faqs": [
+    {
+      "question": "What is a time converter?",
+      "answer": "A time converter is a timezone and timestamp utility. It allows you to translate human-readable dates into Unix Epoch timestamps, convert UTC times to your local timezone, and compare timezone differences across major global cities, simplifying international scheduling and database debugging."
+    },
+    {
+      "question": "How do time zone conversions work?",
+      "answer": "Timezone conversions calculate the difference in hours between Coordinated Universal Time (UTC) and different locations. The converter uses your browser's system location to identify your local offset, allowing it to translate target dates and times accurately across international time zones."
+    },
+    {
+      "question": "Why do remote teams use time converters?",
+      "answer": "Remote teams use time converters to schedule meetings, coordinate project deadlines, and manage campaign releases across different time zones. Comparing timezones helps team members find overlapping work hours, avoiding scheduling mistakes and ensuring smooth communication across international offices."
+    },
+    {
+      "question": "Can I compare multiple time zones?",
+      "answer": "Yes, you can easily compare time zone offsets using our calculator interface. It displays the current local time alongside equivalent times in UTC and standard global zones, helping you coordinate international calendar invites and launch events without timezone confusion."
+    },
+    {
+      "question": "Is daylight saving time considered?",
+      "answer": "Yes, our converter leverages the browser's native JavaScript date and time libraries, which automatically adjust for Daylight Saving Time (DST) changes based on the user's system timezone database. This ensures your timezone calculations remain accurate throughout the year."
+    }
+  ],
+  "seoTitle": "Time & Timezone Converter - Unix Timestamp Calculator",
+  "seoHeading": "Translate Global Timezones and Unix Timestamps",
+  "seoIntro": "Working with international clients or server logs? Convert world times or translate database Unix timestamps with our simple utility.",
+  "seoBody": "\n<h3>Scheduling Across Timezones</h3>\n<p>Working as a freelancer means coordinating calls between PST, EST, UTC, and IST. Check relative differences here to keep calendar schedules aligned.</p>\n    "
+};

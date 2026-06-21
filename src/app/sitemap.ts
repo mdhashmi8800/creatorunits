@@ -1,5 +1,6 @@
 import { MetadataRoute } from "next";
 import { tools, categories } from "@/data/tools";
+import { articlesIndex } from "@/data/articles-index";
 
 // Stable build-time date so Googlebot sees a fresh lastModified on every
 // deployment without seeing every URL as "changed" on every *request*.
@@ -34,24 +35,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  // ── Blog article pages — imported lazily to avoid circular deps ────────────
-  // Articles are loaded here via a dynamic require so sitemap.ts stays
-  // decoupled from the articles data during initial scaffolding.
-  let articleEntries: MetadataRoute.Sitemap = [];
-  try {
-    // eslint-disable-next-line @typescript-eslint/no-require-imports
-    const { articles } = require("@/data/articles") as {
-      articles: Array<{ slug: string; publishDate: string }>;
-    };
-    articleEntries = articles.map((a) => ({
-      url: `${baseUrl}/blog/${a.slug}`,
-      lastModified: new Date(a.publishDate),
-      changeFrequency: "monthly" as const,
-      priority: 0.6,
-    }));
-  } catch {
-    // articles.ts not yet present during initial build — safe to skip
-  }
+  // ── Blog article pages ──────────────────────────────────────────────────────
+  const articleEntries = articlesIndex.map((a) => ({
+    url: `${baseUrl}/blog/${a.slug}`,
+    lastModified: new Date(a.publishDate),
+    changeFrequency: "monthly" as const,
+    priority: 0.6,
+  }));
 
   return [...coreEntries, ...categoryEntries, ...toolEntries, ...articleEntries];
 }

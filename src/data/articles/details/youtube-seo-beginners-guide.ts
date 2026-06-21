@@ -1,0 +1,16 @@
+import { Article } from "../../articles";
+
+export const articleDetails: Article = {
+  "slug": "youtube-seo-beginners-guide",
+  "title": "YouTube SEO: The Beginner's Complete Guide",
+  "metaDesc": "Learn how YouTube SEO works. Keywords, metadata, thumbnails, watch time, and engagement — the complete beginner's guide to ranking on YouTube.",
+  "publishDate": "2025-07-07",
+  "category": "creator",
+  "categoryLabel": "Creator Tools",
+  "relatedToolSlugs": [
+    "youtube-tag-extractor",
+    "video-metadata-helper",
+    "youtube-thumbnail-preview"
+  ],
+  "content": "\n<h2>How YouTube Search Works</h2>\n<p>YouTube is the world's second-largest search engine (after Google). Its algorithm serves two functions: search ranking (showing results for user queries) and recommendation (suggesting videos in the home feed and Up Next sidebar). Your SEO strategy must optimize for both.</p>\n\n<h2>The YouTube SEO Ranking Factors</h2>\n\n<h3>1. Keywords (Metadata)</h3>\n<p>YouTube scans your video's title, description, and tags to understand what it's about. Research keywords using YouTube's own search suggestions (autocomplete), VidIQ, or by extracting competitor tags with our <a href=\"/tools/creator/youtube-tag-extractor\">YouTube Tag Extractor</a>.</p>\n\n<h3>2. Watch Time and Retention</h3>\n<p>Average percentage viewed (retention) and total watch time are the two most important ranking signals. YouTube rewards videos that keep viewers watching. A 10-minute video that achieves 60% average retention will outrank a 20-minute video with 30% retention.</p>\n\n<h3>3. Click-Through Rate (CTR)</h3>\n<p>A higher CTR on your thumbnail and title signals to YouTube that your content matches viewer intent. This is why thumbnail optimization with our <a href=\"/tools/creator/youtube-thumbnail-preview\">Thumbnail Preview</a> tool is so critical — it directly impacts your impression-to-click conversion rate.</p>\n\n<h3>4. Engagement Signals</h3>\n<p>Likes, comments, saves, and shares all signal audience satisfaction. YouTube's algorithm correlates high engagement with content quality and boosts distribution accordingly.</p>\n\n<h3>5. Upload Consistency</h3>\n<p>Regular publishing helps YouTube understand your content cadence and allocates your channel more recommendation slots. Consistency doesn't require daily uploads — even one quality video per week, published consistently, outperforms sporadic bursts.</p>\n\n<h2>Keyword Research for YouTube</h2>\n<ol>\n  <li>Type your topic into YouTube search and note the autocomplete suggestions — these are real searches people are making</li>\n  <li>Look at top-ranked videos and extract their tags with our <a href=\"/tools/creator/youtube-tag-extractor\">Tag Extractor</a></li>\n  <li>Check search volume estimates with free tools like VidIQ or TubeBuddy</li>\n  <li>Target keywords with moderate competition first to build channel authority</li>\n</ol>\n\n<h2>Optimizing Your Metadata Package</h2>\n<p>Use our <a href=\"/tools/creator/video-metadata-helper\">Video Metadata Helper</a> to draft and optimize your title, description, and tags before uploading. The live character counter prevents limit violations, and the formatting checklist ensures your description has timestamps, links, and keyword placements.</p>\n    "
+};

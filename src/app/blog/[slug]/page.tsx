@@ -3,7 +3,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
-import { articles } from "@/data/articles";
+import { getArticleBySlug } from "@/data/articles";
+import { articlesIndex } from "@/data/articles-index";
 import { toolsIndex } from "@/data/tools";
 
 interface PageProps {
@@ -12,7 +13,7 @@ interface PageProps {
 
 /** Pre-render all 50 articles at build time */
 export async function generateStaticParams() {
-  return articles.map((a) => ({ slug: a.slug }));
+  return articlesIndex.map((a) => ({ slug: a.slug }));
 }
 
 // Reverted dynamicParams to fix 404
@@ -20,7 +21,7 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
-  const article = articles.find((a) => a.slug === slug);
+  const article = await getArticleBySlug(slug);
 
   if (!article) {
     return {
@@ -60,7 +61,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function ArticlePage({ params }: PageProps) {
   const { slug } = await params;
-  const article = articles.find((a) => a.slug === slug);
+  const article = await getArticleBySlug(slug);
 
   if (!article) notFound();
 
@@ -70,7 +71,7 @@ export default async function ArticlePage({ params }: PageProps) {
     .filter(Boolean);
 
   // Find other articles in same category (up to 3)
-  const relatedArticles = articles
+  const relatedArticles = articlesIndex
     .filter((a) => a.slug !== article.slug && a.category === article.category)
     .slice(0, 3);
 

@@ -1,0 +1,16 @@
+import { Article } from "../../articles";
+
+export const articleDetails: Article = {
+  "slug": "convert-jpg-to-png-free",
+  "title": "How to Convert JPG to PNG for Free (No Software Needed)",
+  "metaDesc": "Convert JPG images to PNG format instantly in your browser. No Photoshop, no sign-up, no upload to external servers. Step-by-step guide.",
+  "publishDate": "2025-06-07",
+  "category": "image",
+  "categoryLabel": "Image Tools",
+  "relatedToolSlugs": [
+    "jpg-to-png-converter",
+    "image-compressor",
+    "png-to-webp-converter"
+  ],
+  "content": "\n<h2>When Should You Convert JPG to PNG?</h2>\n<p>JPG is lossy — every time you save a JPG, it discards some image data. If you plan to edit an image multiple times, saving as JPG each time compounds quality loss. Converting to PNG stops this cycle, preserving what remains in lossless format for future editing.</p>\n<p>Convert JPG to PNG when you need to:</p>\n<ul>\n  <li>Place an image on a transparent background (PNG supports transparency; JPG does not)</li>\n  <li>Edit and re-save the image multiple times without further quality loss</li>\n  <li>Use the image in a graphic design tool that works better with lossless files</li>\n  <li>Import into software that requires PNG (some apps reject JPG for layers or overlays)</li>\n</ul>\n\n<h2>How to Convert JPG to PNG in Your Browser</h2>\n<ol>\n  <li>Open the <a href=\"/tools/image/jpg-to-png-converter\">JPG to PNG Converter</a> tool.</li>\n  <li>Click the upload zone or drag and drop your JPG/JPEG file.</li>\n  <li>A preview will appear instantly. Verify it looks correct.</li>\n  <li>Click <strong>Convert to PNG</strong>. The conversion is done client-side in milliseconds.</li>\n  <li>Click <strong>Download PNG</strong> to save the converted file to your device.</li>\n</ol>\n<p>The entire process happens in your browser. Your image is never uploaded to any server — it's processed locally using the HTML5 Canvas API.</p>\n\n<h2>Will the Quality Improve After Converting?</h2>\n<p>No — and this is a common misconception. Converting JPG to PNG does <em>not</em> recover lost quality. JPG is lossy, so any quality loss from the original JPG compression is permanent. What PNG conversion does is prevent any <em>further</em> quality degradation. Think of it as putting a stop to ongoing quality loss, not restoring what was already lost.</p>\n\n<h2>File Size Warning</h2>\n<p>PNG files are typically 3–10× larger than equivalent JPG files. A 200 KB JPG photo might become a 2 MB PNG. This is because PNG stores every pixel precisely without discarding data. For web use, consider whether the larger file size is acceptable — or if WebP might be a better choice (supports transparency at smaller sizes).</p>\n\n<h2>Alternatives to Consider</h2>\n<ul>\n  <li><strong>PNG to WebP:</strong> If you need transparency but want small file sizes for web delivery, convert to WebP using our <a href=\"/tools/image/png-to-webp-converter\">PNG to WebP Converter</a>.</li>\n  <li><strong>Image Compressor:</strong> After converting, use our <a href=\"/tools/image/image-compressor\">Image Compressor</a> to reduce the PNG file size.</li>\n</ul>\n    "
+};

@@ -1,0 +1,16 @@
+import { Article } from "../../articles";
+
+export const articleDetails: Article = {
+  "slug": "whatsapp-click-to-chat-link",
+  "title": "How to Create a WhatsApp Click-to-Chat Link in 60 Seconds",
+  "metaDesc": "Create a direct WhatsApp click-to-chat link without saving numbers. Generate links with pre-filled messages for business and creator use.",
+  "publishDate": "2025-07-17",
+  "category": "social",
+  "categoryLabel": "Social Media Tools",
+  "relatedToolSlugs": [
+    "whatsapp-link-generator",
+    "whatsapp-qr-generator",
+    "qr-code-generator"
+  ],
+  "content": "\n<h2>What is a WhatsApp Click-to-Chat Link?</h2>\n<p>A WhatsApp click-to-chat link is a special URL that opens a conversation with a specific phone number without the recipient needing to save your number first. When clicked, it opens WhatsApp (or WhatsApp Web) directly in a new chat. You can also pre-fill a default message that appears in the text box.</p>\n<p>The basic format is: <code>https://wa.me/[COUNTRY_CODE][PHONE_NUMBER]</code></p>\n<p>With a pre-filled message: <code>https://wa.me/[NUMBER]?text=[URL_ENCODED_MESSAGE]</code></p>\n\n<h2>How to Generate a WhatsApp Link</h2>\n<ol>\n  <li>Open the <a href=\"/tools/social/whatsapp-link-generator\">WhatsApp Link Generator</a></li>\n  <li>Enter your phone number with country code (e.g., +1 for USA)</li>\n  <li>Optionally, type a default message that will pre-fill for users</li>\n  <li>Copy the generated link</li>\n  <li>Share it via Instagram bio, email signature, website, or business card</li>\n</ol>\n\n<h2>Best Use Cases for WhatsApp Click-to-Chat Links</h2>\n<ul>\n  <li><strong>Instagram bio:</strong> \"DM me on WhatsApp for collaborations [link]\" — lowers barrier to contact</li>\n  <li><strong>E-commerce:</strong> \"Questions about this product? Chat with us [link]\" on product pages</li>\n  <li><strong>Service businesses:</strong> \"Book a consultation via WhatsApp [link]\" in email signatures</li>\n  <li><strong>Content creators:</strong> \"Join my WhatsApp broadcast for exclusive updates [link]\"</li>\n  <li><strong>Events:</strong> \"Contact the organizer instantly [link]\" on event pages</li>\n</ul>\n\n<h2>WhatsApp QR Code for Physical Locations</h2>\n<p>For business cards, flyers, or physical signage, a QR code that opens WhatsApp is more practical than a typed URL. Use our <a href=\"/tools/social/whatsapp-qr-generator\">WhatsApp QR Generator</a> to create a scannable QR code linked to your WhatsApp number. Our general <a href=\"/tools/utility/qr-code-generator\">QR Code Generator</a> also supports WhatsApp links and any custom URL.</p>\n\n<h2>Pre-Filled Message Ideas</h2>\n<ul>\n  <li>\"Hi! I found you on Instagram and I'm interested in [service].\"</li>\n  <li>\"Hello! I'd like to inquire about your rates for [specific work].\"</li>\n  <li>\"Hi [Name]! I have a question about [product/service].\"</li>\n</ul>\n<p>A pre-filled message dramatically reduces friction — customers are more likely to send a pre-written message than compose one from scratch.</p>\n    "
+};

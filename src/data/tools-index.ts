@@ -1,0 +1,723 @@
+import { ToolItemLite } from "./types";
+
+export const toolsIndex: ToolItemLite[] = [
+  {
+    "id": "img-compressor",
+    "slug": "image-compressor",
+    "category": "image",
+    "categoryName": "Image Tools",
+    "title": "Image Compressor",
+    "shortDesc": "Compress PNG, JPG, and WebP images directly in your browser without losing quality.",
+    "metaDesc": "Reduce image file size with our free online image compressor. Supports PNG, JPG, WebP. 100% private and runs fully in your browser.",
+    "instructions": [
+      "Upload or drag & drop an image (PNG, JPG, or WebP) into the dropzone.",
+      "Adjust the compression quality slider to balance between size and visual quality.",
+      "See the live estimated file size reduction in real time.",
+      "Click 'Download Compressed Image' to save the optimized file instantly."
+    ],
+    "features": [
+      "100% Client-Side: Your images never leave your computer, ensuring absolute privacy.",
+      "Live File Size Preview: Know exactly how small your file will be before downloading.",
+      "High Compatibility: Works with JPG, PNG, and WebP formats.",
+      "Fast Canvas Processing: High performance compression runs in milliseconds."
+    ],
+    "componentName": "ImageCompressor",
+    "seoTitle": "Free Image Compressor - Compress PNG, JPG, WebP Online"
+  },
+  {
+    "id": "img-resizer",
+    "slug": "image-resizer",
+    "category": "image",
+    "categoryName": "Image Tools",
+    "title": "Image Resizer",
+    "shortDesc": "Resize images to custom pixel dimensions or preset percentages with aspect ratio lock.",
+    "metaDesc": "Resize JPG, PNG, and WebP images online. Lock aspect ratio, scale by percentage, or enter custom dimensions. Runs entirely in your browser.",
+    "instructions": [
+      "Select and load an image from your local device.",
+      "Enter your desired width or height in pixels, or choose a percentage preset (75%, 50%, 25%).",
+      "Toggle the aspect ratio lock to maintain the image's original proportions.",
+      "Click 'Download Resized Image' to export the new file."
+    ],
+    "features": [
+      "Aspect Ratio Locking: Automatically calculates height based on width to prevent stretching.",
+      "Percentage Presets: Quick scaling tools for half-size or quarter-size compression.",
+      "Instant Processing: Fast canvas scaling algorithms.",
+      "Privacy-Centric: Completely runs in the browser."
+    ],
+    "componentName": "ImageResizer",
+    "seoTitle": "Online Image Resizer - Resize JPG, PNG, WebP Instantly"
+  },
+  {
+    "id": "img-jpg-to-png",
+    "slug": "jpg-to-png-converter",
+    "category": "image",
+    "categoryName": "Image Tools",
+    "title": "JPG to PNG Converter",
+    "shortDesc": "Convert JPG/JPEG images to PNG format instantly while maintaining original quality.",
+    "metaDesc": "Convert JPG files to PNG online. Maintain maximum detail, run client-side, and download your converted PNG files instantly.",
+    "instructions": [
+      "Upload your JPG or JPEG file.",
+      "Confirm details in the preview window.",
+      "Click 'Convert to PNG' to render the image.",
+      "Download your new PNG file."
+    ],
+    "features": [
+      "Lossless rendering to PNG format.",
+      "No quality loss during conversion.",
+      "No registration required."
+    ],
+    "componentName": "JpgToPng",
+    "seoTitle": "JPG to PNG Converter - Free Lossless Online Conversion"
+  },
+  {
+    "id": "img-png-to-webp",
+    "slug": "png-to-webp-converter",
+    "category": "image",
+    "categoryName": "Image Tools",
+    "title": "PNG to WebP Converter",
+    "shortDesc": "Convert PNG graphics to modern WebP format to reduce web loading times.",
+    "metaDesc": "Convert PNG to WebP online. Keep transparency and reduce file sizes by up to 30%. Private and browser-based.",
+    "instructions": [
+      "Upload your transparent or opaque PNG file.",
+      "Click 'Convert to WebP'.",
+      "Download the highly optimized WebP image."
+    ],
+    "features": [
+      "Preserves Alpha channel transparency.",
+      "Substantially smaller files for faster web loading.",
+      "Fast client-side rendering."
+    ],
+    "componentName": "PngToWebp",
+    "seoTitle": "PNG to WebP Converter - Optimize PNGs for Modern Websites"
+  },
+  {
+    "id": "img-webp-to-jpg",
+    "slug": "webp-to-jpg-converter",
+    "category": "image",
+    "categoryName": "Image Tools",
+    "title": "WebP to JPG Converter",
+    "shortDesc": "Convert next-gen WebP images back into widely compatible JPG files.",
+    "metaDesc": "Convert WebP to JPG online. Quick, offline-first processing to ensure compatibility with older photo viewers and websites.",
+    "instructions": [
+      "Select the WebP image you need to convert.",
+      "Adjust quality setting if desired.",
+      "Export and download as JPG."
+    ],
+    "features": [
+      "High-speed browser conversion.",
+      "Configurable export compression quality.",
+      "Universal file format compatibility output."
+    ],
+    "componentName": "WebpToJpg",
+    "seoTitle": "WebP to JPG Converter - Convert Next-Gen Images Offline"
+  },
+  {
+    "id": "img-cropper",
+    "slug": "image-cropper",
+    "category": "image",
+    "categoryName": "Image Tools",
+    "title": "Image Cropper",
+    "shortDesc": "Crop images to specific ratios like 16:9, 1:1, 4:3, or custom shapes instantly.",
+    "metaDesc": "Crop JPG, PNG, WebP images online. Lock aspect ratios for social media posts or draw custom crops. Client-side canvas cropping.",
+    "instructions": [
+      "Upload your image to the crop interface.",
+      "Select an aspect ratio preset or adjust the cropping frame handles manually.",
+      "Drag the crop frame over your target area.",
+      "Click 'Crop & Download' to export the cropped image."
+    ],
+    "features": [
+      "Ratio Presets: 1:1 Square, 16:9 Widescreen, 4:3 Portrait.",
+      "Responsive crop overlays.",
+      "Zero-latency cropping using HTML5 canvas."
+    ],
+    "componentName": "ImageCropper",
+    "seoTitle": "Free Image Cropper Online - Aspect Ratio Cropping Tool"
+  },
+  {
+    "id": "img-rotator",
+    "slug": "image-rotator",
+    "category": "image",
+    "categoryName": "Image Tools",
+    "title": "Image Rotator",
+    "shortDesc": "Rotate your images 90°, 180°, or 270° clockwise or counter-clockwise.",
+    "metaDesc": "Rotate images online. Quick client-side tool to fix upside down or sideways photographs without compressing them multiple times.",
+    "instructions": [
+      "Select your photo or graphic.",
+      "Click the 'Rotate Left' or 'Rotate Right' buttons to rotate by 90-degree steps.",
+      "Download the rotated output file."
+    ],
+    "features": [
+      "Clean 90-degree increments.",
+      "Lossless canvas transform calculations.",
+      "Instant feedback preview."
+    ],
+    "componentName": "ImageRotator",
+    "seoTitle": "Rotate Image Online - Fix Photo Orientation Instantly"
+  },
+  {
+    "id": "img-flipper",
+    "slug": "image-flipper",
+    "category": "image",
+    "categoryName": "Image Tools",
+    "title": "Image Flipper",
+    "shortDesc": "Mirror images horizontally or vertically to correct mirroring issues.",
+    "metaDesc": "Flip images horizontally or vertically online. Mirror graphics or selfie photos instantly using HTML5 canvas.",
+    "instructions": [
+      "Load the image you wish to mirror.",
+      "Click 'Flip Horizontal' or 'Flip Vertical'.",
+      "Preview the mirrored state.",
+      "Download the flipped image."
+    ],
+    "features": [
+      "Horizontal flip (mirror left-to-right).",
+      "Vertical flip (upside down mirror).",
+      "Instant canvas updates."
+    ],
+    "componentName": "ImageFlipper",
+    "seoTitle": "Flip Image Online - Mirror Photos Horizontally & Vertically"
+  },
+  {
+    "id": "img-color-picker",
+    "slug": "color-picker",
+    "category": "image",
+    "categoryName": "Image Tools",
+    "title": "Color Picker & Extractor",
+    "shortDesc": "Extract colors from images or use the visual palette builder to get HEX/RGB codes.",
+    "metaDesc": "Extract HEX, RGB, and HSL colors from uploaded images or screenshots. Create custom palettes online. 100% private.",
+    "instructions": [
+      "Upload any image or screenshot to the viewer.",
+      "Move your mouse or finger over the image preview; a magnified lens will show colors.",
+      "Click on the image to sample a color and add it to your palette.",
+      "Copy HEX, RGB, or HSL codes with one click."
+    ],
+    "features": [
+      "Interactive Eye-Dropper: Extract exact pixels from graphics.",
+      "HEX, RGB, HSL support.",
+      "Palette Builder: Save sampled colors to a temporary dashboard list."
+    ],
+    "componentName": "ColorPicker",
+    "seoTitle": "Image Color Picker - Extract HEX, RGB, HSL from Photos"
+  },
+  {
+    "id": "img-screenshot-cleaner",
+    "slug": "screenshot-cleaner",
+    "category": "image",
+    "categoryName": "Image Tools",
+    "title": "Screenshot Beautifier",
+    "shortDesc": "Transform raw screenshots into beautiful, shareable marketing graphics with margins and shadow.",
+    "metaDesc": "Beautify screenshots for App Store or social media. Add smooth card container margins, gradients, mock shadows, and custom paddings.",
+    "instructions": [
+      "Drag and drop your raw application screenshot.",
+      "Customize padding size, container border-radius, and background styles (gradients/solids).",
+      "Adjust the depth of the box-shadow.",
+      "Download the high-quality, sharing-ready PNG."
+    ],
+    "features": [
+      "Polished Mock Frame: Wraps screenshots in a clean card border.",
+      "Gradient Backdrops: Custom rich backgrounds.",
+      "Shadow Depth Settings: Adjust graphic depth controls.",
+      "Aspect Ratio Control: Fit 1:1, 16:9, or free forms."
+    ],
+    "componentName": "ScreenshotCleaner",
+    "seoTitle": "Screenshot Beautifier - Wrap Screenshots in Beautiful Gradients"
+  },
+  {
+    "id": "creator-yt-preview",
+    "slug": "youtube-thumbnail-preview",
+    "category": "creator",
+    "categoryName": "Creator Tools",
+    "title": "YouTube Thumbnail Preview",
+    "shortDesc": "Preview your video thumbnails inside simulated YouTube search, homepage, and sidebar widgets.",
+    "metaDesc": "Test how your thumbnails look before publishing. Preview on desktop homepage, mobile feed, search results, and sidebar side-by-side.",
+    "instructions": [
+      "Upload your thumbnail image or enter a YouTube video URL to load its thumbnail.",
+      "Enter a test video title to overlay on the widget.",
+      "View how your thumbnail and title combinations appear across desktop, mobile, search, and sidebar feeds.",
+      "Check contrast and readability at small sizes."
+    ],
+    "features": [
+      "Simulate Desktop Feed: Homepage grid mockup.",
+      "Simulate Mobile Feed: Responsive card width simulator.",
+      "Simulate Search Listing: Left thumbnail with right description text layout.",
+      "Readability check: Toggle black & white mode to inspect thumbnail tone values."
+    ],
+    "componentName": "YoutubeThumbnailPreview",
+    "seoTitle": "YouTube Thumbnail Preview - Test Video Layouts Online"
+  },
+  {
+    "id": "creator-thumbnail-downloader",
+    "slug": "thumbnail-downloader",
+    "category": "creator",
+    "categoryName": "Creator Tools",
+    "title": "YouTube Thumbnail Downloader",
+    "shortDesc": "Retrieve and download all available resolutions of a YouTube thumbnail from its video link.",
+    "metaDesc": "Download high resolution YouTube video thumbnails. Extract Full HD (1080p), HD (720p), Medium, and Default resolutions instantly.",
+    "instructions": [
+      "Copy and paste the YouTube video link (or video ID).",
+      "Click 'Extract Thumbnails'.",
+      "Preview the resolutions: Max Resolution, High, Medium, Default.",
+      "Click the download button next to your preferred size."
+    ],
+    "features": [
+      "Support all YouTube URL variations (short URLs, watch links, embed formats).",
+      "Extract Max Resolution (1280x720) when available.",
+      "One-click browser downloads."
+    ],
+    "componentName": "ThumbnailDownloader",
+    "seoTitle": "YouTube Thumbnail Downloader - Get High-Res Video Covers"
+  },
+  {
+    "id": "creator-thumbnail-checker",
+    "slug": "thumbnail-size-checker",
+    "category": "creator",
+    "categoryName": "Creator Tools",
+    "title": "Thumbnail Size Checker",
+    "shortDesc": "Verify if your thumbnail matches YouTube's recommended resolutions, file sizes, and format rules.",
+    "metaDesc": "Upload your cover image to check if it matches the 1280x720 pixels, 16:9 ratio, and 2MB file size limits of YouTube.",
+    "instructions": [
+      "Upload your cover image.",
+      "The tool runs instant validations on dimensions, aspect ratio, file size, and file extensions.",
+      "Review the checklist indicators (green checks for pass, red for fail).",
+      "Read optimization tips if any parameters fail."
+    ],
+    "features": [
+      "Live size extraction.",
+      "Calculates exact aspect ratio metrics.",
+      "Validates against YouTube metadata constraints."
+    ],
+    "componentName": "ThumbnailSizeChecker",
+    "seoTitle": "YouTube Thumbnail Size Checker - Validate Cover Specifications"
+  },
+  {
+    "id": "creator-yt-tags",
+    "slug": "youtube-tag-extractor",
+    "category": "creator",
+    "categoryName": "Creator Tools",
+    "title": "YouTube Tag Extractor",
+    "shortDesc": "Extract search tags and keywords from any public YouTube video for SEO research.",
+    "metaDesc": "Extract video tags and keywords from public YouTube videos. Boost video SEO by analyzing competition keywords.",
+    "instructions": [
+      "Paste the YouTube video link in the text input.",
+      "Click 'Extract Tags'.",
+      "Copy tags as a list, comma-separated string, or individual chips."
+    ],
+    "features": [
+      "Extracts HTML meta keywords from public YouTube videos.",
+      "Easy copy buttons for tags.",
+      "Privacy-focused browser scraper API."
+    ],
+    "componentName": "YoutubeTagExtractor",
+    "seoTitle": "YouTube Tag Extractor - Extract SEO Tags from Videos"
+  },
+  {
+    "id": "creator-metadata-helper",
+    "slug": "video-metadata-helper",
+    "category": "creator",
+    "categoryName": "Creator Tools",
+    "title": "Video Metadata Helper",
+    "shortDesc": "Organize and optimize your video title, description, and tags with real-time character counters.",
+    "metaDesc": "Format and draft your video metadata. Keep tracks of character limits (title, descriptions) and use formatting checklists.",
+    "instructions": [
+      "Type your video title (checked against the 100 character limit).",
+      "Draft your video description, checking formatting items (links, chapters).",
+      "Paste or type tags, keeping track of the 500-character cap.",
+      "Copy all elements or save local text drafts."
+    ],
+    "features": [
+      "Limit warning indicator colors.",
+      "Video metadata layout checklist.",
+      "Easy copy functions for tags, descriptions, titles."
+    ],
+    "componentName": "VideoMetadataHelper",
+    "seoTitle": "YouTube Video Metadata Helper - Title and Description Builder"
+  },
+  {
+    "id": "creator-thumbnail-idea",
+    "slug": "thumbnail-idea-helper",
+    "category": "creator",
+    "categoryName": "Creator Tools",
+    "title": "Thumbnail Idea Generator",
+    "shortDesc": "Get layout, contrast, text, and styling suggestions based on your video niche.",
+    "metaDesc": "Generate thumbnail structure and copy ideas. Choose from gaming, technology, reviews, lifestyle niches to get layout guides.",
+    "instructions": [
+      "Select your channel's niche from the dropdown list.",
+      "Select the mood or style of your video content.",
+      "Read proposed design guidelines, copy setups, and contrast suggestions.",
+      "Use templates to sketch your next cover graphic."
+    ],
+    "features": [
+      "Covers 8 major YouTube content niches.",
+      "Visual grid styling guidelines.",
+      "Generates catchy short phrase patterns."
+    ],
+    "componentName": "ThumbnailIdeaHelper",
+    "seoTitle": "Thumbnail Idea Helper - Generate Video Cover Formats"
+  },
+  {
+    "id": "creator-post-sizes",
+    "slug": "social-post-size-checker",
+    "category": "creator",
+    "categoryName": "Creator Tools",
+    "title": "Social Post Size Guide & Checker",
+    "shortDesc": "Compare and verify your graphics against visual dimensions for Instagram, YouTube, and Facebook.",
+    "metaDesc": "Check image dimensions against social media presets. View templates for IG stories, FB banners, YT channel art, and LinkedIn cards.",
+    "instructions": [
+      "Upload your graphic file.",
+      "Choose a platform target (Instagram, Facebook, YouTube, LinkedIn, X).",
+      "Check visual overlay guides showing cropping masks.",
+      "Confirm if size fits within recommendations."
+    ],
+    "features": [
+      "Up-to-date image size guides.",
+      "Interactive crop line overlays.",
+      "Checklist showing aspect match rates."
+    ],
+    "componentName": "SocialPostSizeChecker",
+    "seoTitle": "Social Media Post Size Checker - Aspect Guides Online"
+  },
+  {
+    "id": "social-fancy-text",
+    "slug": "fancy-text-generator",
+    "category": "social",
+    "categoryName": "Social Media Tools",
+    "title": "Fancy Text Generator",
+    "shortDesc": "Convert plain text into stylized Unicode fonts for your bios, captions, and posts.",
+    "metaDesc": "Convert normal text to bold, italic, script, gothic, bubble, and double-struck unicode styles. Copy and paste to Instagram, Twitter, and TikTok.",
+    "instructions": [
+      "Type or paste your text in the input box.",
+      "Scroll down to see your text styled in 30+ Unicode formats.",
+      "Click the 'Copy' button next to any style to copy it to your clipboard.",
+      "Paste the styled text directly on Instagram, TikTok, Facebook, or WhatsApp."
+    ],
+    "features": [
+      "30+ Unique Styles: Script, Gothic, Bold, Italic, Strikethrough, Bubble, and more.",
+      "Instant Copy: Click to copy to clipboard.",
+      "Unicode-Safe: Works on standard operating systems and web pages.",
+      "Real-time render."
+    ],
+    "componentName": "FancyTextGenerator",
+    "seoTitle": "Fancy Text Generator - Copy & Paste Unicode Styles"
+  },
+  {
+    "id": "social-username",
+    "slug": "username-generator",
+    "category": "social",
+    "categoryName": "Social Media Tools",
+    "title": "Username Generator",
+    "shortDesc": "Generate memorable and available username ideas based on your niche and keywords.",
+    "metaDesc": "Generate 50+ unique username ideas. Filter by style, include prefixes or suffixes, and choose from gaming, business, tech, or vlog niches.",
+    "instructions": [
+      "Enter a keyword or your name.",
+      "Select a style category (gaming, business, personal, tech).",
+      "Configure options: include numbers, suffixes, prefixes, or underscores.",
+      "Click 'Generate Usernames' and copy your favorites."
+    ],
+    "features": [
+      "Niche-focused suggestions.",
+      "Configurable separators and prefixes.",
+      "One-click copy lists."
+    ],
+    "componentName": "UsernameGenerator",
+    "seoTitle": "Social Media Username Generator - Get Creative Profile Handles"
+  },
+  {
+    "id": "social-bio-gen",
+    "slug": "bio-template-generator",
+    "category": "social",
+    "categoryName": "Social Media Tools",
+    "title": "Bio Template Generator",
+    "shortDesc": "Generate professional and creative bio outlines for Instagram, TikTok, and Twitter.",
+    "metaDesc": "Create social media bios with our interactive template generator. Choose business, creator, freelancer tones and fill in values.",
+    "instructions": [
+      "Select your platform and bio style (professional, witty, casual, bulleted).",
+      "Fill in the prompt fields (occupation, target audience, call to action).",
+      "Click 'Generate Bios' to get a list of optimized templates.",
+      "Copy and customize."
+    ],
+    "features": [
+      "Templates optimized for Instagram (150 char limits) and TikTok (80 char limits).",
+      "Interactive field inputs.",
+      "Includes emojis and line-break guidelines."
+    ],
+    "componentName": "BioTemplateGenerator",
+    "seoTitle": "Social Bio Generator - Instagram, TikTok & Twitter Templates"
+  },
+  {
+    "id": "social-char-counter",
+    "slug": "character-counter",
+    "category": "social",
+    "categoryName": "Social Media Tools",
+    "title": "Social Character Counter",
+    "shortDesc": "Count characters and words while checking limits for Twitter, Instagram, and Facebook.",
+    "metaDesc": "Live character and word counter. Check real-time limit indicators for Twitter tweets, IG bios, FB updates, and LinkedIn posts.",
+    "instructions": [
+      "Type or paste your post copy.",
+      "Review word count, character count, and reading duration indexes.",
+      "Check the status chips indicating if your text is within bounds for major networks."
+    ],
+    "features": [
+      "Limits checked: Twitter (280), IG Bio (150), IG Caption (2200), LinkedIn Post (3000).",
+      "Calculates speaking and reading times.",
+      "Clears input in one click."
+    ],
+    "componentName": "CharacterCounter",
+    "seoTitle": "Social Character Counter - Track Limits for Post Copy"
+  },
+  {
+    "id": "social-hashtag",
+    "slug": "hashtag-helper",
+    "category": "social",
+    "categoryName": "Social Media Tools",
+    "title": "Hashtag Composer Helper",
+    "shortDesc": "Organize, combine, and copy sets of hashtags for your social uploads.",
+    "metaDesc": "Create collections of hashtags online. Group, category-select, and export formatted hashtags with single-click copy panels.",
+    "instructions": [
+      "Select hashtags from common niche presets or type your own keywords.",
+      "Review the composer box showing selected tags.",
+      "Click 'Copy Hashtags' to export them formatted with hash symbols."
+    ],
+    "features": [
+      "Presets for 10+ popular categories.",
+      "Prevents duplicates automatically.",
+      "Formats space items to camelCase hashtags."
+    ],
+    "componentName": "HashtagHelper",
+    "seoTitle": "Hashtag Helper - Format and Combine Social Media Tags"
+  },
+  {
+    "id": "social-wa-link",
+    "slug": "whatsapp-link-generator",
+    "category": "social",
+    "categoryName": "Social Media Tools",
+    "title": "WhatsApp Link Generator",
+    "shortDesc": "Generate instant chat links with custom pre-filled messages for your customers.",
+    "metaDesc": "Create WhatsApp wa.me links with custom pre-filled texts. Perfect for Instagram bio links, customer service, and contact pages.",
+    "instructions": [
+      "Enter your phone number (including country code).",
+      "Type the message you want customers to send when opening the chat.",
+      "Click 'Generate Link' to test and copy the generated link."
+    ],
+    "features": [
+      "Handles international phone codes.",
+      "Pre-fills custom message templates.",
+      "Creates direct wa.me URLs."
+    ],
+    "componentName": "WhatsAppLinkGenerator",
+    "seoTitle": "WhatsApp Link Generator - Create Free Custom Chat Links"
+  },
+  {
+    "id": "social-wa-qr",
+    "slug": "whatsapp-qr-generator",
+    "category": "social",
+    "categoryName": "Social Media Tools",
+    "title": "WhatsApp QR Code Generator",
+    "shortDesc": "Create QR codes that automatically open a WhatsApp chat when scanned.",
+    "metaDesc": "Generate customized WhatsApp QR codes. Scan to chat with your phone number and pre-filled message instantly. High resolution download.",
+    "instructions": [
+      "Input your WhatsApp phone number and message.",
+      "Generate the custom QR code.",
+      "Click 'Download QR Code' to export as PNG for print layouts."
+    ],
+    "features": [
+      "Generates vector-clear QR codes.",
+      "Includes phone link presets.",
+      "Local browser-based image generation."
+    ],
+    "componentName": "WhatsAppQRGenerator",
+    "seoTitle": "WhatsApp QR Code Generator - Generate Free Chat QRs"
+  },
+  {
+    "id": "social-link-in-bio",
+    "slug": "social-media-link-in-bio-helper",
+    "category": "social",
+    "categoryName": "Social Media Tools",
+    "title": "Social Link-in-Bio Helper",
+    "shortDesc": "Design a simple, custom link-in-bio page and download it as a single-file static HTML page.",
+    "metaDesc": "Build your own custom Link-in-Bio landing page. Add links, choose gradients, preview live, and download a single-file HTML page to host free.",
+    "instructions": [
+      "Set your avatar image URL, profile title, and bio subtext.",
+      "Add your custom social links, naming each card (e.g., 'My Portfolio', 'Shop Page').",
+      "Select a theme gradient (Indigo, Emerald, Dark Obsidian, Sunset).",
+      "Review the live mobile screen preview widget.",
+      "Click 'Download HTML File' to save a self-contained page ready for hosting (e.g. on Netlify or Github Pages)."
+    ],
+    "features": [
+      "Live Mobile Preview: Interactive UI updates in real-time.",
+      "Multiple themes: Select preset gradients.",
+      "Single-File Export: Generates a completely styled HTML file with inline CSS. No servers, databases, or subscriptions required!"
+    ],
+    "componentName": "LinkInBioHelper",
+    "seoTitle": "Free Link-in-Bio Builder - Export Static HTML Profile Pages"
+  },
+  {
+    "id": "util-qr-gen",
+    "slug": "qr-code-generator",
+    "category": "utility",
+    "categoryName": "Utility Tools",
+    "title": "QR Code Generator",
+    "shortDesc": "Generate standard QR codes for URLs, text, or Wi-Fi configurations.",
+    "metaDesc": "Create free custom QR codes online. Generate codes for links, text, emails, and Wi-Fi networks. Download as high-res images instantly.",
+    "instructions": [
+      "Choose the data type (URL, plain text, Wi-Fi config).",
+      "Enter the content or login details.",
+      "The QR code renders instantly.",
+      "Click 'Download QR Code' to save it as a high-quality PNG."
+    ],
+    "features": [
+      "Multi-type support: Links, text, WiFi logins.",
+      "Real-time render updates.",
+      "Offline browser generation."
+    ],
+    "componentName": "QrCodeGenerator",
+    "seoTitle": "Free QR Code Generator - Create Custom QR Codes"
+  },
+  {
+    "id": "util-url-encode",
+    "slug": "url-encoder-decoder",
+    "category": "utility",
+    "categoryName": "Utility Tools",
+    "title": "URL Encoder / Decoder",
+    "shortDesc": "Encode or decode strings to ensure safe transmission within query parameters.",
+    "metaDesc": "Encode or decode strings to URL safe formats online. Translate special characters and spaces instantly. Runs client-side.",
+    "instructions": [
+      "Paste your text or encoded link parameter in the input panel.",
+      "Click 'Encode' to escape special characters, or 'Decode' to convert back to standard text.",
+      "Copy the converted output with one click."
+    ],
+    "features": [
+      "Instant translation of % characters.",
+      "Clean double-panel layout.",
+      "Handles long query strings."
+    ],
+    "componentName": "UrlEncoderDecoder",
+    "seoTitle": "URL Encoder Decoder - Percent Encoding Online Tool"
+  },
+  {
+    "id": "util-utm",
+    "slug": "utm-builder",
+    "category": "utility",
+    "categoryName": "Utility Tools",
+    "title": "UTM Campaign Builder",
+    "shortDesc": "Build marketing campaign links with source, medium, and term tracking codes.",
+    "metaDesc": "Create tracking URLs for Google Analytics. Build UTM campaign links with source, medium, name, content parameters instantly.",
+    "instructions": [
+      "Enter your base website URL.",
+      "Enter campaign parameters: Source (e.g. newsletter), Medium (email), Campaign Name (launch).",
+      "Optional: set Campaign Term or Campaign Content.",
+      "Copy the built tracking link from the output box."
+    ],
+    "features": [
+      "Ensures valid URL structures.",
+      "Live output preview updates.",
+      "Clear explanation tooltips."
+    ],
+    "componentName": "UtmBuilder",
+    "seoTitle": "UTM Link Builder - Campaign Tracking URL Generator"
+  },
+  {
+    "id": "util-password",
+    "slug": "password-generator",
+    "category": "utility",
+    "categoryName": "Utility Tools",
+    "title": "Secure Password Generator",
+    "shortDesc": "Create cryptographically secure, random passwords with custom rules.",
+    "metaDesc": "Generate secure, random passwords online. Customize length, letters, numbers, symbols. Cryptographically secure client-side generation.",
+    "instructions": [
+      "Choose your password length (recommended 12-24 characters).",
+      "Toggle parameters: Uppercase, Lowercase, Numbers, and Symbols.",
+      "Click 'Generate Password'.",
+      "Copy the result and view the strength evaluation indicator."
+    ],
+    "features": [
+      "Uses cryptographically secure `crypto.getRandomValues`.",
+      "Calculates password entropy strength scores.",
+      "Privacy-first: No generation variables are saved or transmitted."
+    ],
+    "componentName": "PasswordGenerator",
+    "seoTitle": "Secure Password Generator - Create Strong Random Keys"
+  },
+  {
+    "id": "util-case-conv",
+    "slug": "text-case-converter",
+    "category": "utility",
+    "categoryName": "Utility Tools",
+    "title": "Text Case Converter",
+    "shortDesc": "Convert text formats: UPPERCASE, lowercase, Title Case, Sentence Case, or slugify.",
+    "metaDesc": "Convert text between UPPERCASE, lowercase, Title Case, Sentence Case, camelCase, PascalCase, and url-friendly slugs instantly.",
+    "instructions": [
+      "Paste or type your text.",
+      "Select a case format button.",
+      "Review the converted text and click copy."
+    ],
+    "features": [
+      "Supports 7 distinct case formats.",
+      "URL Slug generator converter.",
+      "Clears input in one click."
+    ],
+    "componentName": "TextCaseConverter",
+    "seoTitle": "Text Case Converter - UPPERCASE, lowercase, Title Case"
+  },
+  {
+    "id": "util-word-count",
+    "slug": "word-counter",
+    "category": "utility",
+    "categoryName": "Utility Tools",
+    "title": "Word & Sentence Counter",
+    "shortDesc": "Measure word count, character count, keyword density, and estimated reading time.",
+    "metaDesc": "Word counter and keyword density analyzer online. Track character counts, sentences, paragraphs, reading speed, and vocabulary stats.",
+    "instructions": [
+      "Type or paste your blog draft.",
+      "Review density graphs showing most repeated words.",
+      "Track word lists and reading time estimates."
+    ],
+    "features": [
+      "Density analytics for top keywords.",
+      "Calculates paragraphs and sentences.",
+      "Supports large document pastes."
+    ],
+    "componentName": "WordCounter",
+    "seoTitle": "Word Counter - Analyze Text Density and Reading Speed"
+  },
+  {
+    "id": "util-units",
+    "slug": "units-converter",
+    "category": "utility",
+    "categoryName": "Utility Tools",
+    "title": "Quick Units Converter",
+    "shortDesc": "Convert units of length, mass, temperature, area, volume, and data sizes.",
+    "metaDesc": "Convert metrics online. Convert lengths, weights, temperature (Celsius/Fahrenheit), area, volumes, and digital data storage sizes.",
+    "instructions": [
+      "Select a measurement dimension category (Length, Weight, Data, Temp).",
+      "Enter a value in the starting unit input box.",
+      "View converted values across all target units simultaneously."
+    ],
+    "features": [
+      "Simultaneous results layout.",
+      "Covers digital storage units (GB, MB, KB, Bytes).",
+      "High precision calculators."
+    ],
+    "componentName": "UnitsConverter",
+    "seoTitle": "Online Units Converter - Convert Length, mass, Data"
+  },
+  {
+    "id": "util-time",
+    "slug": "time-converter",
+    "category": "utility",
+    "categoryName": "Utility Tools",
+    "title": "Time & Timezone Converter",
+    "shortDesc": "Convert UTC to local time, convert timestamps, and translate world timezones.",
+    "metaDesc": "Convert timezone differences online. Translate Epoch Unix timestamps, calculate duration, and check UTC conversions.",
+    "instructions": [
+      "Select a time utility tool: Unix Timestamp converter or Timezone calculator.",
+      "Input value or select timezone offset.",
+      "Read equivalent translations in local and UTC formats."
+    ],
+    "features": [
+      "Converts Unix timestamps to human readable datetimes.",
+      "Calculates hours between times.",
+      "Dynamic system timezone extractor."
+    ],
+    "componentName": "TimeConverter",
+    "seoTitle": "Time & Timezone Converter - Unix Timestamp Calculator"
+  }
+];

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
-import { articles } from "@/data/articles";
+import { articlesIndex as articles } from "@/data/articles-index";
 
 export const metadata: Metadata = {
   title: "Creator Tools Blog — Guides for Images, YouTube & Social Media | Creator Units",

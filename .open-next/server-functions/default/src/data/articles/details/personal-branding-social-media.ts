@@ -1,0 +1,17 @@
+import { Article } from "../../articles";
+
+export const articleDetails: Article = {
+  "slug": "personal-branding-social-media",
+  "title": "Personal Branding on Social Media: The Creator's Guide",
+  "metaDesc": "Build a strong personal brand on social media. Learn about visual identity, voice, consistency, and tools that make brand building easier.",
+  "publishDate": "2025-07-27",
+  "category": "social",
+  "categoryLabel": "Social Media Tools",
+  "relatedToolSlugs": [
+    "bio-template-generator",
+    "fancy-text-generator",
+    "color-picker",
+    "screenshot-cleaner"
+  ],
+  "content": "\n<h2>What is Personal Branding?</h2>\n<p>Personal branding is the deliberate practice of shaping how others perceive you in your professional and creative life. On social media, it means consistently presenting a coherent identity — visual style, content themes, voice, and values — across every post, bio, and profile. Strong personal brands are instantly recognizable even without seeing the creator's name.</p>\n\n<h2>The Four Pillars of Personal Brand Identity</h2>\n\n<h3>1. Visual Identity</h3>\n<p>Choose 2–3 brand colors and stick to them across all graphics, profile pictures, and story templates. Use our <a href=\"/tools/image/color-picker\">Color Picker</a> to extract exact HEX codes from any image and build a consistent palette. Create a consistent filter style for photos (same Lightroom preset or tone curve across all posts).</p>\n\n<h3>2. Content Pillars</h3>\n<p>Pick 3–4 consistent content themes you'll cover. Everything you post should fall into one of these pillars. This trains your audience to know what to expect and signals to algorithms which audience to show your content to. Example pillars for a fitness creator: Workouts, Nutrition, Mindset, Behind the Scenes.</p>\n\n<h3>3. Voice and Tone</h3>\n<p>Your writing style should feel consistent whether you're writing a caption, a bio, or a comment reply. Define your tone: Are you conversational or professional? Humorous or inspirational? Educational or entertaining? Write your posts as if they're all from the same person — because they are.</p>\n\n<h3>4. Profile Optimization</h3>\n<p>Your bio should clearly state who you help and what you post about. Use our <a href=\"/tools/social/bio-template-generator\">Bio Template Generator</a> to craft a structured, compelling bio. Add personality with <a href=\"/tools/social/fancy-text-generator\">Fancy Text</a> for key phrases. Every element — profile photo, username, bio, highlight covers — should communicate your brand identity at a glance.</p>\n\n<h2>Cross-Platform Consistency</h2>\n<p>Use the same username across Instagram, TikTok, YouTube, and Twitter. Use the same profile photo. Keep your bio messaging consistent (tailored to each platform's culture, but recognizably the same brand). When someone finds you on one platform and visits another, they should immediately recognize they're in the right place.</p>\n\n<h2>Building Recognition Through Repetition</h2>\n<p>Consistency compounds. The first 50 posts may feel like nobody's noticing your visual style. By post 200, your aesthetic is so recognizable that followers identify your content in their feed before reading your name. This recognition is the fundamental value of personal branding — it creates a shortcut in viewers' minds from \"this visual style\" to \"this creator.\"</p>\n    "
+};

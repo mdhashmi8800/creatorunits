@@ -1,30 +1,10 @@
 import { ToolItem, ToolItemLite } from "./types";
-import { imageTools } from "./tools/image";
-import { creatorTools } from "./tools/creator";
-import { socialTools } from "./tools/social";
-import { utilityTools } from "./tools/utility";
+import { toolsIndex } from "./tools-index";
 
-export const tools: ToolItem[] = [
-  ...imageTools,
-  ...creatorTools,
-  ...socialTools,
-  ...utilityTools
-];
+export { toolsIndex };
 
-/** Lightweight index of tools — omits heavy SEO/FAQ data for listing pages. */
-export const toolsIndex: ToolItemLite[] = tools.map((t) => ({
-  id: t.id,
-  slug: t.slug,
-  category: t.category,
-  categoryName: t.categoryName,
-  title: t.title,
-  shortDesc: t.shortDesc,
-  metaDesc: t.metaDesc,
-  instructions: t.instructions,
-  features: t.features,
-  componentName: t.componentName,
-  seoTitle: t.seoTitle,
-}));
+// For backwards compatibility, expose toolsIndex as tools
+export const tools = toolsIndex as unknown as ToolItem[];
 
 export interface CategoryInfo {
   slug: string;
@@ -70,10 +50,16 @@ export const categories: Record<string, CategoryInfo> = {
   }
 };
 
-export function getToolBySlug(slug: string): ToolItem | undefined {
-  return tools.find((tool) => tool.slug === slug);
+export async function getToolBySlug(slug: string): Promise<ToolItem | undefined> {
+  try {
+    const module = await import(`./tools/details/${slug}`);
+    return module.toolDetails;
+  } catch (error) {
+    console.error(`Error loading tool details for ${slug}:`, error);
+    return undefined;
+  }
 }
 
-export function getToolsByCategory(category: string): ToolItem[] {
-  return tools.filter((tool) => tool.category === category);
+export function getToolsByCategory(category: string): ToolItemLite[] {
+  return toolsIndex.filter((tool) => tool.category === category);
 }

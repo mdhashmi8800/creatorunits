@@ -7,14 +7,14 @@
   "/robots.txt/route": "app/robots.txt/route.js",
   "/sitemap.xml/route": "app/sitemap.xml/route.js",
   "/about/page": "app/about/page.js",
-  "/contact/page": "app/contact/page.js",
-  "/blog/page": "app/blog/page.js",
-  "/disclaimer/page": "app/disclaimer/page.js",
   "/category/[slug]/page": "app/category/[slug]/page.js",
+  "/contact/page": "app/contact/page.js",
+  "/disclaimer/page": "app/disclaimer/page.js",
   "/privacy/page": "app/privacy/page.js",
   "/terms/page": "app/terms/page.js",
-  "/tools/page": "app/tools/page.js",
+  "/blog/page": "app/blog/page.js",
   "/blog/[slug]/page": "app/blog/[slug]/page.js",
   "/tools/[category]/[slug]/page": "app/tools/[category]/[slug]/page.js",
+  "/tools/page": "app/tools/page.js",
   "/page": "app/page.js"
 }

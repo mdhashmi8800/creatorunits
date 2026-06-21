@@ -5,14 +5,9 @@ import Footer from "@/components/layout/Footer";
 import { toolsIndex as tools, categories } from "@/data/tools";
 import HomeSearch from "./HomeSearch";
 import styles from "./page.module.css";
+import { articlesIndex } from "@/data/articles-index";
 
-// Lazy-load articles for blog teaser — gracefully skips if not yet present
-let latestArticles: Array<{ slug: string; title: string; metaDesc: string; category: string }> = [];
-try {
-  // eslint-disable-next-line @typescript-eslint/no-require-imports
-  const { articles } = require("@/data/articles");
-  latestArticles = articles.slice(0, 3);
-} catch { /* articles not yet generated */ }
+const latestArticles = articlesIndex.slice(0, 3);
 
 export const metadata: Metadata = {
   title: "Free Web Tools for Creators & Social Media | Creator Units",

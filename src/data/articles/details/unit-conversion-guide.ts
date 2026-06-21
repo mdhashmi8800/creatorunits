@@ -1,0 +1,16 @@
+import { Article } from "../../articles";
+
+export const articleDetails: Article = {
+  "slug": "unit-conversion-guide",
+  "title": "The Ultimate Unit Conversion Guide for Creators and Marketers",
+  "metaDesc": "Convert pixels to inches, kilobytes to megabytes, time zones, and more. Essential unit conversions for content creators and digital marketers.",
+  "publishDate": "2025-08-14",
+  "category": "utility",
+  "categoryLabel": "Utility Tools",
+  "relatedToolSlugs": [
+    "units-converter",
+    "time-converter",
+    "social-post-size-checker"
+  ],
+  "content": "\n<h2>The Unit Conversions Creators Need Daily</h2>\n<p>Content creators regularly encounter unit conversion requirements: converting file sizes for platform limits, translating pixel dimensions to physical print sizes, calculating video frame rates, and coordinating across time zones. Our <a href=\"/tools/utility/units-converter\">Units Converter</a> handles all of these in one place.</p>\n\n<h2>Digital File Size Conversions</h2>\n<table style=\"width:100%;border-collapse:collapse;font-size:0.9rem;\">\n  <thead><tr><th style=\"text-align:left;padding:8px;border-bottom:2px solid var(--border-color)\">Unit</th><th style=\"padding:8px;border-bottom:2px solid var(--border-color)\">Equals</th></tr></thead>\n  <tbody>\n    <tr><td style=\"padding:8px;border-bottom:1px solid var(--border-color)\">1 KB (Kilobyte)</td><td style=\"padding:8px;border-bottom:1px solid var(--border-color)\">1,024 bytes</td></tr>\n    <tr><td style=\"padding:8px;border-bottom:1px solid var(--border-color)\">1 MB (Megabyte)</td><td style=\"padding:8px;border-bottom:1px solid var(--border-color)\">1,024 KB = 1,048,576 bytes</td></tr>\n    <tr><td style=\"padding:8px;border-bottom:1px solid var(--border-color)\">1 GB (Gigabyte)</td><td style=\"padding:8px;border-bottom:1px solid var(--border-color)\">1,024 MB</td></tr>\n    <tr><td style=\"padding:8px;border-bottom:1px solid var(--border-color)\">2 MB (YouTube thumbnail limit)</td><td style=\"padding:8px;border-bottom:1px solid var(--border-color)\">2,048 KB = ~2M bytes</td></tr>\n  </tbody>\n</table>\n\n<h2>Pixels to Physical Dimensions (for Print)</h2>\n<p>The relationship between pixels and physical size depends on resolution (DPI — dots per inch):</p>\n<ul>\n  <li>At <strong>72 DPI</strong> (screen): 1 inch = 72 pixels (web/screen graphics)</li>\n  <li>At <strong>96 DPI</strong> (Windows default): 1 inch = 96 pixels</li>\n  <li>At <strong>300 DPI</strong> (print quality): 1 inch = 300 pixels</li>\n</ul>\n<p>Example: A 1280 × 720 px image at 300 DPI prints at 4.27 × 2.4 inches.</p>\n\n<h2>Video Frame Rate Conversions</h2>\n<ul>\n  <li><strong>24 fps:</strong> Cinematic look, most YouTube/film content</li>\n  <li><strong>30 fps:</strong> Standard broadcast, most social media</li>\n  <li><strong>60 fps:</strong> Gaming content, sports, slow-motion at half speed</li>\n  <li><strong>120 fps / 240 fps:</strong> Extreme slow motion (120 fps → 5× slow at 24 fps output)</li>\n</ul>\n\n<h2>Common Creator Unit Conversions</h2>\n<ul>\n  <li>Instagram profile photo: 110 px displayed, 320 px recommended upload</li>\n  <li>YouTube thumbnail: 1280 px × 720 px, max 2 MB</li>\n  <li>Instagram caption: 2,200 characters maximum</li>\n  <li>Twitter thread per tweet: 280 characters</li>\n</ul>\n    "
+};
