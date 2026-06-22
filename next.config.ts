@@ -1,9 +1,6 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  // Required by OpenNext — it reads .next/standalone/.next/BUILD_ID during bundling
-  output: "standalone",
-
   // ── Performance ────────────────────────────────────────────────────────────
   compress: true,
 
@@ -12,14 +9,6 @@ const nextConfig: NextConfig = {
 
   // No source maps in production browser bundle (security + smaller payload)
   productionBrowserSourceMaps: false,
-
-  // ── Partial Prerendering (Cache Components) ─────────────────────────────
-  // Moved from experimental in Next.js 16 — must be top-level.
-  // Generates a static prerendered HTML shell for all pages that use only
-  // deterministic/cached data. For this site (all pages are fully static),
-  // this means the Cloudflare Worker serves prebuilt HTML with near-zero CPU
-  // on cache hits, dramatically reducing Worker load and improving TTFB.
-  // cacheComponents: true, // Removed due to Cloudflare Workers compatibility issues and conflict with dynamicParams = false
 
   // ── Experimental ───────────────────────────────────────────────────────────
   experimental: {
@@ -52,7 +41,7 @@ const nextConfig: NextConfig = {
 
     // ── Immutable cache for Next.js hashed static assets ─────────────────────
     // These filenames contain a content hash so they can safely be cached forever.
-    // Cloudflare will serve them from edge with zero origin requests after first load.
+    // Vercel's CDN will serve them from edge with zero origin requests after first load.
     {
       source: "/_next/static/(.*)",
       headers: [
@@ -89,10 +78,9 @@ const nextConfig: NextConfig = {
     },
 
     // ── HTML pages: edge cache + browser cache ────────────────────────────────
-    // s-maxage tells Cloudflare edge to cache for 1 hour.
+    // s-maxage tells Vercel's CDN edge to cache for 1 hour.
     // stale-while-revalidate lets edge serve stale for 7 days while refreshing.
     // max-age tells the browser to revalidate after 60s.
-    // This eliminates Worker invocations for ~99% of page requests.
     {
       source: "/((?!_next|api|sitemap.xml|robots.txt).*)",
       headers: [

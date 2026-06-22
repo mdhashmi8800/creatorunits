@@ -28,9 +28,9 @@ export async function POST(request: Request) {
     const videoId = match[2];
     const watchUrl = `https://www.youtube.com/watch?v=${videoId}`;
 
-    // 3. Set an 8-second fetch and stream-reading timeout using AbortController
+    // 3. Set a 6-second fetch and stream-reading timeout using AbortController
     const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 8000);
+    const timeoutId = setTimeout(() => controller.abort(), 6000); // 6s — comfortable within Vercel Hobby's 10s function limit
 
     let html = "";
     try {
