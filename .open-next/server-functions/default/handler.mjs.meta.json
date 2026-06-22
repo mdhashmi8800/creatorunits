@@ -5421,7 +5421,7 @@
       "format": "cjs"
     },
     ".open-next/server-functions/default/.next/server/app/tools/[category]/[slug]/page.js": {
-      "bytes": 38161,
+      "bytes": 38196,
       "imports": [
         {
           "path": ".open-next/server-functions/default/node_modules/next/dist/shared/lib/router/utils/app-paths.js",
@@ -8185,8 +8185,14 @@
       "format": "cjs"
     },
     ".open-next/server-functions/default/open-next.config.mjs": {
-      "bytes": 6832,
-      "imports": [],
+      "bytes": 11206,
+      "imports": [
+        {
+          "path": "node:crypto",
+          "kind": "import-statement",
+          "external": true
+        }
+      ],
       "format": "esm"
     },
     ".open-next/server-functions/default/index.mjs": {
@@ -9960,7 +9966,7 @@
           "bytesInOutput": 5862
         },
         ".open-next/server-functions/default/.next/server/app/tools/[category]/[slug]/page.js": {
-          "bytesInOutput": 38393
+          "bytesInOutput": 38430
         },
         ".open-next/server-functions/default/node_modules/next/dist/compiled/next-server/app-route.runtime.prod.js": {
           "bytesInOutput": 181339
@@ -10161,13 +10167,13 @@
           "bytesInOutput": 27891
         },
         ".open-next/server-functions/default/open-next.config.mjs": {
-          "bytesInOutput": 5074
+          "bytesInOutput": 8471
         },
         ".open-next/server-functions/default/index.mjs": {
-          "bytesInOutput": 101811
+          "bytesInOutput": 101862
         }
       },
-      "bytes": 3983628
+      "bytes": 3987113
     }
   }
 }

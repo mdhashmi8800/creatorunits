@@ -7,14 +7,14 @@
   "/robots.txt/route": "/robots.txt",
   "/sitemap.xml/route": "/sitemap.xml",
   "/about/page": "/about",
-  "/blog/page": "/blog",
   "/category/[slug]/page": "/category/[slug]",
-  "/contact/page": "/contact",
   "/blog/[slug]/page": "/blog/[slug]",
+  "/blog/page": "/blog",
+  "/contact/page": "/contact",
   "/disclaimer/page": "/disclaimer",
   "/privacy/page": "/privacy",
   "/page": "/",
   "/terms/page": "/terms",
-  "/tools/page": "/tools",
-  "/tools/[category]/[slug]/page": "/tools/[category]/[slug]"
+  "/tools/[category]/[slug]/page": "/tools/[category]/[slug]",
+  "/tools/page": "/tools"
 }
