@@ -82,12 +82,20 @@ const nextConfig: NextConfig = {
     // stale-while-revalidate lets edge serve stale for 7 days while refreshing.
     // max-age tells the browser to revalidate after 60s.
     {
-      source: "/((?!_next|api|sitemap.xml|robots.txt).*)",
+      source: "/((?!_next|api|sitemap.xml|robots.txt|ads.txt).*)",
       headers: [
         {
           key: "Cache-Control",
           value: "public, max-age=60, s-maxage=3600, stale-while-revalidate=604800",
         },
+      ],
+    },
+
+    // ── Ads.txt: cache for 24 hours without stale-while-revalidate ─────────────
+    {
+      source: "/ads.txt",
+      headers: [
+        { key: "Cache-Control", value: "public, max-age=86400, s-maxage=86400" },
       ],
     },
 
