@@ -12,8 +12,8 @@ export function proxy(request: NextRequest) {
   // Skip redirect during local development
   const isLocal = host.includes("localhost") || host.includes("127.0.0.1");
 
-  if (!isLocal && (isWww || isHttp)) {
-    const canonicalHost = isWww ? host.slice(4) : host;
+  if (!isLocal && (!isWww || isHttp)) {
+    const canonicalHost = !isWww ? `www.${host}` : host;
     const redirectUrl = `https://${canonicalHost}${url.pathname}${url.search}`;
     return NextResponse.redirect(redirectUrl, 301);
   }
