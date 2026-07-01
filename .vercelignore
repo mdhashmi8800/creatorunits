@@ -1,0 +1,7 @@
+squalid-series/
+wretched-wasp/
+.wrangler/
+.open-next/
+.next/
+node_modules/
+.vercel/

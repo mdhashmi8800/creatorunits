@@ -1,6 +1,7 @@
 export const dynamic = "force-static";
 
 import React from "react";
+import Link from "next/link";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import ContactForm from "./ContactForm";
@@ -122,6 +123,40 @@ export default function ContactPage() {
 
                   <span className={styles.arrow} aria-hidden="true">&rarr;</span>
                 </a>
+              </div>
+
+              {/* Helpful Resources Section */}
+              <div style={{ marginTop: "2.5rem", borderTop: "1px solid var(--border-color)", paddingTop: "1.5rem" }}>
+                <h2 style={{ fontSize: "1.25rem", marginBottom: "0.75rem", color: "var(--text-primary)" }}>
+                  Frequently Referenced Resources
+                </h2>
+                <p className="text-muted" style={{ fontSize: "0.875rem", marginBottom: "1rem", lineHeight: "1.5" }}>
+                  Before sending a support request, you might find what you need in our guides and tools:
+                </p>
+                <ul style={{ 
+                  display: "flex", 
+                  flexDirection: "column", 
+                  gap: "0.5rem", 
+                  paddingLeft: "1.25rem", 
+                  fontSize: "0.9rem", 
+                  color: "var(--text-secondary)"
+                }}>
+                  <li>
+                    Guide: <Link href="/blog/how-to-create-qr-code-free" style={{ color: "var(--accent)", textDecoration: "underline" }}>How to Create a QR Code for Free</Link>
+                  </li>
+                  <li>
+                    Guide: <Link href="/blog/utm-tracking-link-guide" style={{ color: "var(--accent)", textDecoration: "underline" }}>Beginner&apos;s Guide to UTM Tracking</Link>
+                  </li>
+                  <li>
+                    Guide: <Link href="/blog/instagram-username-ideas" style={{ color: "var(--accent)", textDecoration: "underline" }}>Instagram Username Naming Ideas</Link>
+                  </li>
+                  <li>
+                    Tool: <Link href="/tools/utility/utm-builder" style={{ color: "var(--accent)", textDecoration: "underline" }}>UTM Campaign Link Builder</Link>
+                  </li>
+                  <li>
+                    Tool: <Link href="/tools/utility/qr-code-generator" style={{ color: "var(--accent)", textDecoration: "underline" }}>Offline QR Code Generator</Link>
+                  </li>
+                </ul>
               </div>
             </div>
 

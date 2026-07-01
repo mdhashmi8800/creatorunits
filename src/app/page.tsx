@@ -236,15 +236,15 @@ export default function Home() {
                   <strong>YouTube SEO Tools:</strong> Extract tags from top-performing competitor uploads, preview YouTube thumbnails on mock mobile/desktop feeds to maximize CTR, and structure video metadata.
                 </li>
                 <li>
-                  <strong>Social Profile Builders:</strong> Compose stylized Unicode text, craft engaging bio scripts for Instagram and TikTok, and generate customized WhatsApp direct click-to-chat link strings.
+                  <strong>Social Profile Builders:</strong> Compose stylized Unicode text, brainstorm creative handles with our <Link href="/tools/social/username-generator" style={{ color: "var(--accent)", textDecoration: "underline" }}>Username Generator</Link> (read our checklist of <Link href="/blog/instagram-username-ideas" style={{ color: "var(--accent)", textDecoration: "underline" }}>Instagram Username Ideas</Link> for professional branding tips), craft engaging bio scripts, and generate customized WhatsApp links.
                 </li>
                 <li>
-                  <strong>Security &amp; Utility Generators:</strong> Create dynamic, offline-first QR codes, generate highly secure cryptographic passwords, count words/characters, and format text case layout strings.
+                  <strong>Security &amp; Utility Generators:</strong> Create dynamic, offline-first <Link href="/tools/utility/qr-code-generator" style={{ color: "var(--accent)", textDecoration: "underline" }}>QR codes</Link> (learn the steps in our guide on <Link href="/blog/how-to-create-qr-code-free" style={{ color: "var(--accent)", textDecoration: "underline" }}>how to create a QR code for free</Link>), generate highly secure cryptographic passwords, count words, and convert text case.
                 </li>
               </ul>
 
               <p>
-                Whether you are optimizing a blog portfolio, refining video descriptions, or managing brand links, Creator Units provides the technical foundation you need. Bookmark this homepage for instant access to over 30+ browser utilities.
+                Whether you are tracking analytics using our <Link href="/tools/utility/utm-builder" style={{ color: "var(--accent)", textDecoration: "underline" }}>UTM Campaign Builder</Link> (see our beginner&apos;s <Link href="/blog/utm-tracking-link-guide" style={{ color: "var(--accent)", textDecoration: "underline" }}>UTM Tracking Link Guide</Link> for Google Analytics), optimizing a blog portfolio, refining video descriptions, or managing brand links, Creator Units provides the technical foundation you need. Bookmark this homepage for instant access to over 30+ browser utilities.
               </p>
             </div>
           </div>

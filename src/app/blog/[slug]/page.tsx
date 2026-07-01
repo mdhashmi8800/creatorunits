@@ -109,17 +109,30 @@ export default async function ArticlePage({ params }: PageProps) {
   const breadcrumbSchema = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
-    itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Home", item: "https://creatorunits.com/" },
-      { "@type": "ListItem", position: 2, name: "Blog", item: "https://creatorunits.com/blog" },
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://creatorunits.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://creatorunits.com/blog" },
       {
         "@type": "ListItem",
-        position: 3,
-        name: article.title,
-        item: `https://creatorunits.com/blog/${article.slug}`,
+        "position": 3,
+        "name": article.title,
+        "item": `https://creatorunits.com/blog/${article.slug}`,
       },
     ],
   };
+
+  const faqSchema = article.faqs && article.faqs.length > 0 ? {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": article.faqs.map((f) => ({
+      "@type": "Question",
+      "name": f.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": f.answer,
+      },
+    })),
+  } : null;
 
   return (
     <>
@@ -131,6 +144,12 @@ export default async function ArticlePage({ params }: PageProps) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
+      {faqSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        />
+      )}
 
       <Header />
       <main className="main-content" id="main-content">
@@ -253,6 +272,37 @@ export default async function ArticlePage({ params }: PageProps) {
                   /* Typography enhancements for article body */
                 }}
               />
+
+              {/* Visible FAQ Accordion Section */}
+              {article.faqs && article.faqs.length > 0 && (
+                <section style={{ marginTop: "3rem", borderTop: "1px solid var(--border-color)", paddingTop: "2rem" }} aria-labelledby="article-faq-heading">
+                  <h2 id="article-faq-heading" style={{ fontSize: "1.5rem", marginBottom: "1.5rem", color: "var(--text-primary)" }}>
+                    Frequently Asked Questions
+                  </h2>
+                  <div className="flex flex-col gap-4">
+                    {article.faqs.map((faq, idx) => (
+                      <details key={idx} className="card" style={{ borderStyle: "solid" }}>
+                        <summary style={{ 
+                          fontSize: "1.05rem", 
+                          fontWeight: "600", 
+                          cursor: "pointer",
+                          padding: "0.5rem 0",
+                          listStyle: "none",
+                          display: "flex",
+                          justifyContent: "space-between",
+                          alignItems: "center"
+                        }}>
+                          {faq.question}
+                          <span aria-hidden="true" style={{ fontSize: "1.25rem", color: "var(--accent)" }}>+</span>
+                        </summary>
+                        <p className="text-muted" style={{ fontSize: "0.9rem", margin: "0.5rem 0 0 0", paddingTop: "0.5rem", borderTop: "1px solid var(--border-color)", lineHeight: "1.6" }}>
+                          {faq.answer}
+                        </p>
+                      </details>
+                    ))}
+                  </div>
+                </section>
+              )}
             </article>
 
             {/* Sidebar */}

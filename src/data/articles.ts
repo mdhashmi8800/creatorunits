@@ -10,6 +10,8 @@ export interface Article {
   relatedToolSlugs: string[];
   /** Full HTML article body (no outer <article> wrapper) */
   content: string;
+  /** Optional FAQ items for structured data + rendering */
+  faqs?: { question: string; answer: string; }[];
 }
 
 export const articles: Article[] = [
