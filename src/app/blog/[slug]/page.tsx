@@ -86,11 +86,17 @@ export default async function ArticlePage({ params }: PageProps) {
     description: article.metaDesc,
     url: `https://www.creatorunits.com/blog/${article.slug}`,
     datePublished: article.publishDate,
-    dateModified: article.publishDate,
+    dateModified: article.lastModified ?? article.publishDate,
+    image: {
+      "@type": "ImageObject",
+      url: "https://www.creatorunits.com/og-image.png",
+      width: 1200,
+      height: 630,
+    },
     author: {
-      "@type": "Organization",
-      name: "Creator Units",
-      url: "https://www.creatorunits.com",
+      "@type": "Person",
+      name: "Creator Units Editorial Team",
+      url: "https://www.creatorunits.com/about",
     },
     publisher: {
       "@type": "Organization",
@@ -98,7 +104,7 @@ export default async function ArticlePage({ params }: PageProps) {
       url: "https://www.creatorunits.com",
       logo: {
         "@type": "ImageObject",
-        url: "https://www.creatorunits.com/logo.png",
+        url: "https://www.creatorunits.com/icon.svg",
       },
     },
     mainEntityOfPage: {

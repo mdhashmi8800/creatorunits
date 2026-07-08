@@ -12,6 +12,10 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/terms",
   },
+  robots: {
+    index: false,
+    follow: true,
+  },
   openGraph: {
     title: "Terms of Service - Creators Units",
     description: "Read our Terms of Service. Simple, straightforward rules for using our free creator utilities.",

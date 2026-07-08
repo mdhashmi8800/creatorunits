@@ -30,7 +30,9 @@ export const metadata: Metadata = {
   title: "Creators Units - Free Online Tools for Creators & Social Media",
   description: "Free, private web tools for creators and social media. Compress images, preview YouTube thumbnails, generate QR codes, and format text offline and instantly.",
   keywords: "creator tools, image compressor, qr generator, youtube tag extractor, text case converter, fancy text generator, link in bio",
-  authors: [{ name: "Creators Units" }],
+  authors: [{ name: "Creator Units Editorial Team", url: "https://www.creatorunits.com/about" }],
+  creator: "Creator Units",
+  publisher: "Creator Units",
   metadataBase: new URL(baseUrl),
   icons: {
     icon: "/icon.svg",
@@ -57,6 +59,7 @@ export const metadata: Metadata = {
     title: "Creators Units - Free Online Tools for Creators & Social Media",
     description: "Free, private web tools for creators and social media. Compress images, preview YouTube thumbnails, generate QR codes, and format text offline and instantly.",
     images: ["/og-image.png"],
+    creator: "@Oye_hasmi",
   },
   robots: {
     index: true,

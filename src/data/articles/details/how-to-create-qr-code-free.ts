@@ -5,6 +5,7 @@ export const articleDetails: Article = {
   "title": "How to Create a QR Code for Free (No Sign-Up Needed)",
   "metaDesc": "Generate QR codes for URLs, WhatsApp, WiFi, email, and text in seconds. Free, browser-based, no account required.",
   "publishDate": "2025-07-31",
+  "lastModified": "2026-07-08",
   "category": "utility",
   "categoryLabel": "Utility Tools",
   "relatedToolSlugs": [

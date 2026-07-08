@@ -11,13 +11,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://www.creatorunits.com";
 
   // ── Core pages ─────────────────────────────────────────────────────────────
-  const corePages = ["", "/tools", "/about", "/contact", "/privacy", "/terms", "/disclaimer", "/blog"];
-  const coreEntries = corePages.map((route) => ({
-    url: `${baseUrl}${route}`,
-    lastModified: BUILD_DATE,
-    changeFrequency: "weekly" as const,
-    priority: route === "" ? 1.0 : route === "/tools" || route === "/blog" ? 0.9 : 0.8,
-  }));
+  // Excluded: /contact, /privacy, /terms, /disclaimer — noindex pages must not appear in sitemap
+  const coreEntries = [
+    { url: baseUrl,             changeFrequency: "daily"  as const, priority: 1.0 },
+    { url: `${baseUrl}/tools`,  changeFrequency: "weekly" as const, priority: 0.9 },
+    { url: `${baseUrl}/blog`,   changeFrequency: "weekly" as const, priority: 0.9 },
+    { url: `${baseUrl}/about`,  changeFrequency: "monthly" as const, priority: 0.7 },
+  ].map((entry) => ({ ...entry, lastModified: BUILD_DATE }));
 
   // ── Category pages ─────────────────────────────────────────────────────────
   const categoryEntries = Object.keys(categories).map((slug) => ({

@@ -12,6 +12,10 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/privacy",
   },
+  robots: {
+    index: false,
+    follow: true,
+  },
   openGraph: {
     title: "Privacy Policy - Creators Units",
     description: "Read our Privacy Policy. All tools run client-side; we never collect or store your uploaded images or data.",

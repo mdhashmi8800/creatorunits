@@ -12,6 +12,10 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/disclaimer",
   },
+  robots: {
+    index: false,
+    follow: true,
+  },
   openGraph: {
     title: "Disclaimer - Creators Units",
     description: "Read our Disclaimer. Creators Units is not affiliated with YouTube, Instagram, WhatsApp, or Facebook.",

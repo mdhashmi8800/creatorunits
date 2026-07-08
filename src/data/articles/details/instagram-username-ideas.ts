@@ -5,6 +5,7 @@ export const articleDetails: Article = {
   "title": "200+ Creative Instagram Username Ideas for Every Niche",
   "metaDesc": "Find the perfect Instagram username with creative ideas for every niche. Plus, how to use a username generator to find available options.",
   "publishDate": "2025-07-21",
+  "lastModified": "2026-07-08",
   "category": "social",
   "categoryLabel": "Social Media Tools",
   "relatedToolSlugs": [

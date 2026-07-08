@@ -16,6 +16,10 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/contact",
   },
+  robots: {
+    index: false,
+    follow: true,
+  },
   openGraph: {
     title: "Contact Us - Creators Units",
     description: "Have a question, suggestion, partnership opportunity, or found an issue? Feel free to reach out to Creators Units via email, Instagram, or Twitter/X.",

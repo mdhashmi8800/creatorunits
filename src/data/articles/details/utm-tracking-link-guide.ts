@@ -5,6 +5,7 @@ export const articleDetails: Article = {
   "title": "UTM Links Explained: A Beginner's Guide to UTM Tracking",
   "metaDesc": "Learn what UTM parameters are and how to build UTM tracking links for Google Analytics. Know exactly where your traffic comes from.",
   "publishDate": "2025-08-04",
+  "lastModified": "2026-07-08",
   "category": "utility",
   "categoryLabel": "Utility Tools",
   "relatedToolSlugs": [
