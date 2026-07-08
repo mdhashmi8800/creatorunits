@@ -8,7 +8,7 @@ import { articlesIndex } from "@/data/articles-index";
 const BUILD_DATE = new Date();
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://creatorunits.com";
+  const baseUrl = "https://www.creatorunits.com";
 
   // ── Core pages ─────────────────────────────────────────────────────────────
   const corePages = ["", "/tools", "/about", "/contact", "/privacy", "/terms", "/disclaimer", "/blog"];

@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     title: "All Free Creator & Utility Tools | Creator Units",
     description:
       "Browse our complete list of offline-first browser utilities for content creators. Compress images, format bios, preview thumbnails, and generate QR codes.",
-    url: "https://creatorunits.com/tools",
+    url: "https://www.creatorunits.com/tools",
     images: [
       {
         url: "/og-image.png",
@@ -61,14 +61,51 @@ const ITEM_LIST_SCHEMA_JSON = JSON.stringify({
   name: "All Free Creator & Utility Tools",
   description:
     "A complete directory of 33+ free browser-based tools for content creators.",
-  url: "https://creatorunits.com/tools",
+  url: "https://www.creatorunits.com/tools",
   numberOfItems: tools.length,
   itemListElement: tools.map((tool, idx) => ({
     "@type": "ListItem",
     position: idx + 1,
     name: tool.title,
-    url: `https://creatorunits.com/tools/${tool.category}/${tool.slug}`,
+    url: `https://www.creatorunits.com/tools/${tool.category}/${tool.slug}`,
   })),
+});
+
+const TOOLS_PAGE_SCHEMA_JSON = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": "https://www.creatorunits.com/tools#webpage",
+  "url": "https://www.creatorunits.com/tools",
+  "name": "All Free Creator & Utility Tools | Creator Units",
+  "description": "Browse our complete list of offline-first browser utilities for content creators. Compress images, format bios, preview thumbnails, and generate QR codes.",
+  "isPartOf": {
+    "@type": "WebSite",
+    "@id": "https://www.creatorunits.com/#website"
+  },
+  "breadcrumb": {
+    "@type": "BreadcrumbList",
+    "@id": "https://www.creatorunits.com/tools#breadcrumb"
+  }
+});
+
+const BREADCRUMB_SCHEMA_JSON = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "@id": "https://www.creatorunits.com/tools#breadcrumb",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://www.creatorunits.com/",
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Tools",
+      "item": "https://www.creatorunits.com/tools",
+    },
+  ],
 });
 
 export default function ToolsDirectoryPage() {
@@ -77,6 +114,14 @@ export default function ToolsDirectoryPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: ITEM_LIST_SCHEMA_JSON }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: TOOLS_PAGE_SCHEMA_JSON }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: BREADCRUMB_SCHEMA_JSON }}
       />
 
       <Header />

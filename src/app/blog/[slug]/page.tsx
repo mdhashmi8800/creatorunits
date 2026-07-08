@@ -6,6 +6,7 @@ import { notFound } from "next/navigation";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { getArticleBySlug } from "@/data/articles";
+import Breadcrumbs from "@/components/ui/Breadcrumbs";
 import { articlesIndex } from "@/data/articles-index";
 import { toolsIndex } from "@/data/tools";
 
@@ -40,7 +41,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     openGraph: {
       title: article.title,
       description: article.metaDesc,
-      url: `https://creatorunits.com/blog/${article.slug}`,
+      url: `https://www.creatorunits.com/blog/${article.slug}`,
       type: "article",
       publishedTime: article.publishDate,
       images: [
@@ -83,40 +84,58 @@ export default async function ArticlePage({ params }: PageProps) {
     "@type": "Article",
     headline: article.title,
     description: article.metaDesc,
-    url: `https://creatorunits.com/blog/${article.slug}`,
+    url: `https://www.creatorunits.com/blog/${article.slug}`,
     datePublished: article.publishDate,
     dateModified: article.publishDate,
     author: {
       "@type": "Organization",
       name: "Creator Units",
-      url: "https://creatorunits.com",
+      url: "https://www.creatorunits.com",
     },
     publisher: {
       "@type": "Organization",
       name: "Creator Units",
-      url: "https://creatorunits.com",
+      url: "https://www.creatorunits.com",
       logo: {
         "@type": "ImageObject",
-        url: "https://creatorunits.com/logo.png",
+        url: "https://www.creatorunits.com/logo.png",
       },
     },
     mainEntityOfPage: {
       "@type": "WebPage",
-      "@id": `https://creatorunits.com/blog/${article.slug}`,
+      "@id": `https://www.creatorunits.com/blog/${article.slug}`,
     },
+  };
+
+  const webPageSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": `https://www.creatorunits.com/blog/${article.slug}#webpage`,
+    "url": `https://www.creatorunits.com/blog/${article.slug}`,
+    "name": `${article.title} | Creator Units`,
+    "description": article.metaDesc,
+    "isPartOf": {
+      "@type": "WebSite",
+      "@id": "https://www.creatorunits.com/#website"
+    },
+    "breadcrumb": {
+      "@type": "BreadcrumbList",
+      "@id": `https://www.creatorunits.com/blog/${article.slug}#breadcrumb`
+    }
   };
 
   const breadcrumbSchema = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
+    "@id": `https://www.creatorunits.com/blog/${article.slug}#breadcrumb`,
     "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://creatorunits.com/" },
-      { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://creatorunits.com/blog" },
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.creatorunits.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.creatorunits.com/blog" },
       {
         "@type": "ListItem",
         "position": 3,
         "name": article.title,
-        "item": `https://creatorunits.com/blog/${article.slug}`,
+        "item": `https://www.creatorunits.com/blog/${article.slug}`,
       },
     ],
   };
@@ -136,6 +155,10 @@ export default async function ArticlePage({ params }: PageProps) {
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageSchema) }}
+      />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
@@ -159,37 +182,13 @@ export default async function ArticlePage({ params }: PageProps) {
           style={{ backgroundColor: "var(--bg-primary)", paddingBottom: "2rem" }}
         >
           <div className="container" style={{ maxWidth: "800px" }}>
-            {/* Breadcrumb */}
-            <nav aria-label="Breadcrumb" style={{ marginBottom: "1.5rem" }}>
-              <ol
-                style={{
-                  display: "flex",
-                  gap: "0.5rem",
-                  listStyle: "none",
-                  padding: 0,
-                  margin: 0,
-                  fontSize: "0.875rem",
-                  color: "var(--text-muted)",
-                  flexWrap: "wrap",
-                }}
-              >
-                <li>
-                  <Link href="/" style={{ color: "var(--accent)", textDecoration: "none" }}>
-                    Home
-                  </Link>
-                </li>
-                <li aria-hidden="true">/</li>
-                <li>
-                  <Link href="/blog" style={{ color: "var(--accent)", textDecoration: "none" }}>
-                    Blog
-                  </Link>
-                </li>
-                <li aria-hidden="true">/</li>
-                <li aria-current="page" style={{ color: "var(--text-muted)" }}>
-                  {article.categoryLabel}
-                </li>
-              </ol>
-            </nav>
+            <Breadcrumbs
+              items={[
+                { label: "Home", href: "/" },
+                { label: "Blog", href: "/blog" },
+                { label: article.categoryLabel }
+              ]}
+            />
 
             <span
               className="badge badge-accent"

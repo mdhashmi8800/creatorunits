@@ -13,7 +13,7 @@ const inter = Inter({
   preload: true,
 });
 
-const baseUrl = "https://creatorunits.com";
+const baseUrl = "https://www.creatorunits.com";
 
 // ── Viewport — exported separately (Next.js 16 best practice) ───────────────
 // Separating viewport from metadata prevents redundant metadata system work.
@@ -67,6 +67,7 @@ export const metadata: Metadata = {
 const ORGANIZATION_SCHEMA_JSON = JSON.stringify({
   "@context": "https://schema.org",
   "@type": "Organization",
+  "@id": `${baseUrl}/#organization`,
   name: "Creators Units",
   url: baseUrl,
   logo: `${baseUrl}/icon.svg`,
@@ -86,6 +87,7 @@ const ORGANIZATION_SCHEMA_JSON = JSON.stringify({
 const WEBSITE_SCHEMA_JSON = JSON.stringify({
   "@context": "https://schema.org",
   "@type": "WebSite",
+  "@id": `${baseUrl}/#website`,
   name: "Creators Units",
   url: baseUrl,
   description: "Free online tools for creators, freelancers, and small businesses.",
@@ -116,7 +118,9 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: WEBSITE_SCHEMA_JSON }}
         />
         {/* Inline script: set data-theme before first paint to prevent FOUC */}
-        <script
+        <Script
+          id="theme-initializer"
+          strategy="beforeInteractive"
           dangerouslySetInnerHTML={{
             __html: `(function(){try{var t=localStorage.getItem('theme');var d=window.matchMedia('(prefers-color-scheme: dark)').matches;document.documentElement.setAttribute('data-theme',t||(d?'dark':'light'));}catch(e){}})();`,
           }}
@@ -127,10 +131,11 @@ export default function RootLayout({
           attribute ensures it is non-blocking — the browser downloads it in
           parallel without pausing HTML parsing or delaying FCP/LCP.
         */}
-        <script
+        <Script
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8763819545697765"
           crossOrigin="anonymous"
+          strategy="afterInteractive"
         />
         {/* Preconnect to AdSense CDN so the async script download starts early */}
         <link rel="preconnect" href="https://pagead2.googlesyndication.com" />

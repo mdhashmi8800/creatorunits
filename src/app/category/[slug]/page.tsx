@@ -7,6 +7,8 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { getToolsByCategory, categories, toolsIndex } from "@/data/tools";
 import { Metadata } from "next";
+import Breadcrumbs from "@/components/ui/Breadcrumbs";
+import ToolsDirectoryMatrix from "@/components/tools/ToolsDirectoryMatrix";
 
 // Map each category to 2-3 spotlight slugs from OTHER categories for internal linking
 const crossCategoryMap: Record<string, string[]> = {
@@ -84,16 +86,25 @@ export default async function CategoryPage({ params }: PageProps) {
   const collectionPageSchema = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
-    name: cat.name,
-    description: cat.seoDesc,
-    url: `https://creatorunits.com/category/${slug}`,
-    mainEntity: {
+    "@id": `https://www.creatorunits.com/category/${slug}#webpage`,
+    "name": cat.name,
+    "description": cat.seoDesc,
+    "url": `https://www.creatorunits.com/category/${slug}`,
+    "isPartOf": {
+      "@type": "WebSite",
+      "@id": "https://www.creatorunits.com/#website"
+    },
+    "breadcrumb": {
+      "@type": "BreadcrumbList",
+      "@id": `https://www.creatorunits.com/category/${slug}#breadcrumb`
+    },
+    "mainEntity": {
       "@type": "ItemList",
-      itemListElement: catTools.map((tool, idx) => ({
+      "itemListElement": catTools.map((tool, idx) => ({
         "@type": "ListItem",
-        position: idx + 1,
-        name: tool.title,
-        url: `https://creatorunits.com/tools/${tool.category}/${tool.slug}`,
+        "position": idx + 1,
+        "name": tool.title,
+        "url": `https://www.creatorunits.com/tools/${tool.category}/${tool.slug}`,
       })),
     },
   };
@@ -101,18 +112,25 @@ export default async function CategoryPage({ params }: PageProps) {
   const breadcrumbSchema = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
+    "@id": `https://www.creatorunits.com/category/${slug}#breadcrumb`,
     "itemListElement": [
       {
         "@type": "ListItem",
         "position": 1,
         "name": "Home",
-        "item": "https://creatorunits.com/",
+        "item": "https://www.creatorunits.com/",
       },
       {
         "@type": "ListItem",
         "position": 2,
+        "name": "Tools",
+        "item": "https://www.creatorunits.com/tools",
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
         "name": cat.name,
-        "item": `https://creatorunits.com/category/${slug}`,
+        "item": `https://www.creatorunits.com/category/${slug}`,
       },
     ],
   };
@@ -131,16 +149,13 @@ export default async function CategoryPage({ params }: PageProps) {
       <Header />
       <main className="main-content section" id="main-content">
         <div className="container">
-          {/* Breadcrumbs */}
-          <nav aria-label="Breadcrumb" style={{ marginBottom: "1rem", fontSize: "0.85rem" }}>
-            <ol style={{ display: "flex", flexWrap: "wrap", listStyle: "none", padding: 0, margin: 0, alignItems: "center" }}>
-              <li>
-                <Link href="/" style={{ color: "var(--text-muted)", textDecoration: "none" }}>Home</Link>
-              </li>
-              <li aria-hidden="true" style={{ margin: "0 0.5rem", color: "var(--text-muted)" }}>/</li>
-              <li aria-current="page" style={{ color: "var(--text-primary)", fontWeight: "600" }}>{cat.name}</li>
-            </ol>
-          </nav>
+          <Breadcrumbs
+            items={[
+              { label: "Home", href: "/" },
+              { label: "Tools", href: "/tools" },
+              { label: cat.name }
+            ]}
+          />
 
           {/* Title block */}
           <div className="card" style={{ marginBottom: "2.5rem", padding: "2rem" }}>
@@ -231,6 +246,8 @@ export default async function CategoryPage({ params }: PageProps) {
                 ))}
             </div>
           </nav>
+
+          <ToolsDirectoryMatrix />
 
         </div>
       </main>

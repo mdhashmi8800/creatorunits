@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Free Web Tools for Creators & Social Media | Creator Units",
     description: "Free, private web tools for creators and social media. Compress images, preview YouTube thumbnails, generate QR codes, and format text offline and instantly.",
-    url: "https://creatorunits.com",
+    url: "https://www.creatorunits.com",
     images: [
       {
         url: "/og-image.png",
@@ -70,8 +70,46 @@ const faqs = [
  * This dramatically improves LCP, FCP, and reduces JS bundle size.
  */
 export default function Home() {
+  const homePageSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": "https://www.creatorunits.com/#webpage",
+    "url": "https://www.creatorunits.com/",
+    "name": "Free Web Tools for Creators & Social Media | Creator Units",
+    "description": "Free, private web tools for creators and social media. Compress images, preview YouTube thumbnails, generate QR codes, and format text offline and instantly.",
+    "isPartOf": {
+      "@type": "WebSite",
+      "@id": "https://www.creatorunits.com/#website"
+    },
+    "about": {
+      "@type": "Organization",
+      "@id": "https://www.creatorunits.com/#organization"
+    }
+  };
+
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqs.map((faq) => ({
+      "@type": "Question",
+      "name": faq.q,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": faq.a
+      }
+    }))
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(homePageSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
       <Header />
       <main className="main-content" id="main-content">
         {/* Hero Section */}

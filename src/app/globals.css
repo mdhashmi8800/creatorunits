@@ -700,3 +700,90 @@ nav a:focus-visible {
   }
 }
 
+/* ── Breadcrumb & Navigation Styles ────────────────────────────────────────── */
+.breadcrumb-container {
+  margin-bottom: 1.5rem;
+  font-size: 0.875rem;
+}
+
+.breadcrumb-list {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  align-items: center;
+}
+
+.breadcrumb-item-link {
+  color: var(--text-muted) !important;
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.breadcrumb-item-link:hover {
+  color: var(--text-primary) !important;
+}
+
+.directory-grid-link {
+  color: var(--text-secondary) !important;
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.directory-grid-link:hover {
+  color: var(--success) !important;
+}
+
+/* Premium Directory Section */
+.directory-section {
+  background-color: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-lg);
+  padding: 3rem 2rem;
+  box-shadow: var(--card-shadow);
+  margin-top: 4rem;
+}
+
+.directory-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2.5rem;
+  marginTop: 1.5rem;
+}
+
+.directory-col-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  border-bottom: 2px solid var(--accent);
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-primary);
+}
+
+.directory-col-title a {
+  color: var(--text-primary) !important;
+  text-decoration: none;
+}
+
+.directory-col-title a:hover {
+  color: var(--success) !important;
+}
+
+.directory-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.directory-list li {
+  line-height: 1.4;
+}
+
+

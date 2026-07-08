@@ -4,6 +4,7 @@ import React from "react";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { Metadata } from "next";
+import Breadcrumbs from "@/components/ui/Breadcrumbs";
 
 export const metadata: Metadata = {
   title: "About Us - Creators Units",
@@ -19,12 +20,62 @@ export const metadata: Metadata = {
 };
 
 export default function AboutPage() {
+  const aboutPageSchema = {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    "@id": "https://www.creatorunits.com/about#webpage",
+    "url": "https://www.creatorunits.com/about",
+    "name": "About Us - Creators Units",
+    "description": "Learn about the mission behind Creators Units. Free, browser-local tools for creators, freelancers, and small businesses.",
+    "isPartOf": {
+      "@type": "WebSite",
+      "@id": "https://www.creatorunits.com/#website"
+    },
+    "breadcrumb": {
+      "@type": "BreadcrumbList",
+      "@id": "https://www.creatorunits.com/about#breadcrumb"
+    }
+  };
+
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "@id": "https://www.creatorunits.com/about#breadcrumb",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://www.creatorunits.com/",
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "About",
+        "item": "https://www.creatorunits.com/about",
+      },
+    ],
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(aboutPageSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       <Header />
       <main className="main-content section" id="main-content">
         <div className="container" style={{ maxWidth: "800px" }}>
-          
+          <Breadcrumbs
+            items={[
+              { label: "Home", href: "/" },
+              { label: "About" }
+            ]}
+          />
           <h1 className="mb-6">About Creators Units</h1>
           
           <div className="flex flex-col gap-6" style={{ fontSize: "1.05rem", color: "var(--text-secondary)", lineHeight: "1.75" }}>

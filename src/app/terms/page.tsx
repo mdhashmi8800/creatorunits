@@ -4,6 +4,7 @@ import React from "react";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { Metadata } from "next";
+import Breadcrumbs from "@/components/ui/Breadcrumbs";
 
 export const metadata: Metadata = {
   title: "Terms of Service - Creators Units",
@@ -19,11 +20,62 @@ export const metadata: Metadata = {
 };
 
 export default function TermsPage() {
+  const termsPageSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": "https://www.creatorunits.com/terms#webpage",
+    "url": "https://www.creatorunits.com/terms",
+    "name": "Terms of Service - Creators Units",
+    "description": "Read our Terms of Service. Simple, straightforward rules for using our free creator utilities.",
+    "isPartOf": {
+      "@type": "WebSite",
+      "@id": "https://www.creatorunits.com/#website"
+    },
+    "breadcrumb": {
+      "@type": "BreadcrumbList",
+      "@id": "https://www.creatorunits.com/terms#breadcrumb"
+    }
+  };
+
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "@id": "https://www.creatorunits.com/terms#breadcrumb",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://www.creatorunits.com/",
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Terms of Service",
+        "item": "https://www.creatorunits.com/terms",
+      },
+    ],
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(termsPageSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       <Header />
       <main className="main-content section" id="main-content">
         <div className="container" style={{ maxWidth: "800px" }}>
+          <Breadcrumbs
+            items={[
+              { label: "Home", href: "/" },
+              { label: "Terms of Service" }
+            ]}
+          />
           <h1 className="mb-6">Terms of Service</h1>
 
           <div className="flex flex-col gap-5" style={{ fontSize: "0.95rem", color: "var(--text-secondary)", lineHeight: "1.75" }}>

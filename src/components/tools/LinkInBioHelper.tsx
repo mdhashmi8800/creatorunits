@@ -246,7 +246,7 @@ export default function LinkInBioHelper() {
     </div>
 
     <div class="footer">
-      Powered by <a href="https://creatorunits.com" target="_blank">Creators Units</a>
+      Powered by <a href="https://www.creatorunits.com" target="_blank">Creators Units</a>
     </div>
   </div>
 </body>

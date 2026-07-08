@@ -5,6 +5,7 @@ import Link from "next/link";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import ContactForm from "./ContactForm";
+import Breadcrumbs from "@/components/ui/Breadcrumbs";
 import EmailCard from "./EmailCard";
 import styles from "./contact.module.css";
 import { Metadata } from "next";
@@ -23,11 +24,64 @@ export const metadata: Metadata = {
 };
 
 export default function ContactPage() {
+  const contactPageSchema = {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    "@id": "https://www.creatorunits.com/contact#webpage",
+    "url": "https://www.creatorunits.com/contact",
+    "name": "Contact Us - Creators Units",
+    "description": "Have a question, suggestion, partnership opportunity, or found an issue? Feel free to reach out to Creators Units via email, Instagram, or Twitter/X.",
+    "isPartOf": {
+      "@type": "WebSite",
+      "@id": "https://www.creatorunits.com/#website"
+    },
+    "breadcrumb": {
+      "@type": "BreadcrumbList",
+      "@id": "https://www.creatorunits.com/contact#breadcrumb"
+    }
+  };
+
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "@id": "https://www.creatorunits.com/contact#breadcrumb",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://www.creatorunits.com/",
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Contact",
+        "item": "https://www.creatorunits.com/contact",
+      },
+    ],
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(contactPageSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       <Header />
       <main className="main-content" id="main-content">
         <div className={styles.contactContainer}>
+          <div style={{ marginBottom: "1.5rem" }}>
+            <Breadcrumbs
+              items={[
+                { label: "Home", href: "/" },
+                { label: "Contact" }
+              ]}
+            />
+          </div>
           <div className={styles.grid}>
             
             {/* Left Column: Hero & Cards */}

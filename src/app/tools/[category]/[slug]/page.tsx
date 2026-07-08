@@ -8,6 +8,8 @@ import Footer from "@/components/layout/Footer";
 import { tools, getToolBySlug } from "@/data/tools";
 import { Metadata } from "next";
 import ToolWidgetClient from "./ToolWidgetClient";
+import Breadcrumbs from "@/components/ui/Breadcrumbs";
+import ToolsDirectoryMatrix from "@/components/tools/ToolsDirectoryMatrix";
 
 interface PageProps {
   params: Promise<{
@@ -71,15 +73,42 @@ export default async function ToolDetailPage({ params }: PageProps) {
     .filter((t) => t.category === tool.category && t.id !== tool.id)
     .slice(0, 4);
 
-  const webAppSchema = {
+  const popularTools = tools
+    .filter((t) => ["image-compressor", "youtube-thumbnail-preview", "password-generator", "qr-code-generator", "username-generator", "utm-builder"].includes(t.slug) && t.id !== tool.id)
+    .slice(0, 4);
+
+  const webPageSchema = {
     "@context": "https://schema.org",
-    "@type": "WebApplication",
+    "@type": "WebPage",
+    "@id": `https://www.creatorunits.com/tools/${tool.category}/${tool.slug}#webpage`,
+    "url": `https://www.creatorunits.com/tools/${tool.category}/${tool.slug}`,
+    "name": `${tool.seoTitle} | Creators Units`,
+    "description": tool.metaDesc,
+    "isPartOf": {
+      "@type": "WebSite",
+      "@id": "https://www.creatorunits.com/#website"
+    },
+    "breadcrumb": {
+      "@type": "BreadcrumbList",
+      "@id": `https://www.creatorunits.com/tools/${tool.category}/${tool.slug}#breadcrumb`
+    }
+  };
+
+  const softwareAppSchema = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "@id": `https://www.creatorunits.com/tools/${tool.category}/${tool.slug}#softwareapplication`,
     "name": tool.title,
-    "url": `https://creatorunits.com/tools/${tool.category}/${tool.slug}`,
-    "applicationCategory": "UtilityApplication",
+    "url": `https://www.creatorunits.com/tools/${tool.category}/${tool.slug}`,
+    "applicationCategory": tool.category === "image" ? "MultimediaApplication" : tool.category === "creator" ? "BusinessApplication" : tool.category === "social" ? "SocialNetworkingApplication" : "UtilitiesApplication",
     "operatingSystem": "All",
     "browserRequirements": "Requires HTML5, Javascript, Canvas",
     "description": tool.shortDesc,
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD",
+    },
   };
 
   const faqSchema = tool.faqs.length > 0 ? {
@@ -98,24 +127,31 @@ export default async function ToolDetailPage({ params }: PageProps) {
   const breadcrumbSchema = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
+    "@id": `https://www.creatorunits.com/tools/${tool.category}/${tool.slug}#breadcrumb`,
     "itemListElement": [
       {
         "@type": "ListItem",
         "position": 1,
         "name": "Home",
-        "item": "https://creatorunits.com/",
+        "item": "https://www.creatorunits.com/",
       },
       {
         "@type": "ListItem",
         "position": 2,
-        "name": tool.categoryName,
-        "item": `https://creatorunits.com/category/${tool.category}`,
+        "name": "Tools",
+        "item": "https://www.creatorunits.com/tools",
       },
       {
         "@type": "ListItem",
         "position": 3,
+        "name": tool.categoryName,
+        "item": `https://www.creatorunits.com/category/${tool.category}`,
+      },
+      {
+        "@type": "ListItem",
+        "position": 4,
         "name": tool.title,
-        "item": `https://creatorunits.com/tools/${tool.category}/${tool.slug}`,
+        "item": `https://www.creatorunits.com/tools/${tool.category}/${tool.slug}`,
       },
     ],
   };
@@ -124,7 +160,11 @@ export default async function ToolDetailPage({ params }: PageProps) {
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(webAppSchema) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareAppSchema) }}
       />
       {faqSchema && (
         <script
@@ -140,21 +180,14 @@ export default async function ToolDetailPage({ params }: PageProps) {
       <Header />
       <main className="main-content section" id="main-content">
         <div className="container">
-          <nav aria-label="Breadcrumb" style={{ marginBottom: "1rem", fontSize: "0.85rem" }}>
-            <ol style={{ display: "flex", flexWrap: "wrap", listStyle: "none", padding: 0, margin: 0, alignItems: "center" }}>
-              <li>
-                <Link href="/" style={{ color: "var(--text-muted)", textDecoration: "none" }}>Home</Link>
-              </li>
-              <li aria-hidden="true" style={{ margin: "0 0.5rem", color: "var(--text-muted)" }}>/</li>
-              <li>
-                <Link href={`/category/${tool.category}`} style={{ color: "var(--text-muted)", textDecoration: "none" }}>
-                  {tool.categoryName}
-                </Link>
-              </li>
-              <li aria-hidden="true" style={{ margin: "0 0.5rem", color: "var(--text-muted)" }}>/</li>
-              <li aria-current="page" style={{ color: "var(--text-primary)", fontWeight: "600" }}>{tool.title}</li>
-            </ol>
-          </nav>
+          <Breadcrumbs
+            items={[
+              { label: "Home", href: "/" },
+              { label: "Tools", href: "/tools" },
+              { label: tool.categoryName, href: `/category/${tool.category}` },
+              { label: tool.title }
+            ]}
+          />
 
           <div style={{ marginBottom: "2rem" }}>
             <h1 style={{ fontSize: "2.25rem", marginBottom: "0.5rem" }}>{tool.title}</h1>
@@ -234,8 +267,8 @@ export default async function ToolDetailPage({ params }: PageProps) {
           )}
 
           {relatedTools.length > 0 && (
-            <section style={{ borderTop: "1px solid var(--border-color)", paddingTop: "3rem" }} aria-labelledby="related-heading">
-              <h2 id="related-heading" className="mb-6">Related {tool.categoryName}</h2>
+            <section style={{ borderTop: "1px solid var(--border-color)", paddingTop: "3rem", marginBottom: "3rem" }} aria-labelledby="related-heading">
+              <h2 id="related-heading" className="mb-6" style={{ fontSize: "1.5rem" }}>Related {tool.categoryName}</h2>
               <div className="grid-cols-4">
                 {relatedTools.map((rel) => (
                   <Link
@@ -245,7 +278,7 @@ export default async function ToolDetailPage({ params }: PageProps) {
                     style={{ textDecoration: "none", color: "inherit", padding: "1.25rem" }}
                     aria-label={`Open ${rel.title} - ${rel.shortDesc}`}
                   >
-                    <h3 style={{ fontSize: "1rem", margin: 0 }}>{rel.title}</h3>
+                    <h3 style={{ fontSize: "1rem", margin: 0, color: "var(--text-primary)" }}>{rel.title}</h3>
                     <p className="text-muted" style={{ fontSize: "0.8rem", margin: 0, flexGrow: 1, overflow: "hidden", textOverflow: "ellipsis", display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical" }}>
                       {rel.shortDesc}
                     </p>
@@ -254,6 +287,33 @@ export default async function ToolDetailPage({ params }: PageProps) {
               </div>
             </section>
           )}
+
+          {popularTools.length > 0 && (
+            <section style={{ borderTop: "1px solid var(--border-color)", paddingTop: "3rem", marginBottom: "3rem" }} aria-labelledby="popular-heading">
+              <h2 id="popular-heading" className="mb-6" style={{ fontSize: "1.5rem" }}>Popular Tools</h2>
+              <div className="grid-cols-4">
+                {popularTools.map((pop) => (
+                  <Link
+                    key={pop.id}
+                    href={`/tools/${pop.category}/${pop.slug}`}
+                    className="card card-hover flex flex-col gap-2"
+                    style={{ textDecoration: "none", color: "inherit", padding: "1.25rem" }}
+                    aria-label={`Open ${pop.title} - ${pop.shortDesc}`}
+                  >
+                    <span className="badge badge-accent" style={{ fontSize: "0.6rem", alignSelf: "flex-start", marginBottom: "0.25rem" }}>
+                      {pop.categoryName}
+                    </span>
+                    <h3 style={{ fontSize: "1rem", margin: 0, color: "var(--text-primary)" }}>{pop.title}</h3>
+                    <p className="text-muted" style={{ fontSize: "0.8rem", margin: 0, flexGrow: 1, overflow: "hidden", textOverflow: "ellipsis", display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical" }}>
+                      {pop.shortDesc}
+                    </p>
+                  </Link>
+                ))}
+              </div>
+            </section>
+          )}
+
+          <ToolsDirectoryMatrix currentSlug={tool.slug} />
 
         </div>
       </main>

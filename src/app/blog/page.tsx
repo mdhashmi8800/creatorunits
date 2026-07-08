@@ -5,6 +5,7 @@ import Link from "next/link";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { articlesIndex as articles } from "@/data/articles-index";
+import Breadcrumbs from "@/components/ui/Breadcrumbs";
 
 export const metadata: Metadata = {
   title: "Creator Tools Blog — Guides for Images, YouTube & Social Media | Creator Units",
@@ -17,7 +18,7 @@ export const metadata: Metadata = {
     title: "Creator Tools Blog | Creator Units",
     description:
       "In-depth guides on image optimization, YouTube SEO, social media growth, and creator productivity.",
-    url: "https://creatorunits.com/blog",
+    url: "https://www.creatorunits.com/blog",
     images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Creator Units Blog" }],
   },
 };
@@ -36,27 +37,45 @@ const blogSchema = {
   name: "Creator Units Blog",
   description:
     "Practical guides on image optimization, YouTube SEO, social media tools, and creator workflows.",
-  url: "https://creatorunits.com/blog",
+  url: "https://www.creatorunits.com/blog",
   publisher: {
     "@type": "Organization",
     name: "Creator Units",
-    url: "https://creatorunits.com",
+    url: "https://www.creatorunits.com",
   },
   blogPost: articles.slice(0, 10).map((a) => ({
     "@type": "BlogPosting",
     headline: a.title,
     description: a.metaDesc,
-    url: `https://creatorunits.com/blog/${a.slug}`,
+    url: `https://www.creatorunits.com/blog/${a.slug}`,
     datePublished: a.publishDate,
   })),
+};
+
+const blogPageSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": "https://www.creatorunits.com/blog#webpage",
+  "url": "https://www.creatorunits.com/blog",
+  "name": "Creator Tools Blog — Guides for Images, YouTube & Social Media | Creator Units",
+  "description": "In-depth guides on image optimization, YouTube SEO, social media growth, and creator productivity. All free, practical, and written for content creators.",
+  "isPartOf": {
+    "@type": "WebSite",
+    "@id": "https://www.creatorunits.com/#website"
+  },
+  "breadcrumb": {
+    "@type": "BreadcrumbList",
+    "@id": "https://www.creatorunits.com/blog#breadcrumb"
+  }
 };
 
 const breadcrumbSchema = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
-  itemListElement: [
-    { "@type": "ListItem", position: 1, name: "Home", item: "https://creatorunits.com/" },
-    { "@type": "ListItem", position: 2, name: "Blog", item: "https://creatorunits.com/blog" },
+  "@id": "https://www.creatorunits.com/blog#breadcrumb",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.creatorunits.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.creatorunits.com/blog" },
   ],
 };
 
@@ -85,11 +104,23 @@ export default function BlogIndexPage() {
       />
       <script
         type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(blogPageSchema) }}
+      />
+      <script
+        type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
 
       <Header />
       <main className="main-content" id="main-content">
+        <div className="container" style={{ paddingTop: "1.5rem" }}>
+          <Breadcrumbs
+            items={[
+              { label: "Home", href: "/" },
+              { label: "Blog" }
+            ]}
+          />
+        </div>
         {/* Hero */}
         <section
           className="section"
