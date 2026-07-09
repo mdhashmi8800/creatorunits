@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import ClientProviders from "@/components/ClientProviders";
 import Script from "next/script";
+import { Analytics } from "@vercel/analytics/next";
 
 // ── Font — self-hosted via next/font, zero external network request on load ──
 // Inter is loaded and inlined as CSS @font-face; no render-blocking request.
@@ -166,6 +167,7 @@ export default function RootLayout({
           </a>
           {children}
         </ClientProviders>
+        <Analytics />
       </body>
     </html>
   );
