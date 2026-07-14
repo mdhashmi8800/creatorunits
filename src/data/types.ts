@@ -6,7 +6,7 @@ export interface FAQItem {
 export interface ToolItem {
   id: string;
   slug: string;
-  category: "image" | "creator" | "social" | "utility";
+  category: "image" | "creator" | "social" | "utility" | "video" | "pdf" | "seo" | "developer" | "business" | "ai-creator";
   categoryName: string;
   title: string;
   shortDesc: string;

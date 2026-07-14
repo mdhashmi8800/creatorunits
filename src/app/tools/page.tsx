@@ -61,7 +61,7 @@ const ITEM_LIST_SCHEMA_JSON = JSON.stringify({
   "@type": "ItemList",
   name: "All Free Creator & Utility Tools",
   description:
-    "A complete directory of 33+ free browser-based tools for content creators.",
+    "A complete directory of 100+ free browser-based tools for content creators.",
   url: "https://www.creatorunits.com/tools",
   numberOfItems: tools.length,
   itemListElement: tools.map((tool, idx) => ({

@@ -46,7 +46,7 @@ const featuredTools = tools.filter((t) =>
 const faqs = [
   {
     q: "Are the tools on Creators Units really free?",
-    a: "Yes, every tool on Creators Units is completely free with no hidden costs. You get unlimited access to all 30+ tools including image compression, QR code generation, thumbnail previews, and text formatting — no account creation, no trial periods, and no premium tiers required.",
+    a: "Yes, every tool on Creators Units is completely free with no hidden costs. You get unlimited access to all 100+ tools including image compression, QR code generation, thumbnail previews, and text formatting — no account creation, no trial periods, and no premium tiers required.",
   },
   {
     q: "Do my files get uploaded to your servers?",
@@ -150,6 +150,12 @@ export default function Home() {
                     {cat.slug === "creator" && "📹"}
                     {cat.slug === "social" && "📱"}
                     {cat.slug === "utility" && "⚙️"}
+                    {cat.slug === "video" && "🎥"}
+                    {cat.slug === "pdf" && "📄"}
+                    {cat.slug === "seo" && "📈"}
+                    {cat.slug === "developer" && "💻"}
+                    {cat.slug === "business" && "📊"}
+                    {cat.slug === "ai-creator" && "🤖"}
                   </div>
                   <h3 style={{ fontSize: "1.2rem", margin: 0 }}>{cat.name}</h3>
                   <p className="text-muted" style={{ fontSize: "0.875rem", margin: 0, flexGrow: 1 }}>
@@ -282,7 +288,7 @@ export default function Home() {
               </ul>
 
               <p>
-                Whether you are tracking analytics using our <Link href="/tools/utility/utm-builder" style={{ color: "var(--accent)", textDecoration: "underline" }}>UTM Campaign Builder</Link> (see our beginner&apos;s <Link href="/blog/utm-tracking-link-guide" style={{ color: "var(--accent)", textDecoration: "underline" }}>UTM Tracking Link Guide</Link> for Google Analytics), optimizing a blog portfolio, refining video descriptions, or managing brand links, Creator Units provides the technical foundation you need. Bookmark this homepage for instant access to over 30+ browser utilities.
+                Whether you are tracking analytics using our <Link href="/tools/utility/utm-builder" style={{ color: "var(--accent)", textDecoration: "underline" }}>UTM Campaign Builder</Link> (see our beginner&apos;s <Link href="/blog/utm-tracking-link-guide" style={{ color: "var(--accent)", textDecoration: "underline" }}>UTM Tracking Link Guide</Link> for Google Analytics), optimizing a blog portfolio, refining video descriptions, or managing brand links, Creator Units provides the technical foundation you need. Bookmark this homepage for instant access to over 100 browser utilities.
               </p>
             </div>
           </div>

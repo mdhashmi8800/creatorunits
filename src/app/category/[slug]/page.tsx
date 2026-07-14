@@ -12,10 +12,16 @@ import ToolsDirectoryMatrix from "@/components/tools/ToolsDirectoryMatrix";
 
 // Map each category to 2-3 spotlight slugs from OTHER categories for internal linking
 const crossCategoryMap: Record<string, string[]> = {
-  image: ["qr-code-generator", "password-generator", "youtube-thumbnail-preview", "fancy-text-generator"],
-  creator: ["image-compressor", "image-resizer", "utm-builder", "social-media-link-in-bio-helper"],
-  social: ["image-compressor", "screenshot-cleaner", "qr-code-generator", "youtube-thumbnail-preview"],
-  utility: ["image-compressor", "fancy-text-generator", "youtube-thumbnail-preview", "bio-template-generator"],
+  image: ["image-compressor", "image-resizer", "image-cropper", "webp-converter"],
+  creator: ["youtube-thumbnail-preview", "thumbnail-downloader", "youtube-tag-extractor", "video-metadata-helper"],
+  social: ["fancy-text-generator", "username-generator", "bio-template-generator", "social-media-link-in-bio-helper"],
+  utility: ["qr-code-generator", "password-generator", "url-encoder-decoder", "text-case-converter"],
+  video: ["video-compressor", "video-thumbnail-extractor", "video-to-mp3", "aspect-ratio-calculator"],
+  pdf: ["merge-pdf", "split-pdf", "compress-pdf", "image-to-pdf"],
+  seo: ["meta-tag-generator", "robots-txt-generator", "xml-sitemap-generator", "schema-generator"],
+  developer: ["json-formatter", "json-validator", "base64-encoder-decoder", "jwt-decoder"],
+  business: ["youtube-earnings-calculator", "instagram-earnings-calculator", "cpm-calculator", "roi-calculator"],
+  "ai-creator": ["ai-hook-generator", "ai-script-generator", "ai-video-idea-generator", "ai-content-rewriter"],
 };
 
 interface PageProps {
@@ -23,12 +29,7 @@ interface PageProps {
 }
 
 export function generateStaticParams() {
-  return [
-    { slug: "image" },
-    { slug: "creator" },
-    { slug: "social" },
-    { slug: "utility" }
-  ];
+  return Object.keys(categories).map((slug) => ({ slug }));
 }
 
 // Reverted dynamicParams to fix 404

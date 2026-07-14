@@ -36,7 +36,7 @@ export default function HomeSearch() {
           type="text"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          placeholder="Search 30+ tools (e.g. compressor, password, tags...)"
+          placeholder="Search 100+ tools (e.g. compressor, password, tags...)"
           className={styles.searchInput}
           aria-label="Search tools by name or description"
           role="searchbox"
