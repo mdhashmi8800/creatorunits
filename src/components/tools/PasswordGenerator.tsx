@@ -2,9 +2,11 @@
 
 import React, { useState, useEffect } from "react";
 import { useToast } from "@/context/ToastContext";
+import { useHistory } from "@/context/HistoryContext";
 
 export default function PasswordGenerator() {
   const { showToast } = useToast();
+  const { addHistoryEntry } = useHistory();
   
   const [length, setLength] = useState<number>(16);
   const [useUpper, setUseUpper] = useState<boolean>(true);
@@ -76,6 +78,7 @@ export default function PasswordGenerator() {
     if (!password) return;
     navigator.clipboard.writeText(password);
     showToast("Password copied to clipboard!", "success");
+    addHistoryEntry("password-generator", "Password Generator", password, `Strong Password (${length} chars)`);
   };
 
   const strength = getStrength();

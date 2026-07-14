@@ -2,9 +2,11 @@
 
 import React, { useState } from "react";
 import { useToast } from "@/context/ToastContext";
+import { useHistory } from "@/context/HistoryContext";
 
 export default function UsernameGenerator() {
   const { showToast } = useToast();
+  const { addHistoryEntry } = useHistory();
   const [keyword, setKeyword] = useState<string>("alex");
   const [niche, setNiche] = useState<string>("gaming");
   const [useSeparator, setUseSeparator] = useState<boolean>(true);
@@ -50,14 +52,15 @@ export default function UsernameGenerator() {
     const prefixes = getPrefixList();
     const suffixes = getSuffixList();
 
-    // 1. Prefix + Seed
+    const numTail = () => (addNumbers ? `${sep}${Math.floor(10 + Math.random() * 90)}` : "");
+
+    // Generates combinations
     prefixes.forEach((pref) => {
       results.push(`${pref}${sep}${seed}`);
     });
 
-    // 2. Seed + Suffix
-    suffixes.forEach((suff) => {
-      results.push(`${seed}${sep}${suff}`);
+    suffixes.forEach((suf) => {
+      results.push(`${seed}${sep}${suf}`);
     });
 
     // 3. Prefix + Seed + Suffix (a few combinations)
@@ -89,6 +92,7 @@ export default function UsernameGenerator() {
   const copyName = (name: string) => {
     navigator.clipboard.writeText(name);
     showToast(`Copied: "${name}"`, "success");
+    addHistoryEntry("username-generator", "Username Generator", name, `Username (${niche})`);
   };
 
   return (

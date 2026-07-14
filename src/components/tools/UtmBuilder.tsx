@@ -2,9 +2,11 @@
 
 import React, { useState } from "react";
 import { useToast } from "@/context/ToastContext";
+import { useHistory } from "@/context/HistoryContext";
 
 export default function UtmBuilder() {
   const { showToast } = useToast();
+  const { addHistoryEntry } = useHistory();
   
   const [url, setUrl] = useState<string>("https://mywebsite.com");
   const [source, setSource] = useState<string>("newsletter");
@@ -45,6 +47,7 @@ export default function UtmBuilder() {
     if (!generatedLink) return;
     navigator.clipboard.writeText(generatedLink);
     showToast("UTM link copied!", "success");
+    addHistoryEntry("utm-builder", "UTM Campaign Builder", generatedLink, `UTM: ${campaign || source}`);
   };
 
   return (

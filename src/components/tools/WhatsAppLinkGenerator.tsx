@@ -2,26 +2,27 @@
 
 import React, { useState } from "react";
 import { useToast } from "@/context/ToastContext";
+import { useHistory } from "@/context/HistoryContext";
+import { buildWhatsAppLink } from "@/lib/whatsapp";
 
 export default function WhatsAppLinkGenerator() {
   const { showToast } = useToast();
+  const { addHistoryEntry } = useHistory();
   const [phone, setPhone] = useState<string>("");
   const [message, setMessage] = useState<string>("Hello! I would like to inquire about your services.");
   const [generatedUrl, setGeneratedUrl] = useState<string>("");
 
   const handleGenerate = () => {
-    // Strip everything except digits
-    const cleanedPhone = phone.replace(/\D/g, "");
+    const url = buildWhatsAppLink(phone, message);
     
-    if (!cleanedPhone) {
+    if (!url) {
       showToast("Please enter a phone number including country code.", "warning");
       return;
     }
 
-    const encodedMessage = encodeURIComponent(message);
-    const url = `https://wa.me/${cleanedPhone}?text=${encodedMessage}`;
     setGeneratedUrl(url);
     showToast("WhatsApp link generated!", "success");
+    addHistoryEntry("whatsapp-link-generator", "WhatsApp Link Generator", url, `WhatsApp Link: ${phone}`);
   };
 
   const handleCopy = () => {

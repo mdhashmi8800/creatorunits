@@ -6,6 +6,7 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { toolsIndex as tools, categories } from "@/data/tools";
 import ToolsFilterClient from "./ToolsFilterClient";
+import Breadcrumbs from "@/components/ui/Breadcrumbs";
 
 export const metadata: Metadata = {
   title: "All Free Creator & Utility Tools | Creator Units",
@@ -127,6 +128,7 @@ export default function ToolsDirectoryPage() {
       <Header />
       <main className="main-content section" id="main-content">
         <div className="container">
+          <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Tools" }]} />
           <div className="text-center mb-8">
             <h1 style={{ fontSize: "2.25rem", marginBottom: "0.5rem" }}>
               All Creator Utilities

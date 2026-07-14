@@ -2,56 +2,62 @@
 
 import React, { useState } from "react";
 import { useToast } from "@/context/ToastContext";
+import { useHistory } from "@/context/HistoryContext";
+import { buildWhatsAppLink } from "@/lib/whatsapp";
+import QRCode from "qrcode";
 
 export default function WhatsAppQRGenerator() {
   const { showToast } = useToast();
+  const { addHistoryEntry } = useHistory();
   const [phone, setPhone] = useState<string>("");
   const [message, setMessage] = useState<string>("Hello, I'd like to ask about your products.");
   const [qrSrc, setQrSrc] = useState<string>("");
   const [isDownloading, setIsDownloading] = useState<boolean>(false);
 
   const handleGenerate = () => {
-    const cleanedPhone = phone.replace(/\D/g, "");
+    const waUrl = buildWhatsAppLink(phone, message);
     
-    if (!cleanedPhone) {
+    if (!waUrl) {
       showToast("Please enter a phone number including country code.", "warning");
       return;
     }
 
-    const encodedMessage = encodeURIComponent(message);
-    const waUrl = `https://wa.me/${cleanedPhone}?text=${encodedMessage}`;
-    
-    // QR Server API endpoints
-    const size = 300;
-    const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=${size}x${size}&data=${encodeURIComponent(waUrl)}`;
-    
-    setQrSrc(qrUrl);
-    showToast("WhatsApp QR Code generated!", "success");
+    setIsDownloading(true);
+    QRCode.toDataURL(
+      waUrl,
+      {
+        width: 300,
+        margin: 2,
+        color: {
+          dark: "#000000",
+          light: "#ffffff",
+        },
+      },
+      (err, generatedUrl) => {
+        setIsDownloading(false);
+        if (err) {
+          showToast("Failed to generate WhatsApp QR Code offline.", "error");
+          return;
+        }
+        setQrSrc(generatedUrl);
+        showToast("WhatsApp QR Code generated!", "success");
+        addHistoryEntry("whatsapp-qr-generator", "WhatsApp QR Generator", waUrl, `WhatsApp QR: ${phone}`);
+      }
+    );
   };
 
-  const downloadQR = async () => {
+  const downloadQR = () => {
     if (!qrSrc) return;
-    setIsDownloading(true);
-
     try {
-      // Fetch the image from the API (which supports CORS)
-      const response = await fetch(qrSrc);
-      const blob = await response.blob();
-      const objectUrl = URL.createObjectURL(blob);
-
       const link = document.createElement("a");
-      link.href = objectUrl;
+      link.href = qrSrc;
       link.download = `whatsapp-qr-code.png`;
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
-
-      URL.revokeObjectURL(objectUrl);
       showToast("QR Code downloaded successfully!", "success");
     } catch (err) {
       showToast("Failed to download QR code. Try right-clicking the image instead.", "error");
-    } finally {
-      setIsDownloading(false);
     }
   };
 

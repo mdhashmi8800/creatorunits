@@ -2,9 +2,12 @@
 
 import React, { useState } from "react";
 import { useToast } from "@/context/ToastContext";
+import { useHistory } from "@/context/HistoryContext";
+import QRCode from "qrcode";
 
 export default function QrCodeGenerator() {
   const { showToast } = useToast();
+  const { addHistoryEntry } = useHistory();
   
   const [qrType, setQrType] = useState<string>("url");
   const [url, setUrl] = useState<string>("https://www.creatorunits.com");
@@ -44,34 +47,47 @@ export default function QrCodeGenerator() {
       return;
     }
 
-    const size = 300;
-    const src = `https://api.qrserver.com/v1/create-qr-code/?size=${size}x${size}&data=${encodeURIComponent(data)}`;
-    setQrSrc(src);
-    showToast("QR Code generated successfully!", "success");
+    setIsDownloading(true);
+    QRCode.toDataURL(
+      data,
+      {
+        width: 300,
+        margin: 2,
+        color: {
+          dark: "#000000",
+          light: "#ffffff",
+        },
+      },
+      (err, generatedUrl) => {
+        setIsDownloading(false);
+        if (err) {
+          showToast("Failed to generate QR Code offline.", "error");
+          return;
+        }
+        setQrSrc(generatedUrl);
+        showToast("QR Code generated successfully!", "success");
+
+        // Log history entry
+        let label = "QR Link";
+        if (qrType === "text") label = "QR Text";
+        if (qrType === "wifi") label = `QR Wi-Fi (${ssid})`;
+        addHistoryEntry("qr-code-generator", "QR Code Generator", data, label);
+      }
+    );
   };
 
-  const downloadQR = async () => {
+  const downloadQR = () => {
     if (!qrSrc) return;
-    setIsDownloading(true);
-
     try {
-      const response = await fetch(qrSrc);
-      const blob = await response.blob();
-      const objectUrl = URL.createObjectURL(blob);
-
       const link = document.createElement("a");
-      link.href = objectUrl;
+      link.href = qrSrc;
       link.download = `qr-code-${qrType}.png`;
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
-
-      URL.revokeObjectURL(objectUrl);
       showToast("QR Code downloaded!", "success");
     } catch (err) {
       showToast("Download failed. Try right-clicking the image.", "error");
-    } finally {
-      setIsDownloading(false);
     }
   };
 

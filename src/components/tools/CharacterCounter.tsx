@@ -2,6 +2,8 @@
 
 import React, { useState } from "react";
 import { useToast } from "@/context/ToastContext";
+import { useHistory } from "@/context/HistoryContext";
+import { calculateTextStats } from "@/lib/text";
 
 interface LimitStatus {
   name: string;
@@ -11,38 +13,10 @@ interface LimitStatus {
 
 export default function CharacterCounter() {
   const { showToast } = useToast();
+  const { addHistoryEntry } = useHistory();
   const [text, setText] = useState<string>("");
 
-  const getStats = () => {
-    const charsWithSpaces = text.length;
-    const charsNoSpaces = text.replace(/\s/g, "").length;
-    
-    // Split by spaces, filter empty values
-    const wordsList = text.trim().split(/\s+/).filter(Boolean);
-    const wordCount = wordsList.length;
-
-    // Sentences separated by . ! ?
-    const sentences = text.split(/[.!?]+/).filter(s => s.trim().length > 0).length;
-
-    // Paragraphs separated by double linebreaks
-    const paragraphs = text.split(/\n+/).filter(p => p.trim().length > 0).length;
-
-    // Speed calculators
-    const readingTime = Math.ceil(wordCount / 200); // 200 WPM
-    const speakingTime = Math.ceil(wordCount / 130); // 130 WPM
-
-    return {
-      charsWithSpaces,
-      charsNoSpaces,
-      wordCount,
-      sentences,
-      paragraphs,
-      readingTime,
-      speakingTime
-    };
-  };
-
-  const stats = getStats();
+  const stats = calculateTextStats(text);
 
   const limits: LimitStatus[] = [
     { name: "Twitter Tweet", limit: 280, current: stats.charsWithSpaces },
@@ -59,6 +33,12 @@ export default function CharacterCounter() {
     }
     navigator.clipboard.writeText(text);
     showToast("Text copied to clipboard!", "success");
+    addHistoryEntry(
+      "character-counter",
+      "Character Counter",
+      text,
+      `${stats.charsWithSpaces} chars, ${stats.wordCount} words`
+    );
   };
 
   return (

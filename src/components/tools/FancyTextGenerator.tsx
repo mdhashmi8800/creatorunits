@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { useToast } from "@/context/ToastContext";
+import { useHistory } from "@/context/HistoryContext";
 
 interface StyledText {
   styleName: string;
@@ -10,6 +11,7 @@ interface StyledText {
 
 export default function FancyTextGenerator() {
   const { showToast } = useToast();
+  const { addHistoryEntry } = useHistory();
   const [inputText, setInputText] = useState<string>("Make your bio stand out!");
 
   const convertChar = (char: string, offsetA: number, offseta: number, offsetNum?: number) => {
@@ -72,26 +74,27 @@ export default function FancyTextGenerator() {
       if (code >= 65 && code <= 90) return String.fromCodePoint(0x24B6 + (code - 65));
       if (code >= 97 && code <= 122) return String.fromCodePoint(0x24D0 + (code - 97));
       if (code >= 49 && code <= 57) return String.fromCodePoint(0x2460 + (code - 49)); // 1-9
-      if (code === 48) return "⓪";
+      if (code === 48) return String.fromCodePoint(0x24EA);
       return c;
     }).join("");
 
     // 9. Square boxed
     const squared = txt.split("").map((c) => {
-      const code = c.toUpperCase().charCodeAt(0);
-      if (code >= 65 && code <= 90) return String.fromCodePoint(0x1F150 + (code - 65));
+      const code = c.charCodeAt(0);
+      if (code >= 65 && code <= 90) return String.fromCodePoint(0x1F130 + (code - 65));
+      if (code >= 97 && code <= 122) return String.fromCodePoint(0x1F130 + (code - 97));
       return c;
     }).join("");
 
     return [
-      { styleName: "Mathematical Bold", text: boldSerif },
-      { styleName: "Mathematical Italic", text: italicSerif },
-      { styleName: "Bold Italic Serif", text: boldItalic },
-      { styleName: "Double-Struck (Blackboard)", text: doubleStruck },
+      { styleName: "Serif Bold", text: boldSerif },
+      { styleName: "Serif Italic", text: italicSerif },
+      { styleName: "Bold Italic", text: boldItalic },
+      { styleName: "Double-Struck", text: doubleStruck },
+      { styleName: "Script Bold", text: scriptBold },
       { styleName: "Gothic / Fraktur", text: gothic },
-      { styleName: "Script Bold Font", text: scriptBold },
       { styleName: "Sans-Serif Bold", text: sansBold },
-      { styleName: "Bubble / Circled", text: bubble },
+      { styleName: "Circled Letters", text: bubble },
       { styleName: "Square Block Letters", text: squared },
       { styleName: "Strikethrough text", text: getStrikethrough(txt) },
       { styleName: "Underlined text", text: getUnderline(txt) },
@@ -102,6 +105,7 @@ export default function FancyTextGenerator() {
   const handleCopy = (text: string, style: string) => {
     navigator.clipboard.writeText(text);
     showToast(`Copied ${style} output!`, "success");
+    addHistoryEntry("fancy-text-generator", "Fancy Text Generator", text, `Font: ${style}`);
   };
 
   return (

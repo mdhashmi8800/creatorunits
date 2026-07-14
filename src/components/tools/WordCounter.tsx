@@ -2,6 +2,8 @@
 
 import React, { useState } from "react";
 import { useToast } from "@/context/ToastContext";
+import { useHistory } from "@/context/HistoryContext";
+import { calculateTextStats } from "@/lib/text";
 
 interface DensityWord {
   word: string;
@@ -11,19 +13,12 @@ interface DensityWord {
 
 export default function WordCounter() {
   const { showToast } = useToast();
+  const { addHistoryEntry } = useHistory();
   const [text, setText] = useState<string>("Writing blog posts requires careful optimization. Fast pages rank better, and keyword density is key for search engines. Make sure your density percentages remain clean.");
 
   const getStats = () => {
-    const totalChars = text.length;
-    const charsNoSpace = text.replace(/\s/g, "").length;
-    
+    const coreStats = calculateTextStats(text);
     const wordsList = text.toLowerCase().match(/\b[a-z0-9']+\b/g) || [];
-    const totalWords = wordsList.length;
-
-    const sentences = text.split(/[.!?]+/).filter(s => s.trim().length > 0).length;
-    const paragraphs = text.split(/\n+/).filter(p => p.trim().length > 0).length;
-
-    const readingSpeed = Math.ceil(totalWords / 200); // 200 WPM
     
     // Keyword density analytics
     // Stop words to filter out
@@ -34,12 +29,10 @@ export default function WordCounter() {
     ]);
 
     const wordCounts: Record<string, number> = {};
-    let filteredCount = 0;
 
     wordsList.forEach((w) => {
       if (!stopWords.has(w) && w.length > 2) {
         wordCounts[w] = (wordCounts[w] || 0) + 1;
-        filteredCount++;
       }
     });
 
@@ -47,18 +40,18 @@ export default function WordCounter() {
       .map(([word, count]) => ({
         word,
         count,
-        percentage: totalWords > 0 ? parseFloat(((count / totalWords) * 100).toFixed(1)) : 0
+        percentage: coreStats.wordCount > 0 ? parseFloat(((count / coreStats.wordCount) * 100).toFixed(1)) : 0
       }))
       .sort((a, b) => b.count - a.count)
       .slice(0, 8); // Top 8 keywords
 
     return {
-      totalChars,
-      charsNoSpace,
-      totalWords,
-      sentences,
-      paragraphs,
-      readingSpeed,
+      totalChars: coreStats.charsWithSpaces,
+      charsNoSpace: coreStats.charsNoSpaces,
+      totalWords: coreStats.wordCount,
+      sentences: coreStats.sentences,
+      paragraphs: coreStats.paragraphs,
+      readingSpeed: coreStats.readingTime,
       density
     };
   };
@@ -69,6 +62,12 @@ export default function WordCounter() {
     if (!text.trim()) return;
     navigator.clipboard.writeText(text);
     showToast("Text copied!", "success");
+    addHistoryEntry(
+      "word-counter",
+      "Word Counter",
+      text,
+      `${stats.totalWords} words, ${stats.totalChars} chars`
+    );
   };
 
   return (
