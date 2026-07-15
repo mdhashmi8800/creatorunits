@@ -9,7 +9,7 @@ import HomeSearch from "./HomeSearch";
 import styles from "./page.module.css";
 import { articlesIndex } from "@/data/articles-index";
 
-const latestArticles = articlesIndex.slice(0, 3);
+const latestArticles = articlesIndex.slice(0, 6);
 
 export const metadata: Metadata = {
   title: "Free Web Tools for Creators & Social Media | Creator Units",
@@ -38,10 +38,77 @@ export const metadata: Metadata = {
   },
 };
 
-// Build-time constants — no client JS needed
-const featuredTools = tools.filter((t) =>
-  ["image-compressor", "youtube-thumbnail-preview", "social-media-link-in-bio-helper", "password-generator"].includes(t.slug)
-);
+// Build-time constants for lists — no client JS needed
+const popularToolSlugs = [
+  "image-compressor",
+  "youtube-thumbnail-preview",
+  "password-generator",
+  "qr-code-generator",
+  "social-media-link-in-bio-helper",
+  "whatsapp-link-generator"
+];
+
+const trendingSlugs = [
+  "youtube-earnings-calculator",
+  "video-to-mp3",
+  "image-to-pdf",
+  "character-counter",
+  "ai-hook-generator",
+  "url-encoder-decoder"
+];
+
+const latestSlugs = [
+  "ai-caption-generator",
+  "tiktok-earnings-calculator",
+  "base64-encoder-decoder",
+  "instagram-earnings-calculator",
+  "split-pdf",
+  "word-counter"
+];
+
+const featuredSlugs = [
+  "youtube-tag-extractor",
+  "merge-pdf",
+  "xml-sitemap-generator",
+  "fancy-text-generator",
+  "cpm-calculator",
+  "aspect-ratio-calculator"
+];
+
+const recentlyAddedSlugs = [
+  "jwt-decoder",
+  "meta-tag-generator",
+  "robots-txt-generator",
+  "video-compressor",
+  "ai-script-generator",
+  "json-formatter"
+];
+
+const popularTools = popularToolSlugs
+  .map(slug => tools.find(t => t.slug === slug))
+  .filter((t): t is typeof tools[number] => !!t);
+
+const trendingTools = trendingSlugs
+  .map(slug => tools.find(t => t.slug === slug))
+  .filter((t): t is typeof tools[number] => !!t);
+
+const latestTools = latestSlugs
+  .map(slug => tools.find(t => t.slug === slug))
+  .filter((t): t is typeof tools[number] => !!t);
+
+const featuredToolsList = featuredSlugs
+  .map(slug => tools.find(t => t.slug === slug))
+  .filter((t): t is typeof tools[number] => !!t);
+
+const recentlyAddedTools = recentlyAddedSlugs
+  .map(slug => tools.find(t => t.slug === slug))
+  .filter((t): t is typeof tools[number] => !!t);
+
+// Compute tool counts per category at build time
+const toolCounts = tools.reduce((acc, tool) => {
+  acc[tool.category] = (acc[tool.category] || 0) + 1;
+  return acc;
+}, {} as Record<string, number>);
 
 const faqs = [
   {
@@ -125,6 +192,86 @@ export default function Home() {
 
             {/* Search Widget — only client component on this page */}
             <HomeSearch />
+
+            {/* Trust Badges */}
+            <div className={styles.trustBadges}>
+              <span className={styles.trustBadge}>
+                <span className={styles.badgeIcon}>🛠️</span> 100+ Free Tools
+              </span>
+              <span className={styles.trustBadge}>
+                <span className={styles.badgeIcon}>⚡</span> Ultra Fast
+              </span>
+              <span className={styles.trustBadge}>
+                <span className={styles.badgeIcon}>🔒</span> Secure Sandbox
+              </span>
+              <span className={styles.trustBadge}>
+                <span className={styles.badgeIcon}>🛡️</span> Privacy First
+              </span>
+              <span className={styles.trustBadge}>
+                <span className={styles.badgeIcon}>🚫</span> No Login
+              </span>
+            </div>
+          </div>
+        </section>
+
+        {/* AdSense Placement 1 */}
+        <div className={styles.adPlaceholder} aria-hidden="true">
+          <div className={styles.adLabel}>Advertisement</div>
+          <div className={styles.adContent}>Ad Slot (Responsive Banner)</div>
+        </div>
+
+        {/* Popular Tools Grid */}
+        <section className="section" style={{ paddingTop: "1rem" }}>
+          <div className="container">
+            <h2 className="text-center mb-2">Popular Tools</h2>
+            <p className="text-center text-muted mb-6">
+              Quickly access the most popular tools used by creators every day.
+            </p>
+
+            {/* Quick Category Jump Links */}
+            <div className={styles.quickCategoryLinks}>
+              <span>Jump to category:</span>
+              {Object.values(categories).map((cat) => (
+                <Link key={cat.slug} href={`/category/${cat.slug}`} className={styles.quickCategoryLink}>
+                  {cat.name}
+                </Link>
+              ))}
+            </div>
+
+            <div className="grid-cols-3">
+              {popularTools.map((tool) => {
+                let catClass = styles.toolCardUtility;
+                if (tool.category === "image") catClass = styles.toolCardImage;
+                else if (tool.category === "creator") catClass = styles.toolCardCreator;
+                else if (tool.category === "social") catClass = styles.toolCardSocial;
+                else if (tool.category === "video") catClass = styles.toolCardVideo;
+                else if (tool.category === "pdf") catClass = styles.toolCardPdf;
+                else if (tool.category === "seo") catClass = styles.toolCardSeo;
+                else if (tool.category === "developer") catClass = styles.toolCardDeveloper;
+                else if (tool.category === "business") catClass = styles.toolCardBusiness;
+                else if (tool.category === "ai-creator") catClass = styles.toolCardAiCreator;
+
+                return (
+                  <Link
+                    key={tool.id}
+                    href={`/tools/${tool.category}/${tool.slug}`}
+                    className={`${styles.toolCard} ${catClass}`}
+                    aria-label={`Open ${tool.title} - ${tool.shortDesc}`}
+                  >
+                    <span className="badge badge-accent mb-2" style={{ fontSize: "0.65rem", alignSelf: "flex-start" }}>
+                      {tool.categoryName}
+                    </span>
+                    <h3 style={{ fontSize: "1.1rem", margin: "0.25rem 0 0.5rem 0", fontWeight: "600" }}>{tool.title}</h3>
+                    <p className="text-muted" style={{ fontSize: "0.85rem", margin: 0, flexGrow: 1, lineHeight: "1.4" }}>
+                      {tool.shortDesc}
+                    </p>
+                    <span className="text-primary-color" style={{ fontSize: "0.85rem", fontWeight: "600", marginTop: "1rem", display: "inline-flex", alignItems: "center", gap: "0.25rem" }}>
+                      Open Tool &rarr;
+                    </span>
+                  </Link>
+                );
+              })}
+            </div>
           </div>
         </section>
 
@@ -137,87 +284,167 @@ export default function Home() {
             </p>
 
             <div className="grid-cols-4">
-              {Object.values(categories).map((cat) => (
-                <Link
-                  key={cat.slug}
-                  href={`/category/${cat.slug}`}
-                  className="card card-hover flex flex-col gap-3"
-                  style={{ textDecoration: "none", color: "inherit", borderStyle: "solid" }}
-                  aria-label={`Browse ${cat.name} - ${cat.desc}`}
-                >
-                  <div className={styles.catIcon} aria-hidden="true">
-                    {cat.slug === "image" && "🖼️"}
-                    {cat.slug === "creator" && "📹"}
-                    {cat.slug === "social" && "📱"}
-                    {cat.slug === "utility" && "⚙️"}
-                    {cat.slug === "video" && "🎥"}
-                    {cat.slug === "pdf" && "📄"}
-                    {cat.slug === "seo" && "📈"}
-                    {cat.slug === "developer" && "💻"}
-                    {cat.slug === "business" && "📊"}
-                    {cat.slug === "ai-creator" && "🤖"}
-                  </div>
-                  <h3 style={{ fontSize: "1.2rem", margin: 0 }}>{cat.name}</h3>
-                  <p className="text-muted" style={{ fontSize: "0.875rem", margin: 0, flexGrow: 1 }}>
-                    {cat.desc}
-                  </p>
-                  <span className="text-primary-color" style={{ fontSize: "0.85rem", fontWeight: "600", marginTop: "0.5rem" }}>
-                    View Tools &rarr;
-                  </span>
-                </Link>
-              ))}
+              {Object.values(categories).map((cat) => {
+                const count = toolCounts[cat.slug] || 0;
+                return (
+                  <Link
+                    key={cat.slug}
+                    href={`/category/${cat.slug}`}
+                    className={styles.categoryCard}
+                    aria-label={`Browse ${cat.name} - ${count} tools - ${cat.desc}`}
+                  >
+                    <div className={styles.categoryHeader}>
+                      <div className={`${styles.categoryIconBg} ${styles[`categoryIconBg-${cat.slug}`]}`}>
+                        <span className={styles.categoryIcon} aria-hidden="true">
+                          {cat.slug === "image" && "🖼️"}
+                          {cat.slug === "creator" && "📹"}
+                          {cat.slug === "social" && "📱"}
+                          {cat.slug === "utility" && "⚙️"}
+                          {cat.slug === "video" && "🎥"}
+                          {cat.slug === "pdf" && "📄"}
+                          {cat.slug === "seo" && "📈"}
+                          {cat.slug === "developer" && "💻"}
+                          {cat.slug === "business" && "📊"}
+                          {cat.slug === "ai-creator" && "🤖"}
+                        </span>
+                      </div>
+                      <span className={styles.categoryCount}>{count} Tools</span>
+                    </div>
+                    <h3 style={{ fontSize: "1.1rem", margin: "0.5rem 0 0.25rem 0", fontWeight: "600" }}>{cat.name}</h3>
+                    <p className="text-muted" style={{ fontSize: "0.85rem", margin: 0, flexGrow: 1, lineHeight: "1.4" }}>
+                      {cat.desc}
+                    </p>
+                    <span className={styles.categoryLink}>
+                      Explore Category &rarr;
+                    </span>
+                  </Link>
+                );
+              })}
             </div>
           </div>
         </section>
 
-        {/* Featured Tools Grid */}
-        <section className="section">
+        {/* Split Utility Directory Dashboard */}
+        <section className="section" style={{ backgroundColor: "var(--bg-secondary)" }}>
           <div className="container">
-            <h2 className="text-center mb-2">Popular Tools</h2>
+            <h2 className="text-center mb-2">Explore Utilities by Activity</h2>
             <p className="text-center text-muted mb-8">
-              Quickly access the most popular tools used by creators every day.
+              Discover recently added, popular, and trending on-device web tools.
             </p>
 
-            <div className="grid-cols-2">
-              {featuredTools.map((tool) => (
-                <Link
-                  key={tool.id}
-                  href={`/tools/${tool.category}/${tool.slug}`}
-                  className="card card-hover flex justify-between items-center"
-                  style={{ textDecoration: "none", color: "inherit", borderStyle: "solid" }}
-                  aria-label={`Open ${tool.title} - ${tool.shortDesc}`}
-                >
-                  <div className="flex flex-col gap-1" style={{ maxWidth: "75%" }}>
-                    <span className="badge badge-accent" style={{ fontSize: "0.65rem", alignSelf: "flex-start" }}>
-                      {tool.categoryName}
-                    </span>
-                    <h3 style={{ fontSize: "1.15rem", margin: "0.25rem 0 0 0" }}>{tool.title}</h3>
-                    <p className="text-muted" style={{ fontSize: "0.85rem", margin: 0 }}>
-                      {tool.shortDesc}
-                    </p>
+            <div className={styles.directoryLayout}>
+              {/* Trending Column */}
+              <div className={styles.directoryColumn}>
+                <div className={styles.columnHeader}>
+                  <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                    <span className={styles.columnIcon}>🔥</span>
+                    <h3 className={styles.columnTitle}>Trending Tools</h3>
                   </div>
-                  <div
-                    aria-hidden="true"
-                    style={{
-                      width: "2.5rem",
-                      height: "2.5rem",
-                      borderRadius: "50%",
-                      backgroundColor: "var(--accent-light)",
-                      color: "var(--accent)",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      fontSize: "1.1rem",
-                      fontWeight: "bold",
-                    }}
-                  >
-                    &rarr;
+                  <Link href="/tools" className={styles.columnViewAll}>View all &rarr;</Link>
+                </div>
+                <div className={styles.denseList}>
+                  {trendingTools.map((tool) => (
+                    <Link
+                      key={tool.id}
+                      href={`/tools/${tool.category}/${tool.slug}`}
+                      className={styles.denseListItem}
+                    >
+                      <div style={{ display: "flex", flexDirection: "column", gap: "0.15rem", maxWidth: "85%" }}>
+                        <span className={styles.itemTitle}>{tool.title}</span>
+                        <span className={styles.itemDesc}>{tool.shortDesc}</span>
+                      </div>
+                      <span className={styles.itemArrow}>&rarr;</span>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+
+              {/* Featured Column */}
+              <div className={styles.directoryColumn}>
+                <div className={styles.columnHeader}>
+                  <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                    <span className={styles.columnIcon}>✨</span>
+                    <h3 className={styles.columnTitle}>Featured Tools</h3>
                   </div>
-                </Link>
-              ))}
+                  <Link href="/tools" className={styles.columnViewAll}>View all &rarr;</Link>
+                </div>
+                <div className={styles.denseList}>
+                  {featuredToolsList.map((tool) => (
+                    <Link
+                      key={tool.id}
+                      href={`/tools/${tool.category}/${tool.slug}`}
+                      className={styles.denseListItem}
+                    >
+                      <div style={{ display: "flex", flexDirection: "column", gap: "0.15rem", maxWidth: "85%" }}>
+                        <span className={styles.itemTitle}>{tool.title}</span>
+                        <span className={styles.itemDesc}>{tool.shortDesc}</span>
+                      </div>
+                      <span className={styles.itemArrow}>&rarr;</span>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+
+              {/* Latest Column */}
+              <div className={styles.directoryColumn}>
+                <div className={styles.columnHeader}>
+                  <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                    <span className={styles.columnIcon}>⚡</span>
+                    <h3 className={styles.columnTitle}>Latest Tools</h3>
+                  </div>
+                  <Link href="/tools" className={styles.columnViewAll}>View all &rarr;</Link>
+                </div>
+                <div className={styles.denseList}>
+                  {latestTools.map((tool) => (
+                    <Link
+                      key={tool.id}
+                      href={`/tools/${tool.category}/${tool.slug}`}
+                      className={styles.denseListItem}
+                    >
+                      <div style={{ display: "flex", flexDirection: "column", gap: "0.15rem", maxWidth: "85%" }}>
+                        <span className={styles.itemTitle}>{tool.title}</span>
+                        <span className={styles.itemDesc}>{tool.shortDesc}</span>
+                      </div>
+                      <span className={styles.itemArrow}>&rarr;</span>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+
+              {/* Recently Added Column */}
+              <div className={styles.directoryColumn}>
+                <div className={styles.columnHeader}>
+                  <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                    <span className={styles.columnIcon}>🆕</span>
+                    <h3 className={styles.columnTitle}>Recently Added</h3>
+                  </div>
+                  <Link href="/tools" className={styles.columnViewAll}>View all &rarr;</Link>
+                </div>
+                <div className={styles.denseList}>
+                  {recentlyAddedTools.map((tool) => (
+                    <Link
+                      key={tool.id}
+                      href={`/tools/${tool.category}/${tool.slug}`}
+                      className={styles.denseListItem}
+                    >
+                      <div style={{ display: "flex", flexDirection: "column", gap: "0.15rem", maxWidth: "85%" }}>
+                        <span className={styles.itemTitle}>{tool.title}</span>
+                        <span className={styles.itemDesc}>{tool.shortDesc}</span>
+                      </div>
+                      <span className={styles.itemArrow}>&rarr;</span>
+                    </Link>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
         </section>
+
+        {/* AdSense Placement 2 */}
+        <div className={styles.adPlaceholder} aria-hidden="true">
+          <div className={styles.adLabel}>Advertisement</div>
+          <div className={styles.adContent}>Ad Slot (Responsive In-Feed / Mid Banner)</div>
+        </div>
 
         {/* Why Creators Units Section */}
         <section className="section" style={{ backgroundColor: "var(--bg-primary)" }}>
@@ -301,21 +528,12 @@ export default function Home() {
 
             <div className="flex flex-col gap-4">
               {faqs.map((faq, idx) => (
-                <details key={idx} className="card" style={{ borderStyle: "solid" }}>
-                  <summary style={{
-                    fontSize: "1.05rem",
-                    fontWeight: "600",
-                    cursor: "pointer",
-                    padding: "0.5rem 0",
-                    listStyle: "none",
-                    display: "flex",
-                    justifyContent: "space-between",
-                    alignItems: "center",
-                  }}>
+                <details key={idx} className={styles.faqItem}>
+                  <summary className={styles.faqSummary}>
                     {faq.q}
-                    <span aria-hidden="true" style={{ fontSize: "1.25rem", color: "var(--accent)" }}>+</span>
+                    <span className={styles.faqIcon} aria-hidden="true">+</span>
                   </summary>
-                  <p className="text-muted" style={{ fontSize: "0.9rem", margin: "0.5rem 0 0 0", paddingTop: "0.5rem", borderTop: "1px solid var(--border-color)" }}>
+                  <p className={styles.faqAnswer}>
                     {faq.a}
                   </p>
                 </details>
@@ -324,36 +542,43 @@ export default function Home() {
           </div>
         </section>
 
-        {/* All Tools Directory — SSR links so Googlebot indexes every tool */}
+        {/* All Tools Directory Map */}
         <section className="section" style={{ backgroundColor: "var(--bg-primary)" }} aria-labelledby="all-tools-heading">
           <div className="container">
             <h2 id="all-tools-heading" className="text-center mb-2">All {tools.length} Free Tools</h2>
             <p className="text-center text-muted mb-8">
               Every tool is free, runs in your browser, and requires no sign-up.
             </p>
-            <div className="grid-cols-3" style={{ marginBottom: "2rem" }}>
-              {tools.map((tool) => (
-                <Link
-                  key={tool.id}
-                  href={`/tools/${tool.category}/${tool.slug}`}
-                  className="card card-hover flex flex-col gap-2"
-                  style={{ textDecoration: "none", color: "inherit", padding: "1.25rem" }}
-                  aria-label={`${tool.title} — ${tool.shortDesc}`}
-                >
-                  <span className="badge badge-accent" style={{ fontSize: "0.6rem", alignSelf: "flex-start" }}>{tool.categoryName}</span>
-                  <h3 style={{ fontSize: "1rem", margin: 0 }}>{tool.title}</h3>
-                  <p className="text-muted" style={{ fontSize: "0.8rem", margin: 0, lineHeight: "1.4", flexGrow: 1 }}>{tool.shortDesc}</p>
-                  <span className="text-primary-color" style={{ fontSize: "0.8rem", fontWeight: "600", marginTop: "0.25rem" }}>Open &rarr;</span>
-                </Link>
-              ))}
+
+            <div className={styles.allToolsDirectory}>
+              {Object.values(categories).map((cat) => {
+                const catTools = tools.filter((t) => t.category === cat.slug);
+                return (
+                  <div key={cat.slug} className={styles.directoryGroup}>
+                    <h3 className={styles.directoryGroupTitle}>
+                      <Link href={`/category/${cat.slug}`}>{cat.name}</Link>
+                    </h3>
+                    <ul className={styles.directoryGroupList}>
+                      {catTools.map((tool) => (
+                        <li key={tool.id}>
+                          <Link href={`/tools/${tool.category}/${tool.slug}`}>
+                            {tool.title}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                );
+              })}
             </div>
-            <div className="text-center">
-              <Link href="/tools" className="btn btn-primary">Browse All Tools &rarr;</Link>
+
+            <div className="text-center" style={{ marginTop: "3rem" }}>
+              <Link href="/tools" className="btn btn-primary">Explore All Tools Dashboard &rarr;</Link>
             </div>
           </div>
         </section>
 
-        {/* Blog Teaser — shown only when articles data exists */}
+        {/* Blog Section */}
         {latestArticles.length > 0 && (
           <section className="section" aria-labelledby="blog-teaser-heading">
             <div className="container">
