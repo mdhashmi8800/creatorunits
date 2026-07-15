@@ -51,7 +51,7 @@ export default function AiCreatorSuite() {
     setResult("");
     setResultsList([]);
 
-    // 1. If user provided their own API key, try a live OpenAI request
+    // 1. If user provided their own API key, try a live OpenAI request (client-side)
     if (customKey.trim()) {
       try {
         const response = await fetch("https://api.openai.com/v1/chat/completions", {
@@ -88,8 +88,42 @@ export default function AiCreatorSuite() {
         return;
       } catch (err: any) {
         console.error(err);
-        showToast("OpenAI API failed, falling back to local model templates.", "warning");
+        showToast("OpenAI API failed, falling back to centralized DeepSeek AI.", "warning");
       }
+    }
+
+    // 2. Try the centralized DeepSeek API via server-side API route
+    try {
+      const response = await fetch("/api/ai/generate", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          prompt,
+          slug,
+          tone,
+          niche,
+          platform,
+          length,
+        }),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        if (data.content) {
+          setResult(data.content);
+          showToast("Generation successful (via DeepSeek AI)!", "success");
+          setIsGenerating(false);
+          return;
+        }
+      }
+
+      const errData = await response.json().catch(() => ({}));
+      throw new Error(errData.error || `HTTP error ${response.status}`);
+    } catch (err: any) {
+      console.error("DeepSeek API integration failed:", err);
+      showToast(err.message || "DeepSeek API failed, falling back to local template.", "warning");
     }
 
     // 2. Fallback: High-quality local generator template engine
@@ -240,7 +274,7 @@ If you enjoyed the video, don't forget to LIKE, COMMENT, and SUBSCRIBE! 🚀
         {/* Header Key Configuration */}
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", borderBottom: "1px solid var(--border-color)", paddingBottom: "1rem" }}>
           <span style={{ fontSize: "0.85rem", color: "var(--text-muted)" }}>
-            Mode: {customKey ? "🟢 Live OpenAI API" : "🌐 Local Template Models"}
+            Mode: {customKey ? "🟢 Live OpenAI API" : "🤖 Centralized DeepSeek AI"}
           </span>
           <div>
             {customKey ? (

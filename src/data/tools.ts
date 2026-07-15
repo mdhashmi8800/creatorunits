@@ -100,8 +100,8 @@ export const categories: Record<string, CategoryInfo> = {
 
 export async function getToolBySlug(slug: string): Promise<ToolItem | undefined> {
   try {
-    const module = await import(`./tools/details/${slug}`);
-    return module.toolDetails;
+    const toolModule = await import(`./tools/details/${slug}`);
+    return toolModule.toolDetails;
   } catch (error) {
     console.error(`Error loading tool details for ${slug}:`, error);
     return undefined;
