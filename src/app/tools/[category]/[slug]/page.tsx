@@ -10,6 +10,7 @@ import { Metadata } from "next";
 import ToolWidgetClient from "./ToolWidgetClient";
 import Breadcrumbs from "@/components/ui/Breadcrumbs";
 import ToolsDirectoryMatrix from "@/components/tools/ToolsDirectoryMatrix";
+import { articlesIndex } from "@/data/articles-index";
 
 interface PageProps {
   params: Promise<{
@@ -75,6 +76,10 @@ export default async function ToolDetailPage({ params }: PageProps) {
 
   const popularTools = tools
     .filter((t) => ["image-compressor", "youtube-thumbnail-preview", "password-generator", "qr-code-generator", "username-generator", "utm-builder"].includes(t.slug) && t.id !== tool.id)
+    .slice(0, 4);
+
+  const relatedArticles = articlesIndex
+    .filter((art) => art.relatedToolSlugs && art.relatedToolSlugs.includes(tool.slug))
     .slice(0, 4);
 
   const webPageSchema = {
@@ -281,6 +286,31 @@ export default async function ToolDetailPage({ params }: PageProps) {
                     <h3 style={{ fontSize: "1rem", margin: 0, color: "var(--text-primary)" }}>{rel.title}</h3>
                     <p className="text-muted" style={{ fontSize: "0.8rem", margin: 0, flexGrow: 1, overflow: "hidden", textOverflow: "ellipsis", display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical" }}>
                       {rel.shortDesc}
+                    </p>
+                  </Link>
+                ))}
+              </div>
+            </section>
+          )}
+
+          {relatedArticles.length > 0 && (
+            <section style={{ borderTop: "1px solid var(--border-color)", paddingTop: "3rem", marginBottom: "3rem" }} aria-labelledby="related-articles-heading">
+              <h2 id="related-articles-heading" className="mb-6" style={{ fontSize: "1.5rem" }}>Related Guides &amp; Tutorials</h2>
+              <div className="grid-cols-4">
+                {relatedArticles.map((art) => (
+                  <Link
+                    key={art.slug}
+                    href={`/blog/${art.slug}`}
+                    className="card card-hover flex flex-col gap-2"
+                    style={{ textDecoration: "none", color: "inherit", padding: "1.25rem" }}
+                    aria-label={`Read guide: ${art.title}`}
+                  >
+                    <span className="badge badge-accent" style={{ fontSize: "0.6rem", alignSelf: "flex-start", marginBottom: "0.25rem" }}>
+                      {art.categoryLabel}
+                    </span>
+                    <h3 style={{ fontSize: "1rem", margin: 0, color: "var(--text-primary)" }}>{art.title}</h3>
+                    <p className="text-muted" style={{ fontSize: "0.8rem", margin: 0, flexGrow: 1, overflow: "hidden", textOverflow: "ellipsis", display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical" }}>
+                      {art.metaDesc}
                     </p>
                   </Link>
                 ))}
