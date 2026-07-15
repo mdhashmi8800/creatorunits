@@ -214,12 +214,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* AdSense Placement 1 */}
-        <div className={styles.adPlaceholder} aria-hidden="true">
-          <div className={styles.adLabel}>Advertisement</div>
-          <div className={styles.adContent}>Ad Slot (Responsive Banner)</div>
-        </div>
-
         {/* Popular Tools Grid */}
         <section className="section" style={{ paddingTop: "1rem" }}>
           <div className="container">
@@ -439,12 +433,6 @@ export default function Home() {
             </div>
           </div>
         </section>
-
-        {/* AdSense Placement 2 */}
-        <div className={styles.adPlaceholder} aria-hidden="true">
-          <div className={styles.adLabel}>Advertisement</div>
-          <div className={styles.adContent}>Ad Slot (Responsive In-Feed / Mid Banner)</div>
-        </div>
 
         {/* Why Creators Units Section */}
         <section className="section" style={{ backgroundColor: "var(--bg-primary)" }}>
