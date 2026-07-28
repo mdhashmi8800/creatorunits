@@ -7,9 +7,7 @@ import Footer from "@/components/layout/Footer";
 import { toolsIndex as tools, categories } from "@/data/tools";
 import HomeSearch from "./HomeSearch";
 import styles from "./page.module.css";
-import { articlesIndex } from "@/data/articles-index";
-
-const latestArticles = articlesIndex.slice(0, 6);
+import { getLatestPosts } from "@/lib/wordpress";
 
 export const metadata: Metadata = {
   title: "Free Web Tools for Creators & Social Media | Creator Units",
@@ -136,7 +134,13 @@ const faqs = [
  * All other sections are static HTML with zero client-side JavaScript.
  * This dramatically improves LCP, FCP, and reduces JS bundle size.
  */
-export default function Home() {
+export default async function Home() {
+  let latestArticles: Awaited<ReturnType<typeof getLatestPosts>> = [];
+  try {
+    latestArticles = await getLatestPosts(6);
+  } catch {
+    // WordPress API unavailable
+  }
   const homePageSchema = {
     "@context": "https://schema.org",
     "@type": "WebPage",
@@ -575,16 +579,16 @@ export default function Home() {
                 In-depth guides on image optimization, YouTube SEO, and creator workflows.
               </p>
               <div className="grid-cols-3" style={{ marginBottom: "2rem" }}>
-                {latestArticles.map((article) => (
+                {latestArticles.map((post) => (
                   <Link
-                    key={article.slug}
-                    href={`/blog/${article.slug}`}
+                    key={post.slug}
+                    href={`/blog/${post.slug}`}
                     className="card card-hover flex flex-col gap-2"
                     style={{ textDecoration: "none", color: "inherit", padding: "1.5rem" }}
                   >
-                    <span className="badge badge-accent" style={{ fontSize: "0.6rem", alignSelf: "flex-start", textTransform: "capitalize" }}>{article.category}</span>
-                    <h3 style={{ fontSize: "1.05rem", margin: 0, lineHeight: "1.4" }}>{article.title}</h3>
-                    <p className="text-muted" style={{ fontSize: "0.8rem", margin: 0, flexGrow: 1, lineHeight: "1.5" }}>{article.metaDesc}</p>
+                    <span className="badge badge-accent" style={{ fontSize: "0.6rem", alignSelf: "flex-start", textTransform: "capitalize" }}>{post.categories[0] || 'Blog'}</span>
+                    <h3 style={{ fontSize: "1.05rem", margin: 0, lineHeight: "1.4" }}>{post.title}</h3>
+                    <p className="text-muted" style={{ fontSize: "0.8rem", margin: 0, flexGrow: 1, lineHeight: "1.5" }}>{post.excerpt}</p>
                     <span className="text-primary-color" style={{ fontSize: "0.8rem", fontWeight: "600", marginTop: "0.5rem" }}>Read Guide &rarr;</span>
                   </Link>
                 ))}

@@ -123,7 +123,7 @@ export async function submitToIndexNow(options?: { force?: boolean }): Promise<I
   // Extract URLs from current sitemap
   let sitemapEntries;
   try {
-    sitemapEntries = sitemap();
+    sitemapEntries = await sitemap();
   } catch (error: any) {
     const errMsg = `Failed to generate sitemap: ${error.message || error}`;
     logStructured("error", "INDEXNOW_SITEMAP_ERROR", errMsg, { error: error.message || String(error) });

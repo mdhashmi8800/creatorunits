@@ -1,437 +1,290 @@
 export const dynamic = "force-static";
+export const revalidate = 3600;
 
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
-import { getArticleBySlug } from "@/data/articles";
 import Breadcrumbs from "@/components/ui/Breadcrumbs";
-import { articlesIndex } from "@/data/articles-index";
-import { toolsIndex } from "@/data/tools";
+import { getPost, getRelatedPosts, formatDate } from "@/lib/wordpress";
+import { getAllPosts } from "@/lib/wordpress";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
 }
 
-/** Pre-render all 50 articles at build time */
 export async function generateStaticParams() {
-  return articlesIndex.map((a) => ({ slug: a.slug }));
+  try {
+    const posts = await getAllPosts();
+    return posts.map((p) => ({ slug: p.slug }));
+  } catch {
+    return [];
+  }
 }
-
-// Reverted dynamicParams to fix 404
-// export const dynamicParams = false;
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
-  const article = await getArticleBySlug(slug);
+  const post = await getPost(slug);
 
-  if (!article) {
-    return {
-      title: "Article Not Found | Creator Units",
-    };
+  if (!post) {
+    return { title: "Article Not Found | Creator Units" };
   }
 
   return {
-    title: `${article.title} | Creator Units`,
-    description: article.metaDesc,
+    title: `${post.title} | Creator Units`,
+    description: post.excerpt || post.title,
     alternates: {
-      canonical: `/blog/${article.slug}`,
+      canonical: `/blog/${post.slug}`,
     },
     openGraph: {
-      title: article.title,
-      description: article.metaDesc,
-      url: `https://www.creatorunits.com/blog/${article.slug}`,
+      title: post.title,
+      description: post.excerpt || post.title,
+      url: `https://www.creatorunits.com/blog/${post.slug}`,
       type: "article",
-      publishedTime: article.publishDate,
-      images: [
-        {
-          url: "/og-image.png",
-          width: 1200,
-          height: 630,
-          alt: article.title,
-        },
-      ],
+      publishedTime: post.date,
+      modifiedTime: post.modified,
+      images: post.featuredImage
+        ? [{ url: post.featuredImage, width: 1200, height: 630, alt: post.featuredImageAlt || post.title }]
+        : [{ url: "/og-image.png", width: 1200, height: 630, alt: post.title }],
     },
     twitter: {
       card: "summary_large_image",
-      title: article.title,
-      description: article.metaDesc,
-      images: ["/og-image.png"],
+      title: post.title,
+      description: post.excerpt || post.title,
+      images: post.featuredImage ? [post.featuredImage] : ["/og-image.png"],
     },
   };
 }
 
 export default async function ArticlePage({ params }: PageProps) {
   const { slug } = await params;
-  const article = await getArticleBySlug(slug);
+  const post = await getPost(slug);
 
-  if (!article) notFound();
+  if (!post) notFound();
 
-  // Find related tool objects
-  const relatedTools = article.relatedToolSlugs
-    .map((s) => toolsIndex.find((t) => t.slug === s))
-    .filter(Boolean);
+  const relatedPosts = await getRelatedPosts(slug, 3);
 
-  // Find other articles in same category (up to 3)
-  const relatedArticles = articlesIndex
-    .filter((a) => a.slug !== article.slug && a.category === article.category)
-    .slice(0, 3);
-
-  // Schemas
   const articleSchema = {
     "@context": "https://schema.org",
     "@type": "Article",
-    headline: article.title,
-    description: article.metaDesc,
-    url: `https://www.creatorunits.com/blog/${article.slug}`,
-    datePublished: article.publishDate,
-    dateModified: article.lastModified ?? article.publishDate,
-    image: {
-      "@type": "ImageObject",
-      url: "https://www.creatorunits.com/og-image.png",
-      width: 1200,
-      height: 630,
-    },
+    headline: post.title,
+    description: post.excerpt || post.title,
+    url: `https://www.creatorunits.com/blog/${post.slug}`,
+    datePublished: post.date,
+    dateModified: post.modified,
+    image: post.featuredImage
+      ? { "@type": "ImageObject", url: post.featuredImage, width: 1200, height: 630 }
+      : { "@type": "ImageObject", url: "https://www.creatorunits.com/og-image.png", width: 1200, height: 630 },
     author: {
       "@type": "Person",
-      name: "Creator Units Editorial Team",
-      url: "https://www.creatorunits.com/about",
+      name: post.author,
     },
     publisher: {
       "@type": "Organization",
       name: "Creator Units",
       url: "https://www.creatorunits.com",
-      logo: {
-        "@type": "ImageObject",
-        url: "https://www.creatorunits.com/icon.svg",
-      },
+      logo: { "@type": "ImageObject", url: "https://www.creatorunits.com/icon.svg" },
     },
     mainEntityOfPage: {
       "@type": "WebPage",
-      "@id": `https://www.creatorunits.com/blog/${article.slug}`,
+      "@id": `https://www.creatorunits.com/blog/${post.slug}`,
     },
+    wordCount: post.content.replace(/<[^>]*>/g, '').split(/\s+/).filter(Boolean).length,
   };
 
   const webPageSchema = {
     "@context": "https://schema.org",
     "@type": "WebPage",
-    "@id": `https://www.creatorunits.com/blog/${article.slug}#webpage`,
-    "url": `https://www.creatorunits.com/blog/${article.slug}`,
-    "name": `${article.title} | Creator Units`,
-    "description": article.metaDesc,
-    "isPartOf": {
-      "@type": "WebSite",
-      "@id": "https://www.creatorunits.com/#website"
-    },
-    "breadcrumb": {
-      "@type": "BreadcrumbList",
-      "@id": `https://www.creatorunits.com/blog/${article.slug}#breadcrumb`
-    }
+    "@id": `https://www.creatorunits.com/blog/${post.slug}#webpage`,
+    "url": `https://www.creatorunits.com/blog/${post.slug}`,
+    "name": `${post.title} | Creator Units`,
+    "description": post.excerpt || post.title,
+    "isPartOf": { "@type": "WebSite", "@id": "https://www.creatorunits.com/#website" },
+    "breadcrumb": { "@type": "BreadcrumbList", "@id": `https://www.creatorunits.com/blog/${post.slug}#breadcrumb` }
   };
 
   const breadcrumbSchema = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
-    "@id": `https://www.creatorunits.com/blog/${article.slug}#breadcrumb`,
+    "@id": `https://www.creatorunits.com/blog/${post.slug}#breadcrumb`,
     "itemListElement": [
       { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.creatorunits.com/" },
       { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.creatorunits.com/blog" },
-      {
-        "@type": "ListItem",
-        "position": 3,
-        "name": article.title,
-        "item": `https://www.creatorunits.com/blog/${article.slug}`,
-      },
+      { "@type": "ListItem", "position": 3, "name": post.title, "item": `https://www.creatorunits.com/blog/${post.slug}` },
     ],
   };
 
-  const faqSchema = article.faqs && article.faqs.length > 0 ? {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": article.faqs.map((f) => ({
-      "@type": "Question",
-      "name": f.question,
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": f.answer,
-      },
-    })),
-  } : null;
-
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
-      />
-      {faqSchema && (
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-        />
-      )}
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
 
       <Header />
       <main className="main-content" id="main-content">
-        {/* Article Header */}
-        <section
-          className="section"
-          style={{ backgroundColor: "var(--bg-primary)", paddingBottom: "2rem" }}
-        >
+        <section className="section" style={{ backgroundColor: "var(--bg-primary)", paddingBottom: "2rem" }}>
           <div className="container" style={{ maxWidth: "800px" }}>
             <Breadcrumbs
               items={[
                 { label: "Home", href: "/" },
                 { label: "Blog", href: "/blog" },
-                { label: article.categoryLabel }
+                { label: post.categories[0] || "Blog" }
               ]}
             />
 
-            <span
-              className="badge badge-accent"
-              style={{ fontSize: "0.7rem", marginBottom: "1rem" }}
-            >
-              {article.categoryLabel}
+            <span className="badge badge-accent" style={{ fontSize: "0.7rem", marginBottom: "1rem" }}>
+              {post.categories[0] || 'Creator Units'}
             </span>
 
-            <h1
-              style={{
-                fontSize: "2rem",
-                lineHeight: "1.3",
-                marginBottom: "1rem",
-                color: "var(--text-primary)",
-              }}
-            >
-              {article.title}
+            <h1 style={{ fontSize: "2rem", lineHeight: "1.3", marginBottom: "1rem", color: "var(--text-primary)" }}>
+              {post.title}
             </h1>
 
-            <p
-              style={{
-                fontSize: "1.05rem",
-                lineHeight: "1.7",
-                color: "var(--text-secondary)",
-                marginBottom: "1.25rem",
-              }}
-            >
-              {article.metaDesc}
+            <p style={{ fontSize: "1.05rem", lineHeight: "1.7", color: "var(--text-secondary)", marginBottom: "1.25rem" }}>
+              {post.excerpt}
             </p>
 
-            <div
-              style={{
-                display: "flex",
-                gap: "1.5rem",
-                fontSize: "0.875rem",
-                color: "var(--text-muted)",
-                alignItems: "center",
-                flexWrap: "wrap",
-              }}
-            >
-              <span>
-                <strong>Creator Units</strong> — Free Tool Guides
-              </span>
-              <time dateTime={article.publishDate}>
-                Published{" "}
-                {new Date(article.publishDate).toLocaleDateString("en-US", {
-                  year: "numeric",
-                  month: "long",
-                  day: "numeric",
-                })}
-              </time>
+            <div style={{ display: "flex", gap: "1.5rem", fontSize: "0.875rem", color: "var(--text-muted)", alignItems: "center", flexWrap: "wrap" }}>
+              <span><strong>{post.author}</strong></span>
+              <time dateTime={post.date}>Published {formatDate(post.date)}</time>
+              <span>{post.readingTime}</span>
             </div>
           </div>
         </section>
 
-        {/* Article Body + Sidebar layout */}
         <section className="section">
-          <div
-            className="container"
-            style={{
-              maxWidth: "1200px",
-              display: "grid",
-              gridTemplateColumns: "1fr 300px",
-              gap: "3rem",
-              alignItems: "start",
-            }}
-          >
-            {/* Main Article Content */}
-            <article
-              style={{
-                fontSize: "1rem",
-                lineHeight: "1.75",
-                color: "var(--text-secondary)",
-              }}
-            >
-              <div
-                className="article-content"
-                dangerouslySetInnerHTML={{ __html: article.content }}
-                style={{
-                  /* Typography enhancements for article body */
-                }}
-              />
+          <div className="container" style={{ maxWidth: "1200px", display: "grid", gridTemplateColumns: "1fr 300px", gap: "3rem", alignItems: "start" }}>
+            <article style={{ fontSize: "1rem", lineHeight: "1.75", color: "var(--text-secondary)" }}>
+              {post.featuredImage && (
+                <div style={{ marginBottom: "2rem", borderRadius: "12px", overflow: "hidden" }}>
+                  <img
+                    src={post.featuredImage}
+                    alt={post.featuredImageAlt || post.title}
+                    style={{ width: "100%", height: "auto", display: "block" }}
+                    loading="eager"
+                  />
+                </div>
+              )}
 
-              {/* Visible FAQ Accordion Section */}
-              {article.faqs && article.faqs.length > 0 && (
-                <section style={{ marginTop: "3rem", borderTop: "1px solid var(--border-color)", paddingTop: "2rem" }} aria-labelledby="article-faq-heading">
-                  <h2 id="article-faq-heading" style={{ fontSize: "1.5rem", marginBottom: "1.5rem", color: "var(--text-primary)" }}>
-                    Frequently Asked Questions
+              {post.headings.length > 0 && (
+                <div className="card" style={{ marginBottom: "2rem", borderStyle: "solid" }}>
+                  <h4 style={{ fontSize: "0.95rem", marginBottom: "0.75rem", color: "var(--text-primary)" }}>Table of Contents</h4>
+                  <nav style={{ display: "flex", flexDirection: "column", gap: "0.35rem" }}>
+                    {post.headings.filter(h => h.depth === 2 || h.depth === 3).map((h) => (
+                      <a
+                        key={h.slug}
+                        href={`#${h.slug}`}
+                        style={{
+                          fontSize: "0.85rem",
+                          paddingLeft: h.depth === 3 ? "1rem" : "0",
+                          color: "var(--text-secondary)",
+                          textDecoration: "none",
+                        }}
+                      >
+                        {h.text}
+                      </a>
+                    ))}
+                  </nav>
+                </div>
+              )}
+
+              <div className="article-content" dangerouslySetInnerHTML={{ __html: post.content }} />
+
+              {relatedPosts.length > 0 && (
+                <section style={{ marginTop: "3rem", borderTop: "1px solid var(--border-color)", paddingTop: "2rem" }}>
+                  <h2 style={{ fontSize: "1.5rem", marginBottom: "1.5rem", color: "var(--text-primary)" }}>
+                    Related Articles
                   </h2>
-                  <div className="flex flex-col gap-4">
-                    {article.faqs.map((faq, idx) => (
-                      <details key={idx} className="card" style={{ borderStyle: "solid" }}>
-                        <summary style={{ 
-                          fontSize: "1.05rem", 
-                          fontWeight: "600", 
-                          cursor: "pointer",
-                          padding: "0.5rem 0",
-                          listStyle: "none",
-                          display: "flex",
-                          justifyContent: "space-between",
-                          alignItems: "center"
-                        }}>
-                          {faq.question}
-                          <span aria-hidden="true" style={{ fontSize: "1.25rem", color: "var(--accent)" }}>+</span>
-                        </summary>
-                        <p className="text-muted" style={{ fontSize: "0.9rem", margin: "0.5rem 0 0 0", paddingTop: "0.5rem", borderTop: "1px solid var(--border-color)", lineHeight: "1.6" }}>
-                          {faq.answer}
+                  <div className="grid-cols-2">
+                    {relatedPosts.map((rp) => (
+                      <Link
+                        key={rp.slug}
+                        href={`/blog/${rp.slug}`}
+                        className="card card-hover"
+                        style={{ textDecoration: "none", color: "inherit", display: "flex", flexDirection: "column", gap: "0.5rem" }}
+                      >
+                        <span className="badge badge-accent" style={{ alignSelf: "flex-start" }}>
+                          {rp.categories[0] || 'Creator Units'}
+                        </span>
+                        <h3 style={{ fontSize: "1rem", margin: 0, color: "var(--text-primary)" }}>
+                          {rp.title}
+                        </h3>
+                        <p className="text-muted" style={{ fontSize: "0.85rem", margin: 0 }}>
+                          {rp.excerpt}
                         </p>
-                      </details>
+                      </Link>
                     ))}
                   </div>
                 </section>
               )}
             </article>
 
-            {/* Sidebar */}
             <aside style={{ position: "sticky", top: "2rem" }}>
-              {/* Related Tools card */}
-              {relatedTools.length > 0 && (
-                <div
-                  className="card"
-                  style={{ marginBottom: "1.5rem", borderStyle: "solid" }}
-                  aria-labelledby="related-tools-sidebar"
-                >
-                  <h2
-                    id="related-tools-sidebar"
-                    style={{ fontSize: "1rem", marginBottom: "1rem", color: "var(--text-primary)" }}
-                  >
-                    🔧 Featured Tools
-                  </h2>
-                  <div className="flex flex-col gap-3">
-                    {relatedTools.map(
-                      (tool) =>
-                        tool && (
-                          <Link
-                            key={tool.id}
-                            href={`/tools/${tool.category}/${tool.slug}`}
-                            style={{
-                              display: "flex",
-                              flexDirection: "column",
-                              gap: "0.25rem",
-                              textDecoration: "none",
-                              padding: "0.75rem",
-                              borderRadius: "8px",
-                              backgroundColor: "var(--bg-primary)",
-                              border: "1px solid var(--border-color)",
-                              transition: "border-color 0.2s",
-                            }}
-                            aria-label={`Use ${tool.title} — ${tool.shortDesc}`}
-                          >
-                            <span
-                              style={{
-                                fontSize: "0.875rem",
-                                fontWeight: "600",
-                                color: "var(--text-primary)",
-                              }}
-                            >
-                              {tool.title}
-                            </span>
-                            <span
-                              style={{
-                                fontSize: "0.75rem",
-                                color: "var(--text-muted)",
-                                lineHeight: "1.4",
-                              }}
-                            >
-                              {tool.shortDesc}
-                            </span>
-                            <span
-                              className="text-primary-color"
-                              style={{ fontSize: "0.75rem", fontWeight: "600", marginTop: "0.25rem" }}
-                            >
-                              Open Tool &rarr;
-                            </span>
-                          </Link>
-                        )
-                    )}
-                  </div>
+              {post.headings.length > 0 && (
+                <div className="card" style={{ marginBottom: "1.5rem", borderStyle: "solid" }}>
+                  <h4 style={{ fontSize: "0.95rem", marginBottom: "0.75rem", color: "var(--text-primary)" }}>
+                    Table of Contents
+                  </h4>
+                  <nav style={{ display: "flex", flexDirection: "column", gap: "0.35rem" }}>
+                    {post.headings.filter(h => h.depth === 2 || h.depth === 3).map((h) => (
+                      <a
+                        key={h.slug}
+                        href={`#${h.slug}`}
+                        style={{
+                          fontSize: "0.85rem",
+                          paddingLeft: h.depth === 3 ? "1rem" : "0",
+                          color: "var(--text-secondary)",
+                          textDecoration: "none",
+                        }}
+                      >
+                        {h.text}
+                      </a>
+                    ))}
+                  </nav>
                 </div>
               )}
 
-              {/* Related Articles */}
-              {relatedArticles.length > 0 && (
-                <div
-                  className="card"
-                  style={{ borderStyle: "solid" }}
-                  aria-labelledby="related-articles-sidebar"
-                >
-                  <h2
-                    id="related-articles-sidebar"
-                    style={{ fontSize: "1rem", marginBottom: "1rem", color: "var(--text-primary)" }}
-                  >
-                    📚 Related Guides
-                  </h2>
-                  <div className="flex flex-col gap-3">
-                    {relatedArticles.map((ra) => (
-                      <Link
-                        key={ra.slug}
-                        href={`/blog/${ra.slug}`}
-                        style={{
-                          display: "block",
-                          textDecoration: "none",
-                          fontSize: "0.875rem",
-                          color: "var(--text-primary)",
-                          fontWeight: "500",
-                          lineHeight: "1.4",
-                          padding: "0.5rem 0",
-                          borderBottom: "1px solid var(--border-color)",
-                        }}
-                      >
-                        {ra.title} &rarr;
-                      </Link>
-                    ))}
-                  </div>
+              <div className="card" style={{ borderStyle: "solid" }} aria-labelledby="sidebar-latest">
+                <h4 id="sidebar-latest" style={{ fontSize: "0.95rem", marginBottom: "1rem", color: "var(--text-primary)" }}>
+                  Latest Posts
+                </h4>
+                <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
+                  {[relatedPosts[0], relatedPosts[1]].filter(Boolean).map((rp) => rp && (
+                    <Link
+                      key={rp.slug}
+                      href={`/blog/${rp.slug}`}
+                      style={{
+                        display: "block",
+                        textDecoration: "none",
+                        fontSize: "0.875rem",
+                        color: "var(--text-primary)",
+                        fontWeight: "500",
+                        lineHeight: "1.4",
+                        padding: "0.5rem 0",
+                        borderBottom: "1px solid var(--border-color)",
+                      }}
+                    >
+                      {rp.title} &rarr;
+                    </Link>
+                  ))}
                 </div>
-              )}
+              </div>
             </aside>
           </div>
         </section>
 
-        {/* Bottom CTA — link to blog and tools */}
-        <section
-          className="section"
-          style={{ backgroundColor: "var(--bg-primary)", textAlign: "center" }}
-        >
+        <section className="section" style={{ backgroundColor: "var(--bg-primary)", textAlign: "center" }}>
           <div className="container" style={{ maxWidth: "640px" }}>
             <h2 style={{ fontSize: "1.5rem", marginBottom: "0.75rem" }}>
-              Try the Free Tools Mentioned Above
+              Try the Free Tools
             </h2>
             <p className="text-muted" style={{ marginBottom: "1.5rem" }}>
               All tools run in your browser. No sign-up, no upload to servers, completely free.
             </p>
-            <div
-              style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap" }}
-            >
+            <div style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap" }}>
               <Link href="/tools" className="btn btn-primary">
-                Browse All 33 Tools &rarr;
+                Browse All Tools &rarr;
               </Link>
               <Link href="/blog" className="btn btn-secondary">
                 More Guides &rarr;

@@ -1,11 +1,12 @@
 export const dynamic = "force-static";
+export const revalidate = 3600;
 
 import type { Metadata } from "next";
 import Link from "next/link";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
-import { articlesIndex as articles } from "@/data/articles-index";
 import Breadcrumbs from "@/components/ui/Breadcrumbs";
+import { getPosts, formatDateShort, POSTS_PER_PAGE } from "@/lib/wordpress";
 
 export const metadata: Metadata = {
   title: "Creator Tools Blog — Guides for Images, YouTube & Social Media | Creator Units",
@@ -23,79 +24,68 @@ export const metadata: Metadata = {
   },
 };
 
-const categoryColors: Record<string, string> = {
-  image: "#6366f1",
-  creator: "#f59e0b",
-  social: "#10b981",
-  utility: "#3b82f6",
-  general: "#8b5cf6",
-};
+export default async function BlogIndexPage() {
+  let posts: Awaited<ReturnType<typeof getPosts>>['posts'] = [];
+  let total = 0;
+  let totalPages = 0;
 
-const blogSchema = {
-  "@context": "https://schema.org",
-  "@type": "Blog",
-  name: "Creator Units Blog",
-  description:
-    "Practical guides on image optimization, YouTube SEO, social media tools, and creator workflows.",
-  url: "https://www.creatorunits.com/blog",
-  publisher: {
-    "@type": "Organization",
-    name: "Creator Units",
-    url: "https://www.creatorunits.com",
-  },
-  blogPost: articles.slice(0, 10).map((a) => ({
-    "@type": "BlogPosting",
-    headline: a.title,
-    description: a.metaDesc,
-    url: `https://www.creatorunits.com/blog/${a.slug}`,
-    datePublished: a.publishDate,
-  })),
-};
-
-const blogPageSchema = {
-  "@context": "https://schema.org",
-  "@type": "WebPage",
-  "@id": "https://www.creatorunits.com/blog#webpage",
-  "url": "https://www.creatorunits.com/blog",
-  "name": "Creator Tools Blog — Guides for Images, YouTube & Social Media | Creator Units",
-  "description": "In-depth guides on image optimization, YouTube SEO, social media growth, and creator productivity. All free, practical, and written for content creators.",
-  "isPartOf": {
-    "@type": "WebSite",
-    "@id": "https://www.creatorunits.com/#website"
-  },
-  "breadcrumb": {
-    "@type": "BreadcrumbList",
-    "@id": "https://www.creatorunits.com/blog#breadcrumb"
+  try {
+    const result = await getPosts(1, POSTS_PER_PAGE);
+    posts = result.posts;
+    total = result.total;
+    totalPages = result.totalPages;
+  } catch {
+    // API unavailable
   }
-};
 
-const breadcrumbSchema = {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "@id": "https://www.creatorunits.com/blog#breadcrumb",
-  "itemListElement": [
-    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.creatorunits.com/" },
-    { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.creatorunits.com/blog" },
-  ],
-};
+  const blogSchema = {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    name: "Creator Units Blog",
+    description:
+      "Practical guides on image optimization, YouTube SEO, social media tools, and creator workflows.",
+    url: "https://www.creatorunits.com/blog",
+    publisher: {
+      "@type": "Organization",
+      name: "Creator Units",
+      url: "https://www.creatorunits.com",
+    },
+    blogPost: posts.slice(0, 10).map((p) => ({
+      "@type": "BlogPosting",
+      headline: p.title,
+      description: p.excerpt,
+      url: `https://www.creatorunits.com/blog/${p.slug}`,
+      datePublished: p.date,
+    })),
+  };
 
-// Group articles by category
-const grouped = articles.reduce<Record<string, typeof articles>>((acc, a) => {
-  if (!acc[a.category]) acc[a.category] = [];
-  acc[a.category].push(a);
-  return acc;
-}, {});
+  const blogPageSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": "https://www.creatorunits.com/blog#webpage",
+    "url": "https://www.creatorunits.com/blog",
+    "name": "Creator Tools Blog — Guides for Images, YouTube & Social Media | Creator Units",
+    "description": "In-depth guides on image optimization, YouTube SEO, social media growth, and creator productivity. All free, practical, and written for content creators.",
+    "isPartOf": {
+      "@type": "WebSite",
+      "@id": "https://www.creatorunits.com/#website"
+    },
+    "breadcrumb": {
+      "@type": "BreadcrumbList",
+      "@id": "https://www.creatorunits.com/blog#breadcrumb"
+    }
+  };
 
-const categoryOrder = ["image", "creator", "social", "utility", "general"];
-const categoryLabels: Record<string, string> = {
-  image: "Image Tools Guides",
-  creator: "Creator Tools Guides",
-  social: "Social Media Guides",
-  utility: "Utility Tools Guides",
-  general: "Creator Resources",
-};
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "@id": "https://www.creatorunits.com/blog#breadcrumb",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.creatorunits.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.creatorunits.com/blog" },
+    ],
+  };
 
-export default function BlogIndexPage() {
   return (
     <>
       <script
@@ -121,7 +111,7 @@ export default function BlogIndexPage() {
             ]}
           />
         </div>
-        {/* Hero */}
+
         <section
           className="section"
           style={{ backgroundColor: "var(--bg-primary)", paddingBottom: "3rem" }}
@@ -141,127 +131,144 @@ export default function BlogIndexPage() {
           </div>
         </section>
 
-        {/* Article grid by category */}
         <section className="section">
           <div className="container">
-            <div className="flex flex-col gap-4" style={{ gap: "4rem" }}>
-              {categoryOrder.map((cat) => {
-                const catArticles = grouped[cat] ?? [];
-                if (catArticles.length === 0) return null;
-                return (
-                  <div key={cat}>
-                    <div
-                      style={{
-                        display: "flex",
-                        alignItems: "center",
-                        gap: "0.75rem",
-                        marginBottom: "1.5rem",
-                        borderBottom: "2px solid var(--border-color)",
-                        paddingBottom: "0.75rem",
-                      }}
+            {posts.length === 0 ? (
+              <div style={{ textAlign: "center", padding: "3rem 0" }}>
+                <p className="text-muted">No articles published yet. Check back soon.</p>
+              </div>
+            ) : (
+              <>
+                <div className="grid-cols-2">
+                  {posts.map((post) => (
+                    <Link
+                      key={post.slug}
+                      href={`/blog/${post.slug}`}
+                      className="card card-hover flex flex-col gap-3"
+                      style={{ textDecoration: "none", color: "inherit" }}
+                      aria-label={`Read: ${post.title}`}
                     >
-                      <div
+                      {post.featuredImage && (
+                        <div
+                          style={{
+                            width: "100%",
+                            height: "200px",
+                            overflow: "hidden",
+                            borderRadius: "8px 8px 0 0",
+                            margin: "-1.5rem -1.5rem 0 -1.5rem",
+                          }}
+                        >
+                          <img
+                            src={post.featuredImage}
+                            alt={post.featuredImageAlt || post.title}
+                            loading="lazy"
+                            style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                          />
+                        </div>
+                      )}
+                      <div>
+                        <span
+                          className="badge"
+                          style={{
+                            backgroundColor: "var(--accent-light)",
+                            color: "var(--accent)",
+                            fontSize: "0.65rem",
+                            fontWeight: "600",
+                          }}
+                        >
+                          {post.categories[0] || 'Creator Units'}
+                        </span>
+                      </div>
+                      <h3
                         style={{
-                          width: "4px",
-                          height: "1.5rem",
-                          borderRadius: "2px",
-                          backgroundColor: categoryColors[cat] ?? "var(--accent)",
-                        }}
-                      />
-                      <h2 style={{ fontSize: "1.4rem", margin: 0 }}>
-                        {categoryLabels[cat] ?? cat}
-                      </h2>
-                      <span
-                        className="badge"
-                        style={{
-                          backgroundColor: categoryColors[cat] + "20",
-                          color: categoryColors[cat],
-                          fontWeight: "600",
+                          fontSize: "1.05rem",
+                          margin: 0,
+                          lineHeight: "1.4",
+                          color: "var(--text-primary)",
                         }}
                       >
-                        {catArticles.length} articles
-                      </span>
-                    </div>
-
-                    <div className="grid-cols-2">
-                      {catArticles.map((article) => (
-                        <Link
-                          key={article.slug}
-                          href={`/blog/${article.slug}`}
-                          className="card card-hover flex flex-col gap-3"
-                          style={{ textDecoration: "none", color: "inherit" }}
-                          aria-label={`Read: ${article.title}`}
+                        {post.title}
+                      </h3>
+                      <p
+                        className="text-muted"
+                        style={{
+                          fontSize: "0.875rem",
+                          margin: 0,
+                          flexGrow: 1,
+                          lineHeight: "1.5",
+                        }}
+                      >
+                        {post.excerpt}
+                      </p>
+                      <div
+                        style={{
+                          display: "flex",
+                          justifyContent: "space-between",
+                          alignItems: "center",
+                          marginTop: "0.5rem",
+                        }}
+                      >
+                        <div style={{ display: "flex", gap: "0.75rem", alignItems: "center", fontSize: "0.75rem", color: "var(--text-muted)" }}>
+                          <span>{post.author}</span>
+                          <time dateTime={post.date}>
+                            {formatDateShort(post.date)}
+                          </time>
+                          <span>{post.readingTime}</span>
+                        </div>
+                        <span
+                          className="text-primary-color"
+                          style={{ fontSize: "0.85rem", fontWeight: "600" }}
                         >
-                          <div>
-                            <span
-                              className="badge"
-                              style={{
-                                backgroundColor: (categoryColors[article.category] ?? "#6366f1") + "20",
-                                color: categoryColors[article.category] ?? "#6366f1",
-                                fontSize: "0.65rem",
-                                fontWeight: "600",
-                              }}
-                            >
-                              {article.categoryLabel}
-                            </span>
-                          </div>
-                          <h3
-                            style={{
-                              fontSize: "1.05rem",
-                              margin: 0,
-                              lineHeight: "1.4",
-                              color: "var(--text-primary)",
-                            }}
-                          >
-                            {article.title}
-                          </h3>
-                          <p
-                            className="text-muted"
-                            style={{
-                              fontSize: "0.875rem",
-                              margin: 0,
-                              flexGrow: 1,
-                              lineHeight: "1.5",
-                            }}
-                          >
-                            {article.metaDesc}
-                          </p>
-                          <div
-                            style={{
-                              display: "flex",
-                              justifyContent: "space-between",
-                              alignItems: "center",
-                              marginTop: "0.5rem",
-                            }}
-                          >
-                            <time
-                              dateTime={article.publishDate}
-                              style={{ fontSize: "0.75rem", color: "var(--text-muted)" }}
-                            >
-                              {new Date(article.publishDate).toLocaleDateString("en-US", {
-                                year: "numeric",
-                                month: "short",
-                                day: "numeric",
-                              })}
-                            </time>
-                            <span
-                              className="text-primary-color"
-                              style={{ fontSize: "0.85rem", fontWeight: "600" }}
-                            >
-                              Read Guide &rarr;
-                            </span>
-                          </div>
-                        </Link>
-                      ))}
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
+                          Read Guide &rarr;
+                        </span>
+                      </div>
+                    </Link>
+                  ))}
+                </div>
+
+                {totalPages > 1 && (
+                  <nav
+                    style={{
+                      display: "flex",
+                      justifyContent: "center",
+                      gap: "0.5rem",
+                      marginTop: "3rem",
+                      alignItems: "center",
+                    }}
+                    aria-label="Blog pagination"
+                  >
+                    {Array.from({ length: totalPages }, (_, i) => i + 1).map((p) => (
+                      <Link
+                        key={p}
+                        href={p === 1 ? '/blog' : `/blog/page/${p}`}
+                        className="btn"
+                        style={{
+                          backgroundColor: p === 1 ? "var(--accent)" : "var(--bg-primary)",
+                          color: p === 1 ? "var(--bg-primary)" : "var(--text-primary)",
+                          border: "1px solid var(--border-color)",
+                          minWidth: "40px",
+                        }}
+                        aria-current={p === 1 ? "page" : undefined}
+                      >
+                        {p}
+                      </Link>
+                    ))}
+                    {totalPages > 1 && (
+                      <Link
+                        href="/blog/page/2"
+                        className="btn btn-secondary"
+                        style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem" }}
+                      >
+                        Next &rarr;
+                      </Link>
+                    )}
+                  </nav>
+                )}
+              </>
+            )}
           </div>
         </section>
 
-        {/* Tools CTA */}
         <section
           className="section"
           style={{ backgroundColor: "var(--bg-primary)", textAlign: "center" }}
@@ -271,7 +278,7 @@ export default function BlogIndexPage() {
               Ready to Try the Tools?
             </h2>
             <p className="text-muted" style={{ marginBottom: "1.5rem" }}>
-              All 33 tools are free, browser-based, and require no account. Start using them
+              All tools are free, browser-based, and require no account. Start using them
               alongside these guides today.
             </p>
             <div style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap" }}>
