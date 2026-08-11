@@ -51,16 +51,16 @@ export const toolDetails: ToolItem = {
       "answer": "Yes, our Link-in-Bio helper is 100% free. There are no limits on the number of links you can add, no premium gates, and no watermarks placed on your downloaded files. You can generate as many HTML landing pages as you need directly from your browser."
     },
     {
-      "question": "How does the Social Link-in-Bio Helper make my profiles stand out?",
-      "answer": "The Social Link-in-Bio Helper provides easy-to-use custom styles, bio templates, and link formatting that grab attention. By creating unique fonts, engaging bios, and WhatsApp click-to-chat coordinates, you enhance your brand's visual identity."
+      "question": "Can I add a custom domain to my Link-in-Bio page?",
+      "answer": "Yes, if you host your downloaded HTML file on a platform like Netlify or Cloudflare Pages, you can connect a custom domain (e.g. `links.yourbrand.com`) for free. A custom domain looks more professional than a generic hosting subdomain and helps reinforce your brand identity when you share the link in your social bio."
     },
     {
-      "question": "Are there any hidden costs or premium upgrades?",
-      "answer": "No, everything on CreatorUnits.com is free and open to all. There are no monthly paywalls or advertising overlays blocking your customization tools."
+      "question": "Is a self-hosted Link-in-Bio page better for SEO than using Linktree?",
+      "answer": "A self-hosted page on your own domain passes authority to your website rather than to a third-party platform. Any backlinks or shares of your bio link build equity on your own domain. You also control the page title, meta description, and analytics, giving you full SEO and traffic visibility rather than relying on a platform's aggregate reporting."
     },
     {
-      "question": "Are the fancy text styles generated compatible with all social networks?",
-      "answer": "Yes. The fancy styles utilize Unicode symbols. These symbols are recognized by all major social media platforms, including Instagram, TikTok, Twitter, Facebook, and LinkedIn."
+      "question": "How do I keep my Link-in-Bio page up to date?",
+      "answer": "When you need to add, remove, or reorder links, simply return to the builder, reconstruct your setup (or open the saved HTML in a text editor to copy your existing links), make your changes, and download a new HTML file. Upload the new file to your hosting provider to replace the old one. Many platforms like Netlify support drag-and-drop deployment, so updates take less than a minute."
     }
   ],
   "seoTitle": "Free Link-in-Bio Builder - Export Static HTML Profile Pages",

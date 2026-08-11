@@ -26,16 +26,16 @@ export const toolDetails: ToolItem = {
       "answer": "Code 128 is high-density alphanumeric, meaning it supports numbers, lowercase/uppercase letters, and symbols."
     },
     {
-      "question": "What kinds of tasks is the Barcode Generator best suited for?",
-      "answer": "The Barcode Generator is a fast daily utility designed to handle common tasks like password generation, word counting, unit calculations, and QR code creations in seconds, avoiding the search for third-party software."
+      "question": "What barcode formats does this generator support?",
+      "answer": "Our barcode generator supports Code 128 — the most universally compatible 1D barcode format used in logistics, retail, and inventory management worldwide. Code 128 encodes the full ASCII character set including letters, numbers, and symbols at high density, making it ideal for internal product codes, shipping labels, and library systems."
     },
     {
-      "question": "Is the Password Generator secure?",
-      "answer": "Yes. It uses the Web Crypto API, which leverages your computer's built-in cryptographic engine to generate random characters locally. No passwords are ever transmitted over the network."
+      "question": "Are barcodes generated here compatible with retail POS scanners?",
+      "answer": "Yes, Code 128 barcodes are compatible with virtually all modern retail POS laser scanners, handheld barcode readers, and smartphone scanning apps. However, for GS1-standard retail barcodes (required by major retailers and marketplaces like Amazon and Walmart), you will need official GS1 GTIN numbers, which require registration with GS1 and cannot be generated from a free tool."
     },
     {
-      "question": "How do UTM links help in digital marketing?",
-      "answer": "UTM parameters tell Google Analytics exactly where your website traffic is coming from (e.g. newsletter, social banner, guest blog). Using the builder helps you avoid format errors that skew analytics."
+      "question": "What is the minimum print size for a scannable barcode?",
+      "answer": "The minimum recommended print height for a Code 128 barcode is 15mm (about 0.6 inches). The width should be proportional to the number of characters encoded — more data means more bars and a wider barcode. Always print at 300 DPI or higher and test scanning before applying barcodes to production inventory or packaging."
     },
     {
       "question": "Are my texts or files analyzed for marketing profiles?",

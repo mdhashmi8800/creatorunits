@@ -49,16 +49,16 @@ export const toolDetails: ToolItem = {
       "answer": "Yes, our time utility is 100% free and runs client-side. We do not upload or store your timestamps, scheduled dates, or locations on any server, keeping your server logs and planning details private."
     },
     {
-      "question": "What kinds of tasks is the Time & Timezone Converter best suited for?",
-      "answer": "The Time & Timezone Converter is a fast daily utility designed to handle common tasks like password generation, word counting, unit calculations, and QR code creations in seconds, avoiding the search for third-party software."
+      "question": "What is the difference between UTC and GMT?",
+      "answer": "UTC (Coordinated Universal Time) and GMT (Greenwich Mean Time) represent the same time offset (UTC+0) and are used interchangeably in everyday conversation. The technical difference is that UTC is the international atomic time standard used by computers and servers, while GMT is a historical timezone used in the UK and some other regions. For practical scheduling and API work, treat them as equivalent."
     },
     {
-      "question": "Is the Password Generator secure?",
-      "answer": "Yes. It uses the Web Crypto API, which leverages your computer's built-in cryptographic engine to generate random characters locally. No passwords are ever transmitted over the network."
+      "question": "Why do international meeting times sometimes shift unexpectedly?",
+      "answer": "Daylight Saving Time (DST) is the primary cause. Not all countries observe DST, and those that do shift their clocks on different dates. For example, the US and Europe both observe DST but switch on different weekends in spring and autumn, creating a temporary one-hour difference in the offset between them. Always confirm meeting times using UTC or a time zone converter to avoid DST confusion."
     },
     {
-      "question": "How do UTM links help in digital marketing?",
-      "answer": "UTM parameters tell Google Analytics exactly where your website traffic is coming from (e.g. newsletter, social banner, guest blog). Using the builder helps you avoid format errors that skew analytics."
+      "question": "How do I schedule a meeting across multiple time zones?",
+      "answer": "The safest approach is to communicate meeting times in UTC and let each participant convert to their local time. Alternatively, use a time zone converter to find an overlap window that falls within normal working hours for all participants. A good rule is to look for the 9am–5pm working band in each time zone and find a two-hour window where they all intersect."
     }
   ],
   "seoTitle": "Time & Timezone Converter - Unix Timestamp Calculator",

@@ -96,7 +96,7 @@ async function fetchWithRetry(
  */
 export async function submitToIndexNow(options?: { force?: boolean }): Promise<IndexNowResult> {
   const isForce = !!options?.force;
-  const siteUrl = process.env.SITE_URL || "https://creatorunits.com";
+  const siteUrl = process.env.SITE_URL || "https://www.creatorunits.com";
   const indexNowKey = process.env.INDEXNOW_KEY || DEFAULT_KEY;
   const currentCommitSha = process.env.VERCEL_GIT_COMMIT_SHA || "";
 
@@ -105,7 +105,7 @@ export async function submitToIndexNow(options?: { force?: boolean }): Promise<I
   try {
     targetUrlObj = new URL(siteUrl);
   } catch (e) {
-    targetUrlObj = new URL("https://creatorunits.com");
+    targetUrlObj = new URL("https://www.creatorunits.com");
   }
   
   if (targetUrlObj.hostname.startsWith("www.")) {

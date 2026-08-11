@@ -50,17 +50,13 @@ export const toolDetails: ToolItem = {
       "answer": "Because complex random passwords (e.g. `p9&K#mQ!z9@r`) are impossible to memorize, we highly recommend storing them in a dedicated, encrypted password manager (like Bitwarden, 1Password, or Dashlane). A password manager stores all your keys securely behind a single master password, allowing you to autofill logins on all devices."
     },
     {
-      "question": "What kinds of tasks is the Secure Password Generator best suited for?",
-      "answer": "The Secure Password Generator is a fast daily utility designed to handle common tasks like password generation, word counting, unit calculations, and QR code creations in seconds, avoiding the search for third-party software."
+      "question": "What makes a password cryptographically secure?",
+      "answer": "A password is cryptographically secure when it is generated using a true hardware or cryptographic entropy source (like the Web Crypto API's `crypto.getRandomValues()`), has high entropy (at least 16+ mixed characters), and contains an unpredictable mix of uppercase, lowercase, numbers, and symbols that resists dictionary and brute-force attacks."
     },
     {
-      "question": "Is the Password Generator secure?",
-      "answer": "Yes. It uses the Web Crypto API, which leverages your computer's built-in cryptographic engine to generate random characters locally. No passwords are ever transmitted over the network."
+      "question": "Is generating passwords in the browser safe?",
+      "answer": "Yes, as long as the generator runs 100% client-side using native browser APIs like `window.crypto`. Our Password Generator does not make any network requests or send generated keys to any server — everything happens locally in your browser memory."
     },
-    {
-      "question": "How do UTM links help in digital marketing?",
-      "answer": "UTM parameters tell Google Analytics exactly where your website traffic is coming from (e.g. newsletter, social banner, guest blog). Using the builder helps you avoid format errors that skew analytics."
-    }
   ],
   "seoTitle": "Secure Password Generator - Create Strong Random Keys",
   "seoHeading": "Generate Cryptographically Secure Random Passwords",

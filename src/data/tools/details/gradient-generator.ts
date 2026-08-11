@@ -26,16 +26,16 @@ export const toolDetails: ToolItem = {
       "answer": "Yes, click on the slider track to insert as many custom color markers as your layout design demands."
     },
     {
-      "question": "What kinds of tasks is the CSS Gradient Generator best suited for?",
-      "answer": "The CSS Gradient Generator is a fast daily utility designed to handle common tasks like password generation, word counting, unit calculations, and QR code creations in seconds, avoiding the search for third-party software."
+      "question": "What is the difference between linear-gradient and radial-gradient?",
+      "answer": "A `linear-gradient` transitions colours along a straight line — horizontally, vertically, or at any angle. A `radial-gradient` transitions outward from a central point in a circular or elliptical pattern. Linear gradients are more common for backgrounds, buttons, and banners. Radial gradients are used for glowing effects, spotlight lighting, and circular design elements."
     },
     {
-      "question": "Is the Password Generator secure?",
-      "answer": "Yes. It uses the Web Crypto API, which leverages your computer's built-in cryptographic engine to generate random characters locally. No passwords are ever transmitted over the network."
+      "question": "Are CSS gradients supported in all browsers?",
+      "answer": "Yes, CSS gradients (`linear-gradient`, `radial-gradient`, `conic-gradient`) are supported in all modern browsers including Chrome, Firefox, Safari, and Edge. Support for the older `-webkit-` prefix is no longer necessary for modern target audiences. If you need to support Internet Explorer, note that `conic-gradient` is not supported there."
     },
     {
-      "question": "How do UTM links help in digital marketing?",
-      "answer": "UTM parameters tell Google Analytics exactly where your website traffic is coming from (e.g. newsletter, social banner, guest blog). Using the builder helps you avoid format errors that skew analytics."
+      "question": "How do I use this gradient in a CSS framework like Tailwind?",
+      "answer": "Copy the generated CSS value (e.g. `linear-gradient(135deg, #667eea, #764ba2)`) and apply it using the Tailwind arbitrary value syntax: `bg-[linear-gradient(135deg,#667eea,#764ba2)]`. Alternatively, define it as a custom utility in your Tailwind config under `theme.extend.backgroundImage`. For non-Tailwind projects, paste the CSS directly into your stylesheet's `background` or `background-image` property."
     },
     {
       "question": "Are my texts or files analyzed for marketing profiles?",

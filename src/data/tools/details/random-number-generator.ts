@@ -26,16 +26,16 @@ export const toolDetails: ToolItem = {
       "answer": "Yes, it uses browser cryptographic random generators, ensuring unbiased random value distributions."
     },
     {
-      "question": "What kinds of tasks is the Random Number Generator best suited for?",
-      "answer": "The Random Number Generator is a fast daily utility designed to handle common tasks like password generation, word counting, unit calculations, and QR code creations in seconds, avoiding the search for third-party software."
+      "question": "What is the difference between pseudorandom and cryptographically random numbers?",
+      "answer": "Pseudorandom number generators (PRNGs) use mathematical algorithms seeded with a starting value to produce number sequences that appear random but are technically reproducible. Cryptographically secure random number generators (CSPRNGs) use hardware entropy sources — like CPU timing jitter or mouse movement — to produce numbers that are truly unpredictable. Our generator uses the browser's `crypto.getRandomValues()` API, which is cryptographically secure."
     },
     {
-      "question": "Is the Password Generator secure?",
-      "answer": "Yes. It uses the Web Crypto API, which leverages your computer's built-in cryptographic engine to generate random characters locally. No passwords are ever transmitted over the network."
+      "question": "Can I use this for giveaways and contests?",
+      "answer": "Yes, our random number generator uses a cryptographically secure source, making it appropriate for picking giveaway winners from a numbered list. To run a fair draw: assign each participant a number (e.g. 1 to 200), set the generator range to 1–200, generate a number, and the participant with that number wins. The output is unbiased and unpredictable."
     },
     {
-      "question": "How do UTM links help in digital marketing?",
-      "answer": "UTM parameters tell Google Analytics exactly where your website traffic is coming from (e.g. newsletter, social banner, guest blog). Using the builder helps you avoid format errors that skew analytics."
+      "question": "Can I simulate dice rolls with this tool?",
+      "answer": "Yes. Set the range to 1–6 for a standard six-sided die, 1–8 for a D8, 1–20 for a D20, and so on. You can generate multiple results in sequence to simulate rolling multiple dice. For tabletop RPG and board game purposes, the cryptographic randomness ensures fair, unbiased outcomes."
     },
     {
       "question": "Are my texts or files analyzed for marketing profiles?",

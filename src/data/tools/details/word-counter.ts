@@ -49,16 +49,16 @@ export const toolDetails: ToolItem = {
       "answer": "Yes, our word counter operates 100% locally in your browser using JavaScript. Your text drafts, reports, and scripts are never sent over the internet or saved on our servers, ensuring total privacy and security for your drafts."
     },
     {
-      "question": "What kinds of tasks is the Word & Sentence Counter best suited for?",
-      "answer": "The Word & Sentence Counter is a fast daily utility designed to handle common tasks like password generation, word counting, unit calculations, and QR code creations in seconds, avoiding the search for third-party software."
+      "question": "What is the ideal word count for a blog post?",
+      "answer": "It depends on the content type. For in-depth guides and how-to articles that target competitive keywords, 1,500–2,500 words typically perform best in search results. For listicles and quick tips, 800–1,200 words is standard. For product pages and landing pages, shorter and more direct copy (300–600 words) usually converts better. Use our word counter to ensure your draft hits the right target before publishing."
     },
     {
-      "question": "Is the Password Generator secure?",
-      "answer": "Yes. It uses the Web Crypto API, which leverages your computer's built-in cryptographic engine to generate random characters locally. No passwords are ever transmitted over the network."
+      "question": "How does reading time get calculated?",
+      "answer": "Reading time is estimated based on average adult reading speed of approximately 200–250 words per minute. A 1,000-word article takes roughly 4–5 minutes to read. Our tool uses this benchmark to calculate and display an estimated reading time alongside the word count, helping you set accurate expectations in your article headers and social media previews."
     },
     {
-      "question": "How do UTM links help in digital marketing?",
-      "answer": "UTM parameters tell Google Analytics exactly where your website traffic is coming from (e.g. newsletter, social banner, guest blog). Using the builder helps you avoid format errors that skew analytics."
+      "question": "What are the character limits for major social media platforms?",
+      "answer": "Platform character limits to keep in mind: Twitter/X posts allow 280 characters (with media). Instagram captions support up to 2,200 characters but show only the first 125 before truncation. LinkedIn posts allow 3,000 characters. YouTube titles are capped at 100 characters. Meta descriptions for SEO should stay between 150–160 characters. Use the character counter to check your copy before publishing."
     }
   ],
   "seoTitle": "Word Counter - Analyze Text Density and Reading Speed",

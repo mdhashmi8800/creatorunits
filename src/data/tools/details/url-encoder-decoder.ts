@@ -49,16 +49,16 @@ export const toolDetails: ToolItem = {
       "answer": "No. Our URL Encoder / Decoder runs 100% locally in your web browser. The conversions are processed using standard client-side JavaScript APIs (like `encodeURIComponent` and `decodeURIComponent`). Your confidential passwords, API keys, and email addresses are never sent over the internet, ensuring total data security."
     },
     {
-      "question": "What kinds of tasks is the URL Encoder / Decoder best suited for?",
-      "answer": "The URL Encoder / Decoder is a fast daily utility designed to handle common tasks like password generation, word counting, unit calculations, and QR code creations in seconds, avoiding the search for third-party software."
+      "question": "When would I need to URL encode a string?",
+      "answer": "You need URL encoding whenever you place user-supplied data inside a URL query parameter. Common examples include: embedding an email address in a subscribe link (`?email=user%40example.com`), passing a full URL as a redirect parameter (`?return_url=https%3A%2F%2Fexample.com%2Fdashboard`), building search query strings (`?q=image+compressor+free`), and constructing UTM tracking links where the campaign name contains special characters."
     },
     {
-      "question": "Is the Password Generator secure?",
-      "answer": "Yes. It uses the Web Crypto API, which leverages your computer's built-in cryptographic engine to generate random characters locally. No passwords are ever transmitted over the network."
+      "question": "What is the difference between URL encoding a space as `+` versus `%20`?",
+      "answer": "Both represent a space, but in different contexts. The `+` character is used in the `application/x-www-form-urlencoded` format — which is what HTML form submissions use by default. The `%20` encoding is the strict RFC 3986 percent-encoding standard for spaces in URI components. When building URL query parameters manually (as in API integrations and UTM links), always use `%20` to be safe. Our encoder uses `encodeURIComponent`, which produces `%20` — the most universally compatible encoding."
     },
     {
-      "question": "How do UTM links help in digital marketing?",
-      "answer": "UTM parameters tell Google Analytics exactly where your website traffic is coming from (e.g. newsletter, social banner, guest blog). Using the builder helps you avoid format errors that skew analytics."
+      "question": "How do I decode a URL that has been encoded multiple times?",
+      "answer": "If a string has been encoded more than once, you need to run the decoder multiple times. For example, a double-encoded space looks like `%2520` (the `%` sign itself was encoded to `%25`). Running the decoder once gives `%20`, and running it again gives the original space. If you paste a URL into the decoder and it still contains `%` sequences after decoding, run the decoder again until the output stabilises."
     }
   ],
   "seoTitle": "URL Encoder Decoder - Percent Encoding Online Tool",

@@ -32,6 +32,17 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return {
     title: `Blog – Page ${pageNum} | Creator Units`,
     description: `Page ${pageNum} of creator tools guides, tutorials, and resources.`,
+    // Pagination pages should not be independently indexed — they're navigation
+    // artifacts. noindex prevents duplicate-content dilution; follow ensures
+    // Google still crawls the listed article links.
+    robots: {
+      index: false,
+      follow: true,
+    },
+    alternates: {
+      // Point canonical to the primary /blog page so Google knows the preferred entry point
+      canonical: "/blog",
+    },
   };
 }
 

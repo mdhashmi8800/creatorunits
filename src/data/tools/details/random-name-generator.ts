@@ -26,16 +26,16 @@ export const toolDetails: ToolItem = {
       "answer": "The generator draws from lists of common names to generate realistic combinations."
     },
     {
-      "question": "What kinds of tasks is the Random Name Generator best suited for?",
-      "answer": "The Random Name Generator is a fast daily utility designed to handle common tasks like password generation, word counting, unit calculations, and QR code creations in seconds, avoiding the search for third-party software."
+      "question": "What can I use randomly generated names for?",
+      "answer": "Random names are useful across many creative and technical contexts: fiction writers use them for character names in novels, screenplays, and games; developers use them as placeholder user data in database seeds and UI mockups; game designers use them for NPC (non-player character) names; and content creators use them to brainstorm stage names, usernames, or brand name ideas."
     },
     {
-      "question": "Is the Password Generator secure?",
-      "answer": "Yes. It uses the Web Crypto API, which leverages your computer's built-in cryptographic engine to generate random characters locally. No passwords are ever transmitted over the network."
+      "question": "Are randomly generated names legally safe to use?",
+      "answer": "Generally yes — randomly generated common first name + last name combinations are not trademarked. However, before using a generated name as a brand name, username, or character name in a commercial publication, run a trademark search and a Google search to verify there are no conflicts with existing businesses, public figures, or intellectual property."
     },
     {
-      "question": "How do UTM links help in digital marketing?",
-      "answer": "UTM parameters tell Google Analytics exactly where your website traffic is coming from (e.g. newsletter, social banner, guest blog). Using the builder helps you avoid format errors that skew analytics."
+      "question": "Can I use these names in test data and databases?",
+      "answer": "Yes. Using realistic-looking random names in test databases, mockups, and staging environments is a best practice — it makes UI previews more realistic than placeholder text like 'John Doe', and avoids using real customer data in non-production systems. This is a standard approach in software development for GDPR and data privacy compliance."
     },
     {
       "question": "Are my texts or files analyzed for marketing profiles?",

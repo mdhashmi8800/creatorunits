@@ -6,64 +6,67 @@ export const toolDetails: ToolItem = {
   "category": "utility",
   "categoryName": "Utility Tools",
   "title": "UTM Campaign Builder",
-  "shortDesc": "Build marketing campaign links with source, medium, and term tracking codes.",
-  "metaDesc": "Create tracking URLs for Google Analytics. Build UTM campaign links with source, medium, name, content parameters instantly.",
+  "shortDesc": "Build marketing campaign tracking URLs with UTM parameters for Google Analytics in seconds.",
+  "metaDesc": "Free UTM builder for Google Analytics. Create campaign tracking URLs with utm_source, utm_medium, utm_campaign, utm_term, and utm_content parameters instantly in your browser.",
   "instructions": [
-    "Enter your base website URL.",
-    "Enter campaign parameters: Source (e.g. newsletter), Medium (email), Campaign Name (launch).",
-    "Optional: set Campaign Term or Campaign Content.",
-    "Copy the built tracking link from the output box."
+    "Enter your destination website URL (e.g. https://yoursite.com/landing-page).",
+    "Enter utm_source — the platform sending traffic (e.g. newsletter, instagram, google).",
+    "Enter utm_medium — the marketing channel type (e.g. email, cpc, social).",
+    "Enter utm_campaign — your campaign name (e.g. summer_sale_2026).",
+    "Optional: set utm_term (for paid keywords) or utm_content (to distinguish ad variants).",
+    "Copy the generated tracking URL from the output box."
   ],
   "features": [
-    "Ensures valid URL structures.",
-    "Live output preview updates.",
-    "Clear explanation tooltips."
+    "Generates valid, properly encoded UTM URLs.",
+    "Live preview updates as you type.",
+    "One-click copy to clipboard.",
+    "Clear field tooltips explaining each UTM parameter."
   ],
   "componentName": "UtmBuilder",
   "faqs": [
     {
-      "question": "What is a UTM code?",
-      "answer": "UTM (Urchin Tracking Module) parameters are five simple text codes (query parameters) that you append to the end of your website URLs. When a user clicks a tracking link, Google Analytics (GA4) or other web metrics software reads these parameters to track exactly where the visitor came from, which marketing channel they used, and which campaign drove the click."
+      "question": "What is a UTM builder?",
+      "answer": "A UTM builder is a tool that helps you append UTM (Urchin Tracking Module) tracking parameters to URLs. These parameters tell analytics platforms like Google Analytics exactly where traffic is coming from — which campaign, which channel, and which source. Instead of manually typing `?utm_source=newsletter&utm_medium=email&utm_campaign=launch`, a UTM builder validates your inputs and assembles the correct URL format automatically."
     },
     {
       "question": "What are the five standard UTM parameters?",
-      "answer": "The five standard parameters are: `utm_source` (identifies the platform or site sending traffic, e.g. `newsletter`), `utm_medium` (identifies the marketing channel type, e.g. `email`), `utm_campaign` (identifies the specific product launch or promotion, e.g. `summer_sale`), `utm_term` (used for tracking paid search keywords), and `utm_content` (used to distinguish different ads or links within the same campaign, e.g. `blue_button`)."
+      "answer": "The five standard UTM parameters are: `utm_source` (identifies the platform sending traffic, e.g. `newsletter`, `instagram`, `google`), `utm_medium` (identifies the marketing channel, e.g. `email`, `cpc`, `social`), `utm_campaign` (identifies the specific promotion, e.g. `summer_sale_2026`), `utm_term` (tracks paid search keywords, e.g. `image+compressor`), and `utm_content` (distinguishes between multiple links in the same campaign, e.g. `blue_cta_button` vs `sidebar_link`)."
     },
     {
-      "question": "Are UTM codes case-sensitive?",
-      "answer": "Yes, UTM parameters are strictly case-sensitive. If you write `utm_source=Newsletter` on one link and `utm_source=newsletter` on another, Google Analytics will track them as two completely separate traffic sources. To maintain clean, organized reports, always use lowercase letters for all UTM values."
+      "question": "Are UTM parameters case-sensitive?",
+      "answer": "Yes, UTM parameters are strictly case-sensitive in Google Analytics 4. If you write `utm_source=Newsletter` on one link and `utm_source=newsletter` on another, GA4 will count them as two separate traffic sources. Always use lowercase letters and underscores to keep your reports clean and consistent."
     },
     {
-      "question": "Can I use spaces in UTM parameters?",
-      "answer": "We recommend avoiding spaces in UTM parameters. If you include spaces, web browsers automatically convert them to percent-encoded characters (like `%20`), which makes your URLs look cluttered and hard to read. Instead of spaces, use underscores (`_`) or hyphens (`-`) to separate words (e.g. `summer_sale_2026`)."
+      "question": "Can I use spaces in UTM parameter values?",
+      "answer": "Avoid spaces in UTM values. Web browsers convert spaces to `%20`, making URLs hard to read and share. Use underscores (`_`) or hyphens (`-`) instead — for example, `utm_campaign=summer_sale_2026` instead of `utm_campaign=summer sale 2026`. Our UTM builder automatically handles encoding so your generated URL is always valid."
     },
     {
-      "question": "Why did my analytics fail to track UTM parameters?",
-      "answer": "Tracking failures are usually caused by three issues: pasting UTM parameters after a URL hash identifier (hashes `#` must always go at the very end of the URL), server redirects that strip query parameters when loading the destination page, or using misspelled parameter names (e.g. `utm-source` with a hyphen instead of `utm_source` with an underscore)."
+      "question": "Where should I put UTM parameters — before or after the hash?",
+      "answer": "Always put UTM parameters before the URL hash (`#`). UTM codes are query parameters and belong in the query string portion of the URL. The correct structure is: `https://example.com/page?utm_source=email&utm_campaign=launch#section`. If you place UTM codes after the `#`, analytics platforms will not read them because browsers strip everything after `#` before sending the request to the server."
     },
     {
-      "question": "Does my website need special setup to read UTM codes?",
-      "answer": "No. UTM parameters are standard query parameters. Popular analytics platforms (like Google Analytics 4, Plausible, Fathom, and Mixpanel) are designed to read these codes automatically from the browser's address bar when a page loads. You do not need to write custom scripts to capture them."
+      "question": "Why did my analytics fail to track my UTM parameters?",
+      "answer": "The most common causes of UTM tracking failures are: (1) placing parameters after the URL hash, (2) server-side redirects that strip query parameters before the page loads, (3) typos in parameter names such as using `utm-source` with a hyphen instead of `utm_source` with an underscore, and (4) missing Google Analytics tracking code on the destination page."
     },
     {
-      "question": "Is this UTM builder secure?",
-      "answer": "Yes, our UTM builder runs entirely client-side in your local browser using JavaScript. Your target URLs, campaign details, and tracking links are never sent to external servers or logged in any database, protecting your marketing strategies and landing page links."
+      "question": "Does my website need special server setup to read UTM codes?",
+      "answer": "No. UTM parameters are standard URL query strings. Analytics platforms like Google Analytics 4, Plausible, Fathom, and Mixpanel automatically read them from the browser's address bar when a page loads. No custom server code or configuration is required."
     },
     {
-      "question": "What kinds of tasks is the UTM Campaign Builder best suited for?",
-      "answer": "The UTM Campaign Builder is a fast daily utility designed to handle common tasks like password generation, word counting, unit calculations, and QR code creations in seconds, avoiding the search for third-party software."
+      "question": "Is this UTM builder free and private?",
+      "answer": "Yes. Our UTM Campaign Builder runs entirely client-side in your browser using JavaScript. Your target URLs, campaign names, and tracking links are never sent to external servers or stored anywhere. Everything stays on your device."
     },
     {
-      "question": "Is the Password Generator secure?",
-      "answer": "Yes. It uses the Web Crypto API, which leverages your computer's built-in cryptographic engine to generate random characters locally. No passwords are ever transmitted over the network."
+      "question": "Should I shorten my UTM URLs before sharing?",
+      "answer": "For social media and email campaigns, yes — long UTM URLs look cluttered. Build your full tracking URL with all UTM parameters first, then paste it into a URL shortener (like Bitly or TinyURL) to create a cleaner shareable link. The shortener will forward clicks to your full UTM URL, so analytics tracking is preserved."
     },
     {
-      "question": "How do UTM links help in digital marketing?",
-      "answer": "UTM parameters tell Google Analytics exactly where your website traffic is coming from (e.g. newsletter, social banner, guest blog). Using the builder helps you avoid format errors that skew analytics."
+      "question": "How do UTM parameters help digital marketing decisions?",
+      "answer": "UTM parameters let you see exactly which campaigns, channels, and content pieces are driving real conversions — not just visits. By tagging every link in every campaign (email newsletters, social posts, paid ads, influencer links), you can compare ROI across channels in your analytics dashboard and make budget decisions based on actual data rather than guesswork."
     }
   ],
-  "seoTitle": "UTM Link Builder - Campaign Tracking URL Generator",
-  "seoHeading": "Build Custom Tracking URLs for Google Analytics",
-  "seoIntro": "Launching an email campaign, publishing social updates, or running paid search ads? Tracking your traffic is key to measuring ROI. Our Free online UTM Campaign Builder allows you to append standard tracking parameters to your URLs instantly, ready for Google Analytics.",
-  "seoBody": "\n<h3>Why You Should Use Our UTM Campaign Builder</h3>\n<p>The UTM Campaign Builder is a professional-grade helper designed for content creators, digital marketers, and developers looking for a fast, browser-native solution. Built directly within the CreatorUnits suite, this utility helps you bypass complex installations and avoid sending sensitive project data to external cloud hosts. Whether you are running active media campaigns, preparing design layouts, or validating parameters, the UTM Campaign Builder provides real-time results instantly.</p>\n\n<h3>Key Features &amp; Technical Capabilities</h3>\n<ul>\n  <li><strong>Ensures valid URL structures.:</strong> Ensures valid URL structures.</li>\n  <li><strong>Live output preview updates.:</strong> Live output preview updates.</li>\n  <li><strong>Clear explanation tooltips.:</strong> Clear explanation tooltips.</li>\n</ul>\n\n<h3>100% Secure &amp; Client-Side Execution</h3>\n<p>Security is a fundamental design standard across all CreatorUnits tools. Unlike online converters or generators that upload files and details to remote databases, our UTM Campaign Builder runs completely within your web browser sandbox using modern JavaScript client APIs. This on-device processing guarantees that your files, variables, and outputs remain strictly secure on your local hard drive, with zero latency or external network dependencies.</p>\n\n<h3>Pro Creator Workflows</h3>\n<p>To maximize your productivity, integrate the UTM Campaign Builder with other matching tools in our directory matrix. For instance, digital media managers can run social assets through the Utility Tools and verify sizing constraints before publishing. Web managers can combine scripts with our metadata builders, sitemap generators, and keyword density validators to optimize their search authority and pass Core Web Vitals check sheets.</p>\n"
+  "seoTitle": "Free UTM Builder — Create Campaign Tracking URLs for Google Analytics",
+  "seoHeading": "Build UTM Tracking URLs for Any Marketing Campaign",
+  "seoIntro": "Running an email campaign, publishing social media posts, or managing paid ads? Without UTM parameters, Google Analytics can't tell you which channel drove each visitor. Our free UTM builder generates properly formatted campaign tracking URLs in seconds — no spreadsheets, no manual typing, no encoding mistakes.",
+  "seoBody": "\n<h3>What Are UTM Parameters and Why Do Marketers Need Them?</h3>\n<p>UTM parameters are five simple text tags you append to any destination URL. When a user clicks the link, Google Analytics (GA4) reads the tags and records exactly which source, medium, campaign, keyword, and ad content drove that visit. Without UTM codes, GA4 groups all traffic into vague buckets like \"direct\" or \"referral\", making it impossible to measure real campaign performance.</p>\n<p>Using a dedicated UTM builder — rather than typing parameters manually — eliminates typos, inconsistent capitalisation, and broken encoding that corrupt your analytics reports.</p>\n\n<h3>How to Use the UTM Campaign Builder</h3>\n<ol>\n  <li><strong>Enter your landing page URL.</strong> This is the destination page you want to track — your homepage, a product page, or a specific blog post.</li>\n  <li><strong>Fill in utm_source.</strong> Use the platform name: <code>google</code>, <code>facebook</code>, <code>newsletter</code>, <code>youtube</code>.</li>\n  <li><strong>Fill in utm_medium.</strong> Use the channel type: <code>cpc</code>, <code>email</code>, <code>social</code>, <code>organic</code>.</li>\n  <li><strong>Fill in utm_campaign.</strong> Use a descriptive campaign name: <code>black_friday_2026</code>, <code>product_launch</code>.</li>\n  <li><strong>Copy the generated URL</strong> and paste it into your ads, emails, or social posts.</li>\n</ol>\n\n<h3>UTM Parameter Naming Conventions</h3>\n<p>Consistent naming is critical. Inconsistent casing, different spellings, and arbitrary abbreviations all split your data into separate rows in Analytics. Follow these conventions:</p>\n<ul>\n  <li>Always use <strong>lowercase</strong> — GA4 is case-sensitive</li>\n  <li>Use <strong>underscores</strong> instead of spaces or hyphens</li>\n  <li>Use the same <strong>source names</strong> across all campaigns (e.g. always <code>instagram</code>, never <code>IG</code> on some links)</li>\n  <li>Include the campaign <strong>year or quarter</strong> in the campaign name for easy filtering later</li>\n</ul>\n\n<h3>Common UTM Examples by Channel</h3>\n<ul>\n  <li><strong>Email newsletter:</strong> <code>?utm_source=newsletter&amp;utm_medium=email&amp;utm_campaign=august_digest</code></li>\n  <li><strong>Google Ads:</strong> <code>?utm_source=google&amp;utm_medium=cpc&amp;utm_campaign=brand_search&amp;utm_term=image+compressor</code></li>\n  <li><strong>Instagram organic post:</strong> <code>?utm_source=instagram&amp;utm_medium=social&amp;utm_campaign=product_feature</code></li>\n  <li><strong>YouTube description link:</strong> <code>?utm_source=youtube&amp;utm_medium=video&amp;utm_campaign=tutorial_series&amp;utm_content=description_link</code></li>\n</ul>\n\n<h3>100% Browser-Based — Your Campaign Data Stays Private</h3>\n<p>Unlike many online UTM generators that log your URLs to marketing databases, our UTM builder runs entirely client-side. Your destination URLs, campaign names, and generated tracking links are processed locally in your browser and never transmitted to any server. Your marketing strategies remain private.</p>\n"
 };

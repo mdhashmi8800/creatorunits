@@ -49,16 +49,16 @@ export const toolDetails: ToolItem = {
       "answer": "Yes, our case converter is completely secure. The conversions are processed locally on your device using client-side JavaScript string APIs (like `.toUpperCase()` and regex replacement functions). We never upload or save your text drafts to any server, keeping your work private."
     },
     {
-      "question": "What kinds of tasks is the Text Case Converter best suited for?",
-      "answer": "The Text Case Converter is a fast daily utility designed to handle common tasks like password generation, word counting, unit calculations, and QR code creations in seconds, avoiding the search for third-party software."
+      "question": "When should I use Title Case vs Sentence case?",
+      "answer": "Use Title Case for headings, article titles, product names, and navigation labels — where every major word is capitalised. Use Sentence case for body copy, UI labels, tooltips, and form placeholders — where only the first word and proper nouns are capitalised. Title Case looks formal and is common in editorial contexts, while Sentence case feels more modern and is preferred in product interfaces and mobile apps."
     },
     {
-      "question": "Is the Password Generator secure?",
-      "answer": "Yes. It uses the Web Crypto API, which leverages your computer's built-in cryptographic engine to generate random characters locally. No passwords are ever transmitted over the network."
+      "question": "How does the URL slug converter work?",
+      "answer": "The slug converter transforms any text into a clean, lowercase, hyphen-separated format suitable for page URLs and file names. For example, 'Best Image Tools for 2026!' becomes 'best-image-tools-for-2026'. Spaces are replaced with hyphens, special characters and punctuation are stripped, and everything is lowercased — matching the standard format expected by web servers and CMS platforms."
     },
     {
-      "question": "How do UTM links help in digital marketing?",
-      "answer": "UTM parameters tell Google Analytics exactly where your website traffic is coming from (e.g. newsletter, social banner, guest blog). Using the builder helps you avoid format errors that skew analytics."
+      "question": "What is camelCase and when is it used?",
+      "answer": "camelCase (also written camel case) is a naming convention where the first word is lowercase and each subsequent word starts with a capital letter, with no spaces — for example, `myVariableName` or `getUserData`. It's the standard in JavaScript and most programming languages for variable names, function names, and object property keys. Our converter supports camelCase output for developers who need to quickly format database fields or API parameter names."
     }
   ],
   "seoTitle": "Text Case Converter - UPPERCASE, lowercase, Title Case",

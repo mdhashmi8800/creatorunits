@@ -26,16 +26,16 @@ export const toolDetails: ToolItem = {
       "answer": "TinyURL links do not expire by default. They will redirect traffic permanently."
     },
     {
-      "question": "What kinds of tasks is the Free URL Shortener Integration best suited for?",
-      "answer": "The Free URL Shortener Integration is a fast daily utility designed to handle common tasks like password generation, word counting, unit calculations, and QR code creations in seconds, avoiding the search for third-party software."
+      "question": "Why should I use a URL shortener for social media and marketing?",
+      "answer": "Short URLs improve visual cleanlines on platforms with character constraints (like Twitter/X or Instagram bios) and make printed URLs easier to type manually. They also conceal long, ugly query strings while preserving tracking parameters like UTM tags."
     },
     {
-      "question": "Is the Password Generator secure?",
-      "answer": "Yes. It uses the Web Crypto API, which leverages your computer's built-in cryptographic engine to generate random characters locally. No passwords are ever transmitted over the network."
+      "question": "Do shortened URLs preserve UTM tracking parameters?",
+      "answer": "Yes. When you shorten a URL that already contains UTM parameters, the shortened link redirects to the full destination URL including all parameters, so Google Analytics tracks session details normally."
     },
     {
-      "question": "How do UTM links help in digital marketing?",
-      "answer": "UTM parameters tell Google Analytics exactly where your website traffic is coming from (e.g. newsletter, social banner, guest blog). Using the builder helps you avoid format errors that skew analytics."
+      "question": "Are short links safe to click?",
+      "answer": "Most short links are safe, but because they hide the destination domain, spam filters and security tools occasionally inspect them. Using established services like TinyURL or custom domain shorteners ensures high deliverability and user trust."
     },
     {
       "question": "Are my texts or files analyzed for marketing profiles?",

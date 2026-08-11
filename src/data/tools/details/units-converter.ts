@@ -49,16 +49,16 @@ export const toolDetails: ToolItem = {
       "answer": "Yes, our unit converter is 100% free and runs entirely client-side. We do not upload your values or calculations to any external servers, ensuring absolute privacy for your technical data and business metrics."
     },
     {
-      "question": "What kinds of tasks is the Quick Units Converter best suited for?",
-      "answer": "The Quick Units Converter is a fast daily utility designed to handle common tasks like password generation, word counting, unit calculations, and QR code creations in seconds, avoiding the search for third-party software."
+      "question": "What are the most commonly confused unit conversions?",
+      "answer": "The most frequently confused conversions are: kilograms to pounds (1 kg = 2.20462 lbs — not exactly 2), Celsius to Fahrenheit (multiply by 9/5 then add 32 — not just multiply by 2), kilometres to miles (1 km = 0.621371 miles), litres to US gallons (1 litre = 0.264172 gallons), and millimetres to inches (25.4 mm = 1 inch exactly). Our converter handles all precision automatically."
     },
     {
-      "question": "Is the Password Generator secure?",
-      "answer": "Yes. It uses the Web Crypto API, which leverages your computer's built-in cryptographic engine to generate random characters locally. No passwords are ever transmitted over the network."
+      "question": "What is the difference between metric and imperial units?",
+      "answer": "Metric units (SI system) use base-10 relationships — kilometres, kilograms, litres, and Celsius are all metric. Imperial units are used primarily in the US and use arbitrary scales — miles, pounds, gallons, and Fahrenheit. Most countries use metric exclusively; the US is one of the few that still uses imperial for everyday measurement. Scientific and technical work worldwide uses metric (SI) units."
     },
     {
-      "question": "How do UTM links help in digital marketing?",
-      "answer": "UTM parameters tell Google Analytics exactly where your website traffic is coming from (e.g. newsletter, social banner, guest blog). Using the builder helps you avoid format errors that skew analytics."
+      "question": "How precise are the unit conversions in this tool?",
+      "answer": "Our converter uses standard IEEE 754 double-precision floating-point arithmetic, which provides approximately 15–17 significant decimal digits of accuracy. For most practical conversions in everyday, cooking, engineering, and design work, this is more than sufficient. If you need conversions accurate to more than 12 decimal places for specialised scientific work, use a dedicated high-precision calculator."
     }
   ],
   "seoTitle": "Online Units Converter - Convert Length, mass, Data",
