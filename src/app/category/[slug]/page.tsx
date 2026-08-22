@@ -6,14 +6,15 @@ import { notFound } from "next/navigation";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { getToolsByCategory, categories, toolsIndex } from "@/data/tools";
+import { articlesIndex } from "@/data/articles-index";
 import { Metadata } from "next";
 import Breadcrumbs from "@/components/ui/Breadcrumbs";
 import ToolsDirectoryMatrix from "@/components/tools/ToolsDirectoryMatrix";
 
 // Map each category to 2-3 spotlight slugs from OTHER categories for internal linking
 const crossCategoryMap: Record<string, string[]> = {
-  image: ["image-compressor", "image-resizer", "image-cropper", "webp-converter"],
-  creator: ["youtube-thumbnail-preview", "thumbnail-downloader", "youtube-tag-extractor", "video-metadata-helper"],
+  image: ["youtube-thumbnail-preview", "qr-code-generator", "utm-builder", "fancy-text-generator"],
+  creator: ["image-compressor", "thumbnail-downloader", "youtube-tag-extractor", "video-metadata-helper"],
   social: ["fancy-text-generator", "username-generator", "bio-template-generator", "social-media-link-in-bio-helper"],
   utility: ["qr-code-generator", "password-generator", "url-encoder-decoder", "text-case-converter"],
   video: ["video-compressor", "video-thumbnail-extractor", "video-to-mp3", "aspect-ratio-calculator"],
@@ -31,10 +32,6 @@ interface PageProps {
 export function generateStaticParams() {
   return Object.keys(categories).map((slug) => ({ slug }));
 }
-
-// Reverted dynamicParams to fix 404
-// export const dynamicParams = false;
-
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
@@ -56,7 +53,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
           url: "/og-image.png",
           width: 1200,
           height: 630,
-          alt: `${cat.name} - Creators Units`,
+          alt: `${cat.name} - Creator Units`,
         },
       ],
     },
@@ -84,28 +81,33 @@ export default async function CategoryPage({ params }: PageProps) {
     .map((s) => toolsIndex.find((t) => t.slug === s))
     .filter(Boolean);
 
+  // Category specific blog guides
+  const categoryArticles = articlesIndex
+    .filter((a) => a.category === slug)
+    .slice(0, 4);
+
   const collectionPageSchema = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
     "@id": `https://www.creatorunits.com/category/${slug}#webpage`,
-    "name": cat.name,
-    "description": cat.seoDesc,
-    "url": `https://www.creatorunits.com/category/${slug}`,
-    "isPartOf": {
+    name: cat.name,
+    description: cat.seoDesc,
+    url: `https://www.creatorunits.com/category/${slug}`,
+    isPartOf: {
       "@type": "WebSite",
       "@id": "https://www.creatorunits.com/#website"
     },
-    "breadcrumb": {
+    breadcrumb: {
       "@type": "BreadcrumbList",
       "@id": `https://www.creatorunits.com/category/${slug}#breadcrumb`
     },
-    "mainEntity": {
+    mainEntity: {
       "@type": "ItemList",
-      "itemListElement": catTools.map((tool, idx) => ({
+      itemListElement: catTools.map((tool, idx) => ({
         "@type": "ListItem",
-        "position": idx + 1,
-        "name": tool.title,
-        "url": `https://www.creatorunits.com/tools/${tool.category}/${tool.slug}`,
+        position: idx + 1,
+        name: tool.title,
+        url: `https://www.creatorunits.com/tools/${tool.category}/${tool.slug}`,
       })),
     },
   };
@@ -114,24 +116,24 @@ export default async function CategoryPage({ params }: PageProps) {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     "@id": `https://www.creatorunits.com/category/${slug}#breadcrumb`,
-    "itemListElement": [
+    itemListElement: [
       {
         "@type": "ListItem",
-        "position": 1,
-        "name": "Home",
-        "item": "https://www.creatorunits.com/",
+        position: 1,
+        name: "Home",
+        item: "https://www.creatorunits.com/",
       },
       {
         "@type": "ListItem",
-        "position": 2,
-        "name": "Tools",
-        "item": "https://www.creatorunits.com/tools",
+        position: 2,
+        name: "Tools",
+        item: "https://www.creatorunits.com/tools",
       },
       {
         "@type": "ListItem",
-        "position": 3,
-        "name": cat.name,
-        "item": `https://www.creatorunits.com/category/${slug}`,
+        position: 3,
+        name: cat.name,
+        item: `https://www.creatorunits.com/category/${slug}`,
       },
     ],
   };
@@ -206,6 +208,34 @@ export default async function CategoryPage({ params }: PageProps) {
               </p>
             </div>
           </section>
+
+          {/* Category blog articles */}
+          {categoryArticles.length > 0 && (
+            <section aria-labelledby="cat-guides-heading" style={{ marginBottom: "2.5rem" }}>
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1rem" }}>
+                <h2 id="cat-guides-heading" style={{ fontSize: "1.35rem", margin: 0 }}>
+                  Guides &amp; Tutorials for {cat.name}
+                </h2>
+                <Link href="/blog" className="text-primary-color" style={{ fontSize: "0.9rem", fontWeight: "600", textDecoration: "none" }}>
+                  View All Guides &rarr;
+                </Link>
+              </div>
+              <div className="grid-cols-2">
+                {categoryArticles.map((art) => (
+                  <Link
+                    key={art.slug}
+                    href={`/blog/${art.slug}`}
+                    className="card card-hover flex flex-col gap-2"
+                    style={{ textDecoration: "none", color: "inherit", padding: "1.25rem" }}
+                  >
+                    <h3 style={{ fontSize: "1.05rem", margin: 0, color: "var(--text-primary)" }}>{art.title}</h3>
+                    <p className="text-muted" style={{ fontSize: "0.85rem", margin: 0, flexGrow: 1, lineHeight: "1.5" }}>{art.metaDesc}</p>
+                    <span className="text-primary-color" style={{ fontSize: "0.85rem", fontWeight: "600", marginTop: "0.5rem" }}>Read Tutorial &rarr;</span>
+                  </Link>
+                ))}
+              </div>
+            </section>
+          )}
 
           {/* Cross-category internal linking */}
           {crossCatTools.length > 0 && (

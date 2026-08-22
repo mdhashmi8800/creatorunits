@@ -5,66 +5,47 @@ export const toolDetails: ToolItem = {
   "slug": "image-resizer",
   "category": "image",
   "categoryName": "Image Tools",
-  "title": "Image Resizer",
-  "shortDesc": "Resize images to custom pixel dimensions or preset percentages with aspect ratio lock.",
-  "metaDesc": "Resize JPG, PNG, and WebP images online. Lock aspect ratio, scale by percentage, or enter custom dimensions. Runs entirely in your browser.",
+  "title": "Image Resizer — Resize Photos to Exact Pixel Dimensions Online",
+  "shortDesc": "Resize images to custom pixel dimensions or preset percentages with proportional aspect ratio lock.",
+  "metaDesc": "Free online image resizer. Scale JPG, PNG, and WebP photos to exact dimensions or percentages with aspect ratio lock. 100% private and runs in your browser.",
   "instructions": [
-    "Select and load an image from your local device.",
-    "Enter your desired width or height in pixels, or choose a percentage preset (75%, 50%, 25%).",
-    "Toggle the aspect ratio lock to maintain the image's original proportions.",
-    "Click 'Download Resized Image' to export the new file."
+    "Upload or drag & drop an image (JPG, PNG, or WebP) from your device.",
+    "Enter your target width or height in pixels, or select a quick scale preset (75%, 50%, 25%).",
+    "Keep the aspect ratio lock enabled to maintain proportional scaling without stretching or distortion.",
+    "Click 'Download Resized Image' to export your scaled photo instantly."
   ],
   "features": [
-    "Aspect Ratio Locking: Automatically calculates height based on width to prevent stretching.",
-    "Percentage Presets: Quick scaling tools for half-size or quarter-size compression.",
-    "Instant Processing: Fast canvas scaling algorithms.",
-    "Privacy-Centric: Completely runs in the browser."
+    "Proportional Aspect Ratio Lock to prevent horizontal or vertical distortion.",
+    "Percentage-based scaling presets (25%, 50%, 75%) for rapid resizing.",
+    "Bicubic pixel interpolation for smooth scaling and crisp typography.",
+    "Preserves PNG and WebP alpha transparency channels.",
+    "100% Client-Side: zero files uploaded to remote servers."
   ],
   "componentName": "ImageResizer",
   "faqs": [
     {
-      "question": "What is an image resizer?",
-      "answer": "An image resizer is a simple digital utility that alters the physical width and height dimensions of an image in pixels or percentages. It allows you to scale down oversized graphics to fit layout guidelines for websites, email newsletters, blog posts, or social media platforms. Adjusting the dimensions reduces the pixel grid and overall footprint of the image. It is different from compression, which reduces file size by optimizing file bytes, although resizing also significantly shrinks the resulting file size because there are fewer total pixels to save."
+      "question": "How do I resize an image without distorting its proportions?",
+      "answer": "To prevent stretching or squishing, ensure the Aspect Ratio Lock (padlock icon) is turned ON. When locked, changing the width automatically calculates the mathematically exact height (and vice-versa) based on your original image ratio."
     },
     {
-      "question": "How do I resize an image without distortion?",
-      "answer": "To resize an image without stretching or distortion, you must preserve its original aspect ratio, which is the proportional relationship between width and height. Our image resizer has an aspect ratio lock enabled by default. When you adjust the width, the height automatically updates to match the correct proportions, keeping your photo perfectly balanced. Disabling the lock allows you to enter arbitrary values, which is useful when you want to force an image into custom rectangular shapes, though it may result in visual warping."
+      "question": "What is the difference between image resizing and image compression?",
+      "answer": "Resizing changes the physical pixel dimensions of an image (e.g., scaling 4000x3000 down to 1200x900 pixels). Compression optimizes the internal data and color tables of the file without changing its pixel dimensions. Downscaling an image reduces file size significantly because there are fewer total pixels to encode."
     },
     {
-      "question": "Can I resize images for social media?",
-      "answer": "Yes, you can easily resize any image to fit social media platform dimensions. Whether you need a square format for Instagram posts, a specific banner width for YouTube headers, or standard dimensions for Facebook updates, our tool allows you to input custom pixel dimensions directly. This ensures your visual content looks professional and fits without cropping. Check out our related Social Post Size Guide for standard presets across popular networks."
+      "question": "What image dimensions should I use for websites and blogs?",
+      "answer": "Standard web dimension guidelines: (1) Full-width hero banners: 1920x1080 px; (2) Blog article featured images: 1200x630 px (matches OpenGraph social preview specs); (3) Content inline illustrations: 800 px wide; (4) E-commerce square product photos: 1000x1000 px or 1200x1200 px."
     },
     {
-      "question": "What dimensions should I use for websites?",
-      "answer": "The optimal dimensions depend on where the image will be displayed. For full-width website banners, 1920 pixels wide is standard. For blog content headers, 1200 pixels wide works best. Regular inline images look sharpest at 800 pixels. Keeping image dimensions close to their display container width prevents slow page loading times. Loading a 4000px wide camera image in a 400px wide screen container wastes user bandwidth and decreases Google PageSpeed scores."
+      "question": "Can I upscale a low-resolution photo to high resolution?",
+      "answer": "You can enter larger pixel dimensions, but upscaling a small image stretches existing pixels and will result in softness or blurriness. We recommend always starting with high-resolution source images and scaling downward to your target container size."
     },
     {
-      "question": "Will resizing affect image quality?",
-      "answer": "Downscaling an image to smaller dimensions preserves clarity, although it contains fewer pixels. However, upscaling an image beyond its original dimensions will cause pixelation and blurriness, so we recommend starting with high-resolution source files. Having the correct pixel sizes prevents layout stretching and guarantees a clean, high-quality display on websites. If you need to make the file size smaller without changing the dimensions, try our Image Compressor tool."
-    },
-    {
-      "question": "Does this tool upload my images to a server?",
-      "answer": "No, this tool does not upload your files to any external server. All operations are processed locally in your web browser using HTML5 Canvas. Your images are never sent over the internet, stored on a database, or cached remotely. This ensures 100% security and privacy for your personal photographs, design assets, and confidential screenshots."
-    },
-    {
-      "question": "What formats does the resizer support?",
-      "answer": "Our free browser image resizer supports all major web image formats, including JPEG (JPG), PNG, and WebP. You can upload any of these file formats, input your target width or height, choose to lock or unlock the aspect ratio, and download the resized file. The output format is automatically generated to match your source image, ensuring compatibility and preserving characteristics like alpha transparency in PNG and WebP files."
-    },
-    {
-      "question": "How does the Image Resizer work?",
-      "answer": "Our Image Resizer runs fully in your web browser. By utilizing the HTML5 Canvas API and client-side JavaScript, it reads your uploaded image file, processes the requested transformations locally in temporary memory, and triggers an immediate download. No remote servers are contacted."
-    },
-    {
-      "question": "Will editing my images with the Image Resizer affect their visual quality?",
-      "answer": "Our tool optimizes images dynamically to balance file size and visual fidelity. For compression, a quality setting of 78–82% provides massive size savings of 60–80% with zero human-perceivable loss in clarity. Resizing, cropping, and rotating preserve the exact pixel values within the new bounds."
-    },
-    {
-      "question": "Are my personal pictures secure on CreatorUnits.com?",
-      "answer": "Yes, absolute privacy is our standard. Because all image processing happens 100% client-side in your browser, your files are never uploaded to our servers, stored, or logged. Your private designs and photos remain strictly on your own device."
+      "question": "Are my resized images kept private and secure?",
+      "answer": "Yes. All resizing algorithms run entirely inside your web browser's HTML5 Canvas sandbox. Your photos are never sent over the internet or saved on our servers."
     }
   ],
-  "seoTitle": "Online Image Resizer - Resize JPG, PNG, WebP Instantly",
-  "seoHeading": "Quickly Resize Images to Custom Dimensions",
-  "seoIntro": "Whether you need to upload a profile photo, adjust graphics for a blog layout, or scale images for a presentation, having the correct pixel dimensions is essential. Our online Image Resizer lets you scale images instantly in your browser — no uploads to external servers, no sign-up, no watermarks.",
-  "seoBody": "\n<h3>Image Resizing vs Image Compression — What's the Difference?</h3>\n<p>Resizing changes the physical pixel dimensions of an image (width × height). Compression reduces the file size in bytes by optimising how pixel data is encoded. Both reduce file size, but they work differently: resizing removes pixels (so a 4000 × 3000 image becomes 1200 × 900), while compression uses algorithms to store the same pixels more efficiently.</p>\n<p>For web use, you often want to do both: resize to the display container width to eliminate wasted pixels, then compress to reduce the byte size further. Our <a href=\"/tools/image/image-compressor\">Image Compressor</a> handles compression after you resize.</p>\n\n<h3>Common Image Dimensions Reference</h3>\n<ul>\n  <li><strong>Website full-width banner:</strong> 1920 × 600 px</li>\n  <li><strong>Blog post featured image:</strong> 1200 × 628 px (also the OG image standard)</li>\n  <li><strong>Inline blog content image:</strong> 800 × auto px</li>\n  <li><strong>Instagram post (square):</strong> 1080 × 1080 px</li>\n  <li><strong>Instagram Stories / TikTok:</strong> 1080 × 1920 px (9:16)</li>\n  <li><strong>Facebook cover photo:</strong> 820 × 312 px</li>\n  <li><strong>YouTube channel art:</strong> 2560 × 1440 px</li>\n  <li><strong>YouTube thumbnail:</strong> 1280 × 720 px (16:9)</li>\n  <li><strong>LinkedIn post image:</strong> 1200 × 627 px</li>\n  <li><strong>Twitter / X post image:</strong> 1600 × 900 px</li>\n  <li><strong>Email header image:</strong> 600 × auto px</li>\n</ul>\n\n<h3>Understanding Aspect Ratios</h3>\n<p>The aspect ratio is the proportional relationship between an image's width and height, expressed as W:H. When you resize an image without locking the aspect ratio, the width and height scale independently, which can cause distortion — faces become stretched, logos become squashed.</p>\n<p>Our resizer locks the aspect ratio by default: adjust the width and the height updates automatically to maintain correct proportions. Disable the lock only when you intentionally need to force the image into a non-proportional container (like cropping a 4:3 photo to 1:1 for Instagram).</p>\n\n<h3>Tips for Resizing Images for Faster Page Load</h3>\n<ul>\n  <li><strong>Match dimensions to the display container.</strong> A 3000 px wide image in a 900 px column forces the browser to rescale it on every page load — resize it to 900 px first.</li>\n  <li><strong>Use 2× resolution for retina displays.</strong> If the display width is 600 px, export at 1200 px so the image looks sharp on high-DPI screens.</li>\n  <li><strong>Resize before compressing.</strong> Always resize first to the correct display dimensions, then compress. Compressing a 4000 px image instead of the 800 px version wastes compression effort.</li>\n  <li><strong>Never upscale raster images.</strong> Enlarging an image beyond its original dimensions adds pixels by interpolation, causing visible blurriness. Always start with the highest quality source file.</li>\n</ul>\n\n<h3>100% Browser-Based — Your Images Never Leave Your Device</h3>\n<p>All resizing is handled by the HTML5 Canvas API in your browser. Your images are never uploaded to our servers. Once you select a file, processing happens entirely in local memory, and the download is triggered directly from your browser — zero server involvement, complete privacy.</p>\n"
+  "seoTitle": "Free Image Resizer — Scale PNG, JPG, WebP Online",
+  "seoHeading": "Resize Images Online to Exact Dimensions in Seconds",
+  "seoIntro": "Oversized images slow down websites and get awkwardly cropped by social media platforms. Our free online Image Resizer lets you scale JPG, PNG, and WebP graphics to exact pixel widths, heights, or percentage presets with automatic aspect ratio protection.",
+  "seoBody": "\n<h3>Why Proper Image Resizing Is Critical for Performance</h3>\n<p>Displaying a massive 24-megapixel camera photograph (6000×4000 pixels) inside a blog container that only spans 800 pixels is one of the most common web performance mistakes. Browsers are forced to download millions of unused pixels, wasting mobile data and slowing down page rendering.</p>\n<p>By resizing your assets to match their actual on-screen display containers with our <strong>Image Resizer</strong>, you eliminate rendering lag and dramatically reduce file sizes before publishing.</p>\n\n<h3>Standard Social Media &amp; Web Image Dimensions Guide</h3>\n<table style=\"width:100%;border-collapse:collapse;margin:1.5rem 0;font-size:0.925rem;\">\n  <thead>\n    <tr style=\"background:var(--bg-primary);text-align:left;\">\n      <th style=\"padding:10px 12px;border:1px solid var(--border-color);\">Platform / Use Case</th>\n      <th style=\"padding:10px 12px;border:1px solid var(--border-color);\">Recommended Dimensions</th>\n      <th style=\"padding:10px 12px;border:1px solid var(--border-color);\">Aspect Ratio</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td style=\"padding:10px 12px;border:1px solid var(--border-color);\"><strong>YouTube Thumbnail</strong></td>\n      <td style=\"padding:10px 12px;border:1px solid var(--border-color);\">1280 &times; 720 px</td>\n      <td style=\"padding:10px 12px;border:1px solid var(--border-color);\">16:9</td>\n    </tr>\n    <tr>\n      <td style=\"padding:10px 12px;border:1px solid var(--border-color);\"><strong>OpenGraph / Blog Featured</strong></td>\n      <td style=\"padding:10px 12px;border:1px solid var(--border-color);\">1200 &times; 630 px</td>\n      <td style=\"padding:10px 12px;border:1px solid var(--border-color);\">1.91:1</td>\n    </tr>\n    <tr>\n      <td style=\"padding:10px 12px;border:1px solid var(--border-color);\"><strong>Instagram Square Post</strong></td>\n      <td style=\"padding:10px 12px;border:1px solid var(--border-color);\">1080 &times; 1080 px</td>\n      <td style=\"padding:10px 12px;border:1px solid var(--border-color);\">1:1</td>\n    </tr>\n    <tr>\n      <td style=\"padding:10px 12px;border:1px solid var(--border-color);\"><strong>Instagram / TikTok Story</strong></td>\n      <td style=\"padding:10px 12px;border:1px solid var(--border-color);\">1080 &times; 1920 px</td>\n      <td style=\"padding:10px 12px;border:1px solid var(--border-color);\">9:16</td>\n    </tr>\n    <tr>\n      <td style=\"padding:10px 12px;border:1px solid var(--border-color);\"><strong>Website Hero Banner</strong></td>\n      <td style=\"padding:10px 12px;border:1px solid var(--border-color);\">1920 &times; 1080 px</td>\n      <td style=\"padding:10px 12px;border:1px solid var(--border-color);\">16:9</td>\n    </tr>\n  </tbody>\n</table>\n\n<h3>Related Free Image Utilities</h3>\n<ul>\n  <li><a href=\"/tools/image/image-compressor\">Image Compressor</a> — Squeeze file size after resizing.</li>\n  <li><a href=\"/tools/image/image-cropper\">Image Cropper</a> — Cut out specific sections or crop to 1:1, 16:9, or 4:3 ratios.</li>\n  <li><a href=\"/tools/creator/youtube-thumbnail-preview\">YouTube Thumbnail Preview</a> — Test your 1280x720 thumbnail across desktop and mobile feeds.</li>\n</ul>\n"
 };

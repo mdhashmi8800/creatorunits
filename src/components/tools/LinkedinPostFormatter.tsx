@@ -5,7 +5,7 @@ import { useToast } from "@/context/ToastContext";
 
 export default function LinkedinPostFormatter() {
   const { showToast } = useToast();
-  const [text, setText] = useState<string>("Writing my new post about Creators Units tools!");
+  const [text, setText] = useState<string>("Writing my new post about Creator Units tools!");
   const [styledText, setStyledText] = useState<string>("");
 
   const transformText = (style: "bold" | "italic" | "serifBold") => {

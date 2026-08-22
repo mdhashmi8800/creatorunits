@@ -21,7 +21,7 @@ export default function GlobalError({
   return (
     <html lang="en">
       <head>
-        <title>System Error | Creators Units</title>
+        <title>System Error | Creator Units</title>
         <meta name="description" content="A critical application error has occurred." />
         <style>{`
           :root {

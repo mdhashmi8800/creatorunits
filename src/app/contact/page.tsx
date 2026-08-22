@@ -11,8 +11,8 @@ import styles from "./contact.module.css";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Contact Us - Creators Units",
-  description: "Have a question, suggestion, partnership opportunity, or found an issue? Feel free to reach out to Creators Units via email, Instagram, or Twitter/X.",
+  title: "Contact Us - Creator Units",
+  description: "Have a question, suggestion, partnership opportunity, or found an issue? Feel free to reach out to Creator Units via email, Instagram, or Twitter/X.",
   alternates: {
     canonical: "/contact",
   },
@@ -21,8 +21,8 @@ export const metadata: Metadata = {
     follow: true,
   },
   openGraph: {
-    title: "Contact Us - Creators Units",
-    description: "Have a question, suggestion, partnership opportunity, or found an issue? Feel free to reach out to Creators Units via email, Instagram, or Twitter/X.",
+    title: "Contact Us - Creator Units",
+    description: "Have a question, suggestion, partnership opportunity, or found an issue? Feel free to reach out to Creator Units via email, Instagram, or Twitter/X.",
     images: ["/og-image.png"],
   },
 };
@@ -33,8 +33,8 @@ export default function ContactPage() {
     "@type": "ContactPage",
     "@id": "https://www.creatorunits.com/contact#webpage",
     "url": "https://www.creatorunits.com/contact",
-    "name": "Contact Us - Creators Units",
-    "description": "Have a question, suggestion, partnership opportunity, or found an issue? Feel free to reach out to Creators Units via email, Instagram, or Twitter/X.",
+    "name": "Contact Us - Creator Units",
+    "description": "Have a question, suggestion, partnership opportunity, or found an issue? Feel free to reach out to Creator Units via email, Instagram, or Twitter/X.",
     "isPartOf": {
       "@type": "WebSite",
       "@id": "https://www.creatorunits.com/#website"

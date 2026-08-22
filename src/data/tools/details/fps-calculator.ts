@@ -5,65 +5,47 @@ export const toolDetails: ToolItem = {
   "slug": "fps-calculator",
   "category": "video",
   "categoryName": "Video Tools",
-  "title": "FPS Calculator & Frame Counter",
-  "shortDesc": "Calculate total frames, duration, file sizes, and rendering times based on frames per second.",
-  "metaDesc": "Calculate video frames and render sizes online. Convert durations to frames at 24fps, 30fps, 60fps instantly.",
+  "title": "FPS Calculator & Video Frame Counter",
+  "shortDesc": "Calculate exact total frame counts, SMPTE timecodes, frame duration, and estimated storage file sizes across all standard frame rates.",
+  "metaDesc": "Free online FPS calculator. Convert video duration to frame counts at 24fps, 25fps, 29.97fps, 30fps, and 60fps. Compute SMPTE timecodes and file storage sizes accurately.",
   "instructions": [
-    "Enter video duration (hours, minutes, seconds).",
-    "Select target frame rate (23.976, 24, 25, 29.97, 30, 60 fps).",
-    "View total frame counts and duration scales.",
-    "Calculate estimated file size based on bitrate."
+    "Enter your video duration (Hours, Minutes, Seconds, and optional start frames).",
+    "Select your target frame rate (23.976, 24, 25, 29.97 NTSC, 30, 50 PAL, 60, or 120 fps).",
+    "View instant calculations for Total Frames, Individual Frame Duration in milliseconds, and SMPTE Timecode (HH:MM:SS:FF).",
+    "Optional: Enter your video bitrate (in Mbps) to estimate raw rendered file size."
   ],
   "features": [
-    "Drop-frame formats calculations.",
-    "Converts frames back into timestamp code strings.",
-    "Estimates raw video storage requirements."
+    "Supports all industry frame rates: 23.976, 24, 25 PAL, 29.97 NTSC Drop-Frame, 30, 50, 60, 120, and 240 fps.",
+    "Calculates exact SMPTE timecode (Hours:Minutes:Seconds:Frames) and reverse timecode conversions.",
+    "Computes individual frame duration in milliseconds for animation keyframing.",
+    "Bitrate-to-storage estimator (calculates GB and MB per video duration).",
+    "100% free and runs in real time inside your browser."
   ],
   "componentName": "VideoUtilities",
   "faqs": [
     {
-      "question": "What is the difference between 30fps and 29.97fps?",
-      "answer": "29.97fps is a drop-frame color television standard (NTSC) that skips specific frame numbers to match audio/video timing."
+      "question": "How do you calculate total frames from video duration and FPS?",
+      "answer": "The formula to calculate total video frames is: Total Frames = (Hours × 3600 + Minutes × 60 + Seconds) × Frame Rate (FPS) + Extra Frames. For example, a 2-minute and 30-second video at 60 FPS contains: (150 seconds × 60 fps) = 9,000 total frames."
     },
     {
-      "question": "How does the browser-based video processor work?",
-      "answer": "It uses modern browser APIs (such as HTML5 Video, Canvas, and WebAssembly) to read, compress, extract thumbnails, or convert video files fully on your local machine."
+      "question": "What is the difference between 30 FPS and 29.97 FPS (Drop-Frame)?",
+      "answer": "29.97 FPS (often called 30 FPS drop-frame) is an NTSC color broadcast standard introduced to maintain audio synchronization with television broadcast signals. At 29.97 FPS, 1,000 seconds of real time produces 29,970 frames. Standard non-drop 30 FPS runs at exactly 30.000 frames per second. For digital YouTube uploads and web streaming, true 30 FPS and 60 FPS are standard."
     },
     {
-      "question": "Is my video uploaded to a cloud server to compress or extract details?",
-      "answer": "No. Your video files are processed entirely client-side. Large file uploads are slow and risky; local processing ensures your video never leaves your computer, making it fast and secure."
+      "question": "Which frame rate should I use for YouTube and social media?",
+      "answer": "Recommended guidelines: (1) 24 FPS (23.976 FPS): Cinematic vlogs, narrative short films, and dramatic storytelling; (2) 30 FPS: Standard talking-head YouTube videos, tutorials, podcasts, and Instagram reels; (3) 60 FPS: Fast-paced gaming gameplay, sports action, tech product demos, and smooth screen recordings."
     },
     {
-      "question": "What formats are supported by the FPS Calculator & Frame Counter?",
-      "answer": "The tool supports common video containers such as MP4, WebM, and MOV, and audio formats like MP3 depending on the browser's native codecs."
+      "question": "How long is a single frame in milliseconds at 24fps vs 60fps?",
+      "answer": "At 24 FPS, each individual frame stays on screen for approximately 41.67 milliseconds. At 30 FPS, each frame lasts 33.33 ms. At 60 FPS, each frame lasts just 16.67 ms. At 120 FPS, each frame lasts 8.33 ms."
     },
     {
-      "question": "Why is local video thumbnail extraction faster?",
-      "answer": "Traditional online tools upload your video to their server, extract the frame, and send it back. Our tool renders the frame inside your browser Canvas instantly, saving gigabytes of bandwidth."
-    },
-    {
-      "question": "Does video compression degrade visual quality?",
-      "answer": "Compression will reduce the file size by adjusting the bitrate. By optimizing keyframes locally, it targets file size reductions with minimal visible loss for social feeds."
-    },
-    {
-      "question": "Can I convert video files to MP3 audio?",
-      "answer": "Yes, you can extract the audio track from video files and download it as a high-quality MP3 for podcasts or sound bites."
-    },
-    {
-      "question": "Are there limits on video file sizes?",
-      "answer": "The only limit is your device's memory and CPU capacity. Because it runs locally, there are no artificial file upload limits."
-    },
-    {
-      "question": "Can I use this tool on a Chromebook or lightweight laptop?",
-      "answer": "Yes. Since it runs in the web browser, it works on any platform (Windows, macOS, ChromeOS, Linux) without installing external media players."
-    },
-    {
-      "question": "Is there any software I need to download?",
-      "answer": "No. This tool operates entirely within your browser window using standard web capabilities."
+      "question": "How do I calculate video file size from bitrate and duration?",
+      "answer": "The formula is: File Size (in Megabytes) = (Bitrate in Mbps × Duration in Seconds) ÷ 8. For example, a 10-minute video (600 seconds) recorded at 50 Mbps 4K will be approximately (50 × 600) ÷ 8 = 3,750 MB (3.75 GB)."
     }
   ],
-  "seoTitle": "FPS Calculator - Convert Timecode to Frame Counts",
-  "seoHeading": "Calculate Frame Rates and Render Duration Variables",
-  "seoIntro": "Calculate editing frames ranges or estimate storage sizes. Input timecodes and FPS parameters to get accurate counts.",
-  "seoBody": "\n<h3>Why You Should Use Our FPS Calculator & Frame Counter</h3>\n<p>The FPS Calculator & Frame Counter is a professional-grade helper designed for content creators, digital marketers, and developers looking for a fast, browser-native solution. Built directly within the CreatorUnits suite, this utility helps you bypass complex installations and avoid sending sensitive project data to external cloud hosts. Whether you are running active media campaigns, preparing design layouts, or validating parameters, the FPS Calculator & Frame Counter provides real-time results instantly.</p>\n\n<h3>Key Features &amp; Technical Capabilities</h3>\n<ul>\n  <li><strong>Drop-frame formats calculations.:</strong> Drop-frame formats calculations.</li>\n  <li><strong>Converts frames back into timestamp code strings.:</strong> Converts frames back into timestamp code strings.</li>\n  <li><strong>Estimates raw video storage requirements.:</strong> Estimates raw video storage requirements.</li>\n</ul>\n\n<h3>100% Secure &amp; Client-Side Execution</h3>\n<p>Security is a fundamental design standard across all CreatorUnits tools. Unlike online converters or generators that upload files and details to remote databases, our FPS Calculator & Frame Counter runs completely within your web browser sandbox using modern JavaScript client APIs. This on-device processing guarantees that your files, variables, and outputs remain strictly secure on your local hard drive, with zero latency or external network dependencies.</p>\n\n<h3>Pro Creator Workflows</h3>\n<p>To maximize your productivity, integrate the FPS Calculator & Frame Counter with other matching tools in our directory matrix. For instance, digital media managers can run social assets through the Video Tools and verify sizing constraints before publishing. Web managers can combine scripts with our metadata builders, sitemap generators, and keyword density validators to optimize their search authority and pass Core Web Vitals check sheets.</p>\n"
+  "seoTitle": "Free FPS Calculator — Convert Video Duration to Frame Counts",
+  "seoHeading": "Calculate Video Frames, Timecodes & Storage Sizes Online",
+  "seoIntro": "Need to determine exact frame numbers for animation keyframes, subtitle timecodes, or render storage estimates? Our free online FPS Calculator converts video durations to precise frame counts across 24fps, 25fps, 30fps, 60fps, and custom rates instantly.",
+  "seoBody": "\n<h3>Industry Standard Frame Rates (FPS) Comparison</h3>\n<table style=\"width:100%;border-collapse:collapse;margin:1.5rem 0;font-size:0.925rem;\">\n  <thead>\n    <tr style=\"background:var(--bg-primary);text-align:left;\">\n      <th style=\"padding:10px 12px;border:1px solid var(--border-color);\">Frame Rate (FPS)</th>\n      <th style=\"padding:10px 12px;border:1px solid var(--border-color);\">Frame Duration</th>\n      <th style=\"padding:10px 12px;border:1px solid var(--border-color);\">Standard Use Cases</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td style=\"padding:10px 12px;border:1px solid var(--border-color);\"><strong>23.976 / 24 FPS</strong></td>\n      <td style=\"padding:10px 12px;border:1px solid var(--border-color);\">41.67 ms</td>\n      <td style=\"padding:10px 12px;border:1px solid var(--border-color);\">Cinematic motion blur, feature films, high-production YouTube vlogs</td>\n    </tr>\n    <tr>\n      <td style=\"padding:10px 12px;border:1px solid var(--border-color);\"><strong>25 FPS</strong></td>\n      <td style=\"padding:10px 12px;border:1px solid var(--border-color);\">40.00 ms</td>\n      <td style=\"padding:10px 12px;border:1px solid var(--border-color);\">European &amp; UK television broadcast standard (PAL / SECAM)</td>\n    </tr>\n    <tr>\n      <td style=\"padding:10px 12px;border:1px solid var(--border-color);\"><strong>29.97 / 30 FPS</strong></td>\n      <td style=\"padding:10px 12px;border:1px solid var(--border-color);\">33.33 ms</td>\n      <td style=\"padding:10px 12px;border:1px solid var(--border-color);\">US/Japan television (NTSC), standard web video, podcasts, social reels</td>\n    </tr>\n    <tr>\n      <td style=\"padding:10px 12px;border:1px solid var(--border-color);\"><strong>50 / 60 FPS</strong></td>\n      <td style=\"padding:10px 12px;border:1px solid var(--border-color);\">16.67 ms</td>\n      <td style=\"padding:10px 12px;border:1px solid var(--border-color);\">Video game captures, live sports, ultra-smooth 4K YouTube streaming</td>\n    </tr>\n    <tr>\n      <td style=\"padding:10px 12px;border:1px solid var(--border-color);\"><strong>120 / 240 FPS</strong></td>\n      <td style=\"padding:10px 12px;border:1px solid var(--border-color);\">8.33 / 4.17 ms</td>\n      <td style=\"padding:10px 12px;border:1px solid var(--border-color);\">Slow-motion B-roll capture, action cameras (GoPro), smartphone slow-mo</td>\n    </tr>\n  </tbody>\n</table>\n\n<h3>SMPTE Timecode Format: Hours:Minutes:Seconds:Frames</h3>\n<p>In professional video editing programs (Adobe Premiere Pro, DaVinci Resolve, Final Cut Pro), time is tracked using SMPTE timecodes written as <code>HH:MM:SS:FF</code>, where <code>FF</code> represents the frame number within that specific second (ranging from <code>00</code> to <code>FPS - 1</code>).</p>\n\n<h3>Related Free Video &amp; Creator Utilities</h3>\n<ul>\n  <li><a href=\"/tools/video/video-thumbnail-extractor\">Video Thumbnail Extractor</a> — Capture exact frame stills from video files.</li>\n  <li><a href=\"/tools/creator/youtube-thumbnail-preview\">YouTube Thumbnail Preview</a> — Test your thumbnail on simulated feeds.</li>\n  <li><a href=\"/tools/creator/youtube-tag-extractor\">YouTube Tag Extractor</a> — Extract SEO tags from competitor uploads.</li>\n</ul>\n"
 };

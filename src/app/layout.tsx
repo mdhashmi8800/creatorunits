@@ -28,7 +28,7 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "Creators Units - Free Online Tools for Creators & Social Media",
+  title: "Creator Units - Free Online Tools for Creators & Social Media",
   description: "Free, private web tools for creators and social media. Compress images, preview YouTube thumbnails, generate QR codes, and format text offline and instantly.",
   keywords: "creator tools, image compressor, qr generator, youtube tag extractor, text case converter, fancy text generator, link in bio",
   authors: [{ name: "Creator Units Editorial Team", url: "https://www.creatorunits.com/about" }],
@@ -43,21 +43,21 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: baseUrl,
-    siteName: "Creators Units",
-    title: "Creators Units - Free Online Tools for Creators & Social Media",
+    siteName: "Creator Units",
+    title: "Creator Units - Free Online Tools for Creators & Social Media",
     description: "Free, private web tools for creators and social media. Compress images, preview YouTube thumbnails, generate QR codes, and format text offline and instantly.",
     images: [
       {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Creators Units - Free Online Tools for Creators",
+        alt: "Creator Units - Free Online Tools for Creators",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Creators Units - Free Online Tools for Creators & Social Media",
+    title: "Creator Units - Free Online Tools for Creators & Social Media",
     description: "Free, private web tools for creators and social media. Compress images, preview YouTube thumbnails, generate QR codes, and format text offline and instantly.",
     images: ["/og-image.png"],
     creator: "@Oye_hasmi",
@@ -72,7 +72,7 @@ const ORGANIZATION_SCHEMA_JSON = JSON.stringify({
   "@context": "https://schema.org",
   "@type": "Organization",
   "@id": `${baseUrl}/#organization`,
-  name: "Creators Units",
+  name: "Creator Units",
   url: baseUrl,
   logo: `${baseUrl}/icon.svg`,
   description: "Free, fast, and privacy-focused online tools for creators, freelancers, and small businesses.",
@@ -92,7 +92,7 @@ const WEBSITE_SCHEMA_JSON = JSON.stringify({
   "@context": "https://schema.org",
   "@type": "WebSite",
   "@id": `${baseUrl}/#website`,
-  name: "Creators Units",
+  name: "Creator Units",
   url: baseUrl,
   description: "Free online tools for creators, freelancers, and small businesses.",
   potentialAction: {

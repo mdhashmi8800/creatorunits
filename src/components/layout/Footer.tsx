@@ -2,8 +2,6 @@ import React from "react";
 import Link from "next/link";
 import styles from "./Footer.module.css";
 
-// Build-time constant — avoids dynamic Date evaluation on every request
-// which can break static page caching consistency.
 const CURRENT_YEAR = new Date().getFullYear();
 
 export default function Footer() {
@@ -15,7 +13,7 @@ export default function Footer() {
         <div className={styles.grid}>
           {/* Brand Info */}
           <div className={styles.brandCol}>
-            <Link href="/" className={styles.logo} aria-label="Creators Units - Go to homepage">
+            <Link href="/" className={styles.logo} aria-label="Creator Units - Go to homepage">
               <svg
                 className={styles.logoIcon}
                 viewBox="0 0 24 24"
@@ -26,10 +24,10 @@ export default function Footer() {
                 <rect x="13" y="3" width="8" height="8" rx="2" />
                 <rect x="13" y="13" width="8" height="8" rx="2" />
               </svg>
-              <span className={styles.logoText}>Creators Units</span>
+              <span className={styles.logoText}>Creator Units</span>
             </Link>
             <p className={styles.tagline}>
-              Free, fast, and secure online tools that help you design, optimize, and grow your digital presence. No installation required.
+              Free, fast, and private online tools for creators, freelancers, and small businesses. All operations run directly in your browser.
             </p>
           </div>
 
@@ -57,16 +55,31 @@ export default function Footer() {
                   Utility Tools
                 </Link>
               </li>
+              <li>
+                <Link href="/category/seo" className={styles.link}>
+                  SEO Tools
+                </Link>
+              </li>
+              <li>
+                <Link href="/category/video" className={styles.link}>
+                  Video Tools
+                </Link>
+              </li>
             </ul>
           </div>
 
-          {/* Information Column */}
+          {/* Resources Column */}
           <div>
             <h3 className={styles.colTitle}>Resources</h3>
             <ul className={styles.linkList}>
               <li>
                 <Link href="/tools" className={styles.link}>
-                  All Tools
+                  All Tools Directory
+                </Link>
+              </li>
+              <li>
+                <Link href="/blog" className={styles.link}>
+                  Creator Guides &amp; Blog
                 </Link>
               </li>
               <li>
@@ -76,7 +89,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link href="/contact" className={styles.link}>
-                  Contact Form
+                  Contact Support
                 </Link>
               </li>
             </ul>
@@ -84,7 +97,7 @@ export default function Footer() {
 
           {/* Legal Column */}
           <div>
-            <h3 className={styles.colTitle}>Legal</h3>
+            <h3 className={styles.colTitle}>Legal &amp; Privacy</h3>
             <ul className={styles.linkList}>
               <li>
                 <Link href="/privacy" className={styles.link}>
@@ -108,7 +121,7 @@ export default function Footer() {
         {/* Bottom Bar */}
         <div className={styles.bottom}>
           <div className={styles.copyright}>
-            &copy; {currentYear} Creators Units. All rights reserved. Built for creators, bloggers, and small businesses.
+            &copy; {currentYear} Creator Units. All rights reserved. Free browser tools for content creators.
           </div>
           <div className={styles.bottomLinks}>
             <Link href="/privacy" className={styles.bottomLink}>

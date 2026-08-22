@@ -114,7 +114,7 @@ export default function PdfUtilities() {
         const pdf = await PDFDocument.load(arrayBuffer);
         
         pdf.setTitle(`Protected ${targetFile.name}`);
-        pdf.setSubject("Locked client-side via Creators Units");
+        pdf.setSubject("Locked client-side via Creator Units");
         
         const lockedBytes = await pdf.save();
         triggerDownload(lockedBytes, `protected_${targetFile.name}`);

@@ -1,12 +1,13 @@
 export const dynamic = "force-static";
-export const revalidate = 3600;
 
 import type { Metadata } from "next";
 import Link from "next/link";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import Breadcrumbs from "@/components/ui/Breadcrumbs";
-import { getPosts, formatDateShort, POSTS_PER_PAGE } from "@/lib/wordpress";
+import { articlesIndex } from "@/data/articles-index";
+
+const POSTS_PER_PAGE = 10;
 
 export const metadata: Metadata = {
   title: "Creator Tools Blog — Guides for Images, YouTube & Social Media | Creator Units",
@@ -24,19 +25,17 @@ export const metadata: Metadata = {
   },
 };
 
-export default async function BlogIndexPage() {
-  let posts: Awaited<ReturnType<typeof getPosts>>['posts'] = [];
-  let total = 0;
-  let totalPages = 0;
+function formatDateShort(dateStr: string): string {
+  return new Date(dateStr).toLocaleDateString("en-US", {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+  });
+}
 
-  try {
-    const result = await getPosts(1, POSTS_PER_PAGE);
-    posts = result.posts;
-    total = result.total;
-    totalPages = result.totalPages;
-  } catch {
-    // API unavailable
-  }
+export default function BlogIndexPage() {
+  const posts = articlesIndex.slice(0, POSTS_PER_PAGE);
+  const totalPages = Math.ceil(articlesIndex.length / POSTS_PER_PAGE);
 
   const blogSchema = {
     "@context": "https://schema.org",
@@ -50,12 +49,13 @@ export default async function BlogIndexPage() {
       name: "Creator Units",
       url: "https://www.creatorunits.com",
     },
-    blogPost: posts.slice(0, 10).map((p) => ({
+    blogPost: posts.map((p) => ({
       "@type": "BlogPosting",
       headline: p.title,
-      description: p.excerpt,
+      description: p.metaDesc,
       url: `https://www.creatorunits.com/blog/${p.slug}`,
-      datePublished: p.date,
+      datePublished: p.publishDate,
+      dateModified: p.lastModified || p.publishDate,
     })),
   };
 
@@ -133,138 +133,111 @@ export default async function BlogIndexPage() {
 
         <section className="section">
           <div className="container">
-            {posts.length === 0 ? (
-              <div style={{ textAlign: "center", padding: "3rem 0" }}>
-                <p className="text-muted">No articles published yet. Check back soon.</p>
-              </div>
-            ) : (
-              <>
-                <div className="grid-cols-2">
-                  {posts.map((post) => (
-                    <Link
-                      key={post.slug}
-                      href={`/blog/${post.slug}`}
-                      className="card card-hover flex flex-col gap-3"
-                      style={{ textDecoration: "none", color: "inherit" }}
-                      aria-label={`Read: ${post.title}`}
+            <div className="grid-cols-2">
+              {posts.map((post) => (
+                <Link
+                  key={post.slug}
+                  href={`/blog/${post.slug}`}
+                  className="card card-hover flex flex-col gap-3"
+                  style={{ textDecoration: "none", color: "inherit" }}
+                  aria-label={`Read: ${post.title}`}
+                >
+                  <div>
+                    <span
+                      className="badge"
+                      style={{
+                        backgroundColor: "var(--accent-light)",
+                        color: "var(--accent)",
+                        fontSize: "0.65rem",
+                        fontWeight: "600",
+                      }}
                     >
-                      {post.featuredImage && (
-                        <div
-                          style={{
-                            width: "100%",
-                            height: "200px",
-                            overflow: "hidden",
-                            borderRadius: "8px 8px 0 0",
-                            margin: "-1.5rem -1.5rem 0 -1.5rem",
-                          }}
-                        >
-                          <img
-                            src={post.featuredImage}
-                            alt={post.featuredImageAlt || post.title}
-                            loading="lazy"
-                            style={{ width: "100%", height: "100%", objectFit: "cover" }}
-                          />
-                        </div>
-                      )}
-                      <div>
-                        <span
-                          className="badge"
-                          style={{
-                            backgroundColor: "var(--accent-light)",
-                            color: "var(--accent)",
-                            fontSize: "0.65rem",
-                            fontWeight: "600",
-                          }}
-                        >
-                          {post.categories[0] || 'Creator Units'}
-                        </span>
-                      </div>
-                      <h3
-                        style={{
-                          fontSize: "1.05rem",
-                          margin: 0,
-                          lineHeight: "1.4",
-                          color: "var(--text-primary)",
-                        }}
-                      >
-                        {post.title}
-                      </h3>
-                      <p
-                        className="text-muted"
-                        style={{
-                          fontSize: "0.875rem",
-                          margin: 0,
-                          flexGrow: 1,
-                          lineHeight: "1.5",
-                        }}
-                      >
-                        {post.excerpt}
-                      </p>
-                      <div
-                        style={{
-                          display: "flex",
-                          justifyContent: "space-between",
-                          alignItems: "center",
-                          marginTop: "0.5rem",
-                        }}
-                      >
-                        <div style={{ display: "flex", gap: "0.75rem", alignItems: "center", fontSize: "0.75rem", color: "var(--text-muted)" }}>
-                          <span>{post.author}</span>
-                          <time dateTime={post.date}>
-                            {formatDateShort(post.date)}
-                          </time>
-                          <span>{post.readingTime}</span>
-                        </div>
-                        <span
-                          className="text-primary-color"
-                          style={{ fontSize: "0.85rem", fontWeight: "600" }}
-                        >
-                          Read Guide &rarr;
-                        </span>
-                      </div>
-                    </Link>
-                  ))}
-                </div>
-
-                {totalPages > 1 && (
-                  <nav
+                      {post.categoryLabel || "Creator Units"}
+                    </span>
+                  </div>
+                  <h2
+                    style={{
+                      fontSize: "1.1rem",
+                      margin: 0,
+                      lineHeight: "1.4",
+                      color: "var(--text-primary)",
+                    }}
+                  >
+                    {post.title}
+                  </h2>
+                  <p
+                    className="text-muted"
+                    style={{
+                      fontSize: "0.875rem",
+                      margin: 0,
+                      flexGrow: 1,
+                      lineHeight: "1.5",
+                    }}
+                  >
+                    {post.metaDesc}
+                  </p>
+                  <div
                     style={{
                       display: "flex",
-                      justifyContent: "center",
-                      gap: "0.5rem",
-                      marginTop: "3rem",
+                      justifyContent: "space-between",
                       alignItems: "center",
+                      marginTop: "0.5rem",
                     }}
-                    aria-label="Blog pagination"
                   >
-                    {Array.from({ length: totalPages }, (_, i) => i + 1).map((p) => (
-                      <Link
-                        key={p}
-                        href={p === 1 ? '/blog' : `/blog/page/${p}`}
-                        className="btn"
-                        style={{
-                          backgroundColor: p === 1 ? "var(--accent)" : "var(--bg-primary)",
-                          color: p === 1 ? "var(--bg-primary)" : "var(--text-primary)",
-                          border: "1px solid var(--border-color)",
-                          minWidth: "40px",
-                        }}
-                        aria-current={p === 1 ? "page" : undefined}
-                      >
-                        {p}
-                      </Link>
-                    ))}
-                    {totalPages > 1 && (
-                      <Link
-                        href="/blog/page/2"
-                        className="btn btn-secondary"
-                        style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem" }}
-                      >
-                        Next &rarr;
-                      </Link>
-                    )}
-                  </nav>
+                    <div style={{ display: "flex", gap: "0.75rem", alignItems: "center", fontSize: "0.75rem", color: "var(--text-muted)" }}>
+                      <span>Creator Units Editorial Team</span>
+                      <time dateTime={post.publishDate}>
+                        {formatDateShort(post.publishDate)}
+                      </time>
+                    </div>
+                    <span
+                      className="text-primary-color"
+                      style={{ fontSize: "0.85rem", fontWeight: "600" }}
+                    >
+                      Read Guide &rarr;
+                    </span>
+                  </div>
+                </Link>
+              ))}
+            </div>
+
+            {totalPages > 1 && (
+              <nav
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  gap: "0.5rem",
+                  marginTop: "3rem",
+                  alignItems: "center",
+                }}
+                aria-label="Blog pagination"
+              >
+                {Array.from({ length: totalPages }, (_, i) => i + 1).map((p) => (
+                  <Link
+                    key={p}
+                    href={p === 1 ? "/blog" : `/blog/page/${p}`}
+                    className="btn"
+                    style={{
+                      backgroundColor: p === 1 ? "var(--accent)" : "var(--bg-primary)",
+                      color: p === 1 ? "var(--bg-primary)" : "var(--text-primary)",
+                      border: "1px solid var(--border-color)",
+                      minWidth: "40px",
+                    }}
+                    aria-current={p === 1 ? "page" : undefined}
+                  >
+                    {p}
+                  </Link>
+                ))}
+                {totalPages > 1 && (
+                  <Link
+                    href="/blog/page/2"
+                    className="btn btn-secondary"
+                    style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem" }}
+                  >
+                    Next &rarr;
+                  </Link>
                 )}
-              </>
+              </nav>
             )}
           </div>
         </section>

@@ -7,7 +7,7 @@ import Footer from "@/components/layout/Footer";
 import { toolsIndex as tools, categories } from "@/data/tools";
 import HomeSearch from "./HomeSearch";
 import styles from "./page.module.css";
-import { getLatestPosts } from "@/lib/wordpress";
+import { articlesIndex } from "@/data/articles-index";
 
 export const metadata: Metadata = {
   title: "Free Web Tools for Creators & Social Media | Creator Units",
@@ -110,8 +110,8 @@ const toolCounts = tools.reduce((acc, tool) => {
 
 const faqs = [
   {
-    q: "Are the tools on Creators Units really free?",
-    a: "Yes, every tool on Creators Units is completely free with no hidden costs. You get unlimited access to all 100+ tools including image compression, QR code generation, thumbnail previews, and text formatting — no account creation, no trial periods, and no premium tiers required.",
+    q: "Are the tools on Creator Units really free?",
+    a: "Yes, every tool on Creator Units is completely free with no hidden costs. You get unlimited access to all 100+ tools including image compression, QR code generation, thumbnail previews, and text formatting — no account creation, no trial periods, and no premium tiers required.",
   },
   {
     q: "Do my files get uploaded to your servers?",
@@ -119,7 +119,7 @@ const faqs = [
   },
   {
     q: "What browsers and devices are supported?",
-    a: "Creators Units works on all modern browsers including Chrome, Firefox, Safari, and Edge on desktop, tablet, and mobile. The tools use standard web APIs that have been supported since 2018, so even slightly older devices will run most tools without issues.",
+    a: "Creator Units works on all modern browsers including Chrome, Firefox, Safari, and Edge on desktop, tablet, and mobile. The tools use standard web APIs that have been supported since 2018, so even slightly older devices will run most tools without issues.",
   },
   {
     q: "How do I report a bug or request a new tool?",
@@ -135,12 +135,7 @@ const faqs = [
  * This dramatically improves LCP, FCP, and reduces JS bundle size.
  */
 export default async function Home() {
-  let latestArticles: Awaited<ReturnType<typeof getLatestPosts>> = [];
-  try {
-    latestArticles = await getLatestPosts(6);
-  } catch {
-    // WordPress API unavailable
-  }
+  const latestArticles = articlesIndex.slice(0, 6);
   const homePageSchema = {
     "@context": "https://schema.org",
     "@type": "WebPage",
@@ -438,10 +433,10 @@ export default async function Home() {
           </div>
         </section>
 
-        {/* Why Creators Units Section */}
-        <section className="section" style={{ backgroundColor: "var(--bg-primary)" }}>
+        {/* Why Creator Units Section */}
+        <section className="section" style={{ backgroundColor: "var(--bg-primary)" }} aria-labelledby="why-us-heading">
           <div className="container">
-            <h2 className="text-center mb-2">Why Use Creators Units?</h2>
+            <h2 id="why-us-heading" className="text-center mb-2">Why Use Creator Units?</h2>
             <p className="text-center text-muted mb-8">
               A premium, lightweight, privacy-focused experience built for the modern web.
             </p>
@@ -586,9 +581,9 @@ export default async function Home() {
                     className="card card-hover flex flex-col gap-2"
                     style={{ textDecoration: "none", color: "inherit", padding: "1.5rem" }}
                   >
-                    <span className="badge badge-accent" style={{ fontSize: "0.6rem", alignSelf: "flex-start", textTransform: "capitalize" }}>{post.categories[0] || 'Blog'}</span>
+                    <span className="badge badge-accent" style={{ fontSize: "0.6rem", alignSelf: "flex-start" }}>{post.categoryLabel || "Blog"}</span>
                     <h3 style={{ fontSize: "1.05rem", margin: 0, lineHeight: "1.4" }}>{post.title}</h3>
-                    <p className="text-muted" style={{ fontSize: "0.8rem", margin: 0, flexGrow: 1, lineHeight: "1.5" }}>{post.excerpt}</p>
+                    <p className="text-muted" style={{ fontSize: "0.8rem", margin: 0, flexGrow: 1, lineHeight: "1.5" }}>{post.metaDesc}</p>
                     <span className="text-primary-color" style={{ fontSize: "0.8rem", fontWeight: "600", marginTop: "0.5rem" }}>Read Guide &rarr;</span>
                   </Link>
                 ))}

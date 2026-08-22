@@ -35,13 +35,13 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   if (!tool) return {};
 
   return {
-    title: `${tool.seoTitle} | Creators Units`,
+    title: `${tool.seoTitle} | Creator Units`,
     description: tool.metaDesc,
     alternates: {
       canonical: `/tools/${tool.category}/${tool.slug}`,
     },
     openGraph: {
-      title: `${tool.seoTitle} | Creators Units`,
+      title: `${tool.seoTitle} | Creator Units`,
       description: tool.metaDesc,
       type: "website",
       images: [
@@ -49,13 +49,13 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
           url: "/og-image.png",
           width: 1200,
           height: 630,
-          alt: `${tool.title} - Creators Units`,
+          alt: `${tool.title} - Creator Units`,
         },
       ],
     },
     twitter: {
       card: "summary_large_image",
-      title: `${tool.seoTitle} | Creators Units`,
+      title: `${tool.seoTitle} | Creator Units`,
       description: tool.metaDesc,
       images: ["/og-image.png"],
     },
@@ -87,7 +87,7 @@ export default async function ToolDetailPage({ params }: PageProps) {
     "@type": "WebPage",
     "@id": `https://www.creatorunits.com/tools/${tool.category}/${tool.slug}#webpage`,
     "url": `https://www.creatorunits.com/tools/${tool.category}/${tool.slug}`,
-    "name": `${tool.seoTitle} | Creators Units`,
+    "name": `${tool.seoTitle} | Creator Units`,
     "description": tool.metaDesc,
     "isPartOf": {
       "@type": "WebSite",

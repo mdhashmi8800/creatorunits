@@ -668,57 +668,6 @@ export const articlesIndex: ArticleLite[] = [
       "qr-code-generator",
       "password-generator"
     ]
-  },
-  {
-    "slug": "utm-tracking-link-guide",
-    "title": "UTM Links Explained: A Beginner's Guide to UTM Tracking",
-    "metaDesc": "Learn what UTM parameters are and how to build UTM tracking links for Google Analytics. Know exactly where your traffic comes from.",
-    "publishDate": "2025-08-04",
-    "category": "utility",
-    "categoryLabel": "Utility Tools",
-    "relatedToolSlugs": [
-      "utm-builder",
-      "url-encoder-decoder",
-      "qr-code-generator"
-    ]
-  },
-  {
-    "slug": "url-encode-decode-guide",
-    "title": "URL Encoding Explained: How to Encode and Decode URLs",
-    "metaDesc": "What URL encoding is, when you need it, and how percent-encoding works. Includes common encoding examples and a free online encoder.",
-    "publishDate": "2025-08-06",
-    "category": "utility",
-    "categoryLabel": "Utility Tools",
-    "relatedToolSlugs": [
-      "url-encoder-decoder",
-      "utm-builder",
-      "slug-generator"
-    ]
-  },
-  {
-    "slug": "whatsapp-click-to-chat-link",
-    "title": "How to Create a WhatsApp Click-to-Chat Link",
-    "metaDesc": "Generate a WhatsApp click-to-chat link with a pre-filled message and turn it into a QR code for business cards and marketing materials.",
-    "publishDate": "2025-08-08",
-    "category": "social",
-    "categoryLabel": "Social Media Tools",
-    "relatedToolSlugs": [
-      "whatsapp-qr-generator",
-      "whatsapp-link-generator",
-      "qr-code-generator"
-    ]
-  },
-  {
-    "slug": "how-to-create-qr-code-free",
-    "title": "How to Create a QR Code for Free (No App Needed)",
-    "metaDesc": "Create a QR code for any URL, text, or WhatsApp number free in your browser. No sign-up required. Download as PNG for print or digital use.",
-    "publishDate": "2025-08-10",
-    "category": "utility",
-    "categoryLabel": "Utility Tools",
-    "relatedToolSlugs": [
-      "qr-code-generator",
-      "whatsapp-qr-generator",
-      "barcode-generator"
-    ]
   }
 ];
+

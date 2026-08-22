@@ -65,7 +65,7 @@ export default function AiCreatorSuite() {
             messages: [
               {
                 role: "system",
-                content: `You are a professional AI content creator for Creators Units. Tone: ${tone}. Slug: ${slug}. Format the output beautifully with clear spacing, lists, or headers if needed.`,
+                content: `You are a professional AI content creator for Creator Units. Tone: ${tone}. Slug: ${slug}. Format the output beautifully with clear spacing, lists, or headers if needed.`,
               },
               {
                 role: "user",

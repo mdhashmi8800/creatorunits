@@ -76,7 +76,7 @@ export default function Header() {
   return (
     <header className={styles.header} role="banner">
       <div className={`${styles.nav} container`}>
-        <Link href="/" className={styles.logo} aria-label="Creators Units - Go to homepage">
+        <Link href="/" className={styles.logo} aria-label="Creator Units - Go to homepage">
           <svg
             className={styles.logoIcon}
             viewBox="0 0 24 24"
@@ -87,7 +87,7 @@ export default function Header() {
             <rect x="13" y="3" width="8" height="8" rx="2" />
             <rect x="13" y="13" width="8" height="8" rx="2" />
           </svg>
-          <span className={styles.logoText}>Creators Units</span>
+          <span className={styles.logoText}>Creator Units</span>
         </Link>
 
         {/* Desktop Menu */}
