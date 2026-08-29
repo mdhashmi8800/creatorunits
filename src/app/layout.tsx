@@ -31,8 +31,11 @@ export const metadata: Metadata = {
   title: "Creator Units - Free Online Tools for Creators & Social Media",
   description: "Free, private web tools for creators and social media. Compress images, preview YouTube thumbnails, generate QR codes, and format text offline and instantly.",
   keywords: "creator tools, image compressor, qr generator, youtube tag extractor, text case converter, fancy text generator, link in bio",
-  authors: [{ name: "Creator Units Editorial Team", url: "https://www.creatorunits.com/about" }],
-  creator: "Creator Units",
+  authors: [
+    { name: "Muhammad Hashmi", url: "https://www.creatorunits.com/author/md-hashmi" },
+    { name: "Creator Units Editorial Team", url: "https://www.creatorunits.com/about" },
+  ],
+  creator: "Muhammad Hashmi",
   publisher: "Creator Units",
   metadataBase: new URL(baseUrl),
   icons: {
@@ -76,6 +79,17 @@ const ORGANIZATION_SCHEMA_JSON = JSON.stringify({
   url: baseUrl,
   logo: `${baseUrl}/icon.svg`,
   description: "Free, fast, and privacy-focused online tools for creators, freelancers, and small businesses.",
+  founder: {
+    "@type": "Person",
+    name: "Muhammad Hashmi",
+    alternateName: "Md Hashmi",
+    url: `${baseUrl}/author/md-hashmi`,
+    sameAs: [
+      "https://instagram.com/oye_hasmi",
+      "https://twitter.com/Oye_hasmi",
+      "https://github.com/mdhashmi8800",
+    ],
+  },
   sameAs: [
     "https://instagram.com/oye_hasmi",
     "https://twitter.com/Oye_hasmi"
@@ -83,7 +97,7 @@ const ORGANIZATION_SCHEMA_JSON = JSON.stringify({
   contactPoint: {
     "@type": "ContactPoint",
     contactType: "customer service",
-    email: "support@creatorunits.com",
+    email: "mdhashmi8800@gmail.com",
     availableLanguage: "English",
   },
 });

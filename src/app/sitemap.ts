@@ -8,10 +8,17 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = "https://www.creatorunits.com";
 
   const coreEntries: MetadataRoute.Sitemap = [
-    { url: baseUrl,             changeFrequency: "daily"  as const, priority: 1.0, lastModified: BUILD_DATE },
-    { url: `${baseUrl}/tools`,  changeFrequency: "weekly" as const, priority: 0.9, lastModified: BUILD_DATE },
-    { url: `${baseUrl}/blog`,   changeFrequency: "weekly" as const, priority: 0.9, lastModified: BUILD_DATE },
-    { url: `${baseUrl}/about`,  changeFrequency: "monthly" as const, priority: 0.7, lastModified: BUILD_DATE },
+    { url: baseUrl, changeFrequency: "daily" as const, priority: 1.0, lastModified: BUILD_DATE },
+    { url: `${baseUrl}/tools`, changeFrequency: "weekly" as const, priority: 0.9, lastModified: BUILD_DATE },
+    { url: `${baseUrl}/blog`, changeFrequency: "weekly" as const, priority: 0.9, lastModified: BUILD_DATE },
+    { url: `${baseUrl}/about`, changeFrequency: "monthly" as const, priority: 0.8, lastModified: BUILD_DATE },
+    { url: `${baseUrl}/author/md-hashmi`, changeFrequency: "monthly" as const, priority: 0.8, lastModified: BUILD_DATE },
+    { url: `${baseUrl}/contact`, changeFrequency: "monthly" as const, priority: 0.8, lastModified: BUILD_DATE },
+    { url: `${baseUrl}/editorial-policy`, changeFrequency: "monthly" as const, priority: 0.7, lastModified: BUILD_DATE },
+    { url: `${baseUrl}/privacy`, changeFrequency: "monthly" as const, priority: 0.7, lastModified: BUILD_DATE },
+    { url: `${baseUrl}/cookie-policy`, changeFrequency: "monthly" as const, priority: 0.7, lastModified: BUILD_DATE },
+    { url: `${baseUrl}/terms`, changeFrequency: "monthly" as const, priority: 0.7, lastModified: BUILD_DATE },
+    { url: `${baseUrl}/disclaimer`, changeFrequency: "monthly" as const, priority: 0.7, lastModified: BUILD_DATE },
   ];
 
   const categoryEntries: MetadataRoute.Sitemap = Object.keys(categories).map((slug) => ({
@@ -37,4 +44,3 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   return [...coreEntries, ...categoryEntries, ...toolEntries, ...blogEntries];
 }
-

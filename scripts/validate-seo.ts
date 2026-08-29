@@ -18,7 +18,7 @@ async function runSeoValidation() {
   const sitemapEntries = await sitemap();
   console.log(`   Total sitemap entries generated: ${sitemapEntries.length}`);
 
-  const expectedCoreCount = 4;
+  const expectedCoreCount = 11;
   const expectedCatCount = Object.keys(categories).length;
   const expectedToolCount = toolsIndex.length;
   const expectedArticleCount = articlesIndex.length;

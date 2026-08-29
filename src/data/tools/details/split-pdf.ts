@@ -5,65 +5,52 @@ export const toolDetails: ToolItem = {
   "slug": "split-pdf",
   "category": "pdf",
   "categoryName": "PDF Tools",
-  "title": "Split PDF Pages",
-  "shortDesc": "Extract specific page ranges or split a PDF file into individual pages.",
-  "metaDesc": "Split PDF pages online. Select custom page ranges (e.g. 1-3, 5) or export all pages as individual documents.",
+  "title": "Split PDF Pages Online — Extract Page Ranges Free",
+  "shortDesc": "Extract custom page ranges or separate multi-page PDF documents into individual files with 100% on-device client-side processing.",
+  "metaDesc": "Free online PDF splitter. Extract specific page ranges (e.g., 1-3, 5, 8-10) or split every page into a standalone PDF. 100% private, no file uploads.",
   "instructions": [
-    "Upload your PDF document.",
-    "Specify target page splits (e.g., '1-3' or select 'Extract All Pages').",
-    "Click 'Split PDF'.",
-    "Download the extracted file bundle."
+    "Upload or drag & drop your PDF file into the dropzone.",
+    "Select your split mode: 'Custom Page Ranges' (e.g. 1-3, 5, 8) or 'Extract All Pages as Separate Files'.",
+    "Preview page thumbnails to confirm your selection.",
+    "Click 'Split PDF' to extract the chosen pages instantly in your browser memory.",
+    "Download your extracted PDF document or ZIP bundle immediately."
   ],
   "features": [
-    "Supports page range formats (e.g. 1-2, 5).",
-    "Extracts pages instantly.",
-    "Offline-first processing."
+    "Flexible page range selector supporting complex syntax (e.g., `1-4, 7, 9-12`).",
+    "One-click 'Split All' mode creating individual 1-page PDF documents.",
+    "Zero server uploads: all PDF parsing and rendering happens in client-side JavaScript memory.",
+    "Preserves vector fonts, form fields, high-res images, and document bookmarks.",
+    "100% free with no file size caps, page limits, or watermark stamps."
   ],
   "componentName": "PdfUtilities",
   "faqs": [
     {
-      "question": "Can I split password-protected PDFs?",
-      "answer": "You must first decrypt the PDF using our Unlock tool before extracting pages."
+      "question": "How does client-side PDF splitting work?",
+      "answer": "Our tool uses client-side WebAssembly and JavaScript PDF parsers (PDF-Lib). When you load a file, your browser's local memory parses the PDF document structure and writes a new PDF binary containing only your selected page objects. No network upload or server processing takes place."
     },
     {
-      "question": "How does the Split PDF Pages keep my PDF documents secure?",
-      "answer": "All PDF calculations (merging, splitting, compression, locking, or unlocking) are handled locally using client-side JavaScript. Your confidential documents are never uploaded to any remote server."
+      "question": "How do I format custom page ranges?",
+      "answer": "Use hyphens for continuous page sequences and commas for individual pages. For example: `1-5, 8, 12-15` will extract pages 1 through 5, page 8, and pages 12 through 15 into a single organized PDF document."
     },
     {
-      "question": "Can I merge multiple PDFs into one document?",
-      "answer": "Yes. You can upload multiple files, arrange their order, and compile them into a single PDF document in seconds."
+      "question": "Is it safe to split confidential contracts or tax documents here?",
+      "answer": "Yes, absolutely. Because the splitting process occurs entirely within your local browser sandbox and never communicates with an external server, your sensitive business contracts, medical forms, and financial statements remain 100% confidential on your device."
     },
     {
-      "question": "How does the PDF unlock tool work?",
-      "answer": "If you have a password-protected PDF, entering the password allows the script to decrypt the file locally and save a new version without security restrictions."
+      "question": "Can I split a password-protected PDF?",
+      "answer": "If a PDF has an open password, you must decrypt it first using our Unlock PDF tool before splitting pages. Once decrypted, you can extract any page ranges seamlessly."
     },
     {
-      "question": "Can I convert images to PDFs using this tool?",
-      "answer": "Yes. You can drag and drop JPG, PNG, or WebP files, and the tool will assemble them into a clean, formatted PDF document."
+      "question": "Does splitting reduce the print quality or resolution of images inside the PDF?",
+      "answer": "No. Our tool performs lossless page extraction. Original vector typography, high-DPI image assets, and color profiles are transferred directly into the new PDF container without re-compression."
     },
     {
-      "question": "How does PDF compression reduce file size?",
-      "answer": "It optimizes vector pathways, compress image blocks, and strips duplicate page resources, making the file lightweight for email attachments."
-    },
-    {
-      "question": "Are my passwords saved when I lock a PDF?",
-      "answer": "No. The encryption key is applied locally to compile the PDF. We never see, log, or store your passwords."
-    },
-    {
-      "question": "Does this work for scanned PDF documents?",
-      "answer": "Yes. It processes scanned pages as high-density images, keeping their original quality while resizing the wrapper structure."
-    },
-    {
-      "question": "Is there any subscription fee for splitting large PDFs?",
-      "answer": "No. It is 100% free with no page count restrictions or watermarks added."
-    },
-    {
-      "question": "Can I use this tool on my mobile phone?",
-      "answer": "Yes. The layout is mobile-friendly, enabling you to manage PDF documents easily on your smartphone or tablet."
+      "question": "Is there a limit on how many pages I can split?",
+      "answer": "No. You can split documents with hundreds of pages. Processing speed depends entirely on your local computer CPU and memory."
     }
   ],
-  "seoTitle": "Split PDF Online - Extract Pages from PDF Document",
-  "seoHeading": "Divide PDF Files into Separate Page Ranges",
-  "seoIntro": "Isolate important chapters or strip unnecessary pages. Split files client-side with precision indicators.",
-  "seoBody": "\n<h3>Why You Should Use Our Split PDF Pages</h3>\n<p>The Split PDF Pages is a professional-grade helper designed for content creators, digital marketers, and developers looking for a fast, browser-native solution. Built directly within the CreatorUnits suite, this utility helps you bypass complex installations and avoid sending sensitive project data to external cloud hosts. Whether you are running active media campaigns, preparing design layouts, or validating parameters, the Split PDF Pages provides real-time results instantly.</p>\n\n<h3>Key Features &amp; Technical Capabilities</h3>\n<ul>\n  <li><strong>Supports page range formats (e.g. 1-2, 5).:</strong> Supports page range formats (e.g. 1-2, 5).</li>\n  <li><strong>Extracts pages instantly.:</strong> Extracts pages instantly.</li>\n  <li><strong>Offline-first processing.:</strong> Offline-first processing.</li>\n</ul>\n\n<h3>100% Secure &amp; Client-Side Execution</h3>\n<p>Security is a fundamental design standard across all CreatorUnits tools. Unlike online converters or generators that upload files and details to remote databases, our Split PDF Pages runs completely within your web browser sandbox using modern JavaScript client APIs. This on-device processing guarantees that your files, variables, and outputs remain strictly secure on your local hard drive, with zero latency or external network dependencies.</p>\n\n<h3>Pro Creator Workflows</h3>\n<p>To maximize your productivity, integrate the Split PDF Pages with other matching tools in our directory matrix. For instance, digital media managers can run social assets through the PDF Tools and verify sizing constraints before publishing. Web managers can combine scripts with our metadata builders, sitemap generators, and keyword density validators to optimize their search authority and pass Core Web Vitals check sheets.</p>\n"
+  "seoTitle": "Split PDF Online — Extract Pages from PDF Documents Free",
+  "seoHeading": "Extract Specific Page Ranges from PDF Files Instantly",
+  "seoIntro": "Need to extract a specific chapter, invoice, or signature page from a massive PDF? Our free, browser-based Split PDF tool isolates custom page ranges locally in milliseconds — without uploading your confidential files to the cloud.",
+  "seoBody": "\n<h3>Why Client-Side PDF Splitting Protects Your Privacy</h3>\n<p>Most online PDF tools require you to upload your files to remote cloud servers where they are queued, processed, and stored on third-party databases. For confidential legal contracts, bank statements, client presentations, and tax returns, cloud uploads represent a serious data privacy liability.</p>\n<p>Creator Units eliminates this vulnerability entirely. By executing PDF extraction <strong>100% client-side in browser RAM</strong>, your confidential documents never cross the internet.</p>\n\n<h3>Supported Page Range Syntax Examples</h3>\n<table style=\"width:100%;border-collapse:collapse;margin:1.5rem 0;font-size:0.925rem;\">\n  <thead>\n    <tr style=\"background:var(--bg-primary);text-align:left;\">\n      <th style=\"padding:10px 12px;border:1px solid var(--border-color);\">Input Syntax</th>\n      <th style=\"padding:10px 12px;border:1px solid var(--border-color);\">Extracted Result</th>\n      <th style=\"padding:10px 12px;border:1px solid var(--border-color);\">Common Use Case</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td style=\"padding:10px 12px;border:1px solid var(--border-color);\"><code>1-3</code></td>\n      <td style=\"padding:10px 12px;border:1px solid var(--border-color);\">Pages 1, 2, and 3</td>\n      <td style=\"padding:10px 12px;border:1px solid var(--border-color);\">Extracting executive summary &amp; table of contents</td>\n    </tr>\n    <tr>\n      <td style=\"padding:10px 12px;border:1px solid var(--border-color);\"><code>5</code></td>\n      <td style=\"padding:10px 12px;border:1px solid var(--border-color);\">Single Page 5 only</td>\n      <td style=\"padding:10px 12px;border:1px solid var(--border-color);\">Isolating a signed contract page or receipt</td>\n    </tr>\n    <tr>\n      <td style=\"padding:10px 12px;border:1px solid var(--border-color);\"><code>1-2, 5, 8-10</code></td>\n      <td style=\"padding:10px 12px;border:1px solid var(--border-color);\">Pages 1, 2, 5, 8, 9, 10</td>\n      <td style=\"padding:10px 12px;border:1px solid var(--border-color);\">Compiling custom multi-section client reports</td>\n    </tr>\n    <tr>\n      <td style=\"padding:10px 12px;border:1px solid var(--border-color);\"><code>Extract All</code></td>\n      <td style=\"padding:10px 12px;border:1px solid var(--border-color);\">Every page as an individual PDF file</td>\n      <td style=\"padding:10px 12px;border:1px solid var(--border-color);\">Archiving invoices or single-page slide decks</td>\n    </tr>\n  </tbody>\n</table>\n\n<h3>Complementary Free PDF Utilities</h3>\n<ul>\n  <li><a href=\"/tools/pdf/merge-pdf\">Merge PDF</a> — Combine multiple PDF documents into a single organized file.</li>\n  <li><a href=\"/tools/pdf/compress-pdf\">Compress PDF</a> — Reduce document byte weight for email attachments.</li>\n  <li><a href=\"/tools/pdf/protect-pdf\">Protect PDF</a> — Encrypt documents with 256-bit AES passwords client-side.</li>\n  <li><a href=\"/tools/pdf/image-to-pdf\">Image to PDF Converter</a> — Assemble JPG, PNG, and WebP graphics into clean PDF portfolios.</li>\n</ul>\n"
 };

@@ -118,9 +118,15 @@ export default async function ArticlePage({ params }: PageProps) {
       height: 630,
     },
     author: {
-      "@type": "Organization",
-      name: "Creator Units Editorial Team",
-      url: "https://www.creatorunits.com/about",
+      "@type": "Person",
+      name: "Muhammad Hashmi",
+      alternateName: "Md Hashmi",
+      url: "https://www.creatorunits.com/author/md-hashmi",
+      sameAs: [
+        "https://twitter.com/Oye_hasmi",
+        "https://instagram.com/oye_hasmi",
+        "https://github.com/mdhashmi8800"
+      ],
     },
     publisher: {
       "@type": "Organization",
@@ -204,8 +210,19 @@ export default async function ArticlePage({ params }: PageProps) {
             </p>
 
             <div style={{ display: "flex", gap: "1.5rem", fontSize: "0.875rem", color: "var(--text-muted)", alignItems: "center", flexWrap: "wrap" }}>
-              <span><strong>Creator Units Editorial Team</strong></span>
+              <span>
+                By{" "}
+                <Link
+                  href="/author/md-hashmi"
+                  style={{ color: "var(--text-primary)", fontWeight: "600", textDecoration: "none" }}
+                >
+                  Muhammad Hashmi
+                </Link>
+              </span>
               <time dateTime={article.publishDate}>Published {formatDate(article.publishDate)}</time>
+              {article.lastModified && article.lastModified !== article.publishDate && (
+                <span>Updated {formatDate(article.lastModified)}</span>
+              )}
               <span>{readingTime}</span>
             </div>
           </div>
@@ -218,14 +235,14 @@ export default async function ArticlePage({ params }: PageProps) {
                 <div className="card" style={{ marginBottom: "2rem", borderStyle: "solid" }}>
                   <h2 style={{ fontSize: "0.95rem", marginBottom: "0.75rem", color: "var(--text-primary)" }}>Table of Contents</h2>
                   <nav style={{ display: "flex", flexDirection: "column", gap: "0.35rem" }}>
-                    {headings.map((h) => (
+                    {headings.map((h, i) => (
                       <a
-                        key={h.slug}
+                        key={i}
                         href={`#${h.slug}`}
                         style={{
-                          fontSize: "0.85rem",
-                          paddingLeft: h.depth === 3 ? "1rem" : "0",
-                          color: "var(--text-secondary)",
+                          fontSize: h.depth === 2 ? "0.875rem" : "0.8rem",
+                          paddingLeft: h.depth === 3 ? "1rem" : 0,
+                          color: "var(--text-muted)",
                           textDecoration: "none",
                         }}
                       >
@@ -237,6 +254,59 @@ export default async function ArticlePage({ params }: PageProps) {
               )}
 
               <div className="article-content" dangerouslySetInnerHTML={{ __html: article.content }} />
+
+              {/* Author Bio Section */}
+              <div
+                className="card"
+                style={{
+                  marginTop: "3rem",
+                  padding: "1.75rem",
+                  borderStyle: "solid",
+                  backgroundColor: "var(--bg-primary)",
+                  display: "flex",
+                  gap: "1.25rem",
+                  alignItems: "flex-start",
+                  flexWrap: "wrap",
+                }}
+              >
+                <div
+                  style={{
+                    width: "56px",
+                    height: "56px",
+                    borderRadius: "50%",
+                    backgroundColor: "var(--accent-light, #f0f4ff)",
+                    color: "var(--accent, #0070f3)",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    fontSize: "1.35rem",
+                    fontWeight: "700",
+                    flexShrink: 0,
+                  }}
+                  aria-hidden="true"
+                >
+                  MH
+                </div>
+                <div style={{ flex: 1, minWidth: "220px" }}>
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "0.5rem" }}>
+                    <h3 style={{ fontSize: "1.1rem", margin: 0, color: "var(--text-primary)" }}>
+                      Written by <Link href="/author/md-hashmi" style={{ color: "inherit", textDecoration: "none" }}>Muhammad Hashmi</Link>
+                    </h3>
+                    <span className="badge badge-accent" style={{ fontSize: "0.65rem" }}>Lead Engineer &amp; Founder</span>
+                  </div>
+                  <p style={{ fontSize: "0.875rem", lineHeight: "1.6", color: "var(--text-secondary)", margin: "0.5rem 0 0.75rem 0" }}>
+                    Muhammad Hashmi (Md Hashmi) is the founder of Creator Units, specializing in client-side web utilities, technical SEO, and creator workflows. All guides are fact-checked against official platform APIs and web standards.
+                  </p>
+                  <div style={{ display: "flex", gap: "1rem", fontSize: "0.8rem" }}>
+                    <Link href="/author/md-hashmi" style={{ color: "var(--accent)", fontWeight: "600", textDecoration: "none" }}>
+                      View Full Bio &rarr;
+                    </Link>
+                    <Link href="/editorial-policy" style={{ color: "var(--text-muted)", textDecoration: "none" }}>
+                      Editorial Standards &rarr;
+                    </Link>
+                  </div>
+                </div>
+              </div>
 
               {article.faqs && article.faqs.length > 0 && (
                 <section style={{ marginTop: "3rem", borderTop: "1px solid var(--border-color)", paddingTop: "2rem" }}>

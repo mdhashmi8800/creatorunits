@@ -27,7 +27,7 @@ export default function Footer() {
               <span className={styles.logoText}>Creator Units</span>
             </Link>
             <p className={styles.tagline}>
-              Free, fast, and private online tools for creators, freelancers, and small businesses. All operations run directly in your browser.
+              Free, fast, and private online tools for creators, freelancers, and small businesses. 103+ tools running 100% locally inside your web browser.
             </p>
           </div>
 
@@ -61,8 +61,13 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/category/video" className={styles.link}>
-                  Video Tools
+                <Link href="/category/developer" className={styles.link}>
+                  Developer Tools
+                </Link>
+              </li>
+              <li>
+                <Link href="/category/business" className={styles.link}>
+                  Business Tools
                 </Link>
               </li>
             </ul>
@@ -70,11 +75,21 @@ export default function Footer() {
 
           {/* Resources Column */}
           <div>
-            <h3 className={styles.colTitle}>Resources</h3>
+            <h3 className={styles.colTitle}>Company &amp; Authors</h3>
             <ul className={styles.linkList}>
               <li>
-                <Link href="/tools" className={styles.link}>
-                  All Tools Directory
+                <Link href="/about" className={styles.link}>
+                  About Creator Units
+                </Link>
+              </li>
+              <li>
+                <Link href="/author/md-hashmi" className={styles.link}>
+                  Author: Muhammad Hashmi
+                </Link>
+              </li>
+              <li>
+                <Link href="/editorial-policy" className={styles.link}>
+                  Editorial Policy
                 </Link>
               </li>
               <li>
@@ -83,8 +98,8 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/about" className={styles.link}>
-                  About Us
+                <Link href="/tools" className={styles.link}>
+                  All 103+ Tools Directory
                 </Link>
               </li>
               <li>
@@ -105,6 +120,11 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/cookie-policy" className={styles.link}>
+                  Cookie Policy
+                </Link>
+              </li>
+              <li>
                 <Link href="/terms" className={styles.link}>
                   Terms of Service
                 </Link>
@@ -121,14 +141,20 @@ export default function Footer() {
         {/* Bottom Bar */}
         <div className={styles.bottom}>
           <div className={styles.copyright}>
-            &copy; {currentYear} Creator Units. All rights reserved. Free browser tools for content creators.
+            &copy; {currentYear} Creator Units. Founded by Muhammad Hashmi. All operations execute client-side.
           </div>
           <div className={styles.bottomLinks}>
             <Link href="/privacy" className={styles.bottomLink}>
               Privacy
             </Link>
+            <Link href="/cookie-policy" className={styles.bottomLink}>
+              Cookies
+            </Link>
             <Link href="/terms" className={styles.bottomLink}>
               Terms
+            </Link>
+            <Link href="/editorial-policy" className={styles.bottomLink}>
+              Editorial
             </Link>
             <Link href="/disclaimer" className={styles.bottomLink}>
               Disclaimer

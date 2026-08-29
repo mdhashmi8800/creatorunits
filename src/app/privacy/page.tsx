@@ -5,20 +5,22 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { Metadata } from "next";
 import Breadcrumbs from "@/components/ui/Breadcrumbs";
+import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy - Creator Units",
-  description: "Read our Privacy Policy. All tools run client-side; we never collect or store your uploaded images or data.",
+  title: "Privacy Policy — Creator Units Data Protection & Security",
+  description: "Read our Privacy Policy. All Creator Units tools run 100% client-side in your browser. We never collect, transmit, inspect, or store your uploaded images or private data.",
   alternates: {
     canonical: "/privacy",
   },
   robots: {
-    index: false,
+    index: true,
     follow: true,
   },
   openGraph: {
-    title: "Privacy Policy - Creator Units",
-    description: "Read our Privacy Policy. All tools run client-side; we never collect or store your uploaded images or data.",
+    title: "Privacy Policy — Creator Units Data Protection & Security",
+    description: "Read our Privacy Policy. All Creator Units tools run 100% client-side in your browser. We never collect or store your uploaded images or data.",
+    url: "https://www.creatorunits.com/privacy",
     images: ["/og-image.png"],
   },
 };
@@ -28,35 +30,35 @@ export default function PrivacyPage() {
     "@context": "https://schema.org",
     "@type": "WebPage",
     "@id": "https://www.creatorunits.com/privacy#webpage",
-    "url": "https://www.creatorunits.com/privacy",
-    "name": "Privacy Policy - Creator Units",
-    "description": "Read our Privacy Policy. All tools run client-side; we never collect or store your uploaded images or data.",
-    "isPartOf": {
+    url: "https://www.creatorunits.com/privacy",
+    name: "Privacy Policy — Creator Units Data Protection & Security",
+    description: "Read our Privacy Policy. All Creator Units tools run 100% client-side in your browser. We never collect, transmit, inspect, or store your uploaded images or private data.",
+    isPartOf: {
       "@type": "WebSite",
-      "@id": "https://www.creatorunits.com/#website"
+      "@id": "https://www.creatorunits.com/#website",
     },
-    "breadcrumb": {
+    breadcrumb: {
       "@type": "BreadcrumbList",
-      "@id": "https://www.creatorunits.com/privacy#breadcrumb"
-    }
+      "@id": "https://www.creatorunits.com/privacy#breadcrumb",
+    },
   };
 
   const breadcrumbSchema = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     "@id": "https://www.creatorunits.com/privacy#breadcrumb",
-    "itemListElement": [
+    itemListElement: [
       {
         "@type": "ListItem",
-        "position": 1,
-        "name": "Home",
-        "item": "https://www.creatorunits.com/",
+        position: 1,
+        name: "Home",
+        item: "https://www.creatorunits.com/",
       },
       {
         "@type": "ListItem",
-        "position": 2,
-        "name": "Privacy Policy",
-        "item": "https://www.creatorunits.com/privacy",
+        position: 2,
+        name: "Privacy Policy",
+        item: "https://www.creatorunits.com/privacy",
       },
     ],
   };
@@ -77,39 +79,62 @@ export default function PrivacyPage() {
           <Breadcrumbs
             items={[
               { label: "Home", href: "/" },
-              { label: "Privacy Policy" }
+              { label: "Privacy Policy" },
             ]}
           />
           <h1 className="mb-6">Privacy Policy</h1>
 
           <div className="flex flex-col gap-5" style={{ fontSize: "0.95rem", color: "var(--text-secondary)", lineHeight: "1.75" }}>
             <p>
-              At Creator Units, accessible from creatorunits.com, one of our main priorities is the privacy of our visitors. This Privacy Policy document contains types of information that is collected and recorded by Creator Units and how we use it.
+              Last Updated: August 2026. At <strong>Creator Units</strong> (accessible from <Link href="/" style={{ color: "var(--accent)" }}>creatorunits.com</Link>), one of our primary commitments is ensuring the absolute privacy, confidentiality, and data autonomy of our visitors.
             </p>
 
-            <h2 style={{ fontSize: "1.35rem", color: "var(--text-primary)", marginTop: "1rem", margin: "0" }}>1. Client-Side Operations &amp; Data Isolation</h2>
+            <h2 style={{ fontSize: "1.35rem", color: "var(--text-primary)", marginTop: "1rem", margin: "0" }}>
+              1. 100% Client-Side Processing Architecture
+            </h2>
             <p>
-              Unlike standard tools that require uploading your graphics, code scripts, or documents, Creator Units performs all operations locally in your browser memory. Any file you drag-and-drop (including images, screenshots, thumbnails, or Wi-Fi configurations) never leaves your device. No server uploads occur. Consequently, we do not inspect, log, store, or sell any of your media assets.
+              Unlike traditional web utility platforms that upload your media to remote cloud servers for rendering, Creator Units operates <strong>entirely inside your local web browser</strong>.
+            </p>
+            <ul style={{ paddingLeft: "1.5rem", display: "flex", flexDirection: "column", gap: "0.5rem" }}>
+              <li><strong>Images and Graphic Files:</strong> Images manipulated via our Image Compressor, Resizer, Cropper, or Format Converters are processed locally using the HTML5 Canvas API. No image bytes are sent across the network.</li>
+              <li><strong>Documents &amp; PDFs:</strong> Files processed via our PDF tools (merge, split, compress, protect) are manipulated locally in JavaScript memory using client-side WebAssembly and PDF libraries.</li>
+              <li><strong>Passwords &amp; Cryptography:</strong> Password generation and UUID creation utilize the browser&apos;s native <code>crypto.getRandomValues()</code> Web Cryptography API. Passwords and hashes are generated entirely in RAM and never logged or stored.</li>
+              <li><strong>Tracking Links &amp; UTM URLs:</strong> Campaign parameters generated in the UTM Builder are assembled locally in your browser address bar and clipboard.</li>
+            </ul>
+
+            <h2 style={{ fontSize: "1.35rem", color: "var(--text-primary)", marginTop: "1rem", margin: "0" }}>
+              2. Log Files &amp; Hosting Analytics
+            </h2>
+            <p>
+              Like all websites hosted on global content delivery networks (Vercel Edge Network), standard server access logs may temporarily record non-personally identifiable technical information such as browser type, operating system, referring URL, time stamp, and anonymized IP addresses. This data is used exclusively to maintain edge network uptime, detect DDoS attacks, and monitor infrastructure health.
             </p>
 
-            <h2 style={{ fontSize: "1.35rem", color: "var(--text-primary)", marginTop: "1rem", margin: "0" }}>2. Log Files</h2>
+            <h2 style={{ fontSize: "1.35rem", color: "var(--text-primary)", marginTop: "1rem", margin: "0" }}>
+              3. Cookies and Web Storage
+            </h2>
             <p>
-              Creator Units follows a standard procedure of using log files. These files log visitors when they visit websites. All hosting companies do this as part of hosting services&apos; analytics. The information collected by log files includes internet protocol (IP) addresses, browser type, Internet Service Provider (ISP), date and time stamp, referring/exit pages, and possibly the number of clicks. These are not linked to any information that is personally identifiable. The purpose of the information is for analyzing trends, administering the site, tracking users&apos; movement on the website, and gathering demographic information.
+              Creator Units utilizes browser <code>localStorage</code> to store your theme preference (Dark Mode / Light Mode) and recent tool history for your convenience. This data remains on your physical device. For full details, please review our dedicated <Link href="/cookie-policy" style={{ color: "var(--accent)", textDecoration: "underline" }}>Cookie Policy</Link>.
             </p>
 
-            <h2 style={{ fontSize: "1.35rem", color: "var(--text-primary)", marginTop: "1rem", margin: "0" }}>3. Cookies and Web Beacons</h2>
+            <h2 style={{ fontSize: "1.35rem", color: "var(--text-primary)", marginTop: "1rem", margin: "0" }}>
+              4. Google DoubleClick DART &amp; Advertising Cookies
+            </h2>
             <p>
-              Like any other website, Creator Units uses cookies. These cookies are used to store information including visitors&apos; preferences, and the pages on the website that the visitor accessed or visited. The information is used to optimize the users&apos; experience by customizing our web page content based on visitors&apos; browser type and/or other information. You can configure your browser settings to reject cookies if preferred.
+              Google is a third-party advertising vendor on Creator Units. Google uses cookies, including DART cookies, to serve relevant ads based on visits to this and other websites across the web. You can manage personalized ad settings or opt out at any time by visiting <a href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener noreferrer" style={{ color: "var(--accent)", textDecoration: "underline" }}>Google Ad Policies</a>.
             </p>
 
-            <h2 style={{ fontSize: "1.35rem", color: "var(--text-primary)", marginTop: "1rem", margin: "0" }}>4. Google DoubleClick DART Cookie</h2>
+            <h2 style={{ fontSize: "1.35rem", color: "var(--text-primary)", marginTop: "1rem", margin: "0" }}>
+              5. GDPR, CCPA &amp; User Privacy Rights
+            </h2>
             <p>
-              Google is one of the third-party vendors on our site. It also uses cookies, known as DART cookies, to serve ads to our site visitors based upon their visit to our site and other sites on the internet. However, visitors may choose to decline the use of DART cookies by visiting the Google ad and content network Privacy Policy at the following URL: https://policies.google.com/technologies/ads
+              Because Creator Units does not collect, sell, rent, or store personal user accounts, uploaded media, or identity databases, your private information is intrinsically protected. If you have questions regarding data privacy rights under GDPR or CCPA, please contact us.
             </p>
 
-            <h2 style={{ fontSize: "1.35rem", color: "var(--text-primary)", marginTop: "1rem", margin: "0" }}>5. Consent</h2>
+            <h2 style={{ fontSize: "1.35rem", color: "var(--text-primary)", marginTop: "1rem", margin: "0" }}>
+              6. Contact Support
+            </h2>
             <p>
-              By using our website, you hereby consent to our Privacy Policy and agree to its terms.
+              For questions regarding this Privacy Policy, contact Muhammad Hashmi and our team via our <Link href="/contact" style={{ color: "var(--accent)", textDecoration: "underline" }}>Contact Page</Link> or email <code>mdhashmi8800@gmail.com</code>.
             </p>
           </div>
         </div>

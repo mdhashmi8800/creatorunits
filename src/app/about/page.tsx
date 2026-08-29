@@ -6,16 +6,17 @@ import Footer from "@/components/layout/Footer";
 import { Metadata } from "next";
 import Breadcrumbs from "@/components/ui/Breadcrumbs";
 import Link from "next/link";
+import { toolsIndex } from "@/data/tools-index";
 
 export const metadata: Metadata = {
-  title: "About Creator Units — Free Browser-Based Tools for Content Creators",
-  description: "Learn about Creator Units — the free, privacy-first toolkit built for YouTubers, Instagram creators, freelancers, and small businesses. 33+ tools, no sign-up, no server upload.",
+  title: "About Creator Units — Free Privacy-First Tools for Content Creators",
+  description: "Learn about Creator Units — the free, privacy-first toolkit built for YouTubers, Instagram creators, developers, freelancers, and small businesses. 103+ tools, no sign-up, 100% client-side.",
   alternates: {
     canonical: "/about",
   },
   openGraph: {
-    title: "About Creator Units — Free Browser-Based Tools for Content Creators",
-    description: "Learn about Creator Units — the free, privacy-first toolkit built for YouTubers, Instagram creators, freelancers, and small businesses.",
+    title: "About Creator Units — Free Privacy-First Tools for Content Creators",
+    description: "Learn about Creator Units — the free, privacy-first toolkit built for YouTubers, Instagram creators, developers, freelancers, and small businesses.",
     images: ["/og-image.png"],
   },
 };
@@ -23,23 +24,27 @@ export const metadata: Metadata = {
 const faqs = [
   {
     question: "Is Creator Units really 100% free?",
-    answer: "Yes — every tool on Creator Units is completely free with no hidden subscription tiers, no premium upgrades, and no pay-per-use charges. We sustain the platform through non-intrusive advertising. You get full, unlimited access to all 33+ tools at no cost.",
+    answer: "Yes — every tool on Creator Units is completely free with no hidden subscription tiers, no premium upgrades, and no pay-per-use limits. We sustain the platform through non-intrusive advertising. You get full, unlimited access to all 103+ tools at zero cost.",
   },
   {
     question: "Do my files get uploaded to your servers?",
-    answer: "No. Every tool on Creator Units runs entirely inside your web browser using JavaScript, Canvas, and Web Cryptography APIs. Your images, text, and documents are never transmitted to any server — they stay on your device from start to finish. This is our core architectural promise.",
+    answer: "No. Every tool on Creator Units runs entirely inside your web browser using modern JavaScript, HTML5 Canvas, and Web Cryptography APIs. Your images, text, and documents are never transmitted to any server — they stay on your device from start to finish. This is our core architectural promise.",
   },
   {
     question: "Who is Creator Units designed for?",
-    answer: "Creator Units is built for YouTube creators, Instagram influencers, social media managers, freelancers, bloggers, small business owners, students, and anyone who needs fast, reliable web utilities without installing software or creating accounts.",
+    answer: "Creator Units is built for YouTube creators, Instagram influencers, social media managers, web developers, freelancers, bloggers, small business owners, students, and anyone who needs fast, reliable web utilities without installing software or creating accounts.",
   },
   {
     question: "How many tools are available on Creator Units?",
-    answer: "We currently offer 33+ tools across four categories: Image Tools (compress, resize, crop, convert images), Creator Tools (YouTube thumbnail preview, tag extractor, metadata helper), Social Media Tools (fancy text, bio generators, hashtag helpers, WhatsApp link generators), and Utility Tools (QR codes, UTM builders, password generators, text case converters, word counters).",
+    answer: "We currently offer 103+ tools across 10 specialized categories: Image Tools, Creator Tools, Social Media Tools, Utility Tools, Video Tools, PDF Tools, SEO Tools, Developer Tools, Business Calculators, and AI Creator Helpers.",
+  },
+  {
+    question: "Who founded and maintains Creator Units?",
+    answer: "Creator Units was founded and is actively developed by Muhammad Hashmi (Md Hashmi), a full-stack web engineer and creator tools architect dedicated to building fast, privacy-respecting software.",
   },
   {
     question: "How do I suggest a new tool or report a bug?",
-    answer: "Visit our Contact page and submit a message describing the tool you need or the issue you encountered. We review every submission personally and prioritize tools based on creator community demand.",
+    answer: "Visit our Contact page and submit a message describing the tool you need or the issue you encountered. We review every submission personally and prioritize new features based on creator community demand.",
   },
 ];
 
@@ -48,38 +53,38 @@ export default function AboutPage() {
     "@context": "https://schema.org",
     "@type": "AboutPage",
     "@id": "https://www.creatorunits.com/about#webpage",
-    "url": "https://www.creatorunits.com/about",
-    "name": "About Creator Units — Free Browser-Based Tools for Content Creators",
-    "description": "Learn about Creator Units — the free, privacy-first toolkit built for YouTubers, Instagram creators, freelancers, and small businesses. 33+ tools, no sign-up, no server upload.",
-    "isPartOf": {
+    url: "https://www.creatorunits.com/about",
+    name: "About Creator Units — Free Privacy-First Tools for Content Creators",
+    description: "Learn about Creator Units — the free, privacy-first toolkit built for YouTubers, Instagram creators, developers, freelancers, and small businesses. 103+ tools, no sign-up, 100% client-side.",
+    isPartOf: {
       "@type": "WebSite",
-      "@id": "https://www.creatorunits.com/#website"
+      "@id": "https://www.creatorunits.com/#website",
     },
-    "breadcrumb": {
+    breadcrumb: {
       "@type": "BreadcrumbList",
-      "@id": "https://www.creatorunits.com/about#breadcrumb"
-    }
+      "@id": "https://www.creatorunits.com/about#breadcrumb",
+    },
   };
 
   const breadcrumbSchema = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     "@id": "https://www.creatorunits.com/about#breadcrumb",
-    "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.creatorunits.com/" },
-      { "@type": "ListItem", "position": 2, "name": "About", "item": "https://www.creatorunits.com/about" },
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: "https://www.creatorunits.com/" },
+      { "@type": "ListItem", position: 2, name: "About", item: "https://www.creatorunits.com/about" },
     ],
   };
 
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    "mainEntity": faqs.map((faq) => ({
+    mainEntity: faqs.map((faq) => ({
       "@type": "Question",
-      "name": faq.question,
-      "acceptedAnswer": {
+      name: faq.question,
+      acceptedAnswer: {
         "@type": "Answer",
-        "text": faq.answer,
+        text: faq.answer,
       },
     })),
   };
@@ -95,12 +100,12 @@ export default function AboutPage() {
         <section className="section" style={{ backgroundColor: "var(--bg-primary)", paddingBottom: "2rem" }}>
           <div className="container" style={{ maxWidth: "800px" }}>
             <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "About" }]} />
-            <span className="badge badge-accent mb-4">Our Story</span>
+            <span className="badge badge-accent mb-4">Our Mission &amp; Story</span>
             <h1 style={{ fontSize: "2.25rem", lineHeight: "1.3", marginBottom: "1rem" }}>
               About Creator Units
             </h1>
             <p style={{ fontSize: "1.15rem", color: "var(--text-secondary)", lineHeight: "1.75" }}>
-              Creator Units is a free, privacy-first suite of 33+ browser-based tools designed for content creators, freelancers, and digital professionals who need fast, reliable utilities without the hassle of sign-ups, subscriptions, or cloud uploads.
+              Creator Units is a free, privacy-first suite of {toolsIndex.length}+ browser-based tools designed for content creators, freelancers, developers, and digital professionals who need fast, reliable utilities without sign-ups, subscriptions, or cloud uploads.
             </p>
           </div>
         </section>
@@ -115,113 +120,121 @@ export default function AboutPage() {
                   Why We Built Creator Units
                 </h2>
                 <p>
-                  If you have ever tried to compress an image online, you have almost certainly encountered the same frustrating experience: you visit a "free" tool website, upload your file, wait for it to process on a remote server, navigate through multiple pop-ups, only to discover the tool is limited unless you pay. Your file — which may contain private marketing assets, unreleased designs, or personal photos — has now been transmitted to a server you know nothing about.
+                  If you have ever tried to compress an image, generate a UTM tracking link, or extract YouTube video tags online, you have almost certainly encountered the same frustrating experience: you visit a &quot;free&quot; tool website, upload your file, wait for it to process on a remote server, navigate through intrusive pop-ups, only to discover the tool is locked behind a paid subscription.
                 </p>
                 <p style={{ marginTop: "1rem" }}>
-                  We built Creator Units to solve this problem at the architectural level. Every single tool on this platform runs <strong>entirely inside your web browser</strong> using JavaScript, the HTML5 Canvas API, and the Web Cryptography API. No file ever leaves your device. No server ever receives your data. No upload ever happens. This is not a privacy policy promise — it is a technical reality.
+                  Your assets — which may contain private client media, unreleased creative assets, or proprietary marketing campaigns — are transmitted to third-party cloud servers you know nothing about.
                 </p>
+                <p style={{ marginTop: "1rem" }}>
+                  We built Creator Units to solve this problem at the architectural level. Every single tool on this platform runs <strong>entirely inside your web browser</strong> using JavaScript, the HTML5 Canvas API, and the Web Cryptography API. No file ever leaves your device. No server ever receives your data. No upload ever happens.
+                </p>
+              </div>
+
+              {/* Founder Section */}
+              <div className="card" style={{ padding: "2rem", borderStyle: "solid" }}>
+                <div style={{ display: "flex", gap: "1.5rem", alignItems: "flex-start", flexWrap: "wrap" }}>
+                  <div
+                    style={{
+                      width: "72px",
+                      height: "72px",
+                      borderRadius: "50%",
+                      backgroundColor: "var(--accent-light, #f0f4ff)",
+                      color: "var(--accent, #0070f3)",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      fontSize: "1.75rem",
+                      fontWeight: "700",
+                      flexShrink: 0,
+                    }}
+                    aria-hidden="true"
+                  >
+                    MH
+                  </div>
+                  <div style={{ flex: 1, minWidth: "220px" }}>
+                    <h3 style={{ fontSize: "1.25rem", margin: "0 0 0.25rem 0", color: "var(--text-primary)" }}>
+                      Muhammad Hashmi (Md Hashmi)
+                    </h3>
+                    <p style={{ fontSize: "0.9rem", color: "var(--text-muted)", margin: "0 0 0.75rem 0" }}>
+                      Founder &amp; Lead Engineer, Creator Units
+                    </p>
+                    <p style={{ fontSize: "0.925rem", lineHeight: "1.6", margin: "0 0 1rem 0" }}>
+                      Muhammad is a full-stack engineer and digital creator specializing in client-side web architecture, technical SEO, and creator productivity tooling. He writes our in-depth guides and maintains all 103+ tool algorithms.
+                    </p>
+                    <div style={{ display: "flex", gap: "0.75rem", flexWrap: "wrap" }}>
+                      <Link href="/author/md-hashmi" className="btn btn-secondary btn-sm">
+                        View Author Profile &rarr;
+                      </Link>
+                      <Link href="/editorial-policy" className="btn btn-secondary btn-sm">
+                        Editorial Standards &rarr;
+                      </Link>
+                    </div>
+                  </div>
+                </div>
               </div>
 
               <div>
                 <h2 style={{ fontSize: "1.6rem", color: "var(--text-primary)", marginBottom: "0.75rem" }}>
                   Our Core Philosophy: Private, Fast, Free
                 </h2>
-                <p>
-                  Three principles guide every decision we make at Creator Units:
-                </p>
-                <ul style={{ paddingLeft: "1.5rem", marginTop: "0.75rem", display: "flex", flexDirection: "column", gap: "0.75rem" }}>
+                <ul style={{ paddingLeft: "1.5rem", display: "flex", flexDirection: "column", gap: "0.75rem" }}>
                   <li>
-                    <strong>Privacy by default.</strong> Browser-side processing means your images, passwords, text, and documents stay on your own machine. We cannot see them. No third-party storage provider can access them. This is especially important for creators who handle unreleased content, brand assets, and sensitive client files.
+                    <strong>Privacy by Default:</strong> On-device processing means your graphics, passwords, text, and documents stay strictly in your browser memory. We cannot see them, and no third-party cloud service can access them.
                   </li>
                   <li>
-                    <strong>Instant performance.</strong> Because there is no server round-trip, tools execute in milliseconds. Image compression completes before you can blink. QR codes generate the moment you type a URL. Text formatting is instantaneous. The user experience feels like a desktop app, not a web service.
+                    <strong>Instant Execution:</strong> Zero server round-trips mean instantaneous execution. Image compression, QR generation, text minification, and cryptographic hashing run in milliseconds.
                   </li>
                   <li>
-                    <strong>Permanently free.</strong> By eliminating backend infrastructure costs (no servers to maintain, no storage to pay for), we can offer the entire toolkit at zero cost — forever. We sustain Creator Units through non-intrusive display advertising, not paywalls.
+                    <strong>Permanently Free:</strong> By keeping compute client-side, we eliminate heavy backend server costs, allowing us to provide all 103+ tools 100% free, supported by non-intrusive display ads.
                   </li>
                 </ul>
               </div>
 
               <div>
                 <h2 style={{ fontSize: "1.6rem", color: "var(--text-primary)", marginBottom: "0.75rem" }}>
-                  What You Can Do on Creator Units
+                  Explore Our 10 Tool Categories
                 </h2>
                 <p>
-                  Our 33+ tools span four focused categories, each designed to solve real problems that digital creators face every day:
+                  Creator Units features 103+ dedicated tools across 10 specialized categories:
                 </p>
 
-                <h3 style={{ fontSize: "1.25rem", color: "var(--text-primary)", marginTop: "1.25rem", marginBottom: "0.5rem" }}>
-                  🖼️ Image Tools
-                </h3>
-                <p>
-                  Compress JPG, PNG, and WebP images with a real-time quality slider. Resize images to pixel-perfect dimensions while maintaining aspect ratio. Convert between image formats (JPG ↔ PNG ↔ WebP) in a single click. Crop images to exact social media aspect ratios. Extract HEX, RGB, and HSL color codes from any image using the Color Picker. Beautify screenshots for app stores and pitch decks with the Screenshot Beautifier. All operations are client-side and instantaneous.
-                </p>
-
-                <h3 style={{ fontSize: "1.25rem", color: "var(--text-primary)", marginTop: "1.25rem", marginBottom: "0.5rem" }}>
-                  📹 Creator Tools
-                </h3>
-                <p>
-                  Preview how your YouTube thumbnails appear on desktop and mobile feeds before uploading — catching design problems before they cost you clicks. Extract tags from any public YouTube video to reverse-engineer competitor SEO strategy. Check thumbnail file specifications against YouTube&apos;s requirements. Build structured video metadata packages with our Video Metadata Helper. Generate thumbnail concept ideas with our AI-assisted Thumbnail Idea Helper.
-                </p>
-
-                <h3 style={{ fontSize: "1.25rem", color: "var(--text-primary)", marginTop: "1.25rem", marginBottom: "0.5rem" }}>
-                  📱 Social Media Tools
-                </h3>
-                <p>
-                  Generate stylized Unicode text for Instagram bios, YouTube channel names, and Twitter profiles — no app required. Build a customized bio template with formatting suggestions. Create a WhatsApp click-to-chat link with pre-filled messages for business or creator use. Generate a fully custom Link-in-Bio HTML page you can host for free. Brainstorm creative, available username ideas for any niche. Find the right hashtags for Instagram and TikTok posts. Check your post character counts against platform-specific limits.
-                </p>
-
-                <h3 style={{ fontSize: "1.25rem", color: "var(--text-primary)", marginTop: "1.25rem", marginBottom: "0.5rem" }}>
-                  ⚙️ Utility Tools
-                </h3>
-                <p>
-                  Generate cryptographically secure passwords with configurable length and character sets. Create QR codes for URLs, email addresses, WhatsApp numbers, and WiFi credentials — downloadable as PNG. Build UTM tracking links for Google Analytics campaigns. Encode and decode URLs. Convert text between Title Case, Sentence case, UPPERCASE, camelCase, and snake_case. Count words, characters, sentences, and estimated reading time. Convert units (pixels, bytes, time zones) used in digital production workflows.
-                </p>
-              </div>
-
-              <div>
-                <h2 style={{ fontSize: "1.6rem", color: "var(--text-primary)", marginBottom: "0.75rem" }}>
-                  Who Is Creator Units Built For?
-                </h2>
-                <p>
-                  Creator Units serves a wide range of digital professionals:
-                </p>
                 <ul style={{ paddingLeft: "1.5rem", marginTop: "0.75rem", display: "flex", flexDirection: "column", gap: "0.5rem" }}>
-                  <li><strong>YouTube creators</strong> optimizing thumbnails, tags, and metadata to improve search rankings and CTR.</li>
-                  <li><strong>Instagram influencers</strong> formatting bios, compressing images for feed quality, and building link-in-bio pages.</li>
-                  <li><strong>Freelance designers</strong> who need quick image format conversions and compression without Photoshop.</li>
-                  <li><strong>Small business owners</strong> generating QR codes for print materials, creating WhatsApp business links, and tracking campaign traffic with UTM parameters.</li>
-                  <li><strong>Bloggers and content writers</strong> counting words, formatting text, and optimizing images for page speed.</li>
-                  <li><strong>Students and educators</strong> who need accessible, no-cost tools for academic and creative projects.</li>
+                  <li><strong><Link href="/category/image" style={{ color: "var(--accent)" }}>Image Tools</Link>:</strong> Compress, resize, crop, rotate, flip, and convert JPG, PNG, and WebP graphics locally.</li>
+                  <li><strong><Link href="/category/creator" style={{ color: "var(--accent)" }}>Creator Tools</Link>:</strong> YouTube thumbnail previewer, tag extractor, metadata organizer, and thumbnail downloader.</li>
+                  <li><strong><Link href="/category/social" style={{ color: "var(--accent)" }}>Social Media Tools</Link>:</strong> Bio generators, Unicode fancy fonts, WhatsApp click-to-chat links, username generators, and hashtag helpers.</li>
+                  <li><strong><Link href="/category/utility" style={{ color: "var(--accent)" }}>Utility Tools</Link>:</strong> Offline QR code generators, UTM campaign builders, secure password generators, and text case converters.</li>
+                  <li><strong><Link href="/category/video" style={{ color: "var(--accent)" }}>Video Tools</Link>:</strong> Video compressor, thumbnail extractor, video-to-MP3 audio converter, and subtitle cleaners.</li>
+                  <li><strong><Link href="/category/pdf" style={{ color: "var(--accent)" }}>PDF Tools</Link>:</strong> Merge, split, compress, protect, and unlock PDF documents client-side.</li>
+                  <li><strong><Link href="/category/seo" style={{ color: "var(--accent)" }}>SEO Tools</Link>:</strong> XML sitemap generator, robots.txt builder, Schema.org generator, OpenGraph tag creator, and keyword density checker.</li>
+                  <li><strong><Link href="/category/developer" style={{ color: "var(--accent)" }}>Developer Tools</Link>:</strong> JSON formatter, validator, JWT decoder, Base64 encoder/decoder, UUID generator, and HTML/CSS/JS minifiers.</li>
+                  <li><strong><Link href="/category/business" style={{ color: "var(--accent)" }}>Business Tools</Link>:</strong> YouTube, TikTok, and Instagram earnings calculators, CPM/RPM formulas, ROI estimators, and profit margin calculators.</li>
+                  <li><strong><Link href="/category/ai-creator" style={{ color: "var(--accent)" }}>AI Creator Tools</Link>:</strong> AI hook generator, script writer, caption creator, video idea generator, and content rewriters.</li>
                 </ul>
               </div>
 
               <div>
                 <h2 style={{ fontSize: "1.6rem", color: "var(--text-primary)", marginBottom: "0.75rem" }}>
-                  Technical Architecture
+                  Technical Infrastructure
                 </h2>
                 <p>
-                  Creator Units is built on <strong>Next.js</strong> with static site generation, hosted on Vercel&apos;s global edge network. Pages are pre-rendered at build time and served from edge locations worldwide — delivering sub-200ms page loads globally. Interactive tool components are lazy-loaded only when needed, keeping the initial JavaScript bundle minimal.
-                </p>
-                <p style={{ marginTop: "1rem" }}>
-                  Core Web Vitals are a primary design concern: our Largest Contentful Paint (LCP) consistently scores under 1.5s, Cumulative Layout Shift (CLS) is near-zero, and Interaction to Next Paint (INP) stays below 100ms on most devices. This technical quality directly supports our SEO performance and user experience goals.
+                  Creator Units is built with <strong>Next.js 16</strong>, TypeScript, and modern CSS, deployed globally on Vercel&apos;s edge network. Pages are pre-rendered at build time (SSG) for sub-100ms response times worldwide. We adhere strictly to Google&apos;s Core Web Vitals standards with near-zero CLS and lightning-fast LCP metrics.
                 </p>
               </div>
 
               <div style={{ borderTop: "1px solid var(--border-color)", paddingTop: "2rem", marginTop: "1rem" }}>
                 <p style={{ fontWeight: "600", color: "var(--text-primary)", fontSize: "1.1rem" }}>
-                  Thank you for using Creator Units.
+                  Connect with Creator Units
                 </p>
                 <p style={{ marginTop: "0.5rem" }}>
-                  If you have tool suggestions, bug reports, or partnership inquiries, please reach out through our{" "}
+                  Have questions, tool requests, or partnership inquiries? Reach out via our{" "}
                   <Link href="/contact" style={{ color: "var(--accent)", textDecoration: "underline" }}>
-                    contact page
+                    Contact Page
                   </Link>
-                  . We read every message and actively shape our roadmap based on creator feedback. You can also browse{" "}
+                  . Explore our{" "}
                   <Link href="/blog" style={{ color: "var(--accent)", textDecoration: "underline" }}>
-                    our blog
+                    Blog &amp; Guides
                   </Link>{" "}
-                  for in-depth guides on using our tools, YouTube SEO, image optimization, and social media growth.
+                  for in-depth tutorials on video SEO, image optimization, and creator growth.
                 </p>
               </div>
             </div>
@@ -257,8 +270,8 @@ export default function AboutPage() {
 
             {/* CTA */}
             <div style={{ marginTop: "3rem", display: "flex", gap: "1rem", flexWrap: "wrap" }}>
-              <Link href="/tools" className="btn btn-primary">Browse All Tools →</Link>
-              <Link href="/blog" className="btn btn-secondary">Read Our Blog →</Link>
+              <Link href="/tools" className="btn btn-primary">Browse All Tools &rarr;</Link>
+              <Link href="/blog" className="btn btn-secondary">Read Creator Guides &rarr;</Link>
             </div>
           </div>
         </section>

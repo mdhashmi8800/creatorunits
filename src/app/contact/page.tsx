@@ -11,19 +11,27 @@ import styles from "./contact.module.css";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Contact Us - Creator Units",
-  description: "Have a question, suggestion, partnership opportunity, or found an issue? Feel free to reach out to Creator Units via email, Instagram, or Twitter/X.",
+  title: "Contact Us — Creator Units Support & Inquiries",
+  description: "Have a question, feedback, tool suggestion, or partnership inquiry? Reach out to Muhammad Hashmi and the Creator Units team via email, contact form, Instagram, or Twitter/X.",
   alternates: {
     canonical: "/contact",
   },
   robots: {
-    index: false,
+    index: true,
     follow: true,
   },
   openGraph: {
-    title: "Contact Us - Creator Units",
-    description: "Have a question, suggestion, partnership opportunity, or found an issue? Feel free to reach out to Creator Units via email, Instagram, or Twitter/X.",
+    title: "Contact Us — Creator Units Support & Inquiries",
+    description: "Have a question, feedback, tool suggestion, or partnership inquiry? Reach out to Muhammad Hashmi and the Creator Units team.",
+    url: "https://www.creatorunits.com/contact",
     images: ["/og-image.png"],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Contact Us — Creator Units",
+    description: "Get in touch with the Creator Units team for tool requests, technical questions, and partnerships.",
+    images: ["/og-image.png"],
+    creator: "@Oye_hasmi",
   },
 };
 
@@ -32,35 +40,41 @@ export default function ContactPage() {
     "@context": "https://schema.org",
     "@type": "ContactPage",
     "@id": "https://www.creatorunits.com/contact#webpage",
-    "url": "https://www.creatorunits.com/contact",
-    "name": "Contact Us - Creator Units",
-    "description": "Have a question, suggestion, partnership opportunity, or found an issue? Feel free to reach out to Creator Units via email, Instagram, or Twitter/X.",
-    "isPartOf": {
+    url: "https://www.creatorunits.com/contact",
+    name: "Contact Us — Creator Units Support & Inquiries",
+    description: "Have a question, feedback, tool suggestion, or partnership inquiry? Reach out to Muhammad Hashmi and the Creator Units team.",
+    isPartOf: {
       "@type": "WebSite",
-      "@id": "https://www.creatorunits.com/#website"
+      "@id": "https://www.creatorunits.com/#website",
     },
-    "breadcrumb": {
+    breadcrumb: {
       "@type": "BreadcrumbList",
-      "@id": "https://www.creatorunits.com/contact#breadcrumb"
-    }
+      "@id": "https://www.creatorunits.com/contact#breadcrumb",
+    },
+    mainEntity: {
+      "@type": "ContactPoint",
+      contactType: "customer support",
+      email: "mdhashmi8800@gmail.com",
+      availableLanguage: "English",
+    },
   };
 
   const breadcrumbSchema = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     "@id": "https://www.creatorunits.com/contact#breadcrumb",
-    "itemListElement": [
+    itemListElement: [
       {
         "@type": "ListItem",
-        "position": 1,
-        "name": "Home",
-        "item": "https://www.creatorunits.com/",
+        position: 1,
+        name: "Home",
+        item: "https://www.creatorunits.com/",
       },
       {
         "@type": "ListItem",
-        "position": 2,
-        "name": "Contact",
-        "item": "https://www.creatorunits.com/contact",
+        position: 2,
+        name: "Contact",
+        item: "https://www.creatorunits.com/contact",
       },
     ],
   };
@@ -82,18 +96,17 @@ export default function ContactPage() {
             <Breadcrumbs
               items={[
                 { label: "Home", href: "/" },
-                { label: "Contact" }
+                { label: "Contact" },
               ]}
             />
           </div>
           <div className={styles.grid}>
-            
             {/* Left Column: Hero & Cards */}
             <div>
               <section className={styles.hero}>
                 <h1 className={styles.heroTitle}>Get In Touch.</h1>
                 <p className={styles.heroDesc}>
-                  Have a question, suggestion, partnership opportunity, or found an issue? Feel free to reach out. We usually respond as soon as possible.
+                  Have a question, tool suggestion, bug report, or partnership inquiry? Reach out directly to Muhammad Hashmi and the Creator Units team. We review every submission personally and respond promptly.
                 </p>
               </section>
 
@@ -102,10 +115,10 @@ export default function ContactPage() {
                 <EmailCard email="mdhashmi8800@gmail.com" />
 
                 {/* Instagram Card */}
-                <a 
-                  href="https://instagram.com/oye_hasmi" 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
+                <a
+                  href="https://instagram.com/oye_hasmi"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className={`${styles.card} ${styles.instagramCard}`}
                   aria-label="Visit @oye_hasmi on Instagram (opens in a new tab)"
                 >
@@ -117,13 +130,13 @@ export default function ContactPage() {
 
                   <div className={styles.cardLeft}>
                     <div className={styles.iconContainer}>
-                      <svg 
-                        className={styles.icon} 
-                        viewBox="0 0 24 24" 
-                        fill="none" 
-                        stroke="currentColor" 
-                        strokeWidth="2" 
-                        strokeLinecap="round" 
+                      <svg
+                        className={styles.icon}
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
                         strokeLinejoin="round"
                         aria-hidden="true"
                       >
@@ -143,10 +156,10 @@ export default function ContactPage() {
                 </a>
 
                 {/* Twitter / X Card */}
-                <a 
-                  href="https://twitter.com/Oye_hasmi" 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
+                <a
+                  href="https://twitter.com/Oye_hasmi"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className={`${styles.card} ${styles.twitterCard}`}
                   aria-label="Visit @Oye_hasmi on Twitter/X (opens in a new tab)"
                 >
@@ -158,13 +171,13 @@ export default function ContactPage() {
 
                   <div className={styles.cardLeft}>
                     <div className={styles.iconContainer}>
-                      <svg 
-                        className={styles.icon} 
-                        viewBox="0 0 24 24" 
-                        fill="none" 
-                        stroke="currentColor" 
-                        strokeWidth="2" 
-                        strokeLinecap="round" 
+                      <svg
+                        className={styles.icon}
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
                         strokeLinejoin="round"
                         aria-hidden="true"
                       >
@@ -186,19 +199,21 @@ export default function ContactPage() {
               {/* Helpful Resources Section */}
               <div style={{ marginTop: "2.5rem", borderTop: "1px solid var(--border-color)", paddingTop: "1.5rem" }}>
                 <h2 style={{ fontSize: "1.25rem", marginBottom: "0.75rem", color: "var(--text-primary)" }}>
-                  Frequently Referenced Resources
+                  Helpful Resources &amp; Guides
                 </h2>
                 <p className="text-muted" style={{ fontSize: "0.875rem", marginBottom: "1rem", lineHeight: "1.5" }}>
-                  Before sending a support request, you might find what you need in our guides and tools:
+                  Before sending a support request, explore our popular guides and tools:
                 </p>
-                <ul style={{ 
-                  display: "flex", 
-                  flexDirection: "column", 
-                  gap: "0.5rem", 
-                  paddingLeft: "1.25rem", 
-                  fontSize: "0.9rem", 
-                  color: "var(--text-secondary)"
-                }}>
+                <ul
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: "0.5rem",
+                    paddingLeft: "1.25rem",
+                    fontSize: "0.9rem",
+                    color: "var(--text-secondary)",
+                  }}
+                >
                   <li>
                     Guide: <Link href="/blog/how-to-create-qr-code-free" style={{ color: "var(--accent)", textDecoration: "underline" }}>How to Create a QR Code for Free</Link>
                   </li>
@@ -206,7 +221,7 @@ export default function ContactPage() {
                     Guide: <Link href="/blog/utm-tracking-link-guide" style={{ color: "var(--accent)", textDecoration: "underline" }}>Beginner&apos;s Guide to UTM Tracking</Link>
                   </li>
                   <li>
-                    Guide: <Link href="/blog/instagram-username-ideas" style={{ color: "var(--accent)", textDecoration: "underline" }}>Instagram Username Naming Ideas</Link>
+                    Guide: <Link href="/blog/how-to-compress-images-without-losing-quality" style={{ color: "var(--accent)", textDecoration: "underline" }}>Image Compression Without Quality Loss</Link>
                   </li>
                   <li>
                     Tool: <Link href="/tools/utility/utm-builder" style={{ color: "var(--accent)", textDecoration: "underline" }}>UTM Campaign Link Builder</Link>
@@ -220,7 +235,6 @@ export default function ContactPage() {
 
             {/* Right Column: Contact Form */}
             <ContactForm />
-
           </div>
         </div>
       </main>

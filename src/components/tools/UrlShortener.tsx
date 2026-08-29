@@ -41,7 +41,7 @@ export default function UrlShortener() {
     } catch (err) {
       // Fallback: local simulated short hash
       const hash = Math.random().toString(36).substring(2, 8);
-      const mockShort = `https://creatorunits.com/sh/${hash}`;
+      const mockShort = `https://www.creatorunits.com/sh/${hash}`;
       setShortUrl(mockShort);
       setClickCount(0);
       showToast("URL shortened (simulated redirection link)!", "success");

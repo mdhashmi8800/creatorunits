@@ -134,7 +134,7 @@ export default async function BlogPagePage({ params }: PageProps) {
                     }}
                   >
                     <div style={{ display: "flex", gap: "0.75rem", alignItems: "center", fontSize: "0.75rem", color: "var(--text-muted)" }}>
-                      <span>Creator Units Editorial Team</span>
+                      <span>Muhammad Hashmi</span>
                       <time dateTime={post.publishDate}>
                         {formatDateShort(post.publishDate)}
                       </time>

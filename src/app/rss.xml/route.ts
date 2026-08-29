@@ -1,28 +1,22 @@
-import { getAllPosts } from "@/lib/wordpress";
+import { articlesIndex } from "@/data/articles-index";
 
 const SITE_URL = "https://www.creatorunits.com";
 
 export async function GET() {
-  let wpPosts: Array<{ title: string; date: string; excerpt: string; slug: string; author: string; categories: string[] }> = [];
-
-  try {
-    wpPosts = await getAllPosts();
-  } catch {
-    // WordPress API unavailable
-  }
-
-  const items = wpPosts
-    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
-    .map(p => `
+  const items = articlesIndex
+    .map(
+      (p) => `
     <item>
       <title><![CDATA[${p.title}]]></title>
-      <description><![CDATA[${p.excerpt || p.title}]]></description>
+      <description><![CDATA[${p.metaDesc}]]></description>
       <link>${SITE_URL}/blog/${p.slug}</link>
       <guid isPermaLink="true">${SITE_URL}/blog/${p.slug}</guid>
-      <pubDate>${new Date(p.date).toUTCString()}</pubDate>
-      <author>${p.author}</author>
-      ${p.categories.map(c => `<category><![CDATA[${c}]]></category>`).join('\n      ')}
-    </item>`).join('');
+      <pubDate>${new Date(p.publishDate).toUTCString()}</pubDate>
+      <author>Muhammad Hashmi</author>
+      <category><![CDATA[${p.categoryLabel || "Creator Guides"}]]></category>
+    </item>`
+    )
+    .join("");
 
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0"
@@ -42,8 +36,8 @@ export async function GET() {
 
   return new Response(xml.trim(), {
     headers: {
-      'Content-Type': 'application/xml; charset=utf-8',
-      'Cache-Control': 'public, max-age=3600, s-maxage=3600',
+      "Content-Type": "application/xml; charset=utf-8",
+      "Cache-Control": "public, max-age=3600, s-maxage=3600",
     },
   });
 }
