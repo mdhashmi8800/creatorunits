@@ -32,15 +32,17 @@ export const articlesIndex: ArticleLite[] = [
   },
   {
     "slug": "reduce-image-file-size-for-instagram",
-    "title": "How to Reduce Image File Size for Instagram Without Losing Quality",
-    "metaDesc": "Instagram recompresses uploads and degrades quality. Learn how to compress and size images correctly before uploading to get the sharpest results.",
+    "title": "Reduce Image Size for Instagram Without Quality Loss",
+    "metaDesc": "Stop Instagram compression from blurring your photos. Learn how to compress, crop, and size JPG, PNG, and HEIC images to exact 1080px specs with zero quality loss.",
     "publishDate": "2025-06-05",
+    "lastModified": "2026-11-04",
     "category": "image",
     "categoryLabel": "Image Tools",
     "relatedToolSlugs": [
       "image-compressor",
       "image-resizer",
-      "image-cropper"
+      "image-cropper",
+      "social-post-size-checker"
     ]
   },
   {
@@ -278,13 +280,15 @@ export const articlesIndex: ArticleLite[] = [
   },
   {
     "slug": "creative-instagram-bio-ideas",
-    "title": "50 Creative Instagram Bio Ideas for Creators",
-    "metaDesc": "Get inspiration for your Instagram bio with 50 creative templates for different creator types: lifestyle, fitness, food, tech, fashion, and more.",
+    "title": "65+ Creative Instagram Bio Ideas for Creators (2026)",
+    "metaDesc": "65+ copy-and-paste Instagram bio ideas and templates across 10 creator niches. Includes the 5-step bio conversion formula, character limits, and font styling tips.",
     "publishDate": "2025-07-13",
+    "lastModified": "2026-11-04",
     "category": "social",
     "categoryLabel": "Social Media Tools",
     "relatedToolSlugs": [
       "bio-template-generator",
+      "username-generator",
       "fancy-text-generator",
       "character-counter"
     ]
@@ -396,14 +400,16 @@ export const articlesIndex: ArticleLite[] = [
   },
   {
     "slug": "how-to-create-qr-code-free",
-    "title": "How to Create a QR Code for Free (No Sign-Up Needed)",
-    "metaDesc": "Generate QR codes for URLs, WhatsApp, WiFi, email, and text in seconds. Free, browser-based, no account required.",
+    "title": "How to Create a Free QR Code (No Sign-Up)",
+    "metaDesc": "Learn how to create free, permanent QR codes without sign-up. Step-by-step tutorial for links, WhatsApp, and WiFi with printing and sizing best practices.",
     "publishDate": "2025-07-31",
+    "lastModified": "2026-11-04",
     "category": "utility",
     "categoryLabel": "Utility Tools",
     "relatedToolSlugs": [
       "qr-code-generator",
       "whatsapp-qr-generator",
+      "utm-builder",
       "url-encoder-decoder"
     ]
   },
@@ -422,9 +428,10 @@ export const articlesIndex: ArticleLite[] = [
   },
   {
     "slug": "utm-tracking-link-guide",
-    "title": "UTM Links Explained: A Beginner's Guide to UTM Tracking",
-    "metaDesc": "Learn what UTM parameters are and how to build UTM tracking links for Google Analytics. Know exactly where your traffic comes from.",
+    "title": "UTM Tracking Link Guide: GA4 Campaign URLs for Creators",
+    "metaDesc": "Master Google Analytics 4 (GA4) UTM tracking. Learn the 5 UTM parameters, GA4 default channel grouping rules, naming conventions, and common attribution mistakes.",
     "publishDate": "2025-08-04",
+    "lastModified": "2026-11-04",
     "category": "utility",
     "categoryLabel": "Utility Tools",
     "relatedToolSlugs": [

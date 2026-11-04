@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build --webpack",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "validate:seo": "node -e \"const { createJiti } = require('jiti'); const path = require('path'); const j = createJiti(path.join(process.cwd(), 'index.js'), { alias: { '@': path.join(process.cwd(), 'src') } }); j('./scripts/validate-seo.ts');\""
   },
   "dependencies": {
     "@vercel/analytics": "^2.0.1",

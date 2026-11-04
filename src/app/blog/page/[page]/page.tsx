@@ -33,7 +33,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       follow: true,
     },
     alternates: {
-      canonical: "/blog",
+      canonical: `/blog/page/${pageNum}`,
     },
   };
 }

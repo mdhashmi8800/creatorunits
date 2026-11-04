@@ -351,7 +351,7 @@ export const toolsIndex: ToolItemLite[] = [
       "Includes human-readable code labels underneath."
     ],
     "componentName": "BarcodeGenerator",
-    "seoTitle": "Barcode Generator - Create Code 128, EAN, UPC Barcodes"
+    "seoTitle": "Free Barcode Generator: Code 128, EAN & UPC"
   },
   {
     "id": "dev-b64-conv",
@@ -395,7 +395,7 @@ export const toolsIndex: ToolItemLite[] = [
       "Includes emojis and line-break guidelines."
     ],
     "componentName": "BioTemplateGenerator",
-    "seoTitle": "Social Bio Generator - Instagram, TikTok & Twitter Templates"
+    "seoTitle": "Social Bio Generator: Instagram, TikTok & X Templates"
   },
   {
     "id": "img-blur",
@@ -438,7 +438,7 @@ export const toolsIndex: ToolItemLite[] = [
       "Clears input in one click."
     ],
     "componentName": "CharacterCounter",
-    "seoTitle": "Social Character Counter - Track Limits for Post Copy"
+    "seoTitle": "Social Character Counter for Twitter, IG & LinkedIn"
   },
   {
     "id": "img-color-picker",
@@ -637,7 +637,7 @@ export const toolsIndex: ToolItemLite[] = [
       "Estimates raw video storage requirements."
     ],
     "componentName": "VideoUtilities",
-    "seoTitle": "FPS Calculator - Convert Timecode to Frame Counts"
+    "seoTitle": "FPS Calculator & Video Frame Counter"
   },
   {
     "id": "util-gradient-gen",
@@ -1033,7 +1033,7 @@ export const toolsIndex: ToolItemLite[] = [
       "Strips common conjunctions."
     ],
     "componentName": "SeoUtilities",
-    "seoTitle": "Keyword Density Checker - Analyze Word Frequencies"
+    "seoTitle": "Free Keyword Density Checker & Text Analyzer"
   },
   {
     "id": "social-linkedin-post",
@@ -1496,7 +1496,7 @@ export const toolsIndex: ToolItemLite[] = [
       "Checklist showing aspect match rates."
     ],
     "componentName": "SocialPostSizeChecker",
-    "seoTitle": "Social Media Post Size Checker - Aspect Guides Online"
+    "seoTitle": "Social Media Post Size Checker (2026 Dimensions)"
   },
   {
     "id": "pdf-split",
@@ -1866,7 +1866,7 @@ export const toolsIndex: ToolItemLite[] = [
       "One-click copy lists."
     ],
     "componentName": "UsernameGenerator",
-    "seoTitle": "Social Media Username Generator - Get Creative Profile Handles"
+    "seoTitle": "Social Media Username Generator: Creative Handles"
   },
   {
     "id": "util-utm",
@@ -1888,7 +1888,7 @@ export const toolsIndex: ToolItemLite[] = [
       "Clear explanation tooltips."
     ],
     "componentName": "UtmBuilder",
-    "seoTitle": "UTM Link Builder - Campaign Tracking URL Generator"
+    "seoTitle": "Free UTM Builder for Google Analytics"
   },
   {
     "id": "dev-uuid-gen",
@@ -1976,7 +1976,7 @@ export const toolsIndex: ToolItemLite[] = [
       "No quality loss."
     ],
     "componentName": "VideoUtilities",
-    "seoTitle": "Video Thumbnail Extractor - Save Frame Screenshot from Video"
+    "seoTitle": "Video Thumbnail Extractor: Capture HD Frames"
   },
   {
     "id": "vid-to-mp3",
@@ -2105,7 +2105,7 @@ export const toolsIndex: ToolItemLite[] = [
       "Local browser-based image generation."
     ],
     "componentName": "WhatsAppQRGenerator",
-    "seoTitle": "WhatsApp QR Code Generator - Generate Free Chat QRs"
+    "seoTitle": "Free WhatsApp QR Code Generator"
   },
   {
     "id": "util-word-count",
@@ -2148,7 +2148,7 @@ export const toolsIndex: ToolItemLite[] = [
       "Download file directly."
     ],
     "componentName": "SeoUtilities",
-    "seoTitle": "XML Sitemap Generator - Build Search Index Sitemaps"
+    "seoTitle": "Free XML Sitemap Generator & Validator Online"
   },
   {
     "id": "social-yt-channel-id",
@@ -2213,7 +2213,7 @@ export const toolsIndex: ToolItemLite[] = [
       "Privacy-focused browser scraper API."
     ],
     "componentName": "YoutubeTagExtractor",
-    "seoTitle": "YouTube Tag Extractor - Extract SEO Tags from Videos"
+    "seoTitle": "YouTube Tag Extractor: Find Video Tags Online"
   },
   {
     "id": "creator-yt-preview",
@@ -2258,6 +2258,6 @@ export const toolsIndex: ToolItemLite[] = [
       "Precision time controls."
     ],
     "componentName": "YoutubeTimestampGenerator",
-    "seoTitle": "YouTube Timestamp Link Generator - Start Video at Specific Time"
+    "seoTitle": "YouTube Timestamp Link Generator"
   }
 ];

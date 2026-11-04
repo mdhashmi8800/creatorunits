@@ -8,13 +8,15 @@ export function proxy(request: NextRequest) {
 
   const isWww = host.startsWith("www.");
   const isHttp = proto === "http";
+  const hasTrailingSlash = url.pathname.length > 1 && url.pathname.endsWith("/");
 
   // Skip redirect during local development
   const isLocal = host.includes("localhost") || host.includes("127.0.0.1");
 
-  if (!isLocal && (!isWww || isHttp)) {
+  if (!isLocal && (!isWww || isHttp || hasTrailingSlash)) {
     const canonicalHost = !isWww ? `www.${host}` : host;
-    const redirectUrl = `https://${canonicalHost}${url.pathname}${url.search}`;
+    const cleanPath = hasTrailingSlash ? url.pathname.slice(0, -1) : url.pathname;
+    const redirectUrl = `https://${canonicalHost}${cleanPath}${url.search}`;
     return NextResponse.redirect(redirectUrl, 301);
   }
 

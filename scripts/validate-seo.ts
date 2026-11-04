@@ -20,12 +20,13 @@ async function runSeoValidation() {
 
   const expectedCoreCount = 11;
   const expectedCatCount = Object.keys(categories).length;
+  const expectedBlogCatCount = 5;
   const expectedToolCount = toolsIndex.length;
   const expectedArticleCount = articlesIndex.length;
-  const totalExpected = expectedCoreCount + expectedCatCount + expectedToolCount + expectedArticleCount;
+  const totalExpected = expectedCoreCount + expectedCatCount + expectedBlogCatCount + expectedToolCount + expectedArticleCount;
 
   if (sitemapEntries.length !== totalExpected) {
-    errors.push(`Sitemap URL count mismatch: expected ${totalExpected} (4 core + ${expectedCatCount} cats + ${expectedToolCount} tools + ${expectedArticleCount} articles), got ${sitemapEntries.length}`);
+    errors.push(`Sitemap URL count mismatch: expected ${totalExpected} (11 core + ${expectedCatCount} cats + ${expectedBlogCatCount} blog cats + ${expectedToolCount} tools + ${expectedArticleCount} articles), got ${sitemapEntries.length}`);
   } else {
     console.log(`   ✅ Sitemap count exact match: ${totalExpected} URLs.`);
   }

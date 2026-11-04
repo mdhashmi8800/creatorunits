@@ -112,6 +112,40 @@ export default function VideoUtilities() {
     }
   };
 
+  const getSmpteTimecode = () => {
+    const dur = fpsMode === "duration" 
+      ? (parseFloat(fpsFrames) || 0) / (parseFloat(fpsRate) || 30) 
+      : (parseFloat(fpsDuration) || 0);
+    const rate = parseFloat(fpsRate) || 30;
+    if (dur <= 0 || rate <= 0) return "00:00:00:00";
+
+    const totalSeconds = Math.floor(dur);
+    const hours = Math.floor(totalSeconds / 3600);
+    const mins = Math.floor((totalSeconds % 3600) / 60);
+    const secs = totalSeconds % 60;
+    const remFrames = Math.min(Math.floor(rate - 1), Math.round((dur - totalSeconds) * rate));
+
+    return `${String(hours).padStart(2, "0")}:${String(mins).padStart(2, "0")}:${String(secs).padStart(2, "0")}:${String(remFrames).padStart(2, "0")}`;
+  };
+
+  const getFrameDurationMs = () => {
+    const rate = parseFloat(fpsRate) || 0;
+    if (rate <= 0) return "0";
+    return (1000 / rate).toFixed(2);
+  };
+
+  const getStorageEstimateMb = () => {
+    const dur = fpsMode === "duration" 
+      ? (parseFloat(fpsFrames) || 0) / (parseFloat(fpsRate) || 30) 
+      : (parseFloat(fpsDuration) || 0);
+    // Assume typical 25 Mbps YouTube upload bitrate
+    const mb = (dur * 25) / 8;
+    if (mb >= 1024) {
+      return `${(mb / 1024).toFixed(2)} GB (at 25 Mbps 1080p/4K)`;
+    }
+    return `${mb.toFixed(1)} MB (at 25 Mbps 1080p)`;
+  };
+
   // Transcript Cleaner logic
   const handleCleanTranscript = () => {
     let text = transcriptInput;
@@ -340,7 +374,7 @@ export default function VideoUtilities() {
         {slug === "fps-calculator" && (
           <div className="flex flex-col gap-6">
             <div className="card" style={{ backgroundColor: "var(--bg-secondary)", borderStyle: "solid" }}>
-              <h3 style={{ fontSize: "1.2rem", marginTop: 0 }}>Video Frame Rate Calculator</h3>
+              <h3 style={{ fontSize: "1.2rem", marginTop: 0 }}>FPS Calculator & Video Frame Counter</h3>
               
               <div className="form-group">
                 <label className="form-label" htmlFor="fps-mode">Select Field to Calculate</label>
@@ -366,6 +400,7 @@ export default function VideoUtilities() {
                       value={fpsFrames}
                       onChange={(e) => setFpsFrames(e.target.value)}
                       className="form-control"
+                      placeholder="e.g. 144000"
                     />
                   </div>
                 )}
@@ -378,35 +413,77 @@ export default function VideoUtilities() {
                       value={fpsDuration}
                       onChange={(e) => setFpsDuration(e.target.value)}
                       className="form-control"
+                      placeholder="e.g. 60"
                     />
                   </div>
                 )}
                 {fpsMode !== "fps" && (
                   <div className="form-group">
-                    <label className="form-label" htmlFor="fps-rate">FPS</label>
+                    <label className="form-label" htmlFor="fps-rate">Frame Rate (FPS)</label>
                     <select
                       id="fps-rate"
                       value={fpsRate}
                       onChange={(e) => setFpsRate(e.target.value)}
                       className="form-control form-select"
                     >
-                      <option value="24">24 FPS (Film)</option>
-                      <option value="25">25 FPS (PAL)</option>
-                      <option value="29.97">29.97 FPS (NTSC)</option>
-                      <option value="30">30 FPS (Web standard)</option>
-                      <option value="50">50 FPS (PAL HD)</option>
-                      <option value="60">60 FPS (Gamer standard)</option>
-                      <option value="120">120 FPS (Slow-Mo)</option>
+                      <option value="23.976">23.976 FPS (Cinema / NTSC Film)</option>
+                      <option value="24">24 FPS (Standard Cinema / Vlog)</option>
+                      <option value="25">25 FPS (PAL Broadcast / UK & EU)</option>
+                      <option value="29.97">29.97 FPS (NTSC Broadcast)</option>
+                      <option value="30">30 FPS (Web Standard / YouTube)</option>
+                      <option value="48">48 FPS (High Frame Rate Cinema)</option>
+                      <option value="50">50 FPS (PAL HD Broadcast)</option>
+                      <option value="59.94">59.94 FPS (NTSC High-Speed)</option>
+                      <option value="60">60 FPS (YouTube 60fps / Gaming)</option>
+                      <option value="120">120 FPS (High-Speed Slow-Mo)</option>
+                      <option value="240">240 FPS (Action Camera Slow-Mo)</option>
                     </select>
                   </div>
                 )}
               </div>
             </div>
 
-            <div className="card text-center" style={{ borderStyle: "solid", borderColor: "var(--accent)" }}>
-              <span className="text-muted" style={{ fontSize: "0.85rem" }}>Calculation Output</span>
-              <div style={{ fontSize: "1.75rem", fontWeight: "bold", marginTop: "0.5rem" }}>
-                {calculateFpsField()}
+            {/* Calculations Grid */}
+            <div className="grid-cols-3" style={{ gap: "1rem" }}>
+              <div className="card text-center" style={{ borderStyle: "solid", borderColor: "var(--accent)", padding: "1.25rem" }}>
+                <span className="text-muted" style={{ fontSize: "0.85rem", textTransform: "uppercase", letterSpacing: "0.05em" }}>
+                  Primary Result
+                </span>
+                <div style={{ fontSize: "1.5rem", fontWeight: "bold", marginTop: "0.4rem", color: "var(--accent)" }}>
+                  {calculateFpsField()}
+                </div>
+              </div>
+
+              <div className="card text-center" style={{ borderStyle: "solid", padding: "1.25rem" }}>
+                <span className="text-muted" style={{ fontSize: "0.85rem", textTransform: "uppercase", letterSpacing: "0.05em" }}>
+                  SMPTE Timecode (HH:MM:SS:FF)
+                </span>
+                <div style={{ fontSize: "1.4rem", fontWeight: "600", fontFamily: "var(--font-geist-mono)", marginTop: "0.4rem" }}>
+                  {getSmpteTimecode()}
+                </div>
+                <button
+                  type="button"
+                  className="btn btn-secondary btn-sm"
+                  style={{ marginTop: "0.5rem", fontSize: "0.75rem", padding: "0.2rem 0.5rem" }}
+                  onClick={() => {
+                    navigator.clipboard.writeText(getSmpteTimecode());
+                    showToast("SMPTE timecode copied!", "success");
+                  }}
+                >
+                  📋 Copy Timecode
+                </button>
+              </div>
+
+              <div className="card text-center" style={{ borderStyle: "solid", padding: "1.25rem" }}>
+                <span className="text-muted" style={{ fontSize: "0.85rem", textTransform: "uppercase", letterSpacing: "0.05em" }}>
+                  Frame Specs
+                </span>
+                <div style={{ fontSize: "1rem", fontWeight: "600", marginTop: "0.4rem" }}>
+                  {getFrameDurationMs()} ms / frame
+                </div>
+                <div style={{ fontSize: "0.8rem", color: "var(--text-muted)", marginTop: "0.25rem" }}>
+                  Est: {getStorageEstimateMb()}
+                </div>
               </div>
             </div>
           </div>

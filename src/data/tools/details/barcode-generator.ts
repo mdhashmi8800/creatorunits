@@ -6,64 +6,52 @@ export const toolDetails: ToolItem = {
   "category": "utility",
   "categoryName": "Utility Tools",
   "title": "Barcode Generator",
-  "shortDesc": "Generate Code 128, EAN-13, or UPC barcode graphics ready for printing.",
-  "metaDesc": "Generate standard barcodes online. Convert numeric strings into Code 128, EAN, or UPC barcode images.",
+  "shortDesc": "Generate crisp Code 128 and Code 39 barcodes for inventory tracking, retail packaging, and shipping labels.",
+  "metaDesc": "Free online barcode generator. Create printable Code 128 and Code 39 barcodes for product SKUs, warehouse inventory, and packaging. High-res PNG export.",
   "instructions": [
-    "Type code characters (numbers or alphanumeric string).",
-    "Select barcode standard format (Code 128, EAN-13, or UPC).",
-    "Click 'Generate Barcode'.",
-    "Download barcode image."
+    "Select your barcode symbology: Code 128 (Universal logistics/retail) or Code 39 (Alphanumeric industrial).",
+    "Enter your barcode value (letters, numbers, or standard punctuation).",
+    "Adjust bar height (40px to 160px) and print density scale (1x to 4x for 300 DPI print quality).",
+    "Toggle the human-readable text label below the barcode bars on or off.",
+    "Click 'Download Barcode PNG' to export a high-resolution graphic ready for printing or packaging design."
   ],
   "features": [
-    "Supports Code 128, EAN-13, and UPC layouts.",
-    "Renders crisp vector lines outputs on canvas.",
-    "Includes human-readable code labels underneath."
+    "Supports high-density Code 128 with automated modulo 103 checksum calculation.",
+    "Supports industrial Code 39 symbology with standard start/stop delimiters (*).",
+    "Configurable print density scale (up to 4x) for crisp 300+ DPI thermal and laser printing.",
+    "Optional human-readable OCR text label underneath barcode bars.",
+    "100% client-side rendering on HTML5 canvas with zero data transmission to external servers.",
+    "Compatible with all handheld laser barcode scanners, image CMOS readers, and mobile phone apps."
   ],
   "componentName": "BarcodeGenerator",
   "faqs": [
     {
-      "question": "What characters are supported in Code 128?",
-      "answer": "Code 128 is high-density alphanumeric, meaning it supports numbers, lowercase/uppercase letters, and symbols."
+      "question": "What is the difference between Code 128 and Code 39 barcodes?",
+      "answer": "Code 128 is a modern, high-density linear barcode format that encodes the entire 128-character ASCII table (uppercase, lowercase, numbers, and symbols) with a built-in modulo 103 checksum. It is the international standard for shipping labels, carton tracking, and inventory management. Code 39 is an older, simpler symbology that encodes only uppercase letters, digits 0-9, and six punctuation marks. Code 128 produces significantly more compact barcodes for the same data length."
     },
     {
-      "question": "What barcode formats does this generator support?",
-      "answer": "Our barcode generator supports Code 128 — the most universally compatible 1D barcode format used in logistics, retail, and inventory management worldwide. Code 128 encodes the full ASCII character set including letters, numbers, and symbols at high density, making it ideal for internal product codes, shipping labels, and library systems."
+      "question": "Can I use this free barcode generator for retail products sold in stores?",
+      "answer": "For internal retail operations, warehouse inventory SKUs, customer membership cards, and local shelf tags, yes — Code 128 barcodes work with all POS laser scanners. However, if you sell products through major retail chains (Walmart, Target) or online marketplaces (Amazon), you are required to use official GS1 GTIN barcodes (UPC-A in North America or EAN-13 internationally). These require an officially registered company prefix from GS1 (gs1.org) and cannot be legally generated for retail sale from any free online generator."
     },
     {
-      "question": "Are barcodes generated here compatible with retail POS scanners?",
-      "answer": "Yes, Code 128 barcodes are compatible with virtually all modern retail POS laser scanners, handheld barcode readers, and smartphone scanning apps. However, for GS1-standard retail barcodes (required by major retailers and marketplaces like Amazon and Walmart), you will need official GS1 GTIN numbers, which require registration with GS1 and cannot be generated from a free tool."
+      "question": "What is the minimum recommended print size for reliable barcode scanning?",
+      "answer": "The minimum recommended bar height for handheld scanners is 15 mm (0.6 inches). The width depends on the character count, but each narrow bar module should be printed at a minimum of 0.25 mm (10 mils). For commercial packaging, always print at 300 DPI or higher and preserve a 'quiet zone' (blank white space) of at least 10 times the narrow bar width on both sides."
     },
     {
-      "question": "What is the minimum print size for a scannable barcode?",
-      "answer": "The minimum recommended print height for a Code 128 barcode is 15mm (about 0.6 inches). The width should be proportional to the number of characters encoded — more data means more bars and a wider barcode. Always print at 300 DPI or higher and test scanning before applying barcodes to production inventory or packaging."
+      "question": "Why won't my handheld scanner read my printed barcode?",
+      "answer": "Common causes of scanning failure include: (1) inadequate quiet zones (printing text or graphics too close to the outer bars), (2) low print resolution resulting in fuzzy bar edges, (3) insufficient color contrast (bars must be solid black on a pure white background — avoid red backgrounds because laser scanners use red light), or (4) invalid characters in Code 39."
     },
     {
-      "question": "Are my texts or files analyzed for marketing profiles?",
-      "answer": "No. We respect user privacy completely. The calculations, word counts, and timezone adjustments run client-side and are not tracked, logged, or recorded."
+      "question": "Do generated barcodes expire or have usage fees?",
+      "answer": "No. Barcodes generated on Creator Units are 100% free for both personal and commercial use forever. There are no licensing fees, usage limits, or watermarks."
     },
     {
-      "question": "Can I use the QR codes generated for business purposes?",
-      "answer": "Yes. The QR codes are standard high-resolution matrix barcodes. You can print them on menus, business cards, flyers, or use them on digital sites with no licensing restrictions."
-    },
-    {
-      "question": "How do I format time zones using this tool?",
-      "answer": "Select your current local time and the target time zone. The tool will calculate the offset and date shift, ensuring you schedule campaigns and meetings accurately."
-    },
-    {
-      "question": "Are there any limitations on the inputs I can use?",
-      "answer": "No. You can input long strings of text or large numbers, and our on-device scripts will process them instantly in real time."
-    },
-    {
-      "question": "Does the tool support copy-to-clipboard functionality?",
-      "answer": "Yes. Every utility features a clean 'Copy' button so you can transfer your outputs without selecting text manually."
-    },
-    {
-      "question": "Do I need to sign up to use the Barcode Generator?",
-      "answer": "No sign-up or registration is needed. You can use this utility completely anonymously."
+      "question": "Are my barcode numbers or product SKUs private?",
+      "answer": "Yes. Our Barcode Generator operates 100% locally inside your web browser. None of your product numbers, internal SKUs, or customer identifiers are sent over the network or saved to any database."
     }
   ],
-  "seoTitle": "Barcode Generator - Create Code 128, EAN, UPC Barcodes",
-  "seoHeading": "Generate Retail & Shipping Barcodes Online",
-  "seoIntro": "Label physical inventory items or package tracking codes. Create clean printable barcode graphics instantly.",
-  "seoBody": "\n<h3>Why You Should Use Our Barcode Generator</h3>\n<p>The Barcode Generator is a professional-grade helper designed for content creators, digital marketers, and developers looking for a fast, browser-native solution. Built directly within the CreatorUnits suite, this utility helps you bypass complex installations and avoid sending sensitive project data to external cloud hosts. Whether you are running active media campaigns, preparing design layouts, or validating parameters, the Barcode Generator provides real-time results instantly.</p>\n\n<h3>Key Features &amp; Technical Capabilities</h3>\n<ul>\n  <li><strong>Supports Code 128, EAN-13, and UPC layouts.:</strong> Supports Code 128, EAN-13, and UPC layouts.</li>\n  <li><strong>Renders crisp vector lines outputs on canvas.:</strong> Renders crisp vector lines outputs on canvas.</li>\n  <li><strong>Includes human-readable code labels underneath.:</strong> Includes human-readable code labels underneath.</li>\n</ul>\n\n<h3>100% Secure &amp; Client-Side Execution</h3>\n<p>Security is a fundamental design standard across all CreatorUnits tools. Unlike online converters or generators that upload files and details to remote databases, our Barcode Generator runs completely within your web browser sandbox using modern JavaScript client APIs. This on-device processing guarantees that your files, variables, and outputs remain strictly secure on your local hard drive, with zero latency or external network dependencies.</p>\n\n<h3>Pro Creator Workflows</h3>\n<p>To maximize your productivity, integrate the Barcode Generator with other matching tools in our directory matrix. For instance, digital media managers can run social assets through the Utility Tools and verify sizing constraints before publishing. Web managers can combine scripts with our metadata builders, sitemap generators, and keyword density validators to optimize their search authority and pass Core Web Vitals check sheets.</p>\n"
+  "seoTitle": "Free Barcode Generator: Code 128, EAN & UPC",
+  "seoHeading": "Generate Code 128 & Code 39 Barcodes Online for Free",
+  "seoIntro": "Create high-resolution, printable 1D barcodes for product labeling, warehouse inventory management, library assets, and shipping tags. 100% free, browser-native, and private.",
+  "seoBody": "\n<h3>Barcode Symbology Comparison: Code 128 vs. Code 39 vs. UPC/EAN</h3>\n<table style=\"width:100%;border-collapse:collapse;margin:1.5rem 0;font-size:0.925rem;\">\n  <thead>\n    <tr style=\"background:var(--bg-primary);text-align:left;\">\n      <th style=\"padding:10px 12px;border:1px solid var(--border-color);\">Symbology</th>\n      <th style=\"padding:10px 12px;border:1px solid var(--border-color);\">Character Set</th>\n      <th style=\"padding:10px 12px;border:1px solid var(--border-color);\">Density / Compactness</th>\n      <th style=\"padding:10px 12px;border:1px solid var(--border-color);\">Primary Use Case</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td style=\"padding:10px 12px;border:1px solid var(--border-color);\"><strong>Code 128 (Supported)</strong></td>\n      <td style=\"padding:10px 12px;border:1px solid var(--border-color);\">Full 128 ASCII (Letters, Numbers, Symbols)</td>\n      <td style=\"padding:10px 12px;border:1px solid var(--border-color);\">High (11 modules per character)</td>\n      <td style=\"padding:10px 12px;border:1px solid var(--border-color);\">Shipping labels, warehouse SKUs, supply chain, healthcare</td>\n    </tr>\n    <tr>\n      <td style=\"padding:10px 12px;border:1px solid var(--border-color);\"><strong>Code 39 (Supported)</strong></td>\n      <td style=\"padding:10px 12px;border:1px solid var(--border-color);\">Uppercase A-Z, 0-9, and <code>- . $ / + %</code></td>\n      <td style=\"padding:10px 12px;border:1px solid var(--border-color);\">Low (15 modules per character)</td>\n      <td style=\"padding:10px 12px;border:1px solid var(--border-color);\">Automotive manufacturing, government ID badges, industrial tracking</td>\n    </tr>\n    <tr>\n      <td style=\"padding:10px 12px;border:1px solid var(--border-color);\"><strong>UPC-A / EAN-13</strong></td>\n      <td style=\"padding:10px 12px;border:1px solid var(--border-color);\">Fixed 12 or 13 numeric digits only</td>\n      <td style=\"padding:10px 12px;border:1px solid var(--border-color);\">Medium (Fixed length)</td>\n      <td style=\"padding:10px 12px;border:1px solid var(--border-color);\">Global retail checkout (Requires official GS1.org registration)</td>\n    </tr>\n  </tbody>\n</table>\n\n<h3>Understanding Retail POS Limitations: GS1 vs. Custom Barcodes</h3>\n<p>It is important to understand the genuine legal distinction between generating a barcode graphic and issuing a commercial retail barcode:</p>\n<ul>\n  <li><strong>Internal Business Use:</strong> You can freely use our Code 128 or Code 39 generator for your own warehouse inventory, warehouse bin labels, internal product catalog codes, library books, event wristbands, and membership passes. Any standard barcode scanner will read them perfectly.</li>\n  <li><strong>Commercial Retail (Amazon, Walmart, Supermarkets):</strong> Global retailers scan 12-digit UPC or 13-digit EAN barcodes linked to the global GS1 database. You cannot fabricate these numbers yourself; you must purchase an authentic company prefix license from <a href=\"https://www.gs1.org/\" target=\"_blank\" rel=\"noopener noreferrer\">GS1.org</a> to guarantee uniqueness across worldwide commerce.</li>\n</ul>\n\n<h3>Printing Guidelines for 100% First-Time Scan Success</h3>\n<ol>\n  <li><strong>Always Maintain Quiet Zones:</strong> Leave at least 0.25 inches (6 mm) of blank white margin to the left and right of the barcode. Handheld scanners measure contrast transitions and require blank space to identify the start pattern.</li>\n  <li><strong>Print at 300+ DPI:</strong> Thermal label printers and standard office laser printers should be set to 300 DPI or higher to ensure the narrowest bars remain sharp and unpixelated.</li>\n  <li><strong>Stick to High Contrast:</strong> Never print red bars or print on red paper — barcode lasers operate at a 650nm red wavelength and interpret red ink as white space. Black bars on pure white backgrounds are optimal.</li>\n</ol>\n\n<h3>Related Utilities for Physical Products &amp; Creators</h3>\n<ul>\n  <li><a href=\"/tools/utility/qr-code-generator\">Free QR Code Generator</a> — Generate 2D QR codes for website URLs, menus, and WiFi.</li>\n  <li><a href=\"/tools/utility/utm-builder\">UTM Campaign Builder</a> — Track marketing campaign performance across printed QR codes.</li>\n  <li><a href=\"/category/utility\">Explore All Utility Tools</a> — Unit converters, text formatters, and password utilities.</li>\n</ul>\n"
 };

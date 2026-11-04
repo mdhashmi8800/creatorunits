@@ -159,7 +159,8 @@ export default async function ArticlePage({ params }: PageProps) {
     itemListElement: [
       { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.creatorunits.com/" },
       { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.creatorunits.com/blog" },
-      { "@type": "ListItem", "position": 3, "name": article.title, "item": `https://www.creatorunits.com/blog/${article.slug}` },
+      { "@type": "ListItem", "position": 3, "name": article.categoryLabel || "Guides", "item": `https://www.creatorunits.com/blog/category/${article.category}` },
+      { "@type": "ListItem", "position": 4, "name": article.title, "item": `https://www.creatorunits.com/blog/${article.slug}` },
     ],
   };
 
@@ -193,7 +194,8 @@ export default async function ArticlePage({ params }: PageProps) {
               items={[
                 { label: "Home", href: "/" },
                 { label: "Blog", href: "/blog" },
-                { label: article.categoryLabel || "Guide" },
+                { label: article.categoryLabel || "Guides", href: `/blog/category/${article.category}` },
+                { label: article.title },
               ]}
             />
 
