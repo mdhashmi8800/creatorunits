@@ -43,6 +43,8 @@ export default function VideoUtilities() {
   const [compFile, setCompFile] = useState<File | null>(null);
   const [compPreset, setCompPreset] = useState<string>("discord");
   const [compEstimatedSize, setCompEstimatedSize] = useState<string>("");
+  const [isCompressing, setIsCompressing] = useState<boolean>(false);
+  const [compProgress, setCompProgress] = useState<number>(0);
 
   // Video Thumbnail Extractor (Fully functional client-side frame grabber)
   const [videoFile, setVideoFile] = useState<File | null>(null);
@@ -263,25 +265,163 @@ export default function VideoUtilities() {
     setCompEstimatedSize(`${est.toFixed(1)} MB (${Math.round((1 - est / originalSizeMB) * 100)}% savings)`);
   }, [compFile, compPreset]);
 
-  // Audio extraction simulator
+  // Helper: Convert decoded AudioBuffer to standard WAV Blob
+  const audioBufferToWav = (buffer: AudioBuffer): Blob => {
+    const numOfChan = buffer.numberOfChannels;
+    const length = buffer.length * numOfChan * 2 + 44;
+    const out = new DataView(new ArrayBuffer(length));
+    const channels: Float32Array[] = [];
+    const sampleRate = buffer.sampleRate;
+    let offset = 0;
+    let pos = 0;
+
+    const setUint16 = (data: number) => { out.setUint16(pos, data, true); pos += 2; };
+    const setUint32 = (data: number) => { out.setUint32(pos, data, true); pos += 4; };
+
+    setUint32(0x46464952); // "RIFF"
+    setUint32(length - 8);
+    setUint32(0x45564157); // "WAVE"
+    setUint32(0x20746d66); // "fmt "
+    setUint32(16);
+    setUint16(1); // PCM format
+    setUint16(numOfChan);
+    setUint32(sampleRate);
+    setUint32(sampleRate * 2 * numOfChan);
+    setUint16(numOfChan * 2);
+    setUint16(16);
+    setUint32(0x61746164); // "data"
+    setUint32(length - pos - 4);
+
+    for (let i = 0; i < buffer.numberOfChannels; i++) {
+      channels.push(buffer.getChannelData(i));
+    }
+    while (offset < buffer.length) {
+      for (let i = 0; i < numOfChan; i++) {
+        let sample = Math.max(-1, Math.min(1, channels[i][offset]));
+        sample = (0.5 + sample < 0 ? sample * 32768 : sample * 32767) | 0;
+        out.setInt16(pos, sample, true);
+        pos += 2;
+      }
+      offset++;
+    }
+    return new Blob([out.buffer], { type: "audio/wav" });
+  };
+
+  // Real client-side audio extraction via Web Audio API
   const handleExtractAudio = async () => {
     if (!mp3File) return;
     setIsExtracting(true);
-    // Simulate audio track extraction progress
-    await new Promise((resolve) => setTimeout(resolve, 2000));
-    setIsExtracting(false);
+    try {
+      const audioCtx = new (window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext)();
+      const arrayBuffer = await mp3File.arrayBuffer();
+      const audioBuffer = await audioCtx.decodeAudioData(arrayBuffer);
+      const wavBlob = audioBufferToWav(audioBuffer);
+      const url = URL.createObjectURL(wavBlob);
+      const link = document.createElement("a");
+      const baseName = mp3File.name.substring(0, mp3File.name.lastIndexOf(".")) || "extracted-audio";
+      link.href = url;
+      link.download = `${baseName}.wav`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+      showToast("Audio track extracted and downloaded as lossless WAV!", "success");
+    } catch (err: unknown) {
+      console.error(err);
+      showToast("Unable to decode audio stream directly. Ensure the video file contains an active audio track.", "error");
+    } finally {
+      setIsExtracting(false);
+    }
+  };
 
-    // Prompt download
-    const blob = new Blob(["MOCK AUDIO DATA"], { type: "audio/mp3" });
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement("a");
-    link.href = url;
-    link.download = `${mp3File.name.substring(0, mp3File.name.lastIndexOf("."))} - extracted.mp3`;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    URL.revokeObjectURL(url);
-    showToast("Audio track extracted (Mock MP3 wrapper)!", "success");
+  // Real client-side video compressor
+  const handleCompressVideo = async () => {
+    if (!compFile) return;
+    setIsCompressing(true);
+    setCompProgress(0);
+
+    const video = document.createElement("video");
+    const objectUrl = URL.createObjectURL(compFile);
+    video.src = objectUrl;
+    video.muted = true;
+    video.playsInline = true;
+
+    try {
+      await new Promise<void>((resolve, reject) => {
+        video.onloadedmetadata = () => resolve();
+        video.onerror = () => reject(new Error("Failed to load video metadata"));
+      });
+
+      const originalMB = compFile.size / (1024 * 1024);
+      let targetRatio = 0.5;
+      if (compPreset === "discord") targetRatio = Math.min(8 / originalMB, 0.7);
+      else if (compPreset === "whatsapp") targetRatio = Math.min(16 / originalMB, 0.75);
+      else if (compPreset === "max") targetRatio = 0.25;
+
+      const duration = video.duration || 10;
+      const targetBits = Math.max(250000, (compFile.size * 8 * targetRatio) / duration);
+
+      const streamCandidate = (video as unknown as { captureStream?: () => MediaStream; mozCaptureStream?: () => MediaStream });
+      const stream = streamCandidate.captureStream ? streamCandidate.captureStream() : streamCandidate.mozCaptureStream ? streamCandidate.mozCaptureStream() : null;
+
+      if (!stream || typeof MediaRecorder === "undefined") {
+        showToast("Direct browser re-encoding unsupported on this device. Target specs calculated.", "info");
+        setIsCompressing(false);
+        URL.revokeObjectURL(objectUrl);
+        return;
+      }
+
+      const mimeType = MediaRecorder.isTypeSupported("video/webm;codecs=vp8")
+        ? "video/webm;codecs=vp8"
+        : MediaRecorder.isTypeSupported("video/webm")
+        ? "video/webm"
+        : "";
+
+      const options: MediaRecorderOptions = { videoBitsPerSecond: Math.round(targetBits) };
+      if (mimeType) options.mimeType = mimeType;
+
+      const recorder = new MediaRecorder(stream, options);
+      const chunks: Blob[] = [];
+
+      recorder.ondataavailable = (e) => {
+        if (e.data && e.data.size > 0) chunks.push(e.data);
+      };
+
+      recorder.onstop = () => {
+        const compressedBlob = new Blob(chunks, { type: mimeType || "video/webm" });
+        const downloadUrl = URL.createObjectURL(compressedBlob);
+        const link = document.createElement("a");
+        const base = compFile.name.substring(0, compFile.name.lastIndexOf(".")) || "compressed-video";
+        link.href = downloadUrl;
+        link.download = `${base}-compressed.webm`;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(downloadUrl);
+        URL.revokeObjectURL(objectUrl);
+        setIsCompressing(false);
+        setCompProgress(100);
+        showToast(`Video compressed! Saved ${(compressedBlob.size / (1024 * 1024)).toFixed(1)} MB`, "success");
+      };
+
+      video.ontimeupdate = () => {
+        if (video.duration) {
+          setCompProgress(Math.round((video.currentTime / video.duration) * 100));
+        }
+      };
+
+      video.onended = () => {
+        recorder.stop();
+      };
+
+      recorder.start();
+      await video.play();
+    } catch (err: unknown) {
+      console.error(err);
+      URL.revokeObjectURL(objectUrl);
+      setIsCompressing(false);
+      showToast("Compression failed. Please try a different MP4 or WebM video.", "warning");
+    }
   };
 
   return (
@@ -638,8 +778,24 @@ export default function VideoUtilities() {
                   </div>
                 </div>
 
-                <button className="btn btn-primary" onClick={() => showToast("Compiling output preset settings...", "info")}>
-                  ⚙️ Apply Compress Presets
+                {isCompressing && (
+                  <div style={{ marginTop: "0.5rem" }}>
+                    <div style={{ display: "flex", justifyContent: "space-between", fontSize: "0.85rem", marginBottom: "0.25rem" }}>
+                      <span>Re-encoding video locally...</span>
+                      <span>{compProgress}%</span>
+                    </div>
+                    <div style={{ width: "100%", height: "8px", backgroundColor: "var(--border-color)", borderRadius: "4px", overflow: "hidden" }}>
+                      <div style={{ width: `${compProgress}%`, height: "100%", backgroundColor: "var(--accent)", transition: "width 0.2s" }} />
+                    </div>
+                  </div>
+                )}
+
+                <button
+                  className="btn btn-primary"
+                  onClick={handleCompressVideo}
+                  disabled={isCompressing}
+                >
+                  {isCompressing ? `⏳ Compressing Video (${compProgress}%)...` : "⚙️ Compress and Download Video"}
                 </button>
               </div>
             )}
@@ -745,7 +901,7 @@ export default function VideoUtilities() {
                   onClick={handleExtractAudio}
                   disabled={isExtracting}
                 >
-                  {isExtracting ? "⏳ Extracting Audio stream..." : "🎵 Extract MP3 Audio track"}
+                  {isExtracting ? "⏳ Extracting Audio stream..." : "🎵 Extract & Download Audio (.wav)"}
                 </button>
               </div>
             )}

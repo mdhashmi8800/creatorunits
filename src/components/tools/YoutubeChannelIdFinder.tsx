@@ -9,6 +9,7 @@ export default function YoutubeChannelIdFinder() {
   const [htmlInput, setHtmlInput] = useState<string>("");
   const [channelId, setChannelId] = useState<string>("");
   const [mode, setMode] = useState<"url" | "source">("url");
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const parseUrl = () => {
     const input = urlInput.trim();
@@ -25,22 +26,29 @@ export default function YoutubeChannelIdFinder() {
       return;
     }
 
-    // 2. Handle standard @ handles
-    if (input.includes("@") || input.startsWith("http")) {
-      // Simulate/approximate handle lookup or suggest source code parse
-      const handle = input.includes("@") ? input.split("@")[1].split("/")[0] : "channel";
-      // Generate a deterministic mock/simulated UC ID based on handle name
-      let hash = 0;
-      for (let i = 0; i < handle.length; i++) {
-        hash = handle.charCodeAt(i) + ((hash << 5) - hash);
-      }
-      const mockId = "UC" + Math.abs(hash).toString(36).padEnd(22, "x").substring(0, 22);
-      
-      setChannelId(mockId);
-      showToast("Channel ID resolved (simulated lookup)! For 100% accuracy, use Source Code method below.", "warning");
-    } else {
-      showToast("Invalid channel URL format.", "error");
-    }
+    // 2. Fetch authentic Channel ID via API
+    setIsLoading(true);
+    fetch("/api/youtube/channel", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ input }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.channelId) {
+          setChannelId(data.channelId);
+          showToast("Channel ID retrieved successfully!", "success");
+        } else {
+          showToast(data.error || "Channel ID not found. Try the Page Source method below.", "error");
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+        showToast("Network error. Please try the Page Source method below.", "error");
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
   };
 
   const parseSourceCode = () => {
@@ -105,8 +113,8 @@ export default function YoutubeChannelIdFinder() {
                   className="form-control"
                   style={{ flexGrow: 1 }}
                 />
-                <button className="btn btn-primary" onClick={parseUrl}>
-                  Find Channel ID
+                <button className="btn btn-primary" onClick={parseUrl} disabled={isLoading}>
+                  {isLoading ? "Searching..." : "Find Channel ID"}
                 </button>
               </div>
             </div>

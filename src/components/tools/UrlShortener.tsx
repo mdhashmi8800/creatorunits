@@ -25,26 +25,24 @@ export default function UrlShortener() {
     setShortUrl("");
 
     try {
-      // Try hitting public TinyURL endpoint
-      const response = await fetch(`https://tinyurl.com/api-create.php?url=${encodeURIComponent(longUrl.trim())}`);
-      if (response.ok) {
-        const data = await response.text();
-        if (data && data.startsWith("http")) {
-          setShortUrl(data);
-          setClickCount(0);
-          showToast("URL shortened successfully!", "success");
-          setIsProcessing(false);
-          return;
-        }
+      const response = await fetch("/api/shorten", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ url: longUrl.trim() }),
+      });
+
+      const data = await response.json();
+      if (!response.ok || !data.shortUrl) {
+        throw new Error(data.error || "Failed to shorten URL.");
       }
-      throw new Error("TinyURL CORS boundary blocks browser direct calls.");
-    } catch (err) {
-      // Fallback: local simulated short hash
-      const hash = Math.random().toString(36).substring(2, 8);
-      const mockShort = `https://www.creatorunits.com/sh/${hash}`;
-      setShortUrl(mockShort);
+
+      setShortUrl(data.shortUrl);
       setClickCount(0);
-      showToast("URL shortened (simulated redirection link)!", "success");
+      showToast("URL shortened successfully!", "success");
+    } catch (err: unknown) {
+      console.error(err);
+      const message = err instanceof Error ? err.message : "Failed to shorten URL.";
+      showToast(message, "error");
     } finally {
       setIsProcessing(false);
     }
