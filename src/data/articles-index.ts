@@ -32,8 +32,8 @@ export const articlesIndex: ArticleLite[] = [
   },
   {
     "slug": "reduce-image-file-size-for-instagram",
-    "title": "Reduce Image Size for Instagram Without Quality Loss",
-    "metaDesc": "Stop Instagram compression from blurring your photos. Learn how to compress, crop, and size JPG, PNG, and HEIC images to exact 1080px specs with zero quality loss.",
+    "title": "How to Reduce Image Size for Instagram Without Losing Quality (2026)",
+    "metaDesc": "Stop Instagram compression from ruining your photos. Learn how to resize and compress JPG, PNG, and HEIC images to exact 1080px specs with zero quality loss.",
     "publishDate": "2025-06-05",
     "lastModified": "2026-11-04",
     "category": "image",
@@ -280,8 +280,8 @@ export const articlesIndex: ArticleLite[] = [
   },
   {
     "slug": "creative-instagram-bio-ideas",
-    "title": "65+ Creative Instagram Bio Ideas for Creators (2026)",
-    "metaDesc": "65+ copy-and-paste Instagram bio ideas and templates across 10 creator niches. Includes the 5-step bio conversion formula, character limits, and font styling tips.",
+    "title": "80+ Creative Instagram Bio Ideas (Copy & Paste) for 2026",
+    "metaDesc": "80+ copy-and-paste Instagram bio ideas with emojis for creators, businesses, and aesthetic profiles. 150-character verified, font tips, and bio formula.",
     "publishDate": "2025-07-13",
     "lastModified": "2026-11-04",
     "category": "social",
@@ -400,8 +400,8 @@ export const articlesIndex: ArticleLite[] = [
   },
   {
     "slug": "how-to-create-qr-code-free",
-    "title": "How to Create a Free QR Code (No Sign-Up)",
-    "metaDesc": "Learn how to create free, permanent QR codes without sign-up. Step-by-step tutorial for links, WhatsApp, and WiFi with printing and sizing best practices.",
+    "title": "How to Create a Free QR Code That Never Expires (No Sign-Up)",
+    "metaDesc": "Create permanent, free QR codes without subscriptions or expiration dates. Step-by-step guide for website links, WiFi, WhatsApp, and print formatting.",
     "publishDate": "2025-07-31",
     "lastModified": "2026-11-04",
     "category": "utility",
@@ -428,8 +428,8 @@ export const articlesIndex: ArticleLite[] = [
   },
   {
     "slug": "utm-tracking-link-guide",
-    "title": "UTM Tracking Link Guide: GA4 Campaign URLs for Creators",
-    "metaDesc": "Master Google Analytics 4 (GA4) UTM tracking. Learn the 5 UTM parameters, GA4 default channel grouping rules, naming conventions, and common attribution mistakes.",
+    "title": "GA4 UTM Tracking Guide: Parameters, Naming & Reporting (2026)",
+    "metaDesc": "Complete guide to UTM tracking in Google Analytics 4 (GA4). Learn the 5 parameters, channel grouping rules, naming conventions, and how to fix Unassigned traffic.",
     "publishDate": "2025-08-04",
     "lastModified": "2026-11-04",
     "category": "utility",

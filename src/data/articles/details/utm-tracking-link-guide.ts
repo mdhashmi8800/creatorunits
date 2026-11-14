@@ -2,8 +2,8 @@ import { Article } from "../../articles";
 
 export const articleDetails: Article = {
   "slug": "utm-tracking-link-guide",
-  "title": "UTM Tracking Link Guide: GA4 Campaign URLs for Creators",
-  "metaDesc": "Master Google Analytics 4 (GA4) UTM tracking. Learn the 5 UTM parameters, GA4 default channel grouping rules, naming conventions, and common attribution mistakes.",
+  "title": "GA4 UTM Tracking Guide: Parameters, Naming & Reporting (2026)",
+  "metaDesc": "Complete guide to UTM tracking in Google Analytics 4 (GA4). Learn the 5 parameters, channel grouping rules, naming conventions, and how to fix Unassigned traffic.",
   "publishDate": "2025-08-04",
   "lastModified": "2026-11-04",
   "category": "utility",

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useMemo } from "react";
 import Link from "next/link";
 import { useToast } from "@/context/ToastContext";
 import { useHistory } from "@/context/HistoryContext";
@@ -8,11 +8,21 @@ import { useHistory } from "@/context/HistoryContext";
 const PRESETS = [
   { label: "Google Search (CPC)", source: "google", medium: "cpc", campaign: "search_campaign" },
   { label: "Facebook / IG Ad", source: "facebook", medium: "paid_social", campaign: "feed_promo" },
+  { label: "TikTok Ad", source: "tiktok", medium: "paid_social", campaign: "spark_ads" },
   { label: "Email Newsletter", source: "newsletter", medium: "email", campaign: "weekly_digest" },
   { label: "YouTube Description", source: "youtube", medium: "video", campaign: "channel_card" },
-  { label: "Instagram Bio", source: "instagram", medium: "social_bio", campaign: "profile_link" },
   { label: "LinkedIn Post", source: "linkedin", medium: "organic_social", campaign: "thought_leadership" },
+  { label: "Twitter / X Post", source: "twitter", medium: "organic_social", campaign: "launch_thread" },
+  { label: "Affiliate Link", source: "affiliate_partner", medium: "affiliate", campaign: "creator_referral" },
 ];
+
+function sanitizeVal(val: string, forceLowercase: boolean): string {
+  let clean = val.trim();
+  if (forceLowercase) {
+    clean = clean.toLowerCase();
+  }
+  return clean.replace(/\s+/g, "_");
+}
 
 export default function UtmBuilder() {
   const { showToast } = useToast();
@@ -25,23 +35,11 @@ export default function UtmBuilder() {
   const [term, setTerm] = useState<string>("");
   const [content, setContent] = useState<string>("");
   const [forceLowercase, setForceLowercase] = useState<boolean>(true);
-  const [generatedLink, setGeneratedLink] = useState<string>("");
 
-  const sanitizeVal = (val: string): string => {
-    let clean = val.trim();
-    if (forceLowercase) {
-      clean = clean.toLowerCase();
-    }
-    // Replace spaces with underscores
-    clean = clean.replace(/\s+/g, "_");
-    return clean;
-  };
-
-  const buildUrl = () => {
+  const generatedLink = useMemo(() => {
     let base = url.trim();
     if (!base) {
-      setGeneratedLink("");
-      return;
+      return "";
     }
 
     if (!/^https?:\/\//i.test(base)) {
@@ -51,11 +49,11 @@ export default function UtmBuilder() {
     try {
       const parsedUrl = new URL(base);
       
-      const s = sanitizeVal(source);
-      const m = sanitizeVal(medium);
-      const c = sanitizeVal(campaign);
-      const t = sanitizeVal(term);
-      const cnt = sanitizeVal(content);
+      const s = sanitizeVal(source, forceLowercase);
+      const m = sanitizeVal(medium, forceLowercase);
+      const c = sanitizeVal(campaign, forceLowercase);
+      const t = sanitizeVal(term, forceLowercase);
+      const cnt = sanitizeVal(content, forceLowercase);
 
       if (s) parsedUrl.searchParams.set("utm_source", s);
       else parsedUrl.searchParams.delete("utm_source");
@@ -72,15 +70,10 @@ export default function UtmBuilder() {
       if (cnt) parsedUrl.searchParams.set("utm_content", cnt);
       else parsedUrl.searchParams.delete("utm_content");
 
-      setGeneratedLink(parsedUrl.toString());
+      return parsedUrl.toString();
     } catch {
-      // Invalid URL syntax
+      return "";
     }
-  };
-
-  // Re-build link automatically when inputs change
-  useEffect(() => {
-    buildUrl();
   }, [url, source, medium, campaign, term, content, forceLowercase]);
 
   const handleApplyPreset = (preset: typeof PRESETS[0]) => {

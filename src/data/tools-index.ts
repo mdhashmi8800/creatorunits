@@ -336,22 +336,22 @@ export const toolsIndex: ToolItemLite[] = [
     "slug": "barcode-generator",
     "category": "utility",
     "categoryName": "Utility Tools",
-    "title": "Barcode Generator",
-    "shortDesc": "Generate Code 128, EAN-13, or UPC barcode graphics ready for printing.",
-    "metaDesc": "Generate standard barcodes online. Convert numeric strings into Code 128, EAN, or UPC barcode images.",
+    "title": "Free Barcode Generator — Code 128, EAN-13, UPC-A & Code 39",
+    "shortDesc": "Generate printable linear barcodes in Code 128, EAN-13, UPC-A, and Code 39 with PNG & SVG vector export.",
+    "metaDesc": "Free online barcode generator. Create printable Code 128, EAN-13, UPC-A, and Code 39 barcodes for product SKUs, inventory, and retail labels. High-res PNG & SVG export.",
     "instructions": [
-      "Type code characters (numbers or alphanumeric string).",
-      "Select barcode standard format (Code 128, EAN-13, or UPC).",
-      "Click 'Generate Barcode'.",
-      "Download barcode image."
+      "Select your barcode symbology: Code 128, EAN-13, UPC-A, or Code 39.",
+      "Enter your barcode value (12 digits for EAN-13, 11 for UPC-A to auto-calculate check digit).",
+      "Adjust bar height and print density scale (1x to 4x for 300+ DPI print quality).",
+      "Download high-resolution PNG, vector SVG, or print directly."
     ],
     "features": [
-      "Supports Code 128, EAN-13, and UPC layouts.",
-      "Renders crisp vector lines outputs on canvas.",
-      "Includes human-readable code labels underneath."
+      "Full support for Code 128, EAN-13, UPC-A, and Code 39.",
+      "Automated Modulo 10 and 103 check digit calculation.",
+      "Dual export: High-res PNG & vector SVG formats plus direct print."
     ],
     "componentName": "BarcodeGenerator",
-    "seoTitle": "Free Barcode Generator: Code 128, EAN & UPC"
+    "seoTitle": "Free Barcode Generator — Code 128, EAN-13, UPC-A & Code 39"
   },
   {
     "id": "dev-b64-conv",
@@ -622,22 +622,22 @@ export const toolsIndex: ToolItemLite[] = [
     "slug": "fps-calculator",
     "category": "video",
     "categoryName": "Video Tools",
-    "title": "FPS Calculator & Frame Counter",
-    "shortDesc": "Calculate total frames, duration, file sizes, and rendering times based on frames per second.",
-    "metaDesc": "Calculate video frames and render sizes online. Convert durations to frames at 24fps, 30fps, 60fps instantly.",
+    "title": "FPS Calculator & Frame Counter — SMPTE Timecode & Duration",
+    "shortDesc": "Calculate exact total video frame counts, SMPTE timecodes (HH:MM:SS:FF), frame durations in ms, and render file sizes.",
+    "metaDesc": "Free FPS calculator and video frame counter. Convert duration to frames or timecodes at 24, 25, 29.97, 30, 60, and 120 FPS. Instant SMPTE timecodes and file size estimates.",
     "instructions": [
-      "Enter video duration (hours, minutes, seconds).",
-      "Select target frame rate (23.976, 24, 25, 29.97, 30, 60 fps).",
-      "View total frame counts and duration scales.",
-      "Calculate estimated file size based on bitrate."
+      "Select calculation mode: Total Frames, Duration, or Actual FPS.",
+      "Input duration in seconds or total frame counts.",
+      "Select frame rate (23.976, 24, 25, 29.97, 30, 60, 120, 240 FPS).",
+      "Copy SMPTE timecode (HH:MM:SS:FF) and view frame duration specs."
     ],
     "features": [
-      "Drop-frame formats calculations.",
-      "Converts frames back into timestamp code strings.",
-      "Estimates raw video storage requirements."
+      "SMPTE timecode (HH:MM:SS:FF) calculation with one-click copy.",
+      "Frame duration in milliseconds for animation keyframing.",
+      "Supports 24, 25, 29.97, 30, 60, 120, and 240 fps."
     ],
     "componentName": "VideoUtilities",
-    "seoTitle": "FPS Calculator & Video Frame Counter"
+    "seoTitle": "FPS Calculator & Frame Counter — SMPTE Timecode & Duration"
   },
   {
     "id": "util-gradient-gen",
@@ -1326,21 +1326,21 @@ export const toolsIndex: ToolItemLite[] = [
     "category": "seo",
     "categoryName": "SEO Tools",
     "title": "Robots.txt Generator",
-    "shortDesc": "Create structured robots.txt files to guide and optimize search engine crawling.",
-    "metaDesc": "Generate robots.txt files online. Configure disallow directories, specify search crawlers, and link sitemaps instantly.",
+    "shortDesc": "Generate valid, search-engine-ready robots.txt files for Googlebot, Bingbot, and AI scrapers with sitemap linking.",
+    "metaDesc": "Free robots.txt generator. Create search crawler rules for Googlebot, Bingbot, and AI scrapers (GPTBot, CCBot, ClaudeBot). Configure disallow paths and XML sitemaps.",
     "instructions": [
-      "Set crawling behaviors for standard user-agents (Google, Bing, Yahoo).",
-      "Add directories to Disallow (e.g. /admin or /private).",
-      "Link your XML sitemap URL.",
-      "Click 'Generate Robots.txt' and download file."
+      "Select a preset (Standard, WordPress, Next.js, or Block AI Scrapers) or configure manually.",
+      "Specify User-agent, Allow paths, and Disallow paths.",
+      "Toggle AI bot protection to block GPTBot, CCBot, and ClaudeBot.",
+      "Enter your XML sitemap URL and download the compiled robots.txt file."
     ],
     "features": [
-      "Simplifies directory blocking.",
-      "Sitemap paths alignment fields.",
-      "Saves config files in seconds."
+      "Presets for WordPress, Next.js, and static websites.",
+      "One-click generative AI scraper blocking directives.",
+      "Direct file download and clipboard copy."
     ],
     "componentName": "SeoUtilities",
-    "seoTitle": "Robots.txt Generator - Create Custom robots.txt Files"
+    "seoTitle": "Robots.txt Generator — Create Custom robots.txt Files"
   },
   {
     "id": "biz-roi-calc",
@@ -1873,22 +1873,22 @@ export const toolsIndex: ToolItemLite[] = [
     "slug": "utm-builder",
     "category": "utility",
     "categoryName": "Utility Tools",
-    "title": "UTM Campaign Builder",
-    "shortDesc": "Build marketing campaign links with source, medium, and term tracking codes.",
-    "metaDesc": "Create tracking URLs for Google Analytics. Build UTM campaign links with source, medium, name, content parameters instantly.",
+    "title": "Free UTM Builder & Campaign URL Generator for GA4",
+    "shortDesc": "Build and validate marketing campaign tracking URLs with UTM parameters for Google Analytics 4 (GA4) in seconds.",
+    "metaDesc": "Free UTM builder for Google Analytics 4 (GA4). Generate error-free campaign tracking URLs with source, medium, campaign, term, and content tags. 100% free and private.",
     "instructions": [
-      "Enter your base website URL.",
-      "Enter campaign parameters: Source (e.g. newsletter), Medium (email), Campaign Name (launch).",
-      "Optional: set Campaign Term or Campaign Content.",
-      "Copy the built tracking link from the output box."
+      "Enter your base destination landing page URL.",
+      "Select a GA4 quick preset (Google Ads, Facebook, TikTok, Newsletter) or enter custom tags.",
+      "Specify utm_source, utm_medium, and utm_campaign.",
+      "Copy the URL-encoded campaign tracking link or convert it into a scannable QR code."
     ],
     "features": [
-      "Ensures valid URL structures.",
-      "Live output preview updates.",
-      "Clear explanation tooltips."
+      "GA4 Default Channel Grouping presets (CPC, Email, Social, Affiliate).",
+      "Automatic URL encoding and lowercase enforcement.",
+      "Instant copy and integration with free QR Code Generator."
     ],
     "componentName": "UtmBuilder",
-    "seoTitle": "Free UTM Builder for Google Analytics"
+    "seoTitle": "Free UTM Builder & Campaign URL Generator for GA4"
   },
   {
     "id": "dev-uuid-gen",
@@ -2091,21 +2091,22 @@ export const toolsIndex: ToolItemLite[] = [
     "slug": "whatsapp-qr-generator",
     "category": "social",
     "categoryName": "Social Media Tools",
-    "title": "WhatsApp QR Code Generator",
-    "shortDesc": "Create QR codes that automatically open a WhatsApp chat when scanned.",
-    "metaDesc": "Generate customized WhatsApp QR codes. Scan to chat with your phone number and pre-filled message instantly. High resolution download.",
+    "title": "Free WhatsApp QR Code Generator — Create Scan-to-Chat QRs",
+    "shortDesc": "Create a scannable QR code that instantly opens a WhatsApp chat with your number and a customizable pre-filled message.",
+    "metaDesc": "Create free WhatsApp QR codes with pre-filled messages. Instant scan-to-chat for businesses, flyers, and menus. Download high-res PNG. 100% private and free.",
     "instructions": [
-      "Input your WhatsApp phone number and message.",
-      "Generate the custom QR code.",
-      "Click 'Download QR Code' to export as PNG for print layouts."
+      "Input your WhatsApp phone number in international format.",
+      "Optionally add a pre-filled conversation starter message.",
+      "Generate the scan-to-chat optical matrix.",
+      "Download high-resolution PNG for flyers, table tents, and business cards."
     ],
     "features": [
-      "Generates vector-clear QR codes.",
-      "Includes phone link presets.",
-      "Local browser-based image generation."
+      "Generates wa.me deep-link QR codes.",
+      "Supports custom pre-filled chat messages.",
+      "100% private: phone number never leaves your browser."
     ],
     "componentName": "WhatsAppQRGenerator",
-    "seoTitle": "Free WhatsApp QR Code Generator"
+    "seoTitle": "Free WhatsApp QR Code Generator — Create Scan-to-Chat QRs"
   },
   {
     "id": "util-word-count",

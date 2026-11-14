@@ -2,8 +2,8 @@ import { Article } from "../../articles";
 
 export const articleDetails: Article = {
   "slug": "reduce-image-file-size-for-instagram",
-  "title": "Reduce Image Size for Instagram Without Quality Loss",
-  "metaDesc": "Stop Instagram compression from blurring your photos. Learn how to compress, crop, and size JPG, PNG, and HEIC images to exact 1080px specs with zero quality loss.",
+  "title": "How to Reduce Image Size for Instagram Without Losing Quality (2026)",
+  "metaDesc": "Stop Instagram compression from ruining your photos. Learn how to resize and compress JPG, PNG, and HEIC images to exact 1080px specs with zero quality loss.",
   "publishDate": "2025-06-05",
   "lastModified": "2026-11-04",
   "category": "image",

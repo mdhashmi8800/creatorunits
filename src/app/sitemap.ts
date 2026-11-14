@@ -3,7 +3,7 @@ import { tools, categories } from "@/data/tools";
 import { articlesIndex } from "@/data/articles-index";
 
 // Stable truthful baseline dates reflecting real content updates
-const AUDIT_UPDATE_DATE = new Date("2026-11-04T00:00:00Z");
+const AUDIT_UPDATE_DATE = new Date("2026-11-14T00:00:00Z");
 const PREVIOUS_RELEASE_DATE = new Date("2026-08-22T00:00:00Z");
 const POLICIES_UPDATE_DATE = new Date("2026-08-29T00:00:00Z");
 
@@ -11,6 +11,7 @@ const UPDATED_TOOL_SLUGS = new Set([
   "utm-builder",
   "fps-calculator",
   "barcode-generator",
+  "robots-txt-generator",
   "character-counter",
   "username-generator",
   "xml-sitemap-generator",

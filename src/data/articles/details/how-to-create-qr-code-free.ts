@@ -2,8 +2,8 @@ import { Article } from "../../articles";
 
 export const articleDetails: Article = {
   "slug": "how-to-create-qr-code-free",
-  "title": "How to Create a Free QR Code (No Sign-Up)",
-  "metaDesc": "Learn how to create free, permanent QR codes without sign-up. Step-by-step tutorial for links, WhatsApp, and WiFi with printing and sizing best practices.",
+  "title": "How to Create a Free QR Code That Never Expires (No Sign-Up)",
+  "metaDesc": "Create permanent, free QR codes without subscriptions or expiration dates. Step-by-step guide for website links, WiFi, WhatsApp, and print formatting.",
   "publishDate": "2025-07-31",
   "lastModified": "2026-11-04",
   "category": "utility",
